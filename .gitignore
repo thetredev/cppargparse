@@ -1,0 +1,10 @@
+# Build dirs
+build/
+
+# IDEA
+.idea/
+cmake-build-debug/
+cmake-build-release/
+
+# Qt Creator
+CMakeLists.txt.user
