@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <stdexcept>
 
-#include "globals.h"
+#include <cppargparse/globals.h>
 #include "type_traits_stub.h"
 
 

@@ -1,10 +1,10 @@
-#ifndef CPPARGPARSE_TYPES_TYPE_TRAITS_STRING_H
-#define CPPARGPARSE_TYPES_TYPE_TRAITS_STRING_H
+#ifndef CPPARGPARSE_TYPES_TYPE_TRAITS_FLOAT_H
+#define CPPARGPARSE_TYPES_TYPE_TRAITS_FLOAT_H
 
 #include <algorithm>
-#include <string>
+#include <stdexcept>
 
-#include "globals.h"
+#include <cppargparse/globals.h>
 #include "type_traits_stub.h"
 
 
@@ -13,20 +13,20 @@ namespace cppargparse::types {
 
 template <>
 /**
- * @brief The type_trait struct for the std::string type.
+ * @brief The type_trait struct for the float type.
  */
-struct type_trait<std::string>
+struct type_trait<float>
 {
     /**
-     * @brief Looks for a given key inside an argument list container and, if found, returns its std::string value.
+     * @brief Looks for a given key inside an argument list container and, if found, returns its float value.
      *
      * @param key The key to look for inside the argument list container.
-     * @param value A std::string pointer to store the value at.
+     * @param value An float pointer to store the value at.
      * @param default_value The default value for the argument key.
      *
-     * @return The std::string value for the given key inside an argument list container.
+     * @return The float value for the given key inside an argument list container.
      */
-    static bool parse(const Key_t &key, std::string * const value, const std::string &default_value)
+    static bool parse(const Key_t &key, float * const value, const float &default_value)
     {
         // Look for <key> inside <args>.
         auto key_it = std::find(g_args.begin(), g_args.end(), key);
@@ -45,14 +45,14 @@ struct type_trait<std::string>
     }
 
     /**
-     * @brief Looks for a given key inside an argument list container and, if found, returns its std::string value.
+     * @brief Looks for a given key inside an argument list container and, if found, returns its float value.
      *
      * @param key The key to look for inside the argument list container.
-     * @param value A std::string pointer to store the value at.
+     * @param value An float pointer to store the value at.
      *
-     * @return The std::string value for the given key inside an argument list container.
+     * @return The float value for the given key inside an argument list container.
      */
-    static bool parse(const Key_t &key, std::string * const value)
+    static bool parse(const Key_t &key, float * const value)
     {
         // Look for <key> inside <args>.
         auto key_it = std::find(g_args.begin(), g_args.end(), key);
@@ -64,7 +64,7 @@ struct type_trait<std::string>
         }
 
 
-        // Advance the iterator once to get the key's string value.
+        // Advance the iterator once to get the key's float value.
         auto value_it = std::next(key_it);
 
         if (value_it == g_args.end())
@@ -74,15 +74,24 @@ struct type_trait<std::string>
         }
 
 
-        // Store the found value at the std::string pointer location.
-        *value = *value_it;
-
-        // Return true to signal success.
-        return true;
+        // Store the found value at the float pointer location.
+        try
+        {
+            *value = std::stof(*value_it);
+            return true;
+        }
+        catch (std::invalid_argument const &)
+        {
+            return false;
+        }
+        catch (std::out_of_range const &)
+        {
+            return false;
+        }
     }
 };
 
 
-#endif // CPPARGPARSE_TYPES_TYPE_TRAITS_STRING_H
-
 } // namespace cppargparse::types
+
+#endif // CPPARGPARSE_TYPES_TYPE_TRAITS_FLOAT_H

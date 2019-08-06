@@ -1,7 +1,7 @@
 #ifndef CPPARGPARSE_TYPES_TYPE_TRAITS_STUB_H
 #define CPPARGPARSE_TYPES_TYPE_TRAITS_STUB_H
 
-#include "types.h"
+#include <cppargparse/types.h>
 
 
 namespace cppargparse::types {

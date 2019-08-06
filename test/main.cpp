@@ -1,11 +1,10 @@
 #include <iostream>
 #include <limits>
 
-#include <globals.h>
-#include <parser.h>
-
-#include <types.h>
-#include <type_traits/type_traits.h>
+#include <cppargparse/globals.h>
+#include <cppargparse/parser.h>
+#include <cppargparse/types.h>
+#include <cppargparse/type_traits/type_traits.h>
 
 
 int main(int argc, char *argv[])
