@@ -1,0 +1,19 @@
+#!/bin/bash
+
+read build_type < <(echo $1 | tr a-z A-Z)
+
+if [[ ! "$build_type" =~ ^(DEBUG|RELEASE)$ ]]; then
+    echo "Wrong build type, options are: DEBUG, RELEASE"
+    exit -1
+fi
+
+
+shift
+
+./build $build_type
+
+cd ../build/$build_type
+ninja
+cd test
+
+$(pwd)/cppargparse_test ${@}
