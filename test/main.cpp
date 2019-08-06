@@ -15,9 +15,11 @@ int main(int argc, char *argv[])
 
     std::string t = parser::parse_arg<std::string>("-t", "BLA");
     int f = parser::parse_arg<int>("-f");
+    float y = parser::parse_arg<float>("-y", static_cast<float>(3.9312671));
 
     std::cout << "-t = " << t << '\n';
     std::cout << "-f = " << f << '\n';
+    std::cout << "-y = " << y << '\n';
 
     return 0;
 }
