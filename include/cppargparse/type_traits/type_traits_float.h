@@ -1,5 +1,5 @@
-#ifndef CPPARGPARSE_TYPES_TYPE_TRAITS_FLOAT_H
-#define CPPARGPARSE_TYPES_TYPE_TRAITS_FLOAT_H
+#ifndef CPPARGPARSE_TYPE_TRAITS_FLOAT_H
+#define CPPARGPARSE_TYPE_TRAITS_FLOAT_H
 
 #include <algorithm>
 #include <stdexcept>
@@ -94,4 +94,4 @@ struct type_trait<float>
 
 } // namespace cppargparse::types
 
-#endif // CPPARGPARSE_TYPES_TYPE_TRAITS_FLOAT_H
+#endif // CPPARGPARSE_TYPE_TRAITS_FLOAT_H

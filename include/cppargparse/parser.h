@@ -1,5 +1,5 @@
-#ifndef CPPARGPARSE_PARSER_PARSER_H
-#define CPPARGPARSE_PARSER_PARSER_H
+#ifndef CPPARGPARSE_PARSER_H
+#define CPPARGPARSE_PARSER_H
 
 #include "types.h"
 #include "type_traits/type_traits.h"
@@ -69,4 +69,4 @@ inline static const T parse_arg(types::Key_t key, T default_value)
 
 } // namespace cppargparse::parse
 
-#endif // CPPARGPARSE_PARSER_PARSER_H
+#endif // CPPARGPARSE_PARSER_H

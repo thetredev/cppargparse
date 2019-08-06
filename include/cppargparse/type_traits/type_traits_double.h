@@ -1,5 +1,5 @@
-#ifndef CPPARGPARSE_TYPES_TYPE_TRAITS_DOUBLE_H
-#define CPPARGPARSE_TYPES_TYPE_TRAITS_DOUBLE_H
+#ifndef CPPARGPARSE_TYPE_TRAITS_DOUBLE_H
+#define CPPARGPARSE_TYPE_TRAITS_DOUBLE_H
 
 #include <algorithm>
 #include <stdexcept>
@@ -175,4 +175,4 @@ struct type_trait<long double>
 
 } // namespace cppargparse::types
 
-#endif // CPPARGPARSE_TYPES_TYPE_TRAITS_DOUBLE_H
+#endif // CPPARGPARSE_TYPE_TRAITS_DOUBLE_H

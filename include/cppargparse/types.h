@@ -1,5 +1,5 @@
-#ifndef CPPARGPARSE_TYPES_TYPES_H
-#define CPPARGPARSE_TYPES_TYPES_H
+#ifndef CPPARGPARSE_TYPES_H
+#define CPPARGPARSE_TYPES_H
 
 #include <string>
 #include <vector>
@@ -21,4 +21,4 @@ typedef std::vector<std::string> ArgumentList_t;
 
 } // namespace cppargparse::types
 
-#endif // CPPARGPARSE_TYPES_TYPES_H
+#endif // CPPARGPARSE_TYPES_H

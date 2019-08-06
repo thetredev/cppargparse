@@ -1,5 +1,5 @@
-#ifndef CPPARGPARSE_MACROS_H
-#define CPPARGPARSE_MACROS_H
+#ifndef CPPARGPARSE_GLOBALS_H
+#define CPPARGPARSE_GLOBALS_H
 
 #include "types.h"
 
@@ -17,4 +17,4 @@ static types::ArgumentList_t g_args;
 
 } // namespace cppargparse
 
-#endif // CPPARGPARSE_MACROS_H
+#endif // CPPARGPARSE_GLOBALS_H

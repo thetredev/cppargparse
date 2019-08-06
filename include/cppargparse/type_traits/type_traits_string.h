@@ -1,5 +1,5 @@
-#ifndef CPPARGPARSE_TYPES_TYPE_TRAITS_STRING_H
-#define CPPARGPARSE_TYPES_TYPE_TRAITS_STRING_H
+#ifndef CPPARGPARSE_TYPE_TRAITS_STRING_H
+#define CPPARGPARSE_TYPE_TRAITS_STRING_H
 
 #include <algorithm>
 #include <string>
@@ -83,6 +83,6 @@ struct type_trait<std::string>
 };
 
 
-#endif // CPPARGPARSE_TYPES_TYPE_TRAITS_STRING_H
+#endif // CPPARGPARSE_TYPE_TRAITS_STRING_H
 
 } // namespace cppargparse::types
