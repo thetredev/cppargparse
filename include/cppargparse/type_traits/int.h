@@ -5,7 +5,7 @@
 #include <stdexcept>
 
 #include <cppargparse/globals.h>
-#include "type_traits_stub.h"
+#include "stub.h"
 
 
 namespace cppargparse::types {

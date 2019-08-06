@@ -1,9 +1,9 @@
 #ifndef CPPARGPARSE_TYPE_TRAITS_TYPE_TRAITS_H
 #define CPPARGPARSE_TYPE_TRAITS_TYPE_TRAITS_H
 
-#include "type_traits_double.h"
-#include "type_traits_int.h"
-#include "type_traits_float.h"
-#include "type_traits_string.h"
+#include "double.h"
+#include "int.h"
+#include "float.h"
+#include "string.h"
 
 #endif // CPPARGPARSE_TYPE_TRAITS_TYPE_TRAITS_H
