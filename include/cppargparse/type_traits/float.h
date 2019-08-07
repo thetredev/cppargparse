@@ -3,7 +3,6 @@
 
 #include <algorithm>
 #include <sstream>
-#include <stdexcept>
 
 #include <cppargparse/globals.h>
 #include <cppargparse/parser/errors.h>

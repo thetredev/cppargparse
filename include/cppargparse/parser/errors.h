@@ -16,6 +16,7 @@ class ParserError : public std::runtime_error
 public:
     /**
      * @brief c'tor
+     *
      * @param message The error message.
      */
     explicit ParserError(const std::string &message)
