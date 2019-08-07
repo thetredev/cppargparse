@@ -18,6 +18,11 @@ typedef std::string Key_t;
  */
 typedef std::vector<std::string> ArgumentList_t;
 
+/**
+ * @brief They key list type.
+ */
+typedef std::vector<ArgumentList_t::const_iterator> ArgumentKeyList_t;
+
 
 } // namespace cppargparse::types
 

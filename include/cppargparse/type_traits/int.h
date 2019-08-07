@@ -2,9 +2,12 @@
 #define CPPARGPARSE_TYPE_TRAITS_INT_H
 
 #include <algorithm>
+#include <sstream>
 #include <stdexcept>
 
 #include <cppargparse/globals.h>
+#include <cppargparse/parser/errors.h>
+
 #include "stub.h"
 
 
@@ -18,76 +21,44 @@ template <>
 struct type_trait<int>
 {
     /**
-     * @brief Looks for a given key inside an argument list container and, if found, returns its integer value.
+     * @brief Try to parse and return the integer value for an argument. Throw a #parser::ParserException on failure.
      *
-     * @param key The key to look for inside the argument list container.
-     * @param value An integer pointer to store the value at.
-     * @param default_value The default value for the argument key.
+     * @param key_it The argument key iterator.
      *
-     * @return The integer value for the given key inside an argument list container.
+     * @return The parsed integer value for an argument on success or throw a #parser::ParserException on failure.
      */
-    static bool parse(const Key_t &key, int * const value, const int &default_value)
+    static int parse(const ArgumentList_t::const_iterator &key_it)
     {
-        // Look for <key> inside <args>.
-        auto key_it = std::find(g_args.begin(), g_args.end(), key);
-
-        if (key_it == g_args.end())
-        {
-            // Store the default std::string value at the std::string pointer location, if it can't be found.
-            *value = default_value;
-
-            // Return false to signal failure.
-            return false;
-        }
-
-        // Call parse() without the default value to get the std::string value for <key>.
-        return parse(key, value);
-    }
-
-    /**
-     * @brief Looks for a given key inside an argument list container and, if found, returns its integer value.
-     *
-     * @param key The key to look for inside the argument list container.
-     * @param value An integer pointer to store the value at.
-     *
-     * @return The integer value for the given key inside an argument list container.
-     */
-    static bool parse(const Key_t &key, int * const value)
-    {
-        // Look for <key> inside <args>.
-        auto key_it = std::find(g_args.begin(), g_args.end(), key);
-
-        if (key_it == g_args.end())
-        {
-            // Return false if it can't be found.
-            return false;
-        }
-
-
-        // Advance the iterator once to get the key's integer value.
         auto value_it = std::next(key_it);
 
-        if (value_it == g_args.end())
-        {
-            // Return false if it can't be found.
-            return false;
-        }
-
-
-        // Store the found value at the integer pointer location.
         try
         {
-            *value = std::stoi(*value_it);
-            return true;
+            return std::stoi(*value_it);
         }
+
         catch (std::invalid_argument const &)
         {
-            return false;
+            throw parser::errors::ParserError(error_message(value_it));
         }
         catch (std::out_of_range const &)
         {
-            return false;
+            throw parser::errors::ParserError(error_message(value_it));
         }
+    }
+
+    /**
+     * @brief Generate an error message for a value that's not an integer.
+     *
+     * @param value_it The argument value iterator.
+     *
+     * @return An error message for a value that's not an integer.
+     */
+    static const char *error_message(const ArgumentList_t::const_iterator &value_it)
+    {
+        std::ostringstream message;
+        message << "Couldn't parse '" << *value_it << "' as an integer.";
+
+        return message.str().c_str();
     }
 };
 

@@ -14,32 +14,28 @@ template <typename T>
 struct type_trait
 {
     /**
-     * @brief Default type_trait stub for a given default value.
+     * @brief Stub parse method for any type.
      *
-     * @param key The key to look for.
-     * @param value A pointer to store the value at.
-     * @param default_value The default value.
+     * @param key_it The argument key iterator.
      *
-     * @return false
+     * @return A new instance of the template type.
      */
-    static bool parse(const Key_t &key, T * const value, const T &default_value)
+    static const T parse(const ArgumentList_t::const_iterator &key_it)
     {
-        // STUB
-        return false;
+        return T();
     }
 
+
     /**
-     * @brief Default type_trait stub.
+     * @brief Stub error message.
      *
-     * @param key The key to look for.
-     * @param value A pointer to store the value at.
+     * @param value_it The argument value iterator.
      *
-     * @return false
+     * @return An empty C-style string.
      */
-    static bool parse(const Key_t &key, T * const value)
+    static const char *error_message(const ArgumentList_t::const_iterator &value_it)
     {
-        // STUB
-        return false;
+        return "";
     }
 };
 
