@@ -1,5 +1,5 @@
-#ifndef CPPARGPARSE_TYPE_TRAITS_STUB_H
-#define CPPARGPARSE_TYPE_TRAITS_STUB_H
+#ifndef CPPARGPARSE_TYPE_TRAITS_DEFAULT_H
+#define CPPARGPARSE_TYPE_TRAITS_DEFAULT_H
 
 #include <cppargparse/types.h>
 
@@ -42,4 +42,4 @@ struct type_trait
 
 } // namespace cppargparse::types
 
-#endif // CPPARGPARSE_TYPE_TRAITS_STUB_H
+#endif // CPPARGPARSE_TYPE_TRAITS_DEFAULT_H

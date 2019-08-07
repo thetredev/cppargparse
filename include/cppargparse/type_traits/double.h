@@ -8,7 +8,7 @@
 #include <cppargparse/globals.h>
 #include <cppargparse/parser/errors.h>
 
-#include "stub.h"
+#include "default.h"
 
 
 namespace cppargparse::types {
