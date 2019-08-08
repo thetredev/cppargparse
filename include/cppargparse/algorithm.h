@@ -3,6 +3,7 @@
 
 #include <vector>
 
+#include "errors.h"
 #include "globals.h"
 #include "types.h"
 
@@ -49,6 +50,29 @@ const std::vector<types::ArgumentList_t::const_iterator> collect_arg_values(cons
     }
 
     return values;
+}
+
+
+/**
+ * @brief Find an argument key within #g_args.
+ *
+ * @param The argument key to look for.
+ *
+ * @return An argument container list iterator at the key position.
+ */
+static const types::ArgumentList_t::const_iterator find_key(const types::Key_t &key)
+{
+    auto key_it = std::find(g_args.cbegin(), g_args.cend(), key);
+
+    if (key_it == g_args.cend())
+    {
+        std::ostringstream message;
+        message << "Couldn't find argument '" << key << "'.";
+
+        throw errors::ArgumentKeyError(message.str());
+    }
+
+    return key_it;
 }
 
 

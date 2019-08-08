@@ -6,8 +6,8 @@
 #include <vector>
 
 #include <cppargparse/algorithm.h>
+#include <cppargparse/errors.h>
 #include <cppargparse/globals.h>
-#include <cppargparse/parser/errors.h>
 
 #include "default.h"
 

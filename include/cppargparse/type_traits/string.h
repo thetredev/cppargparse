@@ -5,8 +5,8 @@
 #include <sstream>
 #include <string>
 
+#include <cppargparse/errors.h>
 #include <cppargparse/globals.h>
-#include <cppargparse/parser/errors.h>
 
 #include "default.h"
 
@@ -44,7 +44,7 @@ struct type_trait<std::string>
     {
         if (value_it == g_args.cend())
         {
-            throw parser::errors::ParserError(error_message(value_it));
+            throw errors::ParserError(error_message(value_it));
         }
 
         return *value_it;

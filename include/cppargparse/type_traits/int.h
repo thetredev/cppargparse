@@ -4,8 +4,8 @@
 #include <algorithm>
 #include <sstream>
 
+#include <cppargparse/errors.h>
 #include <cppargparse/globals.h>
-#include <cppargparse/parser/errors.h>
 
 #include "default.h"
 
@@ -47,11 +47,11 @@ struct type_trait<int>
 
         catch (std::invalid_argument const &)
         {
-            throw parser::errors::ParserError(error_message(value_it));
+            throw errors::ParserError(error_message(value_it));
         }
         catch (std::out_of_range const &)
         {
-            throw parser::errors::ParserError(error_message(value_it));
+            throw errors::ParserError(error_message(value_it));
         }
     }
 
