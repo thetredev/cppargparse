@@ -49,6 +49,28 @@ static const types::ArgumentList_t::const_iterator find_key(const types::Key_t &
 }
 
 
+/**
+ * @brief Parse the argument list container for a flag.
+ *
+ * @param key The argument key to look for.
+ *
+ * @return Whether the argument key is present in the argument list container.
+ */
+inline static bool parse_flag(const types::Key_t &key)
+{
+    try
+    {
+        (void)find_key(key);
+        return true;
+    }
+
+    catch (const parser::errors::ParserError &)
+    {
+        return false;
+    }
+}
+
+
 template <typename T>
 /**
  * @brief Try to parse and return an argument value of any type. Throw a #parser::ParserException on failure.

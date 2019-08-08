@@ -18,6 +18,12 @@ int main(int argc, char *argv[])
     parser::parse_cmdargs(argc, argv);
 
 
+    /* Flag parsing */
+
+    bool e = parser::parse_flag("-e");
+    std::cout << "-e passed: " << (e ? "yes" : "no") << '\n';
+
+
     /* String parsing with exception handling */
 
     try
