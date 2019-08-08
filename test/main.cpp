@@ -4,12 +4,7 @@
 #include <string>
 #include <vector>
 
-#include <cppargparse/algorithm.h>
-#include <cppargparse/globals.h>
-#include <cppargparse/parser/errors.h>
-#include <cppargparse/parser/parser.h>
-#include <cppargparse/types.h>
-#include <cppargparse/type_traits/type_traits.h>
+#include <cppargparse/cppargparse.h>
 
 
 int main(int argc, char *argv[])
