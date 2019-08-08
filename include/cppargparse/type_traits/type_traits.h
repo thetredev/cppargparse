@@ -5,5 +5,6 @@
 #include "float.h"
 #include "int.h"
 #include "string.h"
+#include "vector.h"
 
 #endif // CPPARGPARSE_TYPE_TRAITS_TYPE_TRAITS_H

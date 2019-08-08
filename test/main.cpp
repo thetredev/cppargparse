@@ -1,6 +1,9 @@
 #include <iostream>
 #include <limits>
 
+#include <string>
+#include <vector>
+
 #include <cppargparse/globals.h>
 #include <cppargparse/parser/errors.h>
 #include <cppargparse/parser/parser.h>
@@ -41,6 +44,18 @@ int main(int argc, char *argv[])
 
         // Don't exit application here, "-t" is not required.
     }
+
+    std::vector<std::string> x = parser::parse_arg<std::vector<std::string>>("-L", std::vector<std::string>());
+
+    std::vector<int> ints = parser::parse_arg<std::vector<int>>("-I");
+    std::cout << "-I: ";
+
+    for (auto i : ints)
+    {
+        std::cout << i << ",";
+    }
+
+    std::cout << '\n';
 
 
     /* Numerical parsing without exception handling */
