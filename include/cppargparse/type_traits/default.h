@@ -27,6 +27,19 @@ struct type_trait
 
 
     /**
+     * @brief Stub convert method for any type.
+     *
+     * @param value_it The argument value iterator.
+     *
+     * @return A new instance of the template type.
+     */
+    static const T convert(const ArgumentList_t::const_iterator &value_it)
+    {
+        return T();
+    }
+
+
+    /**
      * @brief Stub error message.
      *
      * @param value_it The argument value iterator.

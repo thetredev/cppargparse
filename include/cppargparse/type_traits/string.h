@@ -30,8 +30,18 @@ struct type_trait<std::string>
      */
     static const std::string parse(const ArgumentList_t::const_iterator &key_it)
     {
-        auto value_it = std::next(key_it);
+        return convert(std::next(key_it));
+    }
 
+    /**
+     * @brief Try to convert and return the given argument value as a std::string. Throw a #parser::ParserException on failure.
+     *
+     * @param value_it The argument value iterator.
+     *
+     * @return The converted std::string value of an argument value on success or throw a #parser::ParserException on failure.
+     */
+    static const std::string convert(const ArgumentList_t::const_iterator &value_it)
+    {
         if (value_it == g_args.cend())
         {
             throw parser::errors::ParserError(error_message(value_it));

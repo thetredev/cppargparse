@@ -28,8 +28,18 @@ struct type_trait<int>
      */
     static int parse(const ArgumentList_t::const_iterator &key_it)
     {
-        auto value_it = std::next(key_it);
+        return convert(std::next(key_it));
+    }
 
+    /**
+     * @brief Try to convert and return the given argument value as an int. Throw a #parser::ParserException on failure.
+     *
+     * @param value_it The argument value iterator.
+     *
+     * @return The converted int value of an argument value on success or throw a #parser::ParserException on failure.
+     */
+    static int convert(const ArgumentList_t::const_iterator &value_it)
+    {
         try
         {
             return std::stoi(*value_it);

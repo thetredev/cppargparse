@@ -28,8 +28,18 @@ struct type_trait<double>
      */
     static double parse(const ArgumentList_t::const_iterator &key_it)
     {
-        auto value_it = std::next(key_it);
+        return convert(std::next(key_it));
+    }
 
+    /**
+     * @brief Try to convert and return the given argument value as a double. Throw a #parser::ParserException on failure.
+     *
+     * @param value_it The argument value iterator.
+     *
+     * @return The converted double value of an argument value on success or throw a #parser::ParserException on failure.
+     */
+    static double convert(const ArgumentList_t::const_iterator &value_it)
+    {
         try
         {
             return std::stod(*value_it);
@@ -77,8 +87,18 @@ struct type_trait<long double>
      */
     static long double parse(const ArgumentList_t::const_iterator &key_it)
     {
-        auto value_it = std::next(key_it);
+        return convert(std::next(key_it));
+    }
 
+    /**
+     * @brief Try to convert and return the given argument value as a long double. Throw a #parser::ParserException on failure.
+     *
+     * @param value_it The argument value iterator.
+     *
+     * @return The converted long double value of an argument value on success or throw a #parser::ParserException on failure.
+     */
+    static long double convert(const ArgumentList_t::const_iterator &value_it)
+    {
         try
         {
             return std::stold(*value_it);
