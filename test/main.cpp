@@ -47,9 +47,9 @@ int main(int argc, char *argv[])
         // Don't exit application here, "-t" is not required.
     }
 
-    std::vector<std::string> x = parser::parse_arg<std::vector<std::string>>("-L", std::vector<std::string>());
+    auto x = parser::parse_arg<std::vector<std::string>>("-L", std::vector<std::string>());
 
-    std::vector<int> ints = parser::parse_arg<std::vector<int>>("-I");
+    auto ints = parser::parse_arg<std::vector<int>>("-I");
     std::cout << "-I: ";
 
     for (auto i : ints)
