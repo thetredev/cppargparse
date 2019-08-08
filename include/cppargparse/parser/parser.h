@@ -13,20 +13,6 @@ namespace cppargparse::parser {
 
 
 /**
- * @brief Put command-line arguments into #g_args.
- *
- * @param argc The length of the command-line arguments array.
- * @param argv The command-line arguments array.
- */
-void parse_cmdargs(int argc, char *argv[])
-{
-    const types::ArgumentList_t temp(argv, argv + argc);
-
-    g_args.assign(temp.cbegin(), temp.cend());
-}
-
-
-/**
  * @brief Find an argument key within #g_args.
  *
  * @param The argument key to look for.

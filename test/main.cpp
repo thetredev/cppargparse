@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+#include <cppargparse/algorithm.h>
 #include <cppargparse/globals.h>
 #include <cppargparse/parser/errors.h>
 #include <cppargparse/parser/parser.h>
@@ -15,7 +16,7 @@ int main(int argc, char *argv[])
 {
     /* Prepare command-line args */
     using namespace cppargparse;
-    parser::parse_cmdargs(argc, argv);
+    algorithm::collect_cmdargs(argc, argv);
 
 
     /* Flag parsing */

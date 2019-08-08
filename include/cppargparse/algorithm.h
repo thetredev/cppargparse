@@ -11,6 +11,20 @@ namespace cppargparse::algorithm {
 
 
 /**
+ * @brief Put command-line arguments into #g_args.
+ *
+ * @param argc The length of the command-line arguments array.
+ * @param argv The command-line arguments array.
+ */
+void collect_cmdargs(int argc, char *argv[])
+{
+    const types::ArgumentList_t temp(argv, argv + argc);
+
+    g_args.assign(temp.cbegin(), temp.cend());
+}
+
+
+/**
  * @brief Collect all values tied to an argument as an std::vector.
  *
  * @param key_it The argument key iterator.
