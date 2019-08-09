@@ -27,9 +27,9 @@ struct argument<float>
      *
      * @return The float value of the command line argument next in line on success or throw a #parser::ParserException on failure.
      */
-    static float parse(const types::CommandLineArgument_t &key_it)
+    static float parse(const types::CommandLineArgument_t &cmdarg)
     {
-        return convert(std::next(key_it));
+        return convert(std::next(cmdarg));
     }
 
     /**
@@ -39,20 +39,20 @@ struct argument<float>
      *
      * @return The float value of the command line argument on success or throw a #parser::ParserException on failure.
      */
-    static float convert(const types::CommandLineArgument_t &value_it)
+    static float convert(const types::CommandLineArgument_t &cmdarg)
     {
         try
         {
-            return std::stof(*value_it);
+            return std::stof(*cmdarg);
         }
 
         catch (std::invalid_argument const &)
         {
-            throw errors::CommandLineOptionError(error_message(value_it));
+            throw errors::CommandLineOptionError(error_message(cmdarg));
         }
         catch (std::out_of_range const &)
         {
-            throw errors::CommandLineOptionError(error_message(value_it));
+            throw errors::CommandLineOptionError(error_message(cmdarg));
         }
     }
 
@@ -63,10 +63,10 @@ struct argument<float>
      *
      * @return An error message for a value that's not a float.
      */
-    static const char *error_message(const types::CommandLineArgument_t &value_it)
+    static const char *error_message(const types::CommandLineArgument_t &cmdarg)
     {
         std::ostringstream message;
-        message << "Couldn't parse '" << *value_it << "' as a float value.";
+        message << "Couldn't parse '" << *cmdarg << "' as a float value.";
 
         return message.str().c_str();
     }

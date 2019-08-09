@@ -22,46 +22,45 @@ template <>
 struct argument<std::string>
 {
     /**
-     * @brief Try to parse and return the std::string value for an argument. Throw a #parser::ParserException on failure.
+     * @brief Try to parse a command line argument as a std::string. Throw a #parser::ParserException on failure.
      *
-     * @param key_it The argument key iterator.
-     * @param default_value The default std::string value.
+     * @param cmdarg The command line argument iterator.
      *
-     * @return The parsed std::string value for an argument on success or throw a #parser::ParserException on failure.
+     * @return The std::string value of the command line argument next in line on success or throw a #parser::ParserException on failure.
      */
-    static const std::string parse(const types::CommandLineArgument_t &key_it)
+    static const std::string parse(const types::CommandLineArgument_t &cmdarg)
     {
-        return convert(std::next(key_it));
+        return convert(std::next(cmdarg));
     }
 
     /**
-     * @brief Try to convert and return the given argument value as a std::string. Throw a #parser::ParserException on failure.
+     * @brief Try to convert a command line argument to a std::string. Throw a #parser::ParserException on failure.
      *
-     * @param value_it The argument value iterator.
+     * @param cmdarg The command line argument iterator.
      *
-     * @return The converted std::string value of an argument value on success or throw a #parser::ParserException on failure.
+     * @return The std::string value of the command line argument on success or throw a #parser::ParserException on failure.
      */
-    static const std::string convert(const types::CommandLineArgument_t &value_it)
+    static const std::string convert(const types::CommandLineArgument_t &cmdarg)
     {
-        if (value_it == g_cmdargs.cend())
+        if (cmdarg == g_cmdargs.cend())
         {
-            throw errors::CommandLineOptionError(error_message(value_it));
+            throw errors::CommandLineOptionError(error_message(cmdarg));
         }
 
-        return *value_it;
+        return *cmdarg;
     }
 
     /**
      * @brief Generate an error message for a value that's not a std::string.
      *
-     * @param value_it The argument value iterator.
+     * @param cmdarg The command line argument iterator.
      *
      * @return An error message for a value that's not a std::string.
      */
-    static const char *error_message(const types::CommandLineArgument_t &key_it)
+    static const char *error_message(const types::CommandLineArgument_t &cmdarg)
     {
         std::ostringstream message;
-        message << "Couldn't find a value for argument: " << *key_it;
+        message << "Couldn't find a value for argument: " << *cmdarg;
 
         return message.str().c_str();
     }
