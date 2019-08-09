@@ -60,7 +60,7 @@ const std::vector<types::ArgumentList_t::const_iterator> collect_arg_values(cons
  *
  * @return An argument container list iterator at the key position.
  */
-static const types::ArgumentList_t::const_iterator find_key(const types::Key_t &key)
+static const types::ArgumentList_t::const_iterator find_key(const std::string &key)
 {
     auto key_it = std::find(g_args.cbegin(), g_args.cend(), key);
 

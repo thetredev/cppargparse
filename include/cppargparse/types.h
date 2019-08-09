@@ -9,11 +9,6 @@ namespace cppargparse::types {
 
 
 /**
- * @brief The key type.
- */
-typedef std::string Key_t;
-
-/**
  * @brief The argument list container type.
  */
 typedef std::vector<std::string> ArgumentList_t;

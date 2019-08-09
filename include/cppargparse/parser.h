@@ -20,7 +20,7 @@ namespace cppargparse::parser {
  *
  * @return Whether the argument key is present in the argument list container.
  */
-inline static bool parse_flag(const types::Key_t &key)
+inline static bool parse_flag(const std::string &key)
 {
     try
     {
@@ -45,7 +45,7 @@ template <typename T>
  *
  * @return The parsed argument value of any type or throw a #parser::ParserException on failure.
  */
-inline static const T parse_arg(const types::Key_t &key)
+inline static const T parse_arg(const std::string &key)
 {
     try
     {
@@ -71,7 +71,7 @@ template <typename T>
  *
  * @return The parsed argument value of any type or the default value on failure.
  */
-inline static const T parse_arg(const types::Key_t &key, const T &default_value)
+inline static const T parse_arg(const std::string &key, const T &default_value)
 {
     try
     {
