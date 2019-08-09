@@ -17,7 +17,7 @@ namespace cppargparse {
 
 template <>
 /**
- * @brief The type_trait struct for the integer type.
+ * @brief The argument struct for the int type.
  */
 struct argument<int>
 {

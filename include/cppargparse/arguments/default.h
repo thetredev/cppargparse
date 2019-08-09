@@ -9,7 +9,7 @@ namespace cppargparse {
 
 template <typename T>
 /**
- * @brief The default type_trait struct. Provides stub methods returning stub values.
+ * @brief The default argument struct. Provides stub methods returning stub values.
  */
 struct argument
 {

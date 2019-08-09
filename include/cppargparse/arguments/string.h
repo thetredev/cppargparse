@@ -17,7 +17,7 @@ namespace cppargparse {
 
 template <>
 /**
- * @brief The type_trait struct for the std::string type.
+ * @brief The argument struct for the std::string type.
  */
 struct argument<std::string>
 {

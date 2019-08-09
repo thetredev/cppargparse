@@ -16,7 +16,7 @@ namespace cppargparse {
 
 template <>
 /**
- * @brief The type_trait struct for the double type.
+ * @brief The argument struct for the double type.
  */
 struct argument<double>
 {

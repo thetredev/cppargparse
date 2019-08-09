@@ -18,7 +18,7 @@ namespace cppargparse {
 
 template <typename T>
 /**
- * @brief The type_trait struct for the integer type.
+ * @brief The argument struct for the std::vector<T> type.
  */
 struct argument<std::vector<T>>
 {

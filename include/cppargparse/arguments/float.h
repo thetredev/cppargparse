@@ -16,7 +16,7 @@ namespace cppargparse {
 
 template <>
 /**
- * @brief The type_trait struct for the float type.
+ * @brief The argument struct for the float type.
  */
 struct argument<float>
 {
