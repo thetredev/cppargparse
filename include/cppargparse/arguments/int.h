@@ -2,13 +2,14 @@
 #define CPPARGPARSE_ARGUMENTS_INT_H
 
 #include <algorithm>
-#include <sstream>
 
 #include <cppargparse/errors.h>
 #include <cppargparse/globals.h>
 #include <cppargparse/types.h>
 
 #include "default.h"
+#include "numerical.h"
+
 
 
 namespace cppargparse {
@@ -29,7 +30,7 @@ struct argument<int>
      */
     static int parse(const types::CommandLineArgument_t &cmdarg)
     {
-        return convert(std::next(cmdarg));
+        return numerical_argument::parse<int>(cmdarg, CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stoi), "integer");
     }
 
     /**
@@ -41,34 +42,7 @@ struct argument<int>
      */
     static int convert(const types::CommandLineArgument_t &cmdarg)
     {
-        try
-        {
-            return std::stoi(*cmdarg);
-        }
-
-        catch (std::invalid_argument const &)
-        {
-            throw errors::CommandLineOptionError(error_message(cmdarg));
-        }
-        catch (std::out_of_range const &)
-        {
-            throw errors::CommandLineOptionError(error_message(cmdarg));
-        }
-    }
-
-    /**
-     * @brief Generate an error message for a value that's not an int.
-     *
-     * @param cmdarg The command line argument iterator.
-     *
-     * @return An error message for a value that's not an int.
-     */
-    static const char *error_message(const types::CommandLineArgument_t &cmdarg)
-    {
-        std::ostringstream message;
-        message << "Couldn't parse '" << *cmdarg << "' as an integer.";
-
-        return message.str().c_str();
+        return numerical_argument::convert<int>(cmdarg, CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stoi), "integer");
     }
 };
 

@@ -2,13 +2,13 @@
 #define CPPARGPARSE_ARGUMENTS_FLOAT_H
 
 #include <algorithm>
-#include <sstream>
 
 #include <cppargparse/errors.h>
 #include <cppargparse/globals.h>
 #include <cppargparse/types.h>
 
 #include "default.h"
+#include "numerical.h"
 
 
 namespace cppargparse {
@@ -29,7 +29,7 @@ struct argument<float>
      */
     static float parse(const types::CommandLineArgument_t &cmdarg)
     {
-        return convert(std::next(cmdarg));
+        return numerical_argument::parse<float>(cmdarg, CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stof), "float");
     }
 
     /**
@@ -41,34 +41,7 @@ struct argument<float>
      */
     static float convert(const types::CommandLineArgument_t &cmdarg)
     {
-        try
-        {
-            return std::stof(*cmdarg);
-        }
-
-        catch (std::invalid_argument const &)
-        {
-            throw errors::CommandLineOptionError(error_message(cmdarg));
-        }
-        catch (std::out_of_range const &)
-        {
-            throw errors::CommandLineOptionError(error_message(cmdarg));
-        }
-    }
-
-    /**
-     * @brief Generate an error message for a value that's not a float.
-     *
-     * @param cmdarg The command line argument iterator.
-     *
-     * @return An error message for a value that's not a float.
-     */
-    static const char *error_message(const types::CommandLineArgument_t &cmdarg)
-    {
-        std::ostringstream message;
-        message << "Couldn't parse '" << *cmdarg << "' as a float value.";
-
-        return message.str().c_str();
+        return numerical_argument::convert<float>(cmdarg, CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stof), "float");
     }
 };
 
