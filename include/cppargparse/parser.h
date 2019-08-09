@@ -1,5 +1,5 @@
-#ifndef CPPARGPARSE_PARSER_PARSER_H
-#define CPPARGPARSE_PARSER_PARSER_H
+#ifndef CPPARGPARSE_PARSER_H
+#define CPPARGPARSE_PARSER_H
 
 #include <sstream>
 
@@ -93,4 +93,4 @@ inline static const T parse_arg(const std::string &key, const T &default_value)
 
 } // namespace cppargparse::parser
 
-#endif // CPPARGPARSE_PARSER_PARSER_H
+#endif // CPPARGPARSE_PARSER_H
