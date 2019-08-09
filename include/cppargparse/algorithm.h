@@ -36,18 +36,16 @@ const types::CommandLineArguments_t collect_arg_values(const types::CommandLineA
 {
     types::CommandLineArguments_t values;
 
-    auto cmdarg_value = std::next(cmdarg);
-
-    for (auto it = cmdarg_value; it != g_cmdargs.end(); ++it)
+    for (auto cmdarg_value = std::next(cmdarg); cmdarg_value != g_cmdargs.end(); ++cmdarg_value)
     {
-        auto found_key_it = std::find(g_options.cbegin(), g_options.cend(), it);
+        auto option = std::find(g_options.cbegin(), g_options.cend(), cmdarg_value);
 
-        if (found_key_it != g_options.cend())
+        if (option != g_options.cend())
         {
             break;
         }
 
-        values.emplace_back(it);
+        values.emplace_back(cmdarg_value);
     }
 
     return values;
