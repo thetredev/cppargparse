@@ -8,4 +8,8 @@ include_directories(include)
 
 add_subdirectory(third_party)
 
-add_subdirectory(test)
+
+if("${CMAKE_BUILD_TYPE}" STREQUAL "Profiling")
+    enable_testing()
+    add_subdirectory(test)
+endif()

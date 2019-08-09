@@ -1,17 +1,25 @@
 
-set(CPPARGPARSE_TEST_FLAG_SRC
+add_custom_target(tests)
+
+add_custom_command(TARGET tests POST_BUILD
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    COMMAND ctest --output-on-failure
+)
+
+
+function(add_unit_test test_name source_files)
+    add_executable(${test_name} ${source_files})
+    add_test(${test_name} ${test_name})
+    add_dependencies(tests ${test_name})
+
+    target_link_libraries(${test_name} gtest_main)
+endfunction()
+
+
+add_unit_test(test_flag
     ${CMAKE_CURRENT_SOURCE_DIR}/test_flag.cpp
 )
 
-add_executable(test_flag ${CPPARGPARSE_TEST_FLAG_SRC})
-target_link_libraries(test_flag gtest_main)
-
-
-set(CPPARGPARSE_TEST_NUMERICAL_SRC
-    ${CMAKE_CURRENT_SOURCE_DIR}/numerical/test_double.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/numerical/test_float.cpp
+add_unit_test(test_numerical
     ${CMAKE_CURRENT_SOURCE_DIR}/numerical/test_int.cpp
 )
-
-add_executable(test_numerical ${CPPARGPARSE_TEST_NUMERICAL_SRC})
-target_link_libraries(test_numerical gtest_main)
