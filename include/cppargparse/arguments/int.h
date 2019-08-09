@@ -27,7 +27,7 @@ struct argument<int>
      *
      * @return The parsed integer value for an argument on success or throw a #parser::ParserException on failure.
      */
-    static int parse(const types::ArgumentList_t::const_iterator &key_it)
+    static int parse(const types::CommandLineArgument_t &key_it)
     {
         return convert(std::next(key_it));
     }
@@ -39,7 +39,7 @@ struct argument<int>
      *
      * @return The converted int value of an argument value on success or throw a #parser::ParserException on failure.
      */
-    static int convert(const types::ArgumentList_t::const_iterator &value_it)
+    static int convert(const types::CommandLineArgument_t &value_it)
     {
         try
         {
@@ -63,7 +63,7 @@ struct argument<int>
      *
      * @return An error message for a value that's not an integer.
      */
-    static const char *error_message(const types::ArgumentList_t::const_iterator &value_it)
+    static const char *error_message(const types::CommandLineArgument_t &value_it)
     {
         std::ostringstream message;
         message << "Couldn't parse '" << *value_it << "' as an integer.";

@@ -21,52 +21,53 @@ template <>
 struct argument<double>
 {
     /**
-     * @brief Try to parse and return the double value for an argument. Throw a #parser::ParserException on failure.
+     * @brief Try to parse a command line argument as a double. Throw a #parser::ParserException on failure.
      *
-     * @param key_it The argument key iterator.
+     * @param cmdarg The command line argument iterator.
      *
-     * @return The parsed double value for an argument on success or throw a #parser::ParserException on failure.
+     * @return The double value of the command line argument next in line on success or throw a #parser::ParserException on failure.
      */
-    static double parse(const types::ArgumentList_t::const_iterator &key_it)
+    static double parse(const types::CommandLineArgument_t &cmarg)
     {
-        return convert(std::next(key_it));
+        return convert(std::next(cmarg));
     }
 
+
     /**
-     * @brief Try to convert and return the given argument value as a double. Throw a #parser::ParserException on failure.
+     * @brief Try to convert a command line argument to a double value. Throw a #parser::ParserException on failure.
      *
-     * @param value_it The argument value iterator.
+     * @param cmdarg The command line argument iterator.
      *
-     * @return The converted double value of an argument value on success or throw a #parser::ParserException on failure.
+     * @return The double value of the command line argument on success or throw a #parser::ParserException on failure.
      */
-    static double convert(const types::ArgumentList_t::const_iterator &value_it)
+    static double convert(const types::CommandLineArgument_t &cmdarg)
     {
         try
         {
-            return std::stod(*value_it);
+            return std::stod(*cmdarg);
         }
 
         catch (std::invalid_argument const &)
         {
-            throw errors::ParserError(error_message(value_it));
+            throw errors::ParserError(error_message(cmdarg));
         }
         catch (std::out_of_range const &)
         {
-            throw errors::ParserError(error_message(value_it));
+            throw errors::ParserError(error_message(cmdarg));
         }
     }
 
     /**
-     * @brief Generate an error message for a value that's not a float.
+     * @brief Generate an error message for a value that's not a double.
      *
-     * @param value_it The argument value iterator.
+     * @param cmdarg The command line argument iterator.
      *
-     * @return An error message for a value that's not a float.
+     * @return An error message for a value that's not a double.
      */
-    static const char *error_message(const types::ArgumentList_t::const_iterator &value_it)
+    static const char *error_message(const types::CommandLineArgument_t &cmdarg)
     {
         std::ostringstream message;
-        message << "Couldn't parse '" << *value_it << "' as a double value.";
+        message << "Couldn't parse '" << *cmdarg << "' as a double value.";
 
         return message.str().c_str();
     }
@@ -80,52 +81,52 @@ template <>
 struct argument<long double>
 {
     /**
-     * @brief Try to parse and return the long double value for an argument. Throw a #parser::ParserException on failure.
+     * @brief Try to parse a command line argument as a long double. Throw a #parser::ParserException on failure.
      *
-     * @param key_it The argument key iterator.
+     * @param cmdarg The command line argument iterator.
      *
-     * @return The parsed long double value for an argument on success or throw a #parser::ParserException on failure.
+     * @return The long double value of the command line argument next in line on success or throw a #parser::ParserException on failure.
      */
-    static long double parse(const types::ArgumentList_t::const_iterator &key_it)
+    static long double parse(const types::CommandLineArgument_t &cmdarg)
     {
-        return convert(std::next(key_it));
+        return convert(std::next(cmdarg));
     }
 
     /**
-     * @brief Try to convert and return the given argument value as a long double. Throw a #parser::ParserException on failure.
+     * @brief Try to convert a command line argument to a long double value. Throw a #parser::ParserException on failure.
      *
-     * @param value_it The argument value iterator.
+     * @param cmdarg The command line argument iterator.
      *
-     * @return The converted long double value of an argument value on success or throw a #parser::ParserException on failure.
+     * @return The long double value of the command line argument on success or throw a #parser::ParserException on failure.
      */
-    static long double convert(const types::ArgumentList_t::const_iterator &value_it)
+    static long double convert(const types::CommandLineArgument_t &cmdarg)
     {
         try
         {
-            return std::stold(*value_it);
+            return std::stold(*cmdarg);
         }
 
         catch (std::invalid_argument const &)
         {
-            throw errors::ParserError(error_message(value_it));
+            throw errors::ParserError(error_message(cmdarg));
         }
         catch (std::out_of_range const &)
         {
-            throw errors::ParserError(error_message(value_it));
+            throw errors::ParserError(error_message(cmdarg));
         }
     }
 
     /**
-     * @brief Generate an error message for a value that's not a float.
+     * @brief Generate an error message for a value that's not a long double.
      *
-     * @param value_it The argument value iterator.
+     * @param cmdarg The command line argument iterator.
      *
-     * @return An error message for a value that's not a float.
+     * @return An error message for a value that's not a long double.
      */
-    static const char *error_message(const types::ArgumentList_t::const_iterator &value_it)
+    static const char *error_message(const types::CommandLineArgument_t &cmdarg)
     {
         std::ostringstream message;
-        message << "Couldn't parse '" << *value_it << "' as a long double value.";
+        message << "Couldn't parse '" << *cmdarg << "' as a long double value.";
 
         return message.str().c_str();
     }

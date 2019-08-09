@@ -29,7 +29,7 @@ struct argument<std::string>
      *
      * @return The parsed std::string value for an argument on success or throw a #parser::ParserException on failure.
      */
-    static const std::string parse(const types::ArgumentList_t::const_iterator &key_it)
+    static const std::string parse(const types::CommandLineArgument_t &key_it)
     {
         return convert(std::next(key_it));
     }
@@ -41,9 +41,9 @@ struct argument<std::string>
      *
      * @return The converted std::string value of an argument value on success or throw a #parser::ParserException on failure.
      */
-    static const std::string convert(const types::ArgumentList_t::const_iterator &value_it)
+    static const std::string convert(const types::CommandLineArgument_t &value_it)
     {
-        if (value_it == g_args.cend())
+        if (value_it == g_cmdargs.cend())
         {
             throw errors::ParserError(error_message(value_it));
         }
@@ -58,7 +58,7 @@ struct argument<std::string>
      *
      * @return An error message for a value that's not a std::string.
      */
-    static const char *error_message(const types::ArgumentList_t::const_iterator &key_it)
+    static const char *error_message(const types::CommandLineArgument_t &key_it)
     {
         std::ostringstream message;
         message << "Couldn't find a value for argument: " << *key_it;

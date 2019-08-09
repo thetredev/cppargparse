@@ -11,18 +11,18 @@ namespace cppargparse {
 
 
 /**
- * @brief The global argument container list.
+ * @brief The global list of command line arguments.
  *
  * @todo Make this read-only but updatable.
  */
-static types::ArgumentList_t g_args;
+static types::CommandLine_t g_cmdargs;
 
 /**
- * @brief The global key list.
+ * @brief The global list of command line options.
  *
  * @todo Make this read-only but updatable.
  */
-static types::ArgumentKeyList_t g_keys;
+static types::CommandLineOptions_t g_options;
 
 
 } // namespace cppargparse

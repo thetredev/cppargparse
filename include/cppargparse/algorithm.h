@@ -12,36 +12,37 @@ namespace cppargparse::algorithm {
 
 
 /**
- * @brief Put command-line arguments into #g_args.
+ * @brief Put command line arguments into #g_cmdargs.
  *
  * @param argc The length of the command-line arguments array.
- * @param argv The command-line arguments array.
+ * @param argv The command line arguments array.
  */
 void collect_cmdargs(int argc, char *argv[])
 {
-    const types::ArgumentList_t temp(argv, argv + argc);
+    const types::CommandLine_t args(argv, argv + argc);
 
-    g_args.assign(temp.cbegin(), temp.cend());
+    g_cmdargs.assign(args.cbegin(), args.cend());
 }
 
 
 /**
  * @brief Collect all values tied to an argument as an std::vector.
  *
- * @param key_it The argument key iterator.
+ * @param cmdarg The command line argument iterator.
  *
  * @return An std::vector of argument value iterators tied to an argument key.
  */
-const std::vector<types::ArgumentList_t::const_iterator> collect_arg_values(const types::ArgumentList_t::const_iterator &key_it)
+const types::CommandLineArguments_t collect_arg_values(const types::CommandLineArgument_t &cmdarg)
 {
-    std::vector<types::ArgumentList_t::const_iterator> values;
-    auto value_it = std::next(key_it);
+    types::CommandLineArguments_t values;
 
-    for (auto it = value_it; it != g_args.end(); ++it)
+    auto cmdarg_value = std::next(cmdarg);
+
+    for (auto it = cmdarg_value; it != g_cmdargs.end(); ++it)
     {
-        auto found_key_it = std::find(g_keys.cbegin(), g_keys.cend(), it);
+        auto found_key_it = std::find(g_options.cbegin(), g_options.cend(), it);
 
-        if (found_key_it != g_keys.cend())
+        if (found_key_it != g_options.cend())
         {
             break;
         }
@@ -54,25 +55,25 @@ const std::vector<types::ArgumentList_t::const_iterator> collect_arg_values(cons
 
 
 /**
- * @brief Find an argument key within #g_args.
+ * @brief Find an argument key within #g_cmdargs.
  *
  * @param The argument key to look for.
  *
  * @return An argument container list iterator at the key position.
  */
-static const types::ArgumentList_t::const_iterator find_key(const std::string &key)
+static const types::CommandLineArgument_t find_cmdarg(const std::string &arg)
 {
-    auto key_it = std::find(g_args.cbegin(), g_args.cend(), key);
+    auto cmdarg = std::find(g_cmdargs.cbegin(), g_cmdargs.cend(), arg);
 
-    if (key_it == g_args.cend())
+    if (cmdarg == g_cmdargs.cend())
     {
         std::ostringstream message;
-        message << "Couldn't find argument '" << key << "'.";
+        message << "Couldn't find argument '" << arg << "'.";
 
         throw errors::ArgumentKeyError(message.str());
     }
 
-    return key_it;
+    return cmdarg;
 }
 
 

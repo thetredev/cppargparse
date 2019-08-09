@@ -29,7 +29,7 @@ struct argument<std::vector<T>>
      *
      * @return The parsed integer value for an argument on success or throw a #parser::ParserException on failure.
      */
-    static const std::vector<T> parse(const types::ArgumentList_t::const_iterator &key_it)
+    static const std::vector<T> parse(const types::CommandLineArgument_t &key_it)
     {
         auto value_strings = algorithm::collect_arg_values(key_it);
         std::vector<T> values;
@@ -49,7 +49,7 @@ struct argument<std::vector<T>>
      *
      * @return An error message for a value that's not an integer.
      */
-    static const char *error_message(const types::ArgumentList_t::const_iterator &value_it)
+    static const char *error_message(const types::CommandLineArgument_t &value_it)
     {
         std::ostringstream message;
         message << "Couldn't parse '" << *value_it << "' as an integer.";

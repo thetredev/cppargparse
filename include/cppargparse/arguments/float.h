@@ -21,25 +21,25 @@ template <>
 struct argument<float>
 {
     /**
-     * @brief Try to parse and return the float value for an argument. Throw a #parser::ParserException on failure.
+     * @brief Try to parse a command line argument as a float. Throw a #parser::ParserException on failure.
      *
-     * @param key_it The argument key iterator.
+     * @param cmdarg The command line argument iterator.
      *
-     * @return The parsed float value for an argument on success or throw a #parser::ParserException on failure.
+     * @return The float value of the command line argument next in line on success or throw a #parser::ParserException on failure.
      */
-    static float parse(const types::ArgumentList_t::const_iterator &key_it)
+    static float parse(const types::CommandLineArgument_t &key_it)
     {
         return convert(std::next(key_it));
     }
 
     /**
-     * @brief Try to convert and return the given argument value as a float. Throw a #parser::ParserException on failure.
+     * @brief Try to convert a command line argument to a float value. Throw a #parser::ParserException on failure.
      *
-     * @param value_it The argument value iterator.
+     * @param cmdarg The command line argument iterator.
      *
-     * @return The converted float value of an argument value on success or throw a #parser::ParserException on failure.
+     * @return The float value of the command line argument on success or throw a #parser::ParserException on failure.
      */
-    static float convert(const types::ArgumentList_t::const_iterator &value_it)
+    static float convert(const types::CommandLineArgument_t &value_it)
     {
         try
         {
@@ -59,11 +59,11 @@ struct argument<float>
     /**
      * @brief Generate an error message for a value that's not a float.
      *
-     * @param value_it The argument value iterator.
+     * @param cmdarg The command line argument iterator.
      *
      * @return An error message for a value that's not a float.
      */
-    static const char *error_message(const types::ArgumentList_t::const_iterator &value_it)
+    static const char *error_message(const types::CommandLineArgument_t &value_it)
     {
         std::ostringstream message;
         message << "Couldn't parse '" << *value_it << "' as a float value.";
