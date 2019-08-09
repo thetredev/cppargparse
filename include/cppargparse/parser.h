@@ -41,7 +41,7 @@ template <typename T>
  *
  * This method uses a pre-defined built in and custom argument types.
  *
- * @param arg The argument string to look for..
+ * @param arg The argument string to look for.
  *
  * @return The parsed argument value of any type or throw a #parser::ParserException on failure.
  */

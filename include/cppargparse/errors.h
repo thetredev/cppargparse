@@ -1,5 +1,5 @@
-#ifndef CPPARGPARSE_PARSER_ERRORS_H
-#define CPPARGPARSE_PARSER_ERRORS_H
+#ifndef CPPARGPARSE_ERRORS_H
+#define CPPARGPARSE_ERRORS_H
 
 #include <stdexcept>
 
@@ -62,6 +62,6 @@ public:
 };
 
 
-} // namespace cppargparse::parser::errors
+} // namespace cppargparse::errors
 
-#endif // CPPARGPARSE_PARSER_ERRORS_H
+#endif // CPPARGPARSE_ERRORS_H
