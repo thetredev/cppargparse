@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
         std::string t = parser::parse_arg<std::string>("-t");
         std::cout << "-t = " << t << '\n';
     }
-    catch (const errors::ParserError &ex)
+    catch (const errors::CommandLineOptionError &ex)
     {
         std::cout << ex.what() << '\n';
 
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
         std::string u = parser::parse_arg<std::string>("-u");
         std::cout << "-u = " << u << '\n';
     }
-    catch (const errors::ParserError &ex)
+    catch (const errors::CommandLineOptionError &ex)
     {
         std::cout << ex.what() << '\n';
 

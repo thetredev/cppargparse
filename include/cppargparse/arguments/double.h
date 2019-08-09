@@ -49,11 +49,11 @@ struct argument<double>
 
         catch (std::invalid_argument const &)
         {
-            throw errors::ParserError(error_message(cmdarg));
+            throw errors::CommandLineOptionError(error_message(cmdarg));
         }
         catch (std::out_of_range const &)
         {
-            throw errors::ParserError(error_message(cmdarg));
+            throw errors::CommandLineOptionError(error_message(cmdarg));
         }
     }
 
@@ -108,11 +108,11 @@ struct argument<long double>
 
         catch (std::invalid_argument const &)
         {
-            throw errors::ParserError(error_message(cmdarg));
+            throw errors::CommandLineOptionError(error_message(cmdarg));
         }
         catch (std::out_of_range const &)
         {
-            throw errors::ParserError(error_message(cmdarg));
+            throw errors::CommandLineOptionError(error_message(cmdarg));
         }
     }
 

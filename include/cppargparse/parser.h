@@ -28,7 +28,7 @@ inline static bool parse_flag(const std::string &flag)
         return true;
     }
 
-    catch (const errors::ArgumentKeyError &)
+    catch (const errors::CommandLineArgumentError &)
     {
         return false;
     }
@@ -54,9 +54,14 @@ inline static const T parse_arg(const std::string &arg)
 
         return argument<T>::parse(cmdarg);
     }
-    catch (const errors::ParserError &ex)
+
+    catch (const errors::CommandLineArgumentError &ex)
     {
-        throw errors::ParserError(ex);
+        throw errors::CommandLineArgumentError(ex);
+    }
+    catch (const errors::CommandLineOptionError &ex)
+    {
+        throw errors::CommandLineOptionError(ex);
     }
 }
 
@@ -81,11 +86,12 @@ inline static const T parse_arg(const std::string &arg, const T &default_value)
 
         return argument<T>::parse(cmdarg);
     }
-    catch (const errors::ParserError &)
+
+    catch (const errors::CommandLineArgumentError &)
     {
         return default_value;
     }
-    catch (const errors::ArgumentKeyError &)
+    catch (const errors::CommandLineOptionError &)
     {
         return default_value;
     }

@@ -45,7 +45,7 @@ struct argument<std::string>
     {
         if (value_it == g_cmdargs.cend())
         {
-            throw errors::ParserError(error_message(value_it));
+            throw errors::CommandLineOptionError(error_message(value_it));
         }
 
         return *value_it;

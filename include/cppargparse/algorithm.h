@@ -70,7 +70,7 @@ static const types::CommandLineArgument_t find_cmdarg(const std::string &arg)
         std::ostringstream message;
         message << "Couldn't find argument '" << arg << "'.";
 
-        throw errors::ArgumentKeyError(message.str());
+        throw errors::CommandLineArgumentError(message.str());
     }
 
     return cmdarg;

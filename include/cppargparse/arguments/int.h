@@ -48,11 +48,11 @@ struct argument<int>
 
         catch (std::invalid_argument const &)
         {
-            throw errors::ParserError(error_message(value_it));
+            throw errors::CommandLineOptionError(error_message(value_it));
         }
         catch (std::out_of_range const &)
         {
-            throw errors::ParserError(error_message(value_it));
+            throw errors::CommandLineOptionError(error_message(value_it));
         }
     }
 

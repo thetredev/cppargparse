@@ -9,7 +9,7 @@ namespace cppargparse::errors {
 
 
 /**
- * @brief The Error class acts as an interface for library-related errors.
+ * @brief Base error class.
  */
 class Error : public std::runtime_error
 {
@@ -27,9 +27,9 @@ public:
 
 
 /**
- * @brief The ParserError class acts as an interface for parsing-related errors.
+ * @brief Error class for command line argument errors.
  */
-class ParserError : public Error
+class CommandLineArgumentError: public Error
 {
 public:
     /**
@@ -37,7 +37,7 @@ public:
      *
      * @param message The error message.
      */
-    explicit ParserError(const std::string &message)
+    explicit CommandLineArgumentError(const std::string &message)
         : Error(message)
     {
     }
@@ -45,9 +45,9 @@ public:
 
 
 /**
- * @brief The ArgumentKeyNotFoundError class acts as an interface for argument key errors.
+ * @brief Error class for command line option errors.
  */
-class ArgumentKeyError: public Error
+class CommandLineOptionError : public Error
 {
 public:
     /**
@@ -55,7 +55,7 @@ public:
      *
      * @param message The error message.
      */
-    explicit ArgumentKeyError(const std::string &message)
+    explicit CommandLineOptionError(const std::string &message)
         : Error(message)
     {
     }
