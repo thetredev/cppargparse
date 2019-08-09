@@ -4,8 +4,8 @@
 #include <sstream>
 
 #include <cppargparse/algorithm.h>
+#include <cppargparse/arguments.h>
 #include <cppargparse/globals.h>
-#include <cppargparse/type_traits/type_traits.h>
 
 #include "errors.h"
 
@@ -52,7 +52,7 @@ inline static const T parse_arg(const std::string &key)
         auto key_it = algorithm::find_key(key);
         g_keys.emplace_back(key_it);
 
-        return types::type_trait<T>::parse(key_it);
+        return argument<T>::parse(key_it);
     }
     catch (const errors::ParserError &ex)
     {
@@ -78,7 +78,7 @@ inline static const T parse_arg(const std::string &key, const T &default_value)
         auto key_it = algorithm::find_key(key);
         g_keys.emplace_back(key_it);
 
-        return types::type_trait<T>::parse(key_it);
+        return argument<T>::parse(key_it);
     }
     catch (const errors::ParserError &)
     {

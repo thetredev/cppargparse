@@ -1,5 +1,5 @@
-#ifndef CPPARGPARSE_TYPE_TRAITS_STRING_H
-#define CPPARGPARSE_TYPE_TRAITS_STRING_H
+#ifndef CPPARGPARSE_ARGUMENTS_STRING_H
+#define CPPARGPARSE_ARGUMENTS_STRING_H
 
 #include <algorithm>
 #include <sstream>
@@ -7,18 +7,19 @@
 
 #include <cppargparse/errors.h>
 #include <cppargparse/globals.h>
+#include <cppargparse/types.h>
 
 #include "default.h"
 
 
-namespace cppargparse::types {
+namespace cppargparse {
 
 
 template <>
 /**
  * @brief The type_trait struct for the std::string type.
  */
-struct type_trait<std::string>
+struct argument<std::string>
 {
     /**
      * @brief Try to parse and return the std::string value for an argument. Throw a #parser::ParserException on failure.
@@ -28,7 +29,7 @@ struct type_trait<std::string>
      *
      * @return The parsed std::string value for an argument on success or throw a #parser::ParserException on failure.
      */
-    static const std::string parse(const ArgumentList_t::const_iterator &key_it)
+    static const std::string parse(const types::ArgumentList_t::const_iterator &key_it)
     {
         return convert(std::next(key_it));
     }
@@ -40,7 +41,7 @@ struct type_trait<std::string>
      *
      * @return The converted std::string value of an argument value on success or throw a #parser::ParserException on failure.
      */
-    static const std::string convert(const ArgumentList_t::const_iterator &value_it)
+    static const std::string convert(const types::ArgumentList_t::const_iterator &value_it)
     {
         if (value_it == g_args.cend())
         {
@@ -57,7 +58,7 @@ struct type_trait<std::string>
      *
      * @return An error message for a value that's not a std::string.
      */
-    static const char *error_message(const ArgumentList_t::const_iterator &key_it)
+    static const char *error_message(const types::ArgumentList_t::const_iterator &key_it)
     {
         std::ostringstream message;
         message << "Couldn't find a value for argument: " << *key_it;
@@ -67,6 +68,6 @@ struct type_trait<std::string>
 };
 
 
-#endif // CPPARGPARSE_TYPE_TRAITS_STRING_H
+} // namespace cppargparse
 
-} // namespace cppargparse::types
+#endif // CPPARGPARSE_ARGUMENTS_STRING_H

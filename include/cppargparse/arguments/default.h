@@ -1,17 +1,17 @@
-#ifndef CPPARGPARSE_TYPE_TRAITS_DEFAULT_H
-#define CPPARGPARSE_TYPE_TRAITS_DEFAULT_H
+#ifndef CPPARGPARSE_ARGUMENTS_DEFAULT_H
+#define CPPARGPARSE_ARGUMENTS_DEFAULT_H
 
 #include <cppargparse/types.h>
 
 
-namespace cppargparse::types {
+namespace cppargparse {
 
 
 template <typename T>
 /**
  * @brief The default type_trait struct. Provides stub methods returning stub values.
  */
-struct type_trait
+struct argument
 {
     /**
      * @brief Stub parse method for any type.
@@ -20,7 +20,7 @@ struct type_trait
      *
      * @return A new instance of the template type.
      */
-    static const T parse(const ArgumentList_t::const_iterator &key_it)
+    static const T parse(const types::ArgumentList_t::const_iterator &key_it)
     {
         return T();
     }
@@ -33,7 +33,7 @@ struct type_trait
      *
      * @return A new instance of the template type.
      */
-    static const T convert(const ArgumentList_t::const_iterator &value_it)
+    static const T convert(const types::ArgumentList_t::const_iterator &value_it)
     {
         return T();
     }
@@ -46,13 +46,13 @@ struct type_trait
      *
      * @return An empty C-style string.
      */
-    static const char *error_message(const ArgumentList_t::const_iterator &value_it)
+    static const char *error_message(const types::ArgumentList_t::const_iterator &value_it)
     {
         return "";
     }
 };
 
 
-} // namespace cppargparse::types
+} // namespace cppargparse
 
-#endif // CPPARGPARSE_TYPE_TRAITS_DEFAULT_H
+#endif // CPPARGPARSE_ARGUMENTS_DEFAULT_H

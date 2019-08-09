@@ -1,23 +1,24 @@
-#ifndef CPPARGPARSE_TYPE_TRAITS_DOUBLE_H
-#define CPPARGPARSE_TYPE_TRAITS_DOUBLE_H
+#ifndef CPPARGPARSE_ARGUMENTS_DOUBLE_H
+#define CPPARGPARSE_ARGUMENTS_DOUBLE_H
 
 #include <algorithm>
 #include <sstream>
 
 #include <cppargparse/errors.h>
 #include <cppargparse/globals.h>
+#include <cppargparse/types.h>
 
 #include "default.h"
 
 
-namespace cppargparse::types {
+namespace cppargparse {
 
 
 template <>
 /**
  * @brief The type_trait struct for the double type.
  */
-struct type_trait<double>
+struct argument<double>
 {
     /**
      * @brief Try to parse and return the double value for an argument. Throw a #parser::ParserException on failure.
@@ -26,7 +27,7 @@ struct type_trait<double>
      *
      * @return The parsed double value for an argument on success or throw a #parser::ParserException on failure.
      */
-    static double parse(const ArgumentList_t::const_iterator &key_it)
+    static double parse(const types::ArgumentList_t::const_iterator &key_it)
     {
         return convert(std::next(key_it));
     }
@@ -38,7 +39,7 @@ struct type_trait<double>
      *
      * @return The converted double value of an argument value on success or throw a #parser::ParserException on failure.
      */
-    static double convert(const ArgumentList_t::const_iterator &value_it)
+    static double convert(const types::ArgumentList_t::const_iterator &value_it)
     {
         try
         {
@@ -62,7 +63,7 @@ struct type_trait<double>
      *
      * @return An error message for a value that's not a float.
      */
-    static const char *error_message(const ArgumentList_t::const_iterator &value_it)
+    static const char *error_message(const types::ArgumentList_t::const_iterator &value_it)
     {
         std::ostringstream message;
         message << "Couldn't parse '" << *value_it << "' as a double value.";
@@ -76,7 +77,7 @@ template <>
 /**
  * @brief The type_trait struct for the long double type.
  */
-struct type_trait<long double>
+struct argument<long double>
 {
     /**
      * @brief Try to parse and return the long double value for an argument. Throw a #parser::ParserException on failure.
@@ -85,7 +86,7 @@ struct type_trait<long double>
      *
      * @return The parsed long double value for an argument on success or throw a #parser::ParserException on failure.
      */
-    static long double parse(const ArgumentList_t::const_iterator &key_it)
+    static long double parse(const types::ArgumentList_t::const_iterator &key_it)
     {
         return convert(std::next(key_it));
     }
@@ -97,7 +98,7 @@ struct type_trait<long double>
      *
      * @return The converted long double value of an argument value on success or throw a #parser::ParserException on failure.
      */
-    static long double convert(const ArgumentList_t::const_iterator &value_it)
+    static long double convert(const types::ArgumentList_t::const_iterator &value_it)
     {
         try
         {
@@ -121,7 +122,7 @@ struct type_trait<long double>
      *
      * @return An error message for a value that's not a float.
      */
-    static const char *error_message(const ArgumentList_t::const_iterator &value_it)
+    static const char *error_message(const types::ArgumentList_t::const_iterator &value_it)
     {
         std::ostringstream message;
         message << "Couldn't parse '" << *value_it << "' as a long double value.";
@@ -131,6 +132,6 @@ struct type_trait<long double>
 };
 
 
-} // namespace cppargparse::types
+} // namespace cppargparse
 
-#endif // CPPARGPARSE_TYPE_TRAITS_DOUBLE_H
+#endif // CPPARGPARSE_ARGUMENTS_DOUBLE_H

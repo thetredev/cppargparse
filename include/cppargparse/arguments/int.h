@@ -1,23 +1,24 @@
-#ifndef CPPARGPARSE_TYPE_TRAITS_INT_H
-#define CPPARGPARSE_TYPE_TRAITS_INT_H
+#ifndef CPPARGPARSE_ARGUMENTS_INT_H
+#define CPPARGPARSE_ARGUMENTS_INT_H
 
 #include <algorithm>
 #include <sstream>
 
 #include <cppargparse/errors.h>
 #include <cppargparse/globals.h>
+#include <cppargparse/types.h>
 
 #include "default.h"
 
 
-namespace cppargparse::types {
+namespace cppargparse {
 
 
 template <>
 /**
  * @brief The type_trait struct for the integer type.
  */
-struct type_trait<int>
+struct argument<int>
 {
     /**
      * @brief Try to parse and return the integer value for an argument. Throw a #parser::ParserException on failure.
@@ -26,7 +27,7 @@ struct type_trait<int>
      *
      * @return The parsed integer value for an argument on success or throw a #parser::ParserException on failure.
      */
-    static int parse(const ArgumentList_t::const_iterator &key_it)
+    static int parse(const types::ArgumentList_t::const_iterator &key_it)
     {
         return convert(std::next(key_it));
     }
@@ -38,7 +39,7 @@ struct type_trait<int>
      *
      * @return The converted int value of an argument value on success or throw a #parser::ParserException on failure.
      */
-    static int convert(const ArgumentList_t::const_iterator &value_it)
+    static int convert(const types::ArgumentList_t::const_iterator &value_it)
     {
         try
         {
@@ -62,7 +63,7 @@ struct type_trait<int>
      *
      * @return An error message for a value that's not an integer.
      */
-    static const char *error_message(const ArgumentList_t::const_iterator &value_it)
+    static const char *error_message(const types::ArgumentList_t::const_iterator &value_it)
     {
         std::ostringstream message;
         message << "Couldn't parse '" << *value_it << "' as an integer.";
@@ -72,6 +73,6 @@ struct type_trait<int>
 };
 
 
-} // namespace cppargparse::types
+} // namespace cppargparse
 
-#endif // CPPARGPARSE_TYPE_TRAITS_INT_H
+#endif // CPPARGPARSE_ARGUMENTS_INT_H
