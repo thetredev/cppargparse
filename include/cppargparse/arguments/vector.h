@@ -41,21 +41,6 @@ struct argument<std::vector<T>>
 
         return values;
     }
-
-    /**
-     * @brief Generate an error message for a value that's not an integer.
-     *
-     * @param value_it The argument value iterator.
-     *
-     * @return An error message for a value that's not an integer.
-     */
-    static const char *error_message(const types::CommandLineArgument_t &value_it)
-    {
-        std::ostringstream message;
-        message << "Couldn't parse '" << *value_it << "' as an integer.";
-
-        return message.str().c_str();
-    }
 };
 
 
