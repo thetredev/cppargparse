@@ -60,7 +60,7 @@ struct argument<std::string>
     static const char *error_message(const types::CommandLineArgument_t &cmdarg)
     {
         std::ostringstream message;
-        message << "Couldn't find a value for argument: " << *cmdarg;
+        message << "Couldn't convert " << *cmdarg << "to type <std::string>.";
 
         return message.str().c_str();
     }
