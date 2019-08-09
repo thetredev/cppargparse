@@ -1,0 +1,23 @@
+language: cpp
+compiler: clang
+dist: bionic
+
+
+install:
+    - sudo apt update
+    - sudo apt install -qq cmake ninja-build
+
+
+stages:
+    - name: Unit Tests
+
+
+jobs:
+  include:
+    - stage: Unit Tests
+      script:
+        - mkdir build
+        - cd build
+        - cmake -G"Ninja" -DCMAKE_BUILD_TYPE=Profiling ..
+        - ninja tests
+
