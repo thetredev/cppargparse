@@ -8,6 +8,8 @@ C++ ArgParse is an open source header-only C++ library. Due to the core's heavy 
 
 If you want to skip the following example and core presentations, you can do so by going straight to [Build tests and install](#Build-tests-and-install).
 
+The source code documentation can be found here: https://backraw.github.io/cppargparse
+
 
 # The library interface
 Let me throw some sample code in there:
