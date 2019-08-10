@@ -14,6 +14,12 @@ include_directories(include)
 
 
 #
+# Install target
+#
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/include DESTINATION ${CMAKE_INSTALL_PREFIX})
+
+
+#
 # Third party libraries
 #
 add_subdirectory(third_party)
