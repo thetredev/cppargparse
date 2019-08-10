@@ -17,7 +17,7 @@ namespace cppargparse::algorithm {
  * @param argc The length of the command-line arguments array.
  * @param argv The command line arguments array.
  */
-void collect_cmdargs(size_t argc, const char *argv[])
+static void collect_cmdargs(size_t argc, const char *argv[])
 {
     const types::CommandLine_t args(argv, argv + argc);
 
@@ -32,7 +32,7 @@ void collect_cmdargs(size_t argc, const char *argv[])
  *
  * @return An std::vector of argument value iterators tied to an argument key.
  */
-const types::CommandLineArguments_t collect_arg_values(const types::CommandLineArgument_t &cmdarg)
+static const types::CommandLineArguments_t collect_arg_values(const types::CommandLineArgument_t &cmdarg)
 {
     types::CommandLineArguments_t values;
 
