@@ -33,7 +33,7 @@ add_unit_test(test_flag
 
 set(test_numerical_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/numerical/test_numerical.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/numerical/test_int.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/numerical/test_numerical.cpp
 )
 
 add_unit_test(test_numerical
