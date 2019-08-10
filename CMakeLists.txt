@@ -26,6 +26,12 @@ add_subdirectory(third_party)
 
 
 #
+# Samples
+#
+add_subdirectory(samples)
+
+
+#
 # Profiling
 #
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Profiling")
