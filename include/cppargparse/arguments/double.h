@@ -29,7 +29,11 @@ struct argument<double>
      */
     static double parse(const types::CommandLineArgument_t &cmdarg)
     {
-        return numerical_argument::parse<double>(cmdarg, CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stod), "double");
+        return numerical_argument::parse<double>(
+            cmdarg,
+            CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stod),
+            "double"
+        );
     }
 
 
@@ -42,7 +46,11 @@ struct argument<double>
      */
     static double convert(const types::CommandLineArgument_t &cmdarg)
     {
-        return numerical_argument::convert<double>(cmdarg, CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stod), "double");
+        return numerical_argument::convert<double>(
+            cmdarg,
+            CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stod),
+            "double"
+        );
     }
 };
 
@@ -62,7 +70,11 @@ struct argument<long double>
      */
     static long double parse(const types::CommandLineArgument_t &cmdarg)
     {
-        return numerical_argument::parse<double>(cmdarg, CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stold), "long double");
+        return numerical_argument::parse<long double>(
+            cmdarg,
+            CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stold),
+            "long double"
+        );
     }
 
     /**
@@ -74,7 +86,11 @@ struct argument<long double>
      */
     static long double convert(const types::CommandLineArgument_t &cmdarg)
     {
-        return numerical_argument::convert<double>(cmdarg, CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stold), "long double");
+        return numerical_argument::convert<long double>(
+            cmdarg,
+            CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stold),
+            "long double"
+        );
     }
 };
 
