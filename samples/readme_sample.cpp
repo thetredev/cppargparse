@@ -30,6 +30,8 @@ int main(int argc, char *argv[])
     // Collect all passed command line arguments
     algorithm::collect_cmdargs(static_cast<size_t>(argc), const_cast<const char**>(argv));
 
+    // for example: -t -x 50
+
 
     // Create an instance for our parsed command line values
     CmdValues cmdvalues;
