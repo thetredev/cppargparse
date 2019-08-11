@@ -27,8 +27,16 @@ endfunction()
 #
 # Unit test targets
 #
+
+# Flag
 add_unit_test(test_flag
     ${CMAKE_CURRENT_SOURCE_DIR}/test_flag.cpp
+)
+
+
+# Numerical
+add_unit_test(test_double
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_double.cpp
 )
 
 add_unit_test(test_int
