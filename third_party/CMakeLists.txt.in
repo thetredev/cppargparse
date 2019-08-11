@@ -5,6 +5,7 @@ ExternalProject_Add(googletest
   GIT_TAG           master
   SOURCE_DIR        "${CMAKE_CURRENT_BINARY_DIR}/googletest-src"
   BINARY_DIR        "${CMAKE_CURRENT_BINARY_DIR}/googletest-build"
+  CMAKE_ARGS        -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
   CONFIGURE_COMMAND ""
   BUILD_COMMAND     ""
   INSTALL_COMMAND   ""
