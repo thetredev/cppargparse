@@ -34,3 +34,7 @@ add_unit_test(test_flag
 add_unit_test(test_int
     ${CMAKE_CURRENT_SOURCE_DIR}/test_int.cpp
 )
+
+add_unit_test(test_float
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_float.cpp
+)
