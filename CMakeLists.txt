@@ -34,7 +34,7 @@ add_subdirectory(samples)
 #
 # Profiling
 #
-if("${CMAKE_BUILD_TYPE}" STREQUAL "Profiling")
+if("${CMAKE_BUILD_TYPE}" MATCHES "^(debug|Debug|DEBUG|profiling|Profiling|PROFILING)$")
     enable_testing()
     add_subdirectory(test)
 endif()
