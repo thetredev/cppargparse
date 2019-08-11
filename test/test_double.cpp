@@ -1,10 +1,6 @@
-#include <map>
-#include <vector>
-
 #include <gtest/gtest.h>
 
 #include <cppargparse/cppargparse.h>
-#include <cppargparse/errors.h>
 
 #include "test_common.h"
 
@@ -16,12 +12,12 @@ TEST(TestDouble, ArgumentNotPassed)
 {
     // Parse the command line arguments
     using namespace cppargparse;
-    test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
+    auto arg_parser = test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
 
 
     // Test cmdarg: --some-unused-arg
     // which has not been passed
-    EXPECT_THROW(parser::parse_arg<double>("--some-unused-arg"), errors::CommandLineArgumentError);
+    EXPECT_THROW(arg_parser.get_option<double>("--some-unused-arg"), errors::CommandLineArgumentError);
 }
 
 
@@ -29,26 +25,31 @@ TEST(TestDouble, Required)
 {
     // Parse the command line arguments
     using namespace cppargparse;
-    test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
+    auto arg_parser = test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
+
+
+    // Add arguments
+    arg_parser.add_arg("-a");
+    arg_parser.add_arg("-b");
 
 
     // Test cmdarg: -a
-    double a = parser::parse_arg<double>("-a");
+    double a = arg_parser.get_option<double>("-a");
     EXPECT_DOUBLE_EQ(4, a);
 
+
     // Test cmdarg: -b
-    double b = parser::parse_arg<double>("-b");
+    double b = arg_parser.get_option<double>("-b");
     EXPECT_DOUBLE_EQ(-150, b);
 
 
     // Test cmdarg: -c
     // throwing an error
-    EXPECT_THROW(parser::parse_arg<double>("-c"), errors::CommandLineOptionError);
-
+    EXPECT_ANY_THROW(arg_parser.get_option<double>("-c"));
 
     // Test cmdarg: --output
     // throwing an error
-    EXPECT_THROW(parser::parse_arg<double>("--output"), errors::CommandLineOptionError);
+    EXPECT_ANY_THROW(arg_parser.get_option<double>("--output"));
 }
 
 
@@ -56,27 +57,33 @@ TEST(TestDouble, Optional)
 {
     // Parse the command line arguments
     using namespace cppargparse;
-    test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
+    auto arg_parser = test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
+
+
+    // Add arguments
+    arg_parser.add_arg("-a");
+    arg_parser.add_arg("-b");
 
 
     // Test cmdarg: -a
-    double a = parser::parse_arg<double>("-a");
+    double a = arg_parser.get_option<double>("-a", 0);
     EXPECT_DOUBLE_EQ(4, a);
 
+
     // Test cmdarg: -b
-    double b = parser::parse_arg<double>("-b");
+    double b = arg_parser.get_option<double>("-b", 0);
     EXPECT_DOUBLE_EQ(-150, b);
 
 
     // Test cmdarg: -c
     // with default value 0
-    double c = parser::parse_arg<double>("-c", 0.0);
+    double c = arg_parser.get_option<double>("-c", 0.0);
     EXPECT_DOUBLE_EQ(0.0, c);
 
 
     // Test cmdarg: --output
     // with default value 0
-    double output = parser::parse_arg<double>("--output", 0.0);
+    double output = arg_parser.get_option<double>("--output", 0.0);
     EXPECT_DOUBLE_EQ(0.0, output);
 }
 
@@ -88,12 +95,12 @@ TEST(TestLongDouble, ArgumentNotPassed)
 {
     // Parse the command line arguments
     using namespace cppargparse;
-    test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
+    auto arg_parser = test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
 
 
     // Test cmdarg: --some-unused-arg
     // which has not been passed
-    EXPECT_THROW(parser::parse_arg<double>("--some-unused-arg"), errors::CommandLineArgumentError);
+    EXPECT_THROW(arg_parser.get_option<double>("--some-unused-arg"), errors::CommandLineArgumentError);
 }
 
 
@@ -101,26 +108,32 @@ TEST(TestLongDouble, Required)
 {
     // Parse the command line arguments
     using namespace cppargparse;
-    test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
+    auto arg_parser = test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
+
+
+    // Add arguments
+    arg_parser.add_arg("-a");
+    arg_parser.add_arg("-b");
 
 
     // Test cmdarg: -a
-    long double a = parser::parse_arg<long double>("-a");
+    long double a = arg_parser.get_option<long double>("-a");
     EXPECT_DOUBLE_EQ(4.0, a);
 
+
     // Test cmdarg: -b
-    long double b = parser::parse_arg<long double>("-b");
+    long double b = arg_parser.get_option<long double>("-b");
     EXPECT_DOUBLE_EQ(-150.0, b);
 
 
     // Test cmdarg: -c
     // throwing an error
-    EXPECT_THROW(parser::parse_arg<long double>("-c"), errors::CommandLineOptionError);
+    EXPECT_ANY_THROW(arg_parser.get_option<long double>("-c"));
 
 
     // Test cmdarg: --output
     // throwing an error
-    EXPECT_THROW(parser::parse_arg<long double>("--output"), errors::CommandLineOptionError);
+    EXPECT_ANY_THROW(arg_parser.get_option<long double>("--output"));
 }
 
 
@@ -128,26 +141,32 @@ TEST(TestLongDouble, Optional)
 {
     // Parse the command line arguments
     using namespace cppargparse;
-    test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
+    auto arg_parser = test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
+
+
+    // Add arguments
+    arg_parser.add_arg("-a");
+    arg_parser.add_arg("-b");
 
 
     // Test cmdarg: -a
-    long double a = parser::parse_arg<long double>("-a");
+    long double a = arg_parser.get_option<long double>("-a", 0);
     EXPECT_DOUBLE_EQ(4.0, a);
 
+
     // Test cmdarg: -b
-    long double b = parser::parse_arg<long double>("-b");
+    long double b = arg_parser.get_option<long double>("-b", 0);
     EXPECT_DOUBLE_EQ(-150.0, b);
 
 
     // Test cmdarg: -c
     // with default value 0
-    long double c = parser::parse_arg<long double>("-c", 0.0);
+    long double c = arg_parser.get_option<long double>("-c", 0.0);
     EXPECT_DOUBLE_EQ(0.0, c);
 
 
     // Test cmdarg: --output
     // with default value 0
-    long double output = parser::parse_arg<long double>("--output", 0.0);
+    long double output = arg_parser.get_option<long double>("--output", 0.0);
     EXPECT_DOUBLE_EQ(0.0, output);
 }

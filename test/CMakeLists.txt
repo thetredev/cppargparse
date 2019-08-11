@@ -52,3 +52,9 @@ add_unit_test(test_float
 add_unit_test(test_string
     ${CMAKE_CURRENT_SOURCE_DIR}/test_string.cpp
 )
+
+
+# Vector
+add_unit_test(test_vector
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_vector.cpp
+)

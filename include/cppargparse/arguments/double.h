@@ -3,8 +3,6 @@
 
 #include <algorithm>
 
-#include <cppargparse/errors.h>
-#include <cppargparse/globals.h>
 #include <cppargparse/types.h>
 
 #include "default.h"
@@ -21,13 +19,16 @@ template <>
 struct argument<double>
 {
     /**
-     * @brief Try to parse a command line argument as a double. Throw a #parser::ParserException on failure.
+     * @brief Try to parse a command line argument as a double.
      *
      * @param cmdarg The command line argument iterator.
      *
-     * @return The double value of the command line argument next in line on success or throw a #parser::ParserException on failure.
+     * @return The double value of the command line argument next in line.
      */
-    static double parse(const types::CommandLineArgument_t &cmdarg)
+    static double parse(
+            const types::CommandLine_t &,
+            const types::CommandLineArgument_t &cmdarg,
+            const types::CommandLineArgumentsMap_t &)
     {
         return numerical_argument::parse<double>(
             cmdarg,
@@ -38,13 +39,16 @@ struct argument<double>
 
 
     /**
-     * @brief Try to convert a command line argument to a double value. Throw a #parser::ParserException on failure.
+     * @brief Try to convert a command line argument to a double value.
      *
      * @param cmdarg The command line argument iterator.
      *
-     * @return The double value of the command line argument on success or throw a #parser::ParserException on failure.
+     * @return The double value of the command line argument.
      */
-    static double convert(const types::CommandLineArgument_t &cmdarg)
+    static double convert(
+            const types::CommandLine_t &,
+            const types::CommandLineArgument_t &cmdarg,
+            const types::CommandLineArgumentsMap_t &)
     {
         return numerical_argument::convert<double>(
             cmdarg,
@@ -62,13 +66,16 @@ template <>
 struct argument<long double>
 {
     /**
-     * @brief Try to parse a command line argument as a long double. Throw a #parser::ParserException on failure.
+     * @brief Try to parse a command line argument as a long double.
      *
      * @param cmdarg The command line argument iterator.
      *
-     * @return The long double value of the command line argument next in line on success or throw a #parser::ParserException on failure.
+     * @return The long double value of the command line argument next in line.
      */
-    static long double parse(const types::CommandLineArgument_t &cmdarg)
+    static long double parse(
+            const types::CommandLine_t &,
+            const types::CommandLineArgument_t &cmdarg,
+            const types::CommandLineArgumentsMap_t &)
     {
         return numerical_argument::parse<long double>(
             cmdarg,
@@ -78,13 +85,16 @@ struct argument<long double>
     }
 
     /**
-     * @brief Try to convert a command line argument to a long double value. Throw a #parser::ParserException on failure.
+     * @brief Try to convert a command line argument to a long double value.
      *
      * @param cmdarg The command line argument iterator.
      *
-     * @return The long double value of the command line argument on success or throw a #parser::ParserException on failure.
+     * @return The long double value of the command line argument.
      */
-    static long double convert(const types::CommandLineArgument_t &cmdarg)
+    static long double convert(
+            const types::CommandLine_t &,
+            const types::CommandLineArgument_t &cmdarg,
+            const types::CommandLineArgumentsMap_t &)
     {
         return numerical_argument::convert<long double>(
             cmdarg,

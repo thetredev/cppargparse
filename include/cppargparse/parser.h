@@ -1,11 +1,11 @@
 #ifndef CPPARGPARSE_PARSER_H
 #define CPPARGPARSE_PARSER_H
 
+#include <algorithm>
 #include <sstream>
 
-#include <cppargparse/algorithm.h>
 #include <cppargparse/arguments.h>
-#include <cppargparse/globals.h>
+#include <cppargparse/types.h>
 
 #include "errors.h"
 
@@ -14,88 +14,165 @@ namespace cppargparse::parser {
 
 
 /**
- * @brief Look for a flag within the global command line argument list.
- *
- * @param arg The argument string to look for.
- *
- * @return Whether the flag is present in the global command line argument.
+ * @brief Base class for the argument parser.
  */
-inline static bool parse_flag(const std::string &flag)
+class ArgumentParserBase
 {
-    try
+public:
+    /**
+     * @brief c'tor
+     *
+     * @param argc The command line argument count.
+     * @param argv The command line argument array.
+     */
+    explicit ArgumentParserBase(int argc, char *argv[])
+        : m_cmd(types::CommandLine_t(argv, argv + argc))
+        , m_cmdargs()
     {
-        (void)algorithm::find_cmdarg(flag);
-        return true;
     }
 
-    catch (const errors::CommandLineArgumentError &)
+    /**
+     * @brief d'tor
+     *
+     * Clean up storage for the command line and the command line argument map.
+     */
+    ~ArgumentParserBase()
     {
-        return false;
-    }
-}
-
-
-template <typename T>
-/**
- * @brief Try to parse and return an argument value of any type. Throw a #parser::ParserException on failure.
- *
- * This method uses a pre-defined built in and custom argument types.
- *
- * @param arg The argument string to look for.
- *
- * @return The parsed argument value of any type or throw a #parser::ParserException on failure.
- */
-inline static const T parse_arg(const std::string &arg)
-{
-    try
-    {
-        auto cmdarg = algorithm::find_cmdarg(arg);
-        g_options.emplace_back(cmdarg);
-
-        return argument<T>::parse(cmdarg);
+        m_cmd.clear();
+        m_cmdargs.clear();
     }
 
-    catch (const errors::CommandLineArgumentError &ex)
-    {
-        throw errors::CommandLineArgumentError(ex);
-    }
-    catch (const errors::CommandLineOptionError &ex)
-    {
-        throw errors::CommandLineOptionError(ex);
-    }
-}
 
-
-template <typename T>
-/**
- * @brief Parse and return an argument value of any type. Return the default value on failure.
- *
- * This method uses a pre-defined built in and custom argument types.
- *
- * @param arg The argument string to look for.
- * @param default_value The default value if the argument string couldn't be parsed.
- *
- * @return The parsed argument value of any type or the default value if the argument string couldn't be parsed.
- */
-inline static const T parse_arg(const std::string &arg, const T &default_value)
-{
-    try
+    /**
+     * @brief Add an argument to the command line argument map.
+     *
+     * @param arg The argument string to look for.
+     */
+    void add_arg(const std::string &arg)
     {
-        auto cmdarg = algorithm::find_cmdarg(arg);
-        g_options.emplace_back(cmdarg);
-
-        return argument<T>::parse(cmdarg);
+        m_cmdargs[arg] = find_cmdarg(arg);
     }
 
-    catch (const errors::CommandLineArgumentError &)
+
+    /**
+     * @brief Return whether the command line contains an argument string.
+     *
+     * @param arg The argument string to look for.
+     *
+     * @return Whether the command line contains an argument string.
+     */
+    inline bool get_flag(const std::string &arg)
+    {
+        return find_cmdarg(arg) != m_cmd.cend();
+    }
+
+
+    template <typename T>
+    /**
+     * @brief Stub method for returning an argument value.
+     *
+     * @return A new instance of T.
+     */
+    inline const T get_option(const std::string &)
+    {
+        return T();
+    }
+
+
+    template <typename T>
+    /**
+     * @brief Stub method for returning an argument value.
+     *
+     * @param default_value The default value.
+     *
+     * @return The default value.
+     */
+    inline const T get_option(const std::string &, const T &default_value)
     {
         return default_value;
     }
-    catch (const errors::CommandLineOptionError &)
+
+
+protected:
+    types::CommandLineArgument_t find_cmdarg(const std::string &arg)
     {
-        return default_value;
+        return std::find(m_cmd.cbegin(), m_cmd.cend(), arg);
     }
-}
+
+
+protected:
+    types::CommandLine_t m_cmd;
+    types::CommandLineArgumentsMap_t m_cmdargs;
+};
+
+
+/**
+ * @brief The argument parser class.
+ *
+ * Used as an interface between the argument value conversion operations and the outside world.
+ */
+class ArgumentParser : public ArgumentParserBase
+{
+public:
+    /**
+     * @brief c'tor
+     *
+     * @param argc The command line argument count.
+     * @param argv The command line argument array.
+     */
+    explicit ArgumentParser(int argc, char *argv[])
+        : ArgumentParserBase(argc, argv)
+    {
+    }
+
+
+    template <typename T>
+    /**
+     * @brief Return an argument value.
+     *
+     * @param arg The argument string.
+     *
+     * @return The argument value of type T.
+     * @throws #cppargparse::errors::CommandLineArgumentError if the argument cannot be found.
+     */
+    inline const T get_option(const std::string &arg)
+    {
+        if (m_cmdargs.find(arg) == m_cmdargs.cend())
+        {
+            std::ostringstream message;
+            message << "Cannot find argument: " << arg;
+
+            throw errors::CommandLineArgumentError(message.str());
+        }
+
+        // return the stored arg value
+        return argument<T>::parse(m_cmd, m_cmdargs[arg], m_cmdargs);
+    }
+
+
+    template <typename T>
+    /**
+     * @brief Return an argument value.
+     *
+     * @param arg The argument string.
+     * @param default_value The default argument value of type T.
+     *
+     * @return The argument value of type T or the default value if the argument cannot be found.
+     * @throws #cppargparse::errors::CommandLineArgumentError if the argument cannot be found
+     */
+    inline const T get_option(const std::string &arg, const T &default_value)
+    {
+        try
+        {
+            return get_option<T>(arg);
+        }
+
+        catch (const errors::Error &)
+        {
+            return default_value;
+        }
+    }
+};
 
 
 } // namespace cppargparse::parser

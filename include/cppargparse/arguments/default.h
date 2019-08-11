@@ -18,7 +18,10 @@ struct argument
      *
      * @return A new instance of the template type.
      */
-    static const T parse(const types::CommandLineArgument_t &)
+    static const T parse(
+            const types::CommandLine_t &,
+            const types::CommandLineArgument_t &,
+            const types::CommandLineArgumentsMap_t &)
     {
         return T();
     }
@@ -29,7 +32,10 @@ struct argument
      *
      * @return A new instance of the template type.
      */
-    static const T convert(const types::CommandLineArgument_t &)
+    static const T convert(
+            const types::CommandLine_t &,
+            const types::CommandLineArgument_t &,
+            const types::CommandLineArgumentsMap_t &)
     {
         return T();
     }

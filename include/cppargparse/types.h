@@ -1,6 +1,7 @@
 #ifndef CPPARGPARSE_TYPES_H
 #define CPPARGPARSE_TYPES_H
 
+#include <map>
 #include <string>
 #include <vector>
 
@@ -29,21 +30,18 @@ typedef CommandLine_t::const_iterator CommandLineArgument_t;
 /**
  * @brief The command line arguments type.
  *
- * Options can be switches (with a value and/or default value) or flags (boolean switches without values).
- *
- * Example:
- *    cmd args: "-t 5 -o output.txt"
- *    options:  cmd args iterator positions of -t, -o
+ * A std::vector of command line argument iterator positions.
  */
 typedef std::vector<CommandLineArgument_t> CommandLineArguments_t;
 
 
 /**
- * @brief The command line option type.
+ * @brief The command line arguments map type.
  *
- * Alias for CommandLineArguments_t to indicate argument options instead of arguments themselves.
+ * Key:     argument string
+ * Value:   command line argument iterator position.
  */
-typedef CommandLineArguments_t CommandLineOptions_t;
+typedef std::map<std::string, CommandLineArgument_t> CommandLineArgumentsMap_t;
 
 
 } // namespace cppargparse::types

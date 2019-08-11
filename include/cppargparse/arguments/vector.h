@@ -5,9 +5,6 @@
 #include <sstream>
 #include <vector>
 
-#include <cppargparse/algorithm.h>
-#include <cppargparse/errors.h>
-#include <cppargparse/globals.h>
 #include <cppargparse/types.h>
 
 #include "default.h"
@@ -29,14 +26,38 @@ struct argument<std::vector<T>>
      *
      * @return The parsed integer value for an argument on success or throw a #parser::ParserException on failure.
      */
-    static const std::vector<T> parse(const types::CommandLineArgument_t &cmdarg)
+    static const std::vector<T> parse(
+            const types::CommandLine_t &cmd,
+            const types::CommandLineArgument_t &cmdarg,
+            const types::CommandLineArgumentsMap_t &cmdargs)
     {
-        auto options = algorithm::collect_arg_values(cmdarg);
+        auto options = get_option_values(cmd, cmdarg, cmdargs);
         std::vector<T> values;
 
         for (auto option : options)
         {
-            values.emplace_back(argument<T>::convert(option));
+            values.emplace_back(argument<T>::convert(cmd, option, cmdargs));
+        }
+
+        return values;
+    }
+
+
+    static types::CommandLineArguments_t get_option_values(
+            const types::CommandLine_t &cmd,
+            const types::CommandLineArgument_t &cmdarg,
+            const types::CommandLineArgumentsMap_t &cmdargs)
+    {
+        types::CommandLineArguments_t values;
+
+        for (auto cmdarg_value = std::next(cmdarg); cmdarg_value != cmd.end(); ++cmdarg_value)
+        {
+            if (cmdargs.find(*cmdarg_value) != cmdargs.cend())
+            {
+                break;
+            }
+
+            values.emplace_back(cmdarg_value);
         }
 
         return values;

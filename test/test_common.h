@@ -12,7 +12,6 @@
 namespace cppargparse::test {
 
 
-
 std::vector<std::string> get_cmdargs(const std::string &command_line)
 {
     std::istringstream tokens(command_line);
@@ -33,14 +32,14 @@ void get_char_cmdargs(std::vector<std::string> command_line_tokens, std::vector<
 }
 
 
-void parse_cmdargs(const std::string command_line)
+cppargparse::parser::ArgumentParser parse_cmdargs(const std::string command_line)
 {
     std::vector<std::string> command_line_tokens = get_cmdargs(command_line);
 
     std::vector<const char *> char_tokens;
     test::get_char_cmdargs(command_line_tokens, char_tokens);
 
-    algorithm::collect_cmdargs(char_tokens.size(), char_tokens.data());
+    return cppargparse::parser::ArgumentParser(static_cast<int>(char_tokens.size()), const_cast<char **>(char_tokens.data()));
 }
 
 

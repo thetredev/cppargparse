@@ -6,7 +6,6 @@
 #include <sstream>
 
 #include <cppargparse/errors.h>
-#include <cppargparse/globals.h>
 #include <cppargparse/types.h>
 
 #include "default.h"
@@ -32,6 +31,7 @@ namespace cppargparse::numerical_argument {
  * @brief Generate an error message for a value that's not a numerical value.
  *
  * @param cmdarg The command line argument iterator.
+ * @param type_string The numerical type's string representation.
  *
  * @return An error message for a value that's not a numerical value.
  */
@@ -46,11 +46,14 @@ static const std::string error_message(const types::CommandLineArgument_t &cmdar
 
 
 /**
- * @brief Try to convert a command line argument to a numerical value. Throw a #parser::ParserException on failure.
+ * @brief Try to convert a command line argument value to a numerical value.
  *
  * @param cmdarg The command line argument iterator.
+ * @param numerical_converter The function used to convert the cmdarg into a numerical value.
+ * @param type_string The numerical type's string representation.
  *
- * @return The numerical value of the command line argument on success or throw a #parser::ParserException on failure.
+ * @return The numerical value of the command line argument.
+ * @throws #cppargparse::errors::CommandLineOptionError if the conversion was unsuccessful.
  */
 template <typename T>
 static T convert(
@@ -76,11 +79,13 @@ static T convert(
 
 
 /**
- * @brief Try to parse a command line argument as a numerical value. Throw a #parser::ParserException on failure.
+ * @brief Try to parse a command line argument as a numerical value.
  *
  * @param cmdarg The command line argument iterator.
+ * @param numerical_converter The function used to convert the cmdarg into a numerical value.
+ * @param type_string The numerical type's string representation.
  *
- * @return The numerical value of the command line argument next in line on success or throw a #parser::ParserException on failure.
+ * @return The numerical value of the command line argument next in line.
  */
 template <typename T>
 static T parse(const types::CommandLineArgument_t &cmdarg,
@@ -91,6 +96,6 @@ static T parse(const types::CommandLineArgument_t &cmdarg,
 }
 
 
-} // namespace cppargparse
+} // namespace cppargparse::numerical_argument
 
 #endif // CPPARGPARSE_ARGUMENTS_NUMERICAL_H

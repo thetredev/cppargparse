@@ -3,8 +3,6 @@
 
 #include <algorithm>
 
-#include <cppargparse/errors.h>
-#include <cppargparse/globals.h>
 #include <cppargparse/types.h>
 
 #include "default.h"
@@ -21,13 +19,16 @@ template <>
 struct argument<float>
 {
     /**
-     * @brief Try to parse a command line argument as a float. Throw a #parser::ParserException on failure.
+     * @brief Try to parse a command line argument as a float.
      *
      * @param cmdarg The command line argument iterator.
      *
-     * @return The float value of the command line argument next in line on success or throw a #parser::ParserException on failure.
+     * @return The float value of the command line argument next in line.
      */
-    static float parse(const types::CommandLineArgument_t &cmdarg)
+    static float parse(
+            const types::CommandLine_t &,
+            const types::CommandLineArgument_t &cmdarg,
+            const types::CommandLineArgumentsMap_t &)
     {
         return numerical_argument::parse<float>(
             cmdarg,
@@ -37,13 +38,16 @@ struct argument<float>
     }
 
     /**
-     * @brief Try to convert a command line argument to a float value. Throw a #parser::ParserException on failure.
+     * @brief Try to convert a command line argument to a float value..
      *
      * @param cmdarg The command line argument iterator.
      *
-     * @return The float value of the command line argument on success or throw a #parser::ParserException on failure.
+     * @return The float value of the command line argument.
      */
-    static float convert(const types::CommandLineArgument_t &cmdarg)
+    static float convert(
+            const types::CommandLine_t &,
+            const types::CommandLineArgument_t &cmdarg,
+            const types::CommandLineArgumentsMap_t &)
     {
         return numerical_argument::convert<float>(
             cmdarg,

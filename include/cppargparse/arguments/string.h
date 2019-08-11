@@ -6,7 +6,6 @@
 #include <string>
 
 #include <cppargparse/errors.h>
-#include <cppargparse/globals.h>
 #include <cppargparse/types.h>
 
 #include "default.h"
@@ -22,27 +21,36 @@ template <>
 struct argument<std::string>
 {
     /**
-     * @brief Try to parse a command line argument as a std::string. Throw a #parser::ParserException on failure.
+     * @brief Try to parse a command line argument as a std::string.
      *
+     * @param cmd The command line.
      * @param cmdarg The command line argument iterator.
      *
-     * @return The std::string value of the command line argument next in line on success or throw a #parser::ParserException on failure.
+     * @return The std::string value of the command line argument next in line.
      */
-    static const std::string parse(const types::CommandLineArgument_t &cmdarg)
+    static const std::string parse(
+            const types::CommandLine_t &cmd,
+            const types::CommandLineArgument_t &cmdarg,
+            const types::CommandLineArgumentsMap_t &cmdargs)
     {
-        return convert(std::next(cmdarg));
+        return convert(cmd, std::next(cmdarg), cmdargs);
     }
 
     /**
-     * @brief Try to convert a command line argument to a std::string. Throw a #parser::ParserException on failure.
+     * @brief Try to convert a command line argument to a std::string.
      *
+     * @param cmd The command line.
      * @param cmdarg The command line argument iterator.
      *
-     * @return The std::string value of the command line argument on success or throw a #parser::ParserException on failure.
+     * @return The std::string value of the command line argument.
+     * @throws #cppargparse::errors::CommandLineOptionError if there is no value to parse.
      */
-    static const std::string convert(const types::CommandLineArgument_t &cmdarg)
+    static const std::string convert(
+            const types::CommandLine_t &cmd,
+            const types::CommandLineArgument_t &cmdarg,
+            const types::CommandLineArgumentsMap_t &)
     {
-        if (cmdarg == g_cmdargs.cend())
+        if (cmdarg == cmd.cend())
         {
             throw errors::CommandLineOptionError(error_message(cmdarg));
         }
