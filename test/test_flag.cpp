@@ -4,36 +4,32 @@
 
 #include <cppargparse/cppargparse.h>
 
+#include "test_common.h"
+
 
 TEST(TestFlag, Flags)
 {
+    // Parse the command line arguments
     using namespace cppargparse;
+    test::parse_cmdargs();
 
 
-    // Pass flags to the command line
-    std::vector<const char *> passed_flags
-    {
-        "-t", "-x", "-e"
-    };
+    // Test flag: -t
+    const bool t = parser::parse_flag("-t");
+    EXPECT_TRUE(t);
 
-    algorithm::collect_cmdargs(passed_flags.size(), passed_flags.data());
-
-    // Check if all flags have been passed
-    for (const auto &flag : passed_flags)
-    {
-        EXPECT_TRUE(parser::parse_flag(flag));
-    }
+    // Test flag: -x
+    const bool x = parser::parse_flag("-x");
+    EXPECT_TRUE(x);
 
 
-    // Check flags not passed to the command line
-    std::vector<const char *> invalid_flags
-    {
-        "-b", "-X"
-    };
+    // Test flag: -i
+    // which has not been passed
+    const bool i = parser::parse_flag("-i");
+    EXPECT_FALSE(i);
 
-
-    for (const auto &flag : invalid_flags)
-    {
-        EXPECT_FALSE(parser::parse_flag(flag));
-    }
+    // Test flag: -p
+    // which has not been passed
+    const bool p = parser::parse_flag("-p");
+    EXPECT_FALSE(p);
 }
