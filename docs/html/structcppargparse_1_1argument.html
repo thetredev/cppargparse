@@ -77,12 +77,12 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a4578a4382e20f96989bad7c8a02377e8"><td class="memItemLeft" align="right" valign="top">static const T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument.html#a4578a4382e20f96989bad7c8a02377e8">parse</a> (const types::CommandLineArgument_t &amp;)</td></tr>
-<tr class="memdesc:a4578a4382e20f96989bad7c8a02377e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stub parse method for any type.  <a href="#a4578a4382e20f96989bad7c8a02377e8">More...</a><br /></td></tr>
-<tr class="separator:a4578a4382e20f96989bad7c8a02377e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93e2dbaab4262942624971588fb5214f"><td class="memItemLeft" align="right" valign="top">static const T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument.html#a93e2dbaab4262942624971588fb5214f">convert</a> (const types::CommandLineArgument_t &amp;)</td></tr>
-<tr class="memdesc:a93e2dbaab4262942624971588fb5214f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stub convert method for any type.  <a href="#a93e2dbaab4262942624971588fb5214f">More...</a><br /></td></tr>
-<tr class="separator:a93e2dbaab4262942624971588fb5214f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45846753c88bdff65453703bb481ec61"><td class="memItemLeft" align="right" valign="top">static const T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument.html#a45846753c88bdff65453703bb481ec61">parse</a> (const types::CommandLine_t &amp;, const types::CommandLineArgument_t &amp;, const types::CommandLineArgumentsMap_t &amp;)</td></tr>
+<tr class="memdesc:a45846753c88bdff65453703bb481ec61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stub parse method for any type.  <a href="#a45846753c88bdff65453703bb481ec61">More...</a><br /></td></tr>
+<tr class="separator:a45846753c88bdff65453703bb481ec61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15705823db542d0e79b27298f4723ef6"><td class="memItemLeft" align="right" valign="top">static const T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument.html#a15705823db542d0e79b27298f4723ef6">convert</a> (const types::CommandLine_t &amp;, const types::CommandLineArgument_t &amp;, const types::CommandLineArgumentsMap_t &amp;)</td></tr>
+<tr class="memdesc:a15705823db542d0e79b27298f4723ef6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stub convert method for any type.  <a href="#a15705823db542d0e79b27298f4723ef6">More...</a><br /></td></tr>
+<tr class="separator:a15705823db542d0e79b27298f4723ef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabd56cfa910d9e3d60b009f593b123a6"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument.html#aabd56cfa910d9e3d60b009f593b123a6">error_message</a> (const types::CommandLineArgument_t &amp;)</td></tr>
 <tr class="memdesc:aabd56cfa910d9e3d60b009f593b123a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stub error message.  <a href="#aabd56cfa910d9e3d60b009f593b123a6">More...</a><br /></td></tr>
 <tr class="separator:aabd56cfa910d9e3d60b009f593b123a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -93,8 +93,8 @@ struct cppargparse::argument&lt; T &gt;</h3>
 
 <p>The default argument struct. Provides stub methods returning stub values. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a93e2dbaab4262942624971588fb5214f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93e2dbaab4262942624971588fb5214f">&#9670;&nbsp;</a></span>convert()</h2>
+<a id="a15705823db542d0e79b27298f4723ef6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15705823db542d0e79b27298f4723ef6">&#9670;&nbsp;</a></span>convert()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -107,9 +107,25 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname">static const T <a class="el" href="structcppargparse_1_1argument.html">cppargparse::argument</a>&lt; T &gt;::convert </td>
           <td>(</td>
-          <td class="paramtype">const types::CommandLineArgument_t &amp;&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const types::CommandLine_t &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const types::CommandLineArgument_t &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const types::CommandLineArgumentsMap_t &amp;&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -155,8 +171,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a4578a4382e20f96989bad7c8a02377e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4578a4382e20f96989bad7c8a02377e8">&#9670;&nbsp;</a></span>parse()</h2>
+<a id="a45846753c88bdff65453703bb481ec61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45846753c88bdff65453703bb481ec61">&#9670;&nbsp;</a></span>parse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -169,9 +185,25 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname">static const T <a class="el" href="structcppargparse_1_1argument.html">cppargparse::argument</a>&lt; T &gt;::parse </td>
           <td>(</td>
-          <td class="paramtype">const types::CommandLineArgument_t &amp;&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const types::CommandLine_t &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const types::CommandLineArgument_t &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const types::CommandLineArgumentsMap_t &amp;&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>

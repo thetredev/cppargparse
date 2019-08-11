@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['commandlineargumenterror',['CommandLineArgumentError',['../classcppargparse_1_1errors_1_1CommandLineArgumentError.html#acb14010d573ba078332a149d2ebf3be6',1,'cppargparse::errors::CommandLineArgumentError']]],
-  ['commandlineoptionerror',['CommandLineOptionError',['../classcppargparse_1_1errors_1_1CommandLineOptionError.html#a587934b01bd577262174bd82af79b75c',1,'cppargparse::errors::CommandLineOptionError']]],
-  ['convert',['convert',['../structcppargparse_1_1argument.html#a93e2dbaab4262942624971588fb5214f',1,'cppargparse::argument::convert()'],['../structcppargparse_1_1argument_3_01double_01_4.html#a6cef64a1ef546dd265190440628e4ff2',1,'cppargparse::argument&lt; double &gt;::convert()'],['../structcppargparse_1_1argument_3_01long_01double_01_4.html#a4816c34083a4addbbd748cd216fcab77',1,'cppargparse::argument&lt; long double &gt;::convert()'],['../structcppargparse_1_1argument_3_01float_01_4.html#a2215d185392587048e10d299d9e96cdd',1,'cppargparse::argument&lt; float &gt;::convert()'],['../structcppargparse_1_1argument_3_01int_01_4.html#a7ef052363c2c64e4d3fab4088fd37880',1,'cppargparse::argument&lt; int &gt;::convert()'],['../structcppargparse_1_1argument_3_01std_1_1string_01_4.html#ac60907ae7528e8b83eae0eb309bdc4d0',1,'cppargparse::argument&lt; std::string &gt;::convert()']]]
+  ['add_5farg',['add_arg',['../classcppargparse_1_1parser_1_1ArgumentParserBase.html#ac09b20711001f1e0ef36a18d747d254e',1,'cppargparse::parser::ArgumentParserBase']]],
+  ['argumentparser',['ArgumentParser',['../classcppargparse_1_1parser_1_1ArgumentParser.html#a8a5e001cdee6650ee537b41678e65130',1,'cppargparse::parser::ArgumentParser']]],
+  ['argumentparserbase',['ArgumentParserBase',['../classcppargparse_1_1parser_1_1ArgumentParserBase.html#a1da9b21d3cb471a0c0cd816e6202b0c2',1,'cppargparse::parser::ArgumentParserBase']]]
 ];
