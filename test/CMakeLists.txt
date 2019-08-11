@@ -46,3 +46,9 @@ add_unit_test(test_int
 add_unit_test(test_float
     ${CMAKE_CURRENT_SOURCE_DIR}/test_float.cpp
 )
+
+
+# String
+add_unit_test(test_string
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_string.cpp
+)
