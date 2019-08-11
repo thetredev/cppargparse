@@ -12,10 +12,6 @@
 namespace cppargparse::test {
 
 
-// Simulate the command line arguments passed to the program
-const std::string command_line = "-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile";
-
-
 
 std::vector<std::string> get_cmdargs(const std::string &command_line)
 {
@@ -37,9 +33,9 @@ void get_char_cmdargs(std::vector<std::string> command_line_tokens, std::vector<
 }
 
 
-void parse_cmdargs()
+void parse_cmdargs(const std::string command_line)
 {
-    std::vector<std::string> command_line_tokens = get_cmdargs(test::command_line);
+    std::vector<std::string> command_line_tokens = get_cmdargs(command_line);
 
     std::vector<const char *> char_tokens;
     test::get_char_cmdargs(command_line_tokens, char_tokens);

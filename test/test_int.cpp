@@ -13,7 +13,7 @@ TEST(TestInt, ArgumentNotPassed)
 {
     // Parse the command line arguments
     using namespace cppargparse;
-    test::parse_cmdargs();
+    test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
 
 
     // Test cmdarg: --some-unused-arg
@@ -26,7 +26,7 @@ TEST(TestInt, Required)
 {
     // Parse the command line arguments
     using namespace cppargparse;
-    test::parse_cmdargs();
+    test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
 
 
     // Test cmdarg: -a
@@ -53,7 +53,7 @@ TEST(TestInt, Optional)
 {
     // Parse the command line arguments
     using namespace cppargparse;
-    test::parse_cmdargs();
+    test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
 
 
     // Test cmdarg: -a
