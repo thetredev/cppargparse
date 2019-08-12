@@ -251,7 +251,7 @@ TEST(TestVector, Optional)
     );
 
     // Test cmdarg: -y which doesn't exist
-    // int
+    // float
     test_T_values_default<float>(
                 arg_parser,
                 std::vector<float> {},
@@ -272,7 +272,7 @@ TEST(TestVector, Optional)
     );
 
     // Test cmdarg: -y which doesn't exist
-    // int
+    // double
     test_T_values_default<double>(
                 arg_parser,
                 std::vector<double> {},
@@ -293,7 +293,7 @@ TEST(TestVector, Optional)
     );
 
     // Test cmdarg: -y which doesn't exist
-    // int
+    // long double
     test_T_values_default<long double>(
                 arg_parser,
                 std::vector<long double> {},
