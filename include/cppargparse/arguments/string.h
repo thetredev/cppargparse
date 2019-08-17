@@ -53,7 +53,7 @@ struct argument<std::string>
     {
         if (position == cmd.cend())
         {
-            throw errors::CommandLineOptionError(error_message(position));
+            throw errors::CommandLineOptionError(error_message(std::prev(position)));
         }
 
         return *position;
