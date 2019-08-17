@@ -75,3 +75,9 @@ add_unit_test(test_string
 add_unit_test(test_vector
     ${CMAKE_CURRENT_SOURCE_DIR}/test_vector.cpp
 )
+
+
+# Error
+add_unit_test(test_error
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_error.cpp
+)
