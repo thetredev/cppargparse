@@ -9,7 +9,10 @@ TEST(TestFlag, Flags)
 {
     // Parse the command line arguments
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
+    auto arg_parser = test::parse_cmdargs(
+                "-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile",
+                "test_flag"
+    );
 
 
     // Add arguments

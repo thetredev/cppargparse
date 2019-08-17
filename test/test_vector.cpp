@@ -13,7 +13,10 @@ void test_argument_not_passed()
 {
     // Parse the command line arguments
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--people Me Myself I -i file1 file2 file3 -v 3 5 12 1 7 1200 32");
+    auto arg_parser = test::parse_cmdargs(
+                "--people Me Myself I -i file1 file2 file3 -v 3 5 12 1 7 1200 32",
+                "test_vector_argument_not_passed"
+    );
 
     // Test cmdarg: --some-unused-arg
     // which has not been passed
@@ -76,7 +79,10 @@ TEST(TestVector, Required)
 {
     // Parse the command line arguments
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--people Me Myself I -i file1 file2 file3 -v 3 5 12 1 7 1200 32");
+    auto arg_parser = test::parse_cmdargs(
+                "--people Me Myself I -i file1 file2 file3 -v 3 5 12 1 7 1200 32",
+                "test_vector_required"
+    );
 
 
     // Add arguments
@@ -189,7 +195,10 @@ TEST(TestVector, Optional)
 {
     // Parse the command line arguments
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--people Me Myself I -i file1 file2 file3 -v 3 5 12 1 7 1200 32");
+    auto arg_parser = test::parse_cmdargs(
+                "--people Me Myself I -i file1 file2 file3 -v 3 5 12 1 7 1200 32",
+                "test_vector_optional"
+    );
 
 
     // Add arguments

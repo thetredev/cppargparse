@@ -23,10 +23,12 @@ public:
      *
      * @param argc The command line argument count.
      * @param argv The command line argument array.
+     * @param application_description The application description.
      */
-    explicit ArgumentParserBase(int argc, char *argv[])
+    explicit ArgumentParserBase(int argc, char *argv[], const std::string &application_description)
         : m_cmd(types::CommandLine_t(argv, argv + argc))
         , m_cmdargs()
+        , m_application_description(application_description)
     {
     }
 
@@ -133,9 +135,67 @@ public:
     }
 
 
+    /**
+     * @brief Generate and return the usage string.
+     *
+     * @return The generated usage string.
+     */
+    const std::string usage() const
+    {
+        // Find the maximum (argument ID, argument alternative ID) length
+        size_t max_id_length = 0;
+
+        for (const auto &cmdarg : m_cmdargs)
+        {
+            const size_t id_length = cmdarg.id.size() + cmdarg.id_alt.size();
+
+            if (id_length > max_id_length)
+            {
+                max_id_length = id_length;
+            }
+        }
+
+        // Add 3 more spaces
+        max_id_length += 3;
+
+
+        // Generate the usage string
+        std::ostringstream usage_string;
+        usage_string << "Usage: " << m_application_description << '\n' << '\n';
+
+        for (const auto &cmdarg : m_cmdargs)
+        {
+            usage_string << ' ' << ' ' << cmdarg.id;
+
+            if (!cmdarg.id_alt.empty())
+            {
+                usage_string << '|' << cmdarg.id_alt;
+            }
+
+            for (size_t i = 0; i < max_id_length; ++i)
+            {
+                usage_string << ' ';
+            }
+
+            if (!cmdarg.description.empty())
+            {
+                usage_string << cmdarg.description;
+            }
+
+            usage_string << '\n';
+        }
+
+        return usage_string.str();
+    }
+
+
 protected:
     types::CommandLine_t m_cmd;
     types::CommandLineArguments_t m_cmdargs;
+
+
+private:
+    const std::string m_application_description;
 };
 
 
@@ -152,9 +212,10 @@ public:
      *
      * @param argc The command line argument count.
      * @param argv The command line argument array.
+     * @param application_description The application description.
      */
-    explicit ArgumentParser(int argc, char *argv[])
-        : ArgumentParserBase(argc, argv)
+    explicit ArgumentParser(int argc, char *argv[], const std::string &application_description)
+        : ArgumentParserBase(argc, argv, application_description)
     {
     }
 

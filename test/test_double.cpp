@@ -12,7 +12,10 @@ TEST(TestDouble, ArgumentNotPassed)
 {
     // Parse the command line arguments
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
+    auto arg_parser = test::parse_cmdargs(
+                "-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile",
+                "test_double_argument_not_passed"
+    );
 
 
     // Test cmdarg: --some-unused-arg
@@ -25,7 +28,10 @@ TEST(TestDouble, Required)
 {
     // Parse the command line arguments
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
+    auto arg_parser = test::parse_cmdargs(
+                "-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile",
+                "test_double_required"
+    );
 
 
     // Add arguments
@@ -57,7 +63,10 @@ TEST(TestDouble, Optional)
 {
     // Parse the command line arguments
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
+    auto arg_parser = test::parse_cmdargs(
+                "-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile",
+                "test_double_optional"
+    );
 
 
     // Add arguments
@@ -95,7 +104,10 @@ TEST(TestLongDouble, ArgumentNotPassed)
 {
     // Parse the command line arguments
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
+    auto arg_parser = test::parse_cmdargs(
+                "-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile",
+                "test_longdouble_arument_not_passed"
+    );
 
 
     // Test cmdarg: --some-unused-arg
@@ -108,7 +120,10 @@ TEST(TestLongDouble, Required)
 {
     // Parse the command line arguments
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
+    auto arg_parser = test::parse_cmdargs(
+                "-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile",
+                "test_longdouble_required"
+    );
 
 
     // Add arguments
@@ -141,7 +156,10 @@ TEST(TestLongDouble, Optional)
 {
     // Parse the command line arguments
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile");
+    auto arg_parser = test::parse_cmdargs(
+                "-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile",
+                "test_longdouble_optional"
+    );
 
 
     // Add arguments

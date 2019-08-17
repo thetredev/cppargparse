@@ -32,14 +32,16 @@ void get_char_cmdargs(std::vector<std::string> command_line_tokens, std::vector<
 }
 
 
-cppargparse::parser::ArgumentParser parse_cmdargs(const std::string command_line)
+cppargparse::parser::ArgumentParser parse_cmdargs(const std::string &command_line, const std::string &application_description)
 {
     std::vector<std::string> command_line_tokens = get_cmdargs(command_line);
 
     std::vector<const char *> char_tokens;
     test::get_char_cmdargs(command_line_tokens, char_tokens);
 
-    return cppargparse::parser::ArgumentParser(static_cast<int>(char_tokens.size()), const_cast<char **>(char_tokens.data()));
+    return cppargparse::parser::ArgumentParser(
+                static_cast<int>(char_tokens.size()), const_cast<char **>(char_tokens.data()), application_description
+    );
 }
 
 
