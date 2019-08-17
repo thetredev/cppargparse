@@ -8,19 +8,26 @@ add_custom_command(TARGET tests POST_BUILD
     COMMAND ctest --output-on-failure
 )
 
+set(TEST_BUILD_OPTIONS -Wall -Wno-long-long -pedantic)
+
 
 #
 # Profiling target: coverage
 #
-add_custom_target(coverage)
+if("${CMAKE_BUILD_TYPE}" MATCHES "^(profiling|Profiling|PROFILING)$")
 
-add_custom_command(TARGET coverage POST_BUILD
-    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-    COMMAND lcov --include ${CMAKE_SOURCE_DIR}/include/*.h -t "result" -o cppargparse.info -c -d .
-    COMMAND genhtml -o coverage cppargparse.info
-)
+    set(TEST_BUILD_OPTIONS ${TEST_BUILD_OPTIONS} --coverage)
 
-add_dependencies(coverage tests)
+    add_custom_target(coverage)
+
+    add_custom_command(TARGET coverage POST_BUILD
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+        COMMAND lcov --rc lcov_branch_coverage=1 --include ${CMAKE_SOURCE_DIR}/include/*.h -t "result" -o cppargparse.info -c -d .
+        COMMAND genhtml -o coverage cppargparse.info
+    )
+
+    add_dependencies(coverage tests)
+endif()
 
 
 #
@@ -36,8 +43,11 @@ function(add_unit_test test_name source_files)
     # Link unit test with gtest
     target_link_libraries(${test_name} gtest_main)
 
-    target_compile_options(${test_name} PRIVATE -Wall -Wno-long-long -pedantic --coverage)
-    target_link_options(${test_name} PRIVATE -lgcov --coverage)
+    target_compile_options(${test_name} PRIVATE ${TEST_BUILD_OPTIONS})
+
+    if("${CMAKE_BUILD_TYPE}" MATCHES "^(profiling|Profiling|PROFILING)$")
+        target_link_options(${test_name} PRIVATE -lgcov --coverage)
+    endif()
 endfunction()
 
 
