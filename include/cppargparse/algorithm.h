@@ -35,13 +35,21 @@ types::CommandLineArgumentPosition_t find_arg(const types::CommandLineArguments_
  * @brief Find an argument's command line position by its ID.
  *
  * @param cmd The command line.
- * @param id The argument ID. Can also be the argument's alternative ID.
+ * @param id The argument ID.
+ * @param id_alt The argument alternative ID.
  *
  * @return The command line iterator position of the argument.
  */
-types::CommandLinePosition_t find_arg_position(const types::CommandLine_t &cmd, const std::string &id)
+types::CommandLinePosition_t find_arg_position(const types::CommandLine_t &cmd, const std::string &id, const std::string &id_alt)
 {
-    return std::find(cmd.cbegin(), cmd.cend(), id);
+    auto it = std::find(cmd.cbegin(), cmd.cend(), id);
+
+    if (it == cmd.cend())
+    {
+        it = std::find(cmd.cbegin(), cmd.cend(), id_alt);
+    }
+
+    return it;
 }
 
 

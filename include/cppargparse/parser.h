@@ -63,7 +63,8 @@ public:
     void add_arg(const std::string &id)
     {
         add_arg(types::CommandLineArgument_t {
-                    id, std::string(), std::string(), algorithm::find_arg_position(m_cmd, id)
+                    id, std::string(), std::string(),
+                    algorithm::find_arg_position(m_cmd, id, std::string())
         });
     }
 
@@ -76,7 +77,8 @@ public:
     void add_arg(const std::string &id, const std::string &id_alt)
     {
         add_arg(types::CommandLineArgument_t {
-                    id, id_alt, std::string(), algorithm::find_arg_position(m_cmd, id)
+                    id, id_alt, std::string(),
+                    algorithm::find_arg_position(m_cmd, id, id_alt)
         });
     }
 
@@ -90,7 +92,8 @@ public:
     void add_arg(const std::string &id, const std::string &id_alt, const std::string &description)
     {
         add_arg(types::CommandLineArgument_t {
-                    id, id_alt, description, algorithm::find_arg_position(m_cmd, id)
+                    id, id_alt, description,
+                    algorithm::find_arg_position(m_cmd, id, id_alt)
         });
     }
 
@@ -113,7 +116,7 @@ public:
      */
     inline bool get_flag(const std::string &id)
     {
-        return algorithm::find_arg_position(m_cmd, id) != m_cmd.cend();
+        return algorithm::find_arg_position(m_cmd, id, id) != m_cmd.cend();
     }
 
     template <typename T>
