@@ -297,7 +297,8 @@ public:
      * @param id The argument ID.
      * @param callback The callback to call when the flag has been passed to the command line.
      */
-    void add_flag_with_callback(const std::string &id, const std::function<void(const ArgumentParser &)> &callback)
+    void add_flag_with_callback(const std::string &id,
+                                const std::function<void(const ArgumentParser &)> &callback)
     {
         add_arg(id);
 
@@ -314,7 +315,8 @@ public:
      * @param id_alt The argument alternative ID.
      * @param callback The callback to call when the flag has been passed to the command line.
      */
-    void add_flag_with_callback(const std::string &id, const std::string &id_alt, const std::function<void(const ArgumentParser &)> &callback)
+    void add_flag_with_callback(const std::string &id, const std::string &id_alt,
+                                const std::function<void(const ArgumentParser &)> &callback)
     {
         add_arg(id, id_alt);
 
@@ -372,7 +374,8 @@ public:
      * @throws #errors::CommandLineArgumentError if the arg wasn't found in the command line.
      * @throws #errors::CommandLineOptionError if no value has been found for the argument.
      */
-    void add_arg_with_callback(const std::string &id, const std::function<void(const ArgumentParser &, const T &)> &callback)
+    void add_arg_with_callback(const std::string &id,
+                               const std::function<void(const ArgumentParser &, const T &)> &callback)
     {
         add_arg(id);
 
@@ -500,8 +503,9 @@ public:
      * @param default_value The default value.
      * @param callback The callback to call with the argument's (default) value.
      */
-    void add_arg_with_callback_default(const std::string &id, const std::string &id_alt, const std::string &description,
-                                       const T &default_value, const std::function<void(const ArgumentParser &, const T &)> &callback)
+    void add_arg_with_callback_default(const std::string &id, const std::string &id_alt,
+                                       const std::string &description, const T &default_value,
+                                       const std::function<void(const ArgumentParser &, const T &)> &callback)
     {
         add_arg(id, id_alt, description);
 
