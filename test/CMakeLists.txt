@@ -10,6 +10,20 @@ add_custom_command(TARGET tests POST_BUILD
 
 
 #
+# Profiling target: coverage
+#
+add_custom_target(coverage)
+
+add_custom_command(TARGET coverage POST_BUILD
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    COMMAND lcov --include ${CMAKE_SOURCE_DIR}/include/*.h -t "result" -o cppargparse.info -c -d .
+    COMMAND genhtml -o coverage cppargparse.info
+)
+
+add_dependencies(coverage tests)
+
+
+#
 # Function: add_unit_test()
 #
 # Adds a unit test executable as a target and make target <tests> depend on it.
@@ -21,6 +35,9 @@ function(add_unit_test test_name source_files)
 
     # Link unit test with gtest
     target_link_libraries(${test_name} gtest_main)
+
+    target_compile_options(${test_name} PRIVATE -Wall -Wno-long-long -pedantic --coverage)
+    target_link_options(${test_name} PRIVATE -lgcov --coverage)
 endfunction()
 
 
