@@ -246,15 +246,22 @@ public:
      */
     inline const T get_option(const std::string &id)
     {
-        auto it = algorithm::find_arg(m_cmdargs, id);
-
-        if (it == m_cmdargs.cend())
+        if (algorithm::find_arg(m_cmdargs, id) == m_cmdargs.cend())
         {
-            throw cmdarg_error(id);
+            throw cmdarg_invalid_error(id);
         }
 
+
+        auto it = algorithm::find_arg_position(m_cmd, id, id);
+
+        if (it == m_cmd.cend())
+        {
+            throw cmdarg_not_found_error(id);
+        }
+
+
         // return the stored arg value
-        return argument<T>::parse(m_cmd, it->position, m_cmdargs);
+        return argument<T>::parse(m_cmd, it, m_cmdargs);
     }
 
 
@@ -503,10 +510,18 @@ public:
 
 
 private:
-    errors::CommandLineArgumentError cmdarg_error(const std::string &id)
+    errors::CommandLineArgumentError cmdarg_not_found_error(const std::string &id)
     {
         std::ostringstream message;
         message << "Cannot find argument: " << id;
+
+        return errors::CommandLineArgumentError(message.str());
+    }
+
+    errors::CommandLineArgumentError cmdarg_invalid_error(const std::string &id)
+    {
+        std::ostringstream message;
+        message << "Invalid argument: " << id;
 
         return errors::CommandLineArgumentError(message.str());
     }
@@ -526,7 +541,7 @@ private:
 
         if (throw_error)
         {
-            throw cmdarg_error(id);
+            throw cmdarg_not_found_error(id);
         }
         else
         {
