@@ -12,7 +12,7 @@ TEST(TestString, Required)
     // Parse the command line arguments
     using namespace cppargparse;
     auto arg_parser = test::parse_cmdargs(
-                "-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile",
+                "-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile -e",
                 "test_string_required"
     );
 
@@ -23,6 +23,7 @@ TEST(TestString, Required)
     const auto b = arg_parser.add_arg("-b");
     const auto c = arg_parser.add_arg("-c");
     const auto output = arg_parser.add_arg("--output");
+    const auto e = arg_parser.add_arg("-e");
 
 
     // Test cmdarg: -x
@@ -46,6 +47,8 @@ TEST(TestString, Required)
     // Test cmdarg: --output
     const std::string output_value = arg_parser.get_option<std::string>(output);
     EXPECT_EQ("/tmp/testfile", output_value);
+
+    EXPECT_THROW(arg_parser.get_option<std::string>(e), errors::CommandLineOptionError);
 }
 
 
@@ -54,7 +57,7 @@ TEST(TestString, Optional)
     // Parse the command line arguments
     using namespace cppargparse;
     auto arg_parser = test::parse_cmdargs(
-                "-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile",
+                "-t -x -a 4 -b -150 -c THIS SHOULD RAISE AN ERROR --output /tmp/testfile -e",
                 "test_string_optional"
     );
 
@@ -65,6 +68,7 @@ TEST(TestString, Optional)
     const auto b = arg_parser.add_arg("-b");
     const auto c = arg_parser.add_arg("-c");
     const auto output = arg_parser.add_arg("--output");
+    const auto e = arg_parser.add_arg("-e");
 
 
     // Test cmdarg: -x
@@ -95,4 +99,6 @@ TEST(TestString, Optional)
     // with a default value "/"
     const std::string output_value = arg_parser.get_option<std::string>(output, "/");
     EXPECT_EQ("/tmp/testfile", output_value);
+
+    EXPECT_THROW(arg_parser.get_option<std::string>(e), errors::CommandLineOptionError);
 }
