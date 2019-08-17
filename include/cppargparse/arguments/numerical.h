@@ -71,10 +71,6 @@ static T convert(
     {
         throw errors::CommandLineOptionError(error_message(position, type_string));
     }
-    catch (std::out_of_range const &)
-    {
-        throw errors::CommandLineOptionError(error_message(position, type_string));
-    }
 }
 
 
