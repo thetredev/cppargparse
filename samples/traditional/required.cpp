@@ -51,6 +51,7 @@ int main(int argc, char *argv[])
 
     const std::string ints_arg_passed = arg_parser.get_flag("-s") ? "-s" : "--sum";
     const std::vector<int> ints = arg_parser.get_option<std::vector<int>>(ints_arg_passed);
+    print_sum(ints);
 
 
     return 0;
