@@ -208,7 +208,7 @@ It collects all values tied to the argument and converts each value string to `T
 ... todo ...
 
 
-# Build tests and install
+# Build tests
 Build requirements:
 - `gcc`, `clang`, or `msvc`
 - `cmake`
@@ -227,4 +227,18 @@ make tests
 
 Of course, you can use every generator that CMake supports.
 
+# Code coverage
+Coverage requirements:
+- `gcov`
+- `lcov`
+- `genhtml`
+
+Then run the following inside the build directory:
+```
+make coverage
+```
+
+This will automatically execute `make tests` beforehand.
+
+# Install
 To install the library, run `sudo make install` inside the build directory.
