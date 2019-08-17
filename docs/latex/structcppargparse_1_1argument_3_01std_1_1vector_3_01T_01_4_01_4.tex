@@ -12,11 +12,10 @@ The argument struct for the std\+::vector$<$\+T$>$ type.
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static const std\+::vector$<$ T $>$ \hyperlink{structcppargparse_1_1argument_3_01std_1_1vector_3_01T_01_4_01_4_a0e6251b0eaf62369653e4f5c1a40fffd}{parse} (const types\+::\+Command\+Line\+\_\+t \&cmd, const types\+::\+Command\+Line\+Argument\+\_\+t \&cmdarg, const types\+::\+Command\+Line\+Arguments\+Map\+\_\+t \&cmdargs)
+static const std\+::vector$<$ T $>$ \hyperlink{structcppargparse_1_1argument_3_01std_1_1vector_3_01T_01_4_01_4_ada258269ddf190ae8376a6bb807de588}{parse} (const types\+::\+Command\+Line\+\_\+t \&cmd, const types\+::\+Command\+Line\+Position\+\_\+t \&position, const types\+::\+Command\+Line\+Arguments\+\_\+t \&cmdargs)
 \begin{DoxyCompactList}\small\item\em Try to parse and return the integer value for an argument. Throw a \#parser\+::\+Parser\+Exception on failure. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{structcppargparse_1_1argument_3_01std_1_1vector_3_01T_01_4_01_4_ae1b015416b1095055203b9ece6aa05f4}\label{structcppargparse_1_1argument_3_01std_1_1vector_3_01T_01_4_01_4_ae1b015416b1095055203b9ece6aa05f4}} 
-static types\+::\+Command\+Line\+Arguments\+\_\+t {\bfseries get\+\_\+option\+\_\+values} (const types\+::\+Command\+Line\+\_\+t \&cmd, const types\+::\+Command\+Line\+Argument\+\_\+t \&cmdarg, const types\+::\+Command\+Line\+Arguments\+Map\+\_\+t \&cmdargs)
-\end{DoxyCompactItemize}
+static types\+::\+Command\+Line\+Positions\+\_\+t \hyperlink{structcppargparse_1_1argument_3_01std_1_1vector_3_01T_01_4_01_4_a57aaaece7f0d299010f47a9bbfbe5e70}{get\+\_\+option\+\_\+positions} (const types\+::\+Command\+Line\+\_\+t \&cmd, const types\+::\+Command\+Line\+Position\+\_\+t \&position, const types\+::\+Command\+Line\+Arguments\+\_\+t \&cmdargs)
+\begin{DoxyCompactList}\small\item\em Return command line positions of an argument vector option. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -25,13 +24,43 @@ struct cppargparse\+::argument$<$ std\+::vector$<$ T $>$ $>$}
 
 The argument struct for the std\+::vector$<$\+T$>$ type. 
 
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The argument vector type. \\
+\hline
+\end{DoxyTemplParams}
+
+
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{structcppargparse_1_1argument_3_01std_1_1vector_3_01T_01_4_01_4_a0e6251b0eaf62369653e4f5c1a40fffd}\label{structcppargparse_1_1argument_3_01std_1_1vector_3_01T_01_4_01_4_a0e6251b0eaf62369653e4f5c1a40fffd}} 
+\mbox{\Hypertarget{structcppargparse_1_1argument_3_01std_1_1vector_3_01T_01_4_01_4_a57aaaece7f0d299010f47a9bbfbe5e70}\label{structcppargparse_1_1argument_3_01std_1_1vector_3_01T_01_4_01_4_a57aaaece7f0d299010f47a9bbfbe5e70}} 
+\index{cppargparse\+::argument$<$ std\+::vector$<$ T $>$ $>$@{cppargparse\+::argument$<$ std\+::vector$<$ T $>$ $>$}!get\+\_\+option\+\_\+positions@{get\+\_\+option\+\_\+positions}}
+\index{get\+\_\+option\+\_\+positions@{get\+\_\+option\+\_\+positions}!cppargparse\+::argument$<$ std\+::vector$<$ T $>$ $>$@{cppargparse\+::argument$<$ std\+::vector$<$ T $>$ $>$}}
+\subsubsection{\texorpdfstring{get\+\_\+option\+\_\+positions()}{get\_option\_positions()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+static types\+::\+Command\+Line\+Positions\+\_\+t \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ std\+::vector$<$ T $>$ $>$\+::get\+\_\+option\+\_\+positions (\begin{DoxyParamCaption}\item[{const types\+::\+Command\+Line\+\_\+t \&}]{cmd,  }\item[{const types\+::\+Command\+Line\+Position\+\_\+t \&}]{position,  }\item[{const types\+::\+Command\+Line\+Arguments\+\_\+t \&}]{cmdargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Return command line positions of an argument vector option. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & The command line. \\
+\hline
+{\em position} & The argument iterator position (start position). \\
+\hline
+{\em cmdargs} & The command line arguments.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Command line positions of an argument vector option. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{structcppargparse_1_1argument_3_01std_1_1vector_3_01T_01_4_01_4_ada258269ddf190ae8376a6bb807de588}\label{structcppargparse_1_1argument_3_01std_1_1vector_3_01T_01_4_01_4_ada258269ddf190ae8376a6bb807de588}} 
 \index{cppargparse\+::argument$<$ std\+::vector$<$ T $>$ $>$@{cppargparse\+::argument$<$ std\+::vector$<$ T $>$ $>$}!parse@{parse}}
 \index{parse@{parse}!cppargparse\+::argument$<$ std\+::vector$<$ T $>$ $>$@{cppargparse\+::argument$<$ std\+::vector$<$ T $>$ $>$}}
 \subsubsection{\texorpdfstring{parse()}{parse()}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
-static const std\+::vector$<$T$>$ \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ std\+::vector$<$ T $>$ $>$\+::parse (\begin{DoxyParamCaption}\item[{const types\+::\+Command\+Line\+\_\+t \&}]{cmd,  }\item[{const types\+::\+Command\+Line\+Argument\+\_\+t \&}]{cmdarg,  }\item[{const types\+::\+Command\+Line\+Arguments\+Map\+\_\+t \&}]{cmdargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static const std\+::vector$<$T$>$ \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ std\+::vector$<$ T $>$ $>$\+::parse (\begin{DoxyParamCaption}\item[{const types\+::\+Command\+Line\+\_\+t \&}]{cmd,  }\item[{const types\+::\+Command\+Line\+Position\+\_\+t \&}]{position,  }\item[{const types\+::\+Command\+Line\+Arguments\+\_\+t \&}]{cmdargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 

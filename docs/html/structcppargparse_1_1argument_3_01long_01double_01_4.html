@@ -77,12 +77,12 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a82796643d277f58f8b65cd9552c1f598"><td class="memItemLeft" align="right" valign="top">static long double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01long_01double_01_4.html#a82796643d277f58f8b65cd9552c1f598">parse</a> (const types::CommandLine_t &amp;, const types::CommandLineArgument_t &amp;cmdarg, const types::CommandLineArgumentsMap_t &amp;)</td></tr>
-<tr class="memdesc:a82796643d277f58f8b65cd9552c1f598"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to parse a command line argument as a long double.  <a href="#a82796643d277f58f8b65cd9552c1f598">More...</a><br /></td></tr>
-<tr class="separator:a82796643d277f58f8b65cd9552c1f598"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a442a97b13effc88aae98a72fc754b912"><td class="memItemLeft" align="right" valign="top">static long double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01long_01double_01_4.html#a442a97b13effc88aae98a72fc754b912">convert</a> (const types::CommandLine_t &amp;, const types::CommandLineArgument_t &amp;cmdarg, const types::CommandLineArgumentsMap_t &amp;)</td></tr>
-<tr class="memdesc:a442a97b13effc88aae98a72fc754b912"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to convert a command line argument to a long double value.  <a href="#a442a97b13effc88aae98a72fc754b912">More...</a><br /></td></tr>
-<tr class="separator:a442a97b13effc88aae98a72fc754b912"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3030b59e675dcf51191cfc6e61bd6141"><td class="memItemLeft" align="right" valign="top">static long double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01long_01double_01_4.html#a3030b59e675dcf51191cfc6e61bd6141">parse</a> (const types::CommandLine_t &amp;, const types::CommandLinePosition_t &amp;position, const types::CommandLineArguments_t &amp;)</td></tr>
+<tr class="memdesc:a3030b59e675dcf51191cfc6e61bd6141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to parse a command line argument as a long double.  <a href="#a3030b59e675dcf51191cfc6e61bd6141">More...</a><br /></td></tr>
+<tr class="separator:a3030b59e675dcf51191cfc6e61bd6141"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9987289594effd9b0561188827010cb2"><td class="memItemLeft" align="right" valign="top">static long double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01long_01double_01_4.html#a9987289594effd9b0561188827010cb2">convert</a> (const types::CommandLine_t &amp;, const types::CommandLinePosition_t &amp;position, const types::CommandLineArguments_t &amp;)</td></tr>
+<tr class="memdesc:a9987289594effd9b0561188827010cb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to convert a command line argument to a long double value.  <a href="#a9987289594effd9b0561188827010cb2">More...</a><br /></td></tr>
+<tr class="separator:a9987289594effd9b0561188827010cb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;&gt;<br />
@@ -90,8 +90,8 @@ struct cppargparse::argument&lt; long double &gt;</h3>
 
 <p>The type_trait struct for the long double type. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a442a97b13effc88aae98a72fc754b912"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a442a97b13effc88aae98a72fc754b912">&#9670;&nbsp;</a></span>convert()</h2>
+<a id="a9987289594effd9b0561188827010cb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9987289594effd9b0561188827010cb2">&#9670;&nbsp;</a></span>convert()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -108,13 +108,13 @@ struct cppargparse::argument&lt; long double &gt;</h3>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgument_t &amp;&#160;</td>
-          <td class="paramname"><em>cmdarg</em>, </td>
+          <td class="paramtype">const types::CommandLinePosition_t &amp;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgumentsMap_t &amp;&#160;</td>
+          <td class="paramtype">const types::CommandLineArguments_t &amp;&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -141,8 +141,8 @@ struct cppargparse::argument&lt; long double &gt;</h3>
 
 </div>
 </div>
-<a id="a82796643d277f58f8b65cd9552c1f598"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a82796643d277f58f8b65cd9552c1f598">&#9670;&nbsp;</a></span>parse()</h2>
+<a id="a3030b59e675dcf51191cfc6e61bd6141"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3030b59e675dcf51191cfc6e61bd6141">&#9670;&nbsp;</a></span>parse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,13 +159,13 @@ struct cppargparse::argument&lt; long double &gt;</h3>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgument_t &amp;&#160;</td>
-          <td class="paramname"><em>cmdarg</em>, </td>
+          <td class="paramtype">const types::CommandLinePosition_t &amp;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgumentsMap_t &amp;&#160;</td>
+          <td class="paramtype">const types::CommandLineArguments_t &amp;&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>

@@ -77,12 +77,12 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a425c616f08d003b24e510f826bb65215"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01float_01_4.html#a425c616f08d003b24e510f826bb65215">parse</a> (const types::CommandLine_t &amp;, const types::CommandLineArgument_t &amp;cmdarg, const types::CommandLineArgumentsMap_t &amp;)</td></tr>
-<tr class="memdesc:a425c616f08d003b24e510f826bb65215"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to parse a command line argument as a float.  <a href="#a425c616f08d003b24e510f826bb65215">More...</a><br /></td></tr>
-<tr class="separator:a425c616f08d003b24e510f826bb65215"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9acfaf2335353a8b627831ed5a74b37b"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01float_01_4.html#a9acfaf2335353a8b627831ed5a74b37b">convert</a> (const types::CommandLine_t &amp;, const types::CommandLineArgument_t &amp;cmdarg, const types::CommandLineArgumentsMap_t &amp;)</td></tr>
-<tr class="memdesc:a9acfaf2335353a8b627831ed5a74b37b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to convert a command line argument to a float value..  <a href="#a9acfaf2335353a8b627831ed5a74b37b">More...</a><br /></td></tr>
-<tr class="separator:a9acfaf2335353a8b627831ed5a74b37b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c02321d1fcc25ffa950948ab642e64f"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01float_01_4.html#a6c02321d1fcc25ffa950948ab642e64f">parse</a> (const types::CommandLine_t &amp;, const types::CommandLinePosition_t &amp;position, const types::CommandLineArguments_t &amp;)</td></tr>
+<tr class="memdesc:a6c02321d1fcc25ffa950948ab642e64f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to parse a command line argument as a float.  <a href="#a6c02321d1fcc25ffa950948ab642e64f">More...</a><br /></td></tr>
+<tr class="separator:a6c02321d1fcc25ffa950948ab642e64f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dd5dba91fc35f277138619066d7db24"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01float_01_4.html#a3dd5dba91fc35f277138619066d7db24">convert</a> (const types::CommandLine_t &amp;, const types::CommandLinePosition_t &amp;position, const types::CommandLineArguments_t &amp;)</td></tr>
+<tr class="memdesc:a3dd5dba91fc35f277138619066d7db24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to convert a command line argument to a float value..  <a href="#a3dd5dba91fc35f277138619066d7db24">More...</a><br /></td></tr>
+<tr class="separator:a3dd5dba91fc35f277138619066d7db24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;&gt;<br />
@@ -90,8 +90,8 @@ struct cppargparse::argument&lt; float &gt;</h3>
 
 <p>The argument struct for the float type. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a9acfaf2335353a8b627831ed5a74b37b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9acfaf2335353a8b627831ed5a74b37b">&#9670;&nbsp;</a></span>convert()</h2>
+<a id="a3dd5dba91fc35f277138619066d7db24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3dd5dba91fc35f277138619066d7db24">&#9670;&nbsp;</a></span>convert()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -108,13 +108,13 @@ struct cppargparse::argument&lt; float &gt;</h3>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgument_t &amp;&#160;</td>
-          <td class="paramname"><em>cmdarg</em>, </td>
+          <td class="paramtype">const types::CommandLinePosition_t &amp;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgumentsMap_t &amp;&#160;</td>
+          <td class="paramtype">const types::CommandLineArguments_t &amp;&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -141,8 +141,8 @@ struct cppargparse::argument&lt; float &gt;</h3>
 
 </div>
 </div>
-<a id="a425c616f08d003b24e510f826bb65215"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a425c616f08d003b24e510f826bb65215">&#9670;&nbsp;</a></span>parse()</h2>
+<a id="a6c02321d1fcc25ffa950948ab642e64f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c02321d1fcc25ffa950948ab642e64f">&#9670;&nbsp;</a></span>parse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,13 +159,13 @@ struct cppargparse::argument&lt; float &gt;</h3>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgument_t &amp;&#160;</td>
-          <td class="paramname"><em>cmdarg</em>, </td>
+          <td class="paramtype">const types::CommandLinePosition_t &amp;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgumentsMap_t &amp;&#160;</td>
+          <td class="paramtype">const types::CommandLineArguments_t &amp;&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>

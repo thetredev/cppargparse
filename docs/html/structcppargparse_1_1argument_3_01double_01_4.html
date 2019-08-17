@@ -77,12 +77,12 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:afc18801cd4a57b636d65d8e223482f45"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01double_01_4.html#afc18801cd4a57b636d65d8e223482f45">parse</a> (const types::CommandLine_t &amp;, const types::CommandLineArgument_t &amp;cmdarg, const types::CommandLineArgumentsMap_t &amp;)</td></tr>
-<tr class="memdesc:afc18801cd4a57b636d65d8e223482f45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to parse a command line argument as a double.  <a href="#afc18801cd4a57b636d65d8e223482f45">More...</a><br /></td></tr>
-<tr class="separator:afc18801cd4a57b636d65d8e223482f45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d3b588191523c720868cd72e05b6261"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01double_01_4.html#a9d3b588191523c720868cd72e05b6261">convert</a> (const types::CommandLine_t &amp;, const types::CommandLineArgument_t &amp;cmdarg, const types::CommandLineArgumentsMap_t &amp;)</td></tr>
-<tr class="memdesc:a9d3b588191523c720868cd72e05b6261"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to convert a command line argument to a double value.  <a href="#a9d3b588191523c720868cd72e05b6261">More...</a><br /></td></tr>
-<tr class="separator:a9d3b588191523c720868cd72e05b6261"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa587b4a64888fd195328d2491f893bc5"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01double_01_4.html#aa587b4a64888fd195328d2491f893bc5">parse</a> (const types::CommandLine_t &amp;, const types::CommandLinePosition_t &amp;position, const types::CommandLineArguments_t &amp;)</td></tr>
+<tr class="memdesc:aa587b4a64888fd195328d2491f893bc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to parse a command line argument as a double.  <a href="#aa587b4a64888fd195328d2491f893bc5">More...</a><br /></td></tr>
+<tr class="separator:aa587b4a64888fd195328d2491f893bc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19756d869b671553629d509f18549903"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01double_01_4.html#a19756d869b671553629d509f18549903">convert</a> (const types::CommandLine_t &amp;, const types::CommandLinePosition_t &amp;position, const types::CommandLineArguments_t &amp;)</td></tr>
+<tr class="memdesc:a19756d869b671553629d509f18549903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to convert a command line argument to a double value.  <a href="#a19756d869b671553629d509f18549903">More...</a><br /></td></tr>
+<tr class="separator:a19756d869b671553629d509f18549903"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;&gt;<br />
@@ -90,8 +90,8 @@ struct cppargparse::argument&lt; double &gt;</h3>
 
 <p>The argument struct for the double type. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a9d3b588191523c720868cd72e05b6261"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d3b588191523c720868cd72e05b6261">&#9670;&nbsp;</a></span>convert()</h2>
+<a id="a19756d869b671553629d509f18549903"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19756d869b671553629d509f18549903">&#9670;&nbsp;</a></span>convert()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -108,13 +108,13 @@ struct cppargparse::argument&lt; double &gt;</h3>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgument_t &amp;&#160;</td>
-          <td class="paramname"><em>cmdarg</em>, </td>
+          <td class="paramtype">const types::CommandLinePosition_t &amp;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgumentsMap_t &amp;&#160;</td>
+          <td class="paramtype">const types::CommandLineArguments_t &amp;&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -141,8 +141,8 @@ struct cppargparse::argument&lt; double &gt;</h3>
 
 </div>
 </div>
-<a id="afc18801cd4a57b636d65d8e223482f45"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc18801cd4a57b636d65d8e223482f45">&#9670;&nbsp;</a></span>parse()</h2>
+<a id="aa587b4a64888fd195328d2491f893bc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa587b4a64888fd195328d2491f893bc5">&#9670;&nbsp;</a></span>parse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,13 +159,13 @@ struct cppargparse::argument&lt; double &gt;</h3>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgument_t &amp;&#160;</td>
-          <td class="paramname"><em>cmdarg</em>, </td>
+          <td class="paramtype">const types::CommandLinePosition_t &amp;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgumentsMap_t &amp;&#160;</td>
+          <td class="paramtype">const types::CommandLineArguments_t &amp;&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>

@@ -12,11 +12,11 @@ The argument struct for the std\+::string type.
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static const std\+::string \hyperlink{structcppargparse_1_1argument_3_01std_1_1string_01_4_a59f51e61ddf11929299211600a36180c}{parse} (const types\+::\+Command\+Line\+\_\+t \&cmd, const types\+::\+Command\+Line\+Argument\+\_\+t \&cmdarg, const types\+::\+Command\+Line\+Arguments\+Map\+\_\+t \&cmdargs)
+static const std\+::string \hyperlink{structcppargparse_1_1argument_3_01std_1_1string_01_4_af0b5a5adbfd58ee818f46f5d42f6f36d}{parse} (const types\+::\+Command\+Line\+\_\+t \&cmd, const types\+::\+Command\+Line\+Position\+\_\+t \&position, const types\+::\+Command\+Line\+Arguments\+\_\+t \&cmdargs)
 \begin{DoxyCompactList}\small\item\em Try to parse a command line argument as a std\+::string. \end{DoxyCompactList}\item 
-static const std\+::string \hyperlink{structcppargparse_1_1argument_3_01std_1_1string_01_4_a97a68548d5ba012e551d2fb2de6083c2}{convert} (const types\+::\+Command\+Line\+\_\+t \&cmd, const types\+::\+Command\+Line\+Argument\+\_\+t \&cmdarg, const types\+::\+Command\+Line\+Arguments\+Map\+\_\+t \&)
+static const std\+::string \hyperlink{structcppargparse_1_1argument_3_01std_1_1string_01_4_aa54c1d7414d89a1071bb7cdb07be0b00}{convert} (const types\+::\+Command\+Line\+\_\+t \&cmd, const types\+::\+Command\+Line\+Position\+\_\+t \&position, const types\+::\+Command\+Line\+Arguments\+\_\+t \&)
 \begin{DoxyCompactList}\small\item\em Try to convert a command line argument to a std\+::string. \end{DoxyCompactList}\item 
-static const char $\ast$ \hyperlink{structcppargparse_1_1argument_3_01std_1_1string_01_4_ae5172423c61ac176e9c8b018c0ad91c0}{error\+\_\+message} (const types\+::\+Command\+Line\+Argument\+\_\+t \&cmdarg)
+static const char $\ast$ \hyperlink{structcppargparse_1_1argument_3_01std_1_1string_01_4_abf0e56694e3cb65b632759217de194f1}{error\+\_\+message} (const types\+::\+Command\+Line\+Position\+\_\+t \&position)
 \begin{DoxyCompactList}\small\item\em Generate an error message for a value that\textquotesingle{}s not a std\+::string. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -27,11 +27,11 @@ struct cppargparse\+::argument$<$ std\+::string $>$}
 The argument struct for the std\+::string type. 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{structcppargparse_1_1argument_3_01std_1_1string_01_4_a97a68548d5ba012e551d2fb2de6083c2}\label{structcppargparse_1_1argument_3_01std_1_1string_01_4_a97a68548d5ba012e551d2fb2de6083c2}} 
+\mbox{\Hypertarget{structcppargparse_1_1argument_3_01std_1_1string_01_4_aa54c1d7414d89a1071bb7cdb07be0b00}\label{structcppargparse_1_1argument_3_01std_1_1string_01_4_aa54c1d7414d89a1071bb7cdb07be0b00}} 
 \index{cppargparse\+::argument$<$ std\+::string $>$@{cppargparse\+::argument$<$ std\+::string $>$}!convert@{convert}}
 \index{convert@{convert}!cppargparse\+::argument$<$ std\+::string $>$@{cppargparse\+::argument$<$ std\+::string $>$}}
 \subsubsection{\texorpdfstring{convert()}{convert()}}
-{\footnotesize\ttfamily static const std\+::string \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ std\+::string $>$\+::convert (\begin{DoxyParamCaption}\item[{const types\+::\+Command\+Line\+\_\+t \&}]{cmd,  }\item[{const types\+::\+Command\+Line\+Argument\+\_\+t \&}]{cmdarg,  }\item[{const types\+::\+Command\+Line\+Arguments\+Map\+\_\+t \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily static const std\+::string \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ std\+::string $>$\+::convert (\begin{DoxyParamCaption}\item[{const types\+::\+Command\+Line\+\_\+t \&}]{cmd,  }\item[{const types\+::\+Command\+Line\+Position\+\_\+t \&}]{position,  }\item[{const types\+::\+Command\+Line\+Arguments\+\_\+t \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -52,11 +52,11 @@ The std\+::string value of the command line argument.
 {\em \hyperlink{classcppargparse_1_1errors_1_1CommandLineOptionError}{cppargparse\+::errors\+::\+Command\+Line\+Option\+Error}} & if there is no value to parse. \\
 \hline
 \end{DoxyExceptions}
-\mbox{\Hypertarget{structcppargparse_1_1argument_3_01std_1_1string_01_4_ae5172423c61ac176e9c8b018c0ad91c0}\label{structcppargparse_1_1argument_3_01std_1_1string_01_4_ae5172423c61ac176e9c8b018c0ad91c0}} 
+\mbox{\Hypertarget{structcppargparse_1_1argument_3_01std_1_1string_01_4_abf0e56694e3cb65b632759217de194f1}\label{structcppargparse_1_1argument_3_01std_1_1string_01_4_abf0e56694e3cb65b632759217de194f1}} 
 \index{cppargparse\+::argument$<$ std\+::string $>$@{cppargparse\+::argument$<$ std\+::string $>$}!error\+\_\+message@{error\+\_\+message}}
 \index{error\+\_\+message@{error\+\_\+message}!cppargparse\+::argument$<$ std\+::string $>$@{cppargparse\+::argument$<$ std\+::string $>$}}
 \subsubsection{\texorpdfstring{error\+\_\+message()}{error\_message()}}
-{\footnotesize\ttfamily static const char$\ast$ \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ std\+::string $>$\+::error\+\_\+message (\begin{DoxyParamCaption}\item[{const types\+::\+Command\+Line\+Argument\+\_\+t \&}]{cmdarg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily static const char$\ast$ \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ std\+::string $>$\+::error\+\_\+message (\begin{DoxyParamCaption}\item[{const types\+::\+Command\+Line\+Position\+\_\+t \&}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -70,11 +70,11 @@ Generate an error message for a value that\textquotesingle{}s not a std\+::strin
 \begin{DoxyReturn}{Returns}
 An error message for a value that\textquotesingle{}s not a std\+::string. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{structcppargparse_1_1argument_3_01std_1_1string_01_4_a59f51e61ddf11929299211600a36180c}\label{structcppargparse_1_1argument_3_01std_1_1string_01_4_a59f51e61ddf11929299211600a36180c}} 
+\mbox{\Hypertarget{structcppargparse_1_1argument_3_01std_1_1string_01_4_af0b5a5adbfd58ee818f46f5d42f6f36d}\label{structcppargparse_1_1argument_3_01std_1_1string_01_4_af0b5a5adbfd58ee818f46f5d42f6f36d}} 
 \index{cppargparse\+::argument$<$ std\+::string $>$@{cppargparse\+::argument$<$ std\+::string $>$}!parse@{parse}}
 \index{parse@{parse}!cppargparse\+::argument$<$ std\+::string $>$@{cppargparse\+::argument$<$ std\+::string $>$}}
 \subsubsection{\texorpdfstring{parse()}{parse()}}
-{\footnotesize\ttfamily static const std\+::string \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ std\+::string $>$\+::parse (\begin{DoxyParamCaption}\item[{const types\+::\+Command\+Line\+\_\+t \&}]{cmd,  }\item[{const types\+::\+Command\+Line\+Argument\+\_\+t \&}]{cmdarg,  }\item[{const types\+::\+Command\+Line\+Arguments\+Map\+\_\+t \&}]{cmdargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily static const std\+::string \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ std\+::string $>$\+::parse (\begin{DoxyParamCaption}\item[{const types\+::\+Command\+Line\+\_\+t \&}]{cmd,  }\item[{const types\+::\+Command\+Line\+Position\+\_\+t \&}]{position,  }\item[{const types\+::\+Command\+Line\+Arguments\+\_\+t \&}]{cmdargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 

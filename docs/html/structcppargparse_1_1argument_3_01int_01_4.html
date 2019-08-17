@@ -77,12 +77,12 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a6e26fa05cd9312bfc68889c9679a9908"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01int_01_4.html#a6e26fa05cd9312bfc68889c9679a9908">parse</a> (const types::CommandLine_t &amp;, const types::CommandLineArgument_t &amp;cmdarg, const types::CommandLineArgumentsMap_t &amp;)</td></tr>
-<tr class="memdesc:a6e26fa05cd9312bfc68889c9679a9908"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to parse a command line argument as an int.  <a href="#a6e26fa05cd9312bfc68889c9679a9908">More...</a><br /></td></tr>
-<tr class="separator:a6e26fa05cd9312bfc68889c9679a9908"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0921c079e394b79f91bea0193786fa95"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01int_01_4.html#a0921c079e394b79f91bea0193786fa95">convert</a> (const types::CommandLine_t &amp;, const types::CommandLineArgument_t &amp;cmdarg, const types::CommandLineArgumentsMap_t &amp;)</td></tr>
-<tr class="memdesc:a0921c079e394b79f91bea0193786fa95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to convert a command line argument to an int value.  <a href="#a0921c079e394b79f91bea0193786fa95">More...</a><br /></td></tr>
-<tr class="separator:a0921c079e394b79f91bea0193786fa95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6a2f748b086ad7122f7bb6affbe354e"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01int_01_4.html#af6a2f748b086ad7122f7bb6affbe354e">parse</a> (const types::CommandLine_t &amp;, const types::CommandLinePosition_t &amp;position, const types::CommandLineArguments_t &amp;)</td></tr>
+<tr class="memdesc:af6a2f748b086ad7122f7bb6affbe354e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to parse a command line argument as an int.  <a href="#af6a2f748b086ad7122f7bb6affbe354e">More...</a><br /></td></tr>
+<tr class="separator:af6a2f748b086ad7122f7bb6affbe354e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c3b45ea01897660bf5d1e5f7c9d7c41"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01int_01_4.html#a8c3b45ea01897660bf5d1e5f7c9d7c41">convert</a> (const types::CommandLine_t &amp;, const types::CommandLinePosition_t &amp;position, const types::CommandLineArguments_t &amp;)</td></tr>
+<tr class="memdesc:a8c3b45ea01897660bf5d1e5f7c9d7c41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to convert a command line argument to an int value.  <a href="#a8c3b45ea01897660bf5d1e5f7c9d7c41">More...</a><br /></td></tr>
+<tr class="separator:a8c3b45ea01897660bf5d1e5f7c9d7c41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;&gt;<br />
@@ -90,8 +90,8 @@ struct cppargparse::argument&lt; int &gt;</h3>
 
 <p>The argument struct for the int type. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a0921c079e394b79f91bea0193786fa95"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0921c079e394b79f91bea0193786fa95">&#9670;&nbsp;</a></span>convert()</h2>
+<a id="a8c3b45ea01897660bf5d1e5f7c9d7c41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c3b45ea01897660bf5d1e5f7c9d7c41">&#9670;&nbsp;</a></span>convert()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -108,13 +108,13 @@ struct cppargparse::argument&lt; int &gt;</h3>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgument_t &amp;&#160;</td>
-          <td class="paramname"><em>cmdarg</em>, </td>
+          <td class="paramtype">const types::CommandLinePosition_t &amp;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgumentsMap_t &amp;&#160;</td>
+          <td class="paramtype">const types::CommandLineArguments_t &amp;&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -141,8 +141,8 @@ struct cppargparse::argument&lt; int &gt;</h3>
 
 </div>
 </div>
-<a id="a6e26fa05cd9312bfc68889c9679a9908"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e26fa05cd9312bfc68889c9679a9908">&#9670;&nbsp;</a></span>parse()</h2>
+<a id="af6a2f748b086ad7122f7bb6affbe354e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6a2f748b086ad7122f7bb6affbe354e">&#9670;&nbsp;</a></span>parse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,13 +159,13 @@ struct cppargparse::argument&lt; int &gt;</h3>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgument_t &amp;&#160;</td>
-          <td class="paramname"><em>cmdarg</em>, </td>
+          <td class="paramtype">const types::CommandLinePosition_t &amp;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgumentsMap_t &amp;&#160;</td>
+          <td class="paramtype">const types::CommandLineArguments_t &amp;&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>

@@ -77,15 +77,15 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a59f51e61ddf11929299211600a36180c"><td class="memItemLeft" align="right" valign="top">static const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01std_1_1string_01_4.html#a59f51e61ddf11929299211600a36180c">parse</a> (const types::CommandLine_t &amp;cmd, const types::CommandLineArgument_t &amp;cmdarg, const types::CommandLineArgumentsMap_t &amp;cmdargs)</td></tr>
-<tr class="memdesc:a59f51e61ddf11929299211600a36180c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to parse a command line argument as a std::string.  <a href="#a59f51e61ddf11929299211600a36180c">More...</a><br /></td></tr>
-<tr class="separator:a59f51e61ddf11929299211600a36180c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97a68548d5ba012e551d2fb2de6083c2"><td class="memItemLeft" align="right" valign="top">static const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01std_1_1string_01_4.html#a97a68548d5ba012e551d2fb2de6083c2">convert</a> (const types::CommandLine_t &amp;cmd, const types::CommandLineArgument_t &amp;cmdarg, const types::CommandLineArgumentsMap_t &amp;)</td></tr>
-<tr class="memdesc:a97a68548d5ba012e551d2fb2de6083c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to convert a command line argument to a std::string.  <a href="#a97a68548d5ba012e551d2fb2de6083c2">More...</a><br /></td></tr>
-<tr class="separator:a97a68548d5ba012e551d2fb2de6083c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5172423c61ac176e9c8b018c0ad91c0"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01std_1_1string_01_4.html#ae5172423c61ac176e9c8b018c0ad91c0">error_message</a> (const types::CommandLineArgument_t &amp;cmdarg)</td></tr>
-<tr class="memdesc:ae5172423c61ac176e9c8b018c0ad91c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate an error message for a value that's not a std::string.  <a href="#ae5172423c61ac176e9c8b018c0ad91c0">More...</a><br /></td></tr>
-<tr class="separator:ae5172423c61ac176e9c8b018c0ad91c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0b5a5adbfd58ee818f46f5d42f6f36d"><td class="memItemLeft" align="right" valign="top">static const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01std_1_1string_01_4.html#af0b5a5adbfd58ee818f46f5d42f6f36d">parse</a> (const types::CommandLine_t &amp;cmd, const types::CommandLinePosition_t &amp;position, const types::CommandLineArguments_t &amp;cmdargs)</td></tr>
+<tr class="memdesc:af0b5a5adbfd58ee818f46f5d42f6f36d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to parse a command line argument as a std::string.  <a href="#af0b5a5adbfd58ee818f46f5d42f6f36d">More...</a><br /></td></tr>
+<tr class="separator:af0b5a5adbfd58ee818f46f5d42f6f36d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa54c1d7414d89a1071bb7cdb07be0b00"><td class="memItemLeft" align="right" valign="top">static const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01std_1_1string_01_4.html#aa54c1d7414d89a1071bb7cdb07be0b00">convert</a> (const types::CommandLine_t &amp;cmd, const types::CommandLinePosition_t &amp;position, const types::CommandLineArguments_t &amp;)</td></tr>
+<tr class="memdesc:aa54c1d7414d89a1071bb7cdb07be0b00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to convert a command line argument to a std::string.  <a href="#aa54c1d7414d89a1071bb7cdb07be0b00">More...</a><br /></td></tr>
+<tr class="separator:aa54c1d7414d89a1071bb7cdb07be0b00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf0e56694e3cb65b632759217de194f1"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01std_1_1string_01_4.html#abf0e56694e3cb65b632759217de194f1">error_message</a> (const types::CommandLinePosition_t &amp;position)</td></tr>
+<tr class="memdesc:abf0e56694e3cb65b632759217de194f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate an error message for a value that's not a std::string.  <a href="#abf0e56694e3cb65b632759217de194f1">More...</a><br /></td></tr>
+<tr class="separator:abf0e56694e3cb65b632759217de194f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;&gt;<br />
@@ -93,8 +93,8 @@ struct cppargparse::argument&lt; std::string &gt;</h3>
 
 <p>The argument struct for the std::string type. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a97a68548d5ba012e551d2fb2de6083c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a97a68548d5ba012e551d2fb2de6083c2">&#9670;&nbsp;</a></span>convert()</h2>
+<a id="aa54c1d7414d89a1071bb7cdb07be0b00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa54c1d7414d89a1071bb7cdb07be0b00">&#9670;&nbsp;</a></span>convert()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -111,13 +111,13 @@ struct cppargparse::argument&lt; std::string &gt;</h3>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgument_t &amp;&#160;</td>
-          <td class="paramname"><em>cmdarg</em>, </td>
+          <td class="paramtype">const types::CommandLinePosition_t &amp;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgumentsMap_t &amp;&#160;</td>
+          <td class="paramtype">const types::CommandLineArguments_t &amp;&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -151,8 +151,8 @@ struct cppargparse::argument&lt; std::string &gt;</h3>
 
 </div>
 </div>
-<a id="ae5172423c61ac176e9c8b018c0ad91c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae5172423c61ac176e9c8b018c0ad91c0">&#9670;&nbsp;</a></span>error_message()</h2>
+<a id="abf0e56694e3cb65b632759217de194f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf0e56694e3cb65b632759217de194f1">&#9670;&nbsp;</a></span>error_message()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -163,8 +163,8 @@ struct cppargparse::argument&lt; std::string &gt;</h3>
         <tr>
           <td class="memname">static const char* <a class="el" href="structcppargparse_1_1argument.html">cppargparse::argument</a>&lt; std::string &gt;::error_message </td>
           <td>(</td>
-          <td class="paramtype">const types::CommandLineArgument_t &amp;&#160;</td>
-          <td class="paramname"><em>cmdarg</em></td><td>)</td>
+          <td class="paramtype">const types::CommandLinePosition_t &amp;&#160;</td>
+          <td class="paramname"><em>position</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -186,8 +186,8 @@ struct cppargparse::argument&lt; std::string &gt;</h3>
 
 </div>
 </div>
-<a id="a59f51e61ddf11929299211600a36180c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a59f51e61ddf11929299211600a36180c">&#9670;&nbsp;</a></span>parse()</h2>
+<a id="af0b5a5adbfd58ee818f46f5d42f6f36d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0b5a5adbfd58ee818f46f5d42f6f36d">&#9670;&nbsp;</a></span>parse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -204,13 +204,13 @@ struct cppargparse::argument&lt; std::string &gt;</h3>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgument_t &amp;&#160;</td>
-          <td class="paramname"><em>cmdarg</em>, </td>
+          <td class="paramtype">const types::CommandLinePosition_t &amp;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgumentsMap_t &amp;&#160;</td>
+          <td class="paramtype">const types::CommandLineArguments_t &amp;&#160;</td>
           <td class="paramname"><em>cmdargs</em>&#160;</td>
         </tr>
         <tr>

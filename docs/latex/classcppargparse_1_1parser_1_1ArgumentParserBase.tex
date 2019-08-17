@@ -22,32 +22,37 @@ Inheritance diagram for cppargparse\+:\+:parser\+:\+:Argument\+Parser\+Base\+:
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_a1da9b21d3cb471a0c0cd816e6202b0c2}{Argument\+Parser\+Base} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_a91c5c101e21966fb8c04c094b04b8ba3}{Argument\+Parser\+Base} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]}, const std\+::string \&application\+\_\+description)
 \begin{DoxyCompactList}\small\item\em c\textquotesingle{}tor \end{DoxyCompactList}\item 
 \hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_a160867551ad33fceb69f9e920e3e4c23}{$\sim$\+Argument\+Parser\+Base} ()
 \begin{DoxyCompactList}\small\item\em d\textquotesingle{}tor \end{DoxyCompactList}\item 
-void \hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_ac09b20711001f1e0ef36a18d747d254e}{add\+\_\+arg} (const std\+::string \&arg)
-\begin{DoxyCompactList}\small\item\em Add an argument to the command line argument map. \end{DoxyCompactList}\item 
-bool \hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_ac0b74272352f73058e35119c5b8a54fb}{get\+\_\+flag} (const std\+::string \&arg)
+void \hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_a2e1cc11e023a40d31881832331faa4b3}{add\+\_\+arg} (const \hyperlink{structcppargparse_1_1types_1_1CommandLineArgument__t}{types\+::\+Command\+Line\+Argument\+\_\+t} \&cmdarg)
+\begin{DoxyCompactList}\small\item\em Add an argument to the command line arguments list. \end{DoxyCompactList}\item 
+void \hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_a020029da2da0147df81342a146a521b2}{add\+\_\+arg} (const std\+::string \&id)
+\begin{DoxyCompactList}\small\item\em Add an argument to the command line arguments list. \end{DoxyCompactList}\item 
+void \hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_a462c869315ff172aa7d02b45098b3e02}{add\+\_\+arg} (const std\+::string \&id, const std\+::string \&id\+\_\+alt)
+\begin{DoxyCompactList}\small\item\em Add an argument to the command line arguments list. \end{DoxyCompactList}\item 
+void \hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_a229555ad90f83f43c6e0915d69c2b941}{add\+\_\+arg} (const std\+::string \&id, const std\+::string \&id\+\_\+alt, const std\+::string \&description)
+\begin{DoxyCompactList}\small\item\em Add an argument to the command line arguments list. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParserBase_aac102de015dd9066135c08adedb02300}\label{classcppargparse_1_1parser_1_1ArgumentParserBase_aac102de015dd9066135c08adedb02300}} 
+void \hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_aac102de015dd9066135c08adedb02300}{add\+\_\+help} ()
+\begin{DoxyCompactList}\small\item\em Add default help argument\+: -\/h, --help. \end{DoxyCompactList}\item 
+bool \hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_acc395ccc36f04e93f0cb9732bd040802}{get\+\_\+flag} (const std\+::string \&id)
 \begin{DoxyCompactList}\small\item\em Return whether the command line contains an argument string. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\const T \hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_a9b716b70f52707633faccdc3de63641c}{get\+\_\+option} (const std\+::string \&)
 \begin{DoxyCompactList}\small\item\em Stub method for returning an argument value. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\const T \hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_ad482db4f4cfafdd0a754d32dd3e36e51}{get\+\_\+option} (const std\+::string \&, const T \&default\+\_\+value)
-\begin{DoxyCompactList}\small\item\em Stub method for returning an argument value. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Protected Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParserBase_ac143815b4bf8702d88a3c25327178a45}\label{classcppargparse_1_1parser_1_1ArgumentParserBase_ac143815b4bf8702d88a3c25327178a45}} 
-types\+::\+Command\+Line\+Argument\+\_\+t {\bfseries find\+\_\+cmdarg} (const std\+::string \&arg)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Stub method for returning an argument value. \end{DoxyCompactList}\item 
+const std\+::string \hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_af99c2847a2cd19b1444dcb9ab2fb8103}{usage} () const
+\begin{DoxyCompactList}\small\item\em Generate and return the usage string. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParserBase_ab61aac285e831ef24598191816bed84d}\label{classcppargparse_1_1parser_1_1ArgumentParserBase_ab61aac285e831ef24598191816bed84d}} 
 types\+::\+Command\+Line\+\_\+t {\bfseries m\+\_\+cmd}
 \item 
-\mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParserBase_a2024a68d8e5d71341442f35ac61d4633}\label{classcppargparse_1_1parser_1_1ArgumentParserBase_a2024a68d8e5d71341442f35ac61d4633}} 
-types\+::\+Command\+Line\+Arguments\+Map\+\_\+t {\bfseries m\+\_\+cmdargs}
+\mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParserBase_ac6fd162f8dfee569bb281ae5ef576d38}\label{classcppargparse_1_1parser_1_1ArgumentParserBase_ac6fd162f8dfee569bb281ae5ef576d38}} 
+types\+::\+Command\+Line\+Arguments\+\_\+t {\bfseries m\+\_\+cmdargs}
 \end{DoxyCompactItemize}
 
 
@@ -55,11 +60,11 @@ types\+::\+Command\+Line\+Arguments\+Map\+\_\+t {\bfseries m\+\_\+cmdargs}
 Base class for the argument parser. 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParserBase_a1da9b21d3cb471a0c0cd816e6202b0c2}\label{classcppargparse_1_1parser_1_1ArgumentParserBase_a1da9b21d3cb471a0c0cd816e6202b0c2}} 
+\mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParserBase_a91c5c101e21966fb8c04c094b04b8ba3}\label{classcppargparse_1_1parser_1_1ArgumentParserBase_a91c5c101e21966fb8c04c094b04b8ba3}} 
 \index{cppargparse\+::parser\+::\+Argument\+Parser\+Base@{cppargparse\+::parser\+::\+Argument\+Parser\+Base}!Argument\+Parser\+Base@{Argument\+Parser\+Base}}
 \index{Argument\+Parser\+Base@{Argument\+Parser\+Base}!cppargparse\+::parser\+::\+Argument\+Parser\+Base@{cppargparse\+::parser\+::\+Argument\+Parser\+Base}}
 \subsubsection{\texorpdfstring{Argument\+Parser\+Base()}{ArgumentParserBase()}}
-{\footnotesize\ttfamily cppargparse\+::parser\+::\+Argument\+Parser\+Base\+::\+Argument\+Parser\+Base (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+{\footnotesize\ttfamily cppargparse\+::parser\+::\+Argument\+Parser\+Base\+::\+Argument\+Parser\+Base (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]},  }\item[{const std\+::string \&}]{application\+\_\+description }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
 
 
 
@@ -70,6 +75,8 @@ c\textquotesingle{}tor
 {\em argc} & The command line argument count. \\
 \hline
 {\em argv} & The command line argument array. \\
+\hline
+{\em application\+\_\+description} & The application description. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParserBase_a160867551ad33fceb69f9e920e3e4c23}\label{classcppargparse_1_1parser_1_1ArgumentParserBase_a160867551ad33fceb69f9e920e3e4c23}} 
@@ -85,26 +92,77 @@ d\textquotesingle{}tor
 Clean up storage for the command line and the command line argument map. 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParserBase_ac09b20711001f1e0ef36a18d747d254e}\label{classcppargparse_1_1parser_1_1ArgumentParserBase_ac09b20711001f1e0ef36a18d747d254e}} 
+\mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParserBase_a2e1cc11e023a40d31881832331faa4b3}\label{classcppargparse_1_1parser_1_1ArgumentParserBase_a2e1cc11e023a40d31881832331faa4b3}} 
 \index{cppargparse\+::parser\+::\+Argument\+Parser\+Base@{cppargparse\+::parser\+::\+Argument\+Parser\+Base}!add\+\_\+arg@{add\+\_\+arg}}
 \index{add\+\_\+arg@{add\+\_\+arg}!cppargparse\+::parser\+::\+Argument\+Parser\+Base@{cppargparse\+::parser\+::\+Argument\+Parser\+Base}}
-\subsubsection{\texorpdfstring{add\+\_\+arg()}{add\_arg()}}
-{\footnotesize\ttfamily void cppargparse\+::parser\+::\+Argument\+Parser\+Base\+::add\+\_\+arg (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\subsubsection{\texorpdfstring{add\+\_\+arg()}{add\_arg()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily void cppargparse\+::parser\+::\+Argument\+Parser\+Base\+::add\+\_\+arg (\begin{DoxyParamCaption}\item[{const \hyperlink{structcppargparse_1_1types_1_1CommandLineArgument__t}{types\+::\+Command\+Line\+Argument\+\_\+t} \&}]{cmdarg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Add an argument to the command line argument map. 
+Add an argument to the command line arguments list. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em arg} & The argument string to look for. \\
+{\em cmdarg} & The command line argument struct object. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParserBase_ac0b74272352f73058e35119c5b8a54fb}\label{classcppargparse_1_1parser_1_1ArgumentParserBase_ac0b74272352f73058e35119c5b8a54fb}} 
+\mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParserBase_a020029da2da0147df81342a146a521b2}\label{classcppargparse_1_1parser_1_1ArgumentParserBase_a020029da2da0147df81342a146a521b2}} 
+\index{cppargparse\+::parser\+::\+Argument\+Parser\+Base@{cppargparse\+::parser\+::\+Argument\+Parser\+Base}!add\+\_\+arg@{add\+\_\+arg}}
+\index{add\+\_\+arg@{add\+\_\+arg}!cppargparse\+::parser\+::\+Argument\+Parser\+Base@{cppargparse\+::parser\+::\+Argument\+Parser\+Base}}
+\subsubsection{\texorpdfstring{add\+\_\+arg()}{add\_arg()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily void cppargparse\+::parser\+::\+Argument\+Parser\+Base\+::add\+\_\+arg (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add an argument to the command line arguments list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The argument ID. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParserBase_a462c869315ff172aa7d02b45098b3e02}\label{classcppargparse_1_1parser_1_1ArgumentParserBase_a462c869315ff172aa7d02b45098b3e02}} 
+\index{cppargparse\+::parser\+::\+Argument\+Parser\+Base@{cppargparse\+::parser\+::\+Argument\+Parser\+Base}!add\+\_\+arg@{add\+\_\+arg}}
+\index{add\+\_\+arg@{add\+\_\+arg}!cppargparse\+::parser\+::\+Argument\+Parser\+Base@{cppargparse\+::parser\+::\+Argument\+Parser\+Base}}
+\subsubsection{\texorpdfstring{add\+\_\+arg()}{add\_arg()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily void cppargparse\+::parser\+::\+Argument\+Parser\+Base\+::add\+\_\+arg (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{id,  }\item[{const std\+::string \&}]{id\+\_\+alt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add an argument to the command line arguments list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The argument ID. \\
+\hline
+{\em id\+\_\+alt} & The alternative argument ID. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParserBase_a229555ad90f83f43c6e0915d69c2b941}\label{classcppargparse_1_1parser_1_1ArgumentParserBase_a229555ad90f83f43c6e0915d69c2b941}} 
+\index{cppargparse\+::parser\+::\+Argument\+Parser\+Base@{cppargparse\+::parser\+::\+Argument\+Parser\+Base}!add\+\_\+arg@{add\+\_\+arg}}
+\index{add\+\_\+arg@{add\+\_\+arg}!cppargparse\+::parser\+::\+Argument\+Parser\+Base@{cppargparse\+::parser\+::\+Argument\+Parser\+Base}}
+\subsubsection{\texorpdfstring{add\+\_\+arg()}{add\_arg()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily void cppargparse\+::parser\+::\+Argument\+Parser\+Base\+::add\+\_\+arg (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{id,  }\item[{const std\+::string \&}]{id\+\_\+alt,  }\item[{const std\+::string \&}]{description }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add an argument to the command line arguments list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The argument ID. \\
+\hline
+{\em id\+\_\+alt} & The alternative argument ID. \\
+\hline
+{\em description} & The argument description. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParserBase_acc395ccc36f04e93f0cb9732bd040802}\label{classcppargparse_1_1parser_1_1ArgumentParserBase_acc395ccc36f04e93f0cb9732bd040802}} 
 \index{cppargparse\+::parser\+::\+Argument\+Parser\+Base@{cppargparse\+::parser\+::\+Argument\+Parser\+Base}!get\+\_\+flag@{get\+\_\+flag}}
 \index{get\+\_\+flag@{get\+\_\+flag}!cppargparse\+::parser\+::\+Argument\+Parser\+Base@{cppargparse\+::parser\+::\+Argument\+Parser\+Base}}
 \subsubsection{\texorpdfstring{get\+\_\+flag()}{get\_flag()}}
-{\footnotesize\ttfamily bool cppargparse\+::parser\+::\+Argument\+Parser\+Base\+::get\+\_\+flag (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily bool cppargparse\+::parser\+::\+Argument\+Parser\+Base\+::get\+\_\+flag (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -112,7 +170,7 @@ Return whether the command line contains an argument string.
 
 
 \begin{DoxyParams}{Parameters}
-{\em arg} & The argument string to look for.\\
+{\em id} & The argument ID.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -129,6 +187,11 @@ const T cppargparse\+::parser\+::\+Argument\+Parser\+Base\+::get\+\_\+option (\b
 
 Stub method for returning an argument value. 
 
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The argument type. Must be non-\/abstract and have a default constructor.\\
+\hline
+\end{DoxyTemplParams}
 \begin{DoxyReturn}{Returns}
 A new instance of T. 
 \end{DoxyReturn}
@@ -144,12 +207,30 @@ const T cppargparse\+::parser\+::\+Argument\+Parser\+Base\+::get\+\_\+option (\b
 Stub method for returning an argument value. 
 
 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The argument type. Is ignored in this case.\\
+\hline
+\end{DoxyTemplParams}
+
 \begin{DoxyParams}{Parameters}
 {\em default\+\_\+value} & The default value.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The default value. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParserBase_af99c2847a2cd19b1444dcb9ab2fb8103}\label{classcppargparse_1_1parser_1_1ArgumentParserBase_af99c2847a2cd19b1444dcb9ab2fb8103}} 
+\index{cppargparse\+::parser\+::\+Argument\+Parser\+Base@{cppargparse\+::parser\+::\+Argument\+Parser\+Base}!usage@{usage}}
+\index{usage@{usage}!cppargparse\+::parser\+::\+Argument\+Parser\+Base@{cppargparse\+::parser\+::\+Argument\+Parser\+Base}}
+\subsubsection{\texorpdfstring{usage()}{usage()}}
+{\footnotesize\ttfamily const std\+::string cppargparse\+::parser\+::\+Argument\+Parser\+Base\+::usage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Generate and return the usage string. 
+
+\begin{DoxyReturn}{Returns}
+The generated usage string. 
 \end{DoxyReturn}
 
 

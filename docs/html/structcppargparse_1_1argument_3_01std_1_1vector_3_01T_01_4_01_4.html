@@ -77,21 +77,82 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a0e6251b0eaf62369653e4f5c1a40fffd"><td class="memItemLeft" align="right" valign="top">static const std::vector&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01std_1_1vector_3_01T_01_4_01_4.html#a0e6251b0eaf62369653e4f5c1a40fffd">parse</a> (const types::CommandLine_t &amp;cmd, const types::CommandLineArgument_t &amp;cmdarg, const types::CommandLineArgumentsMap_t &amp;cmdargs)</td></tr>
-<tr class="memdesc:a0e6251b0eaf62369653e4f5c1a40fffd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to parse and return the integer value for an argument. Throw a #parser::ParserException on failure.  <a href="#a0e6251b0eaf62369653e4f5c1a40fffd">More...</a><br /></td></tr>
-<tr class="separator:a0e6251b0eaf62369653e4f5c1a40fffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1b015416b1095055203b9ece6aa05f4"><td class="memItemLeft" align="right" valign="top"><a id="ae1b015416b1095055203b9ece6aa05f4"></a>
-static types::CommandLineArguments_t&#160;</td><td class="memItemRight" valign="bottom"><b>get_option_values</b> (const types::CommandLine_t &amp;cmd, const types::CommandLineArgument_t &amp;cmdarg, const types::CommandLineArgumentsMap_t &amp;cmdargs)</td></tr>
-<tr class="separator:ae1b015416b1095055203b9ece6aa05f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada258269ddf190ae8376a6bb807de588"><td class="memItemLeft" align="right" valign="top">static const std::vector&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01std_1_1vector_3_01T_01_4_01_4.html#ada258269ddf190ae8376a6bb807de588">parse</a> (const types::CommandLine_t &amp;cmd, const types::CommandLinePosition_t &amp;position, const types::CommandLineArguments_t &amp;cmdargs)</td></tr>
+<tr class="memdesc:ada258269ddf190ae8376a6bb807de588"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to parse and return the integer value for an argument. Throw a #parser::ParserException on failure.  <a href="#ada258269ddf190ae8376a6bb807de588">More...</a><br /></td></tr>
+<tr class="separator:ada258269ddf190ae8376a6bb807de588"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57aaaece7f0d299010f47a9bbfbe5e70"><td class="memItemLeft" align="right" valign="top">static types::CommandLinePositions_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01std_1_1vector_3_01T_01_4_01_4.html#a57aaaece7f0d299010f47a9bbfbe5e70">get_option_positions</a> (const types::CommandLine_t &amp;cmd, const types::CommandLinePosition_t &amp;position, const types::CommandLineArguments_t &amp;cmdargs)</td></tr>
+<tr class="memdesc:a57aaaece7f0d299010f47a9bbfbe5e70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return command line positions of an argument vector option.  <a href="#a57aaaece7f0d299010f47a9bbfbe5e70">More...</a><br /></td></tr>
+<tr class="separator:a57aaaece7f0d299010f47a9bbfbe5e70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename T&gt;<br />
 struct cppargparse::argument&lt; std::vector&lt; T &gt; &gt;</h3>
 
 <p>The argument struct for the std::vector&lt;T&gt; type. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The argument vector type. </td></tr>
+  </table>
+  </dd>
+</dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a0e6251b0eaf62369653e4f5c1a40fffd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e6251b0eaf62369653e4f5c1a40fffd">&#9670;&nbsp;</a></span>parse()</h2>
+<a id="a57aaaece7f0d299010f47a9bbfbe5e70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57aaaece7f0d299010f47a9bbfbe5e70">&#9670;&nbsp;</a></span>get_option_positions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static types::CommandLinePositions_t <a class="el" href="structcppargparse_1_1argument.html">cppargparse::argument</a>&lt; std::vector&lt; T &gt; &gt;::get_option_positions </td>
+          <td>(</td>
+          <td class="paramtype">const types::CommandLine_t &amp;&#160;</td>
+          <td class="paramname"><em>cmd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const types::CommandLinePosition_t &amp;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const types::CommandLineArguments_t &amp;&#160;</td>
+          <td class="paramname"><em>cmdargs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return command line positions of an argument vector option. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>The command line. </td></tr>
+    <tr><td class="paramname">position</td><td>The argument iterator position (start position). </td></tr>
+    <tr><td class="paramname">cmdargs</td><td>The command line arguments.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Command line positions of an argument vector option. </dd></dl>
+
+</div>
+</div>
+<a id="ada258269ddf190ae8376a6bb807de588"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada258269ddf190ae8376a6bb807de588">&#9670;&nbsp;</a></span>parse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -110,13 +171,13 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgument_t &amp;&#160;</td>
-          <td class="paramname"><em>cmdarg</em>, </td>
+          <td class="paramtype">const types::CommandLinePosition_t &amp;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const types::CommandLineArgumentsMap_t &amp;&#160;</td>
+          <td class="paramtype">const types::CommandLineArguments_t &amp;&#160;</td>
           <td class="paramname"><em>cmdargs</em>&#160;</td>
         </tr>
         <tr>
