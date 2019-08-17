@@ -21,7 +21,7 @@ struct argument<double>
     /**
      * @brief Try to parse a command line argument as a double.
      *
-     * @param cmdarg The command line argument iterator.
+     * @param position The command line argument iterator.
      *
      * @return The double value of the command line argument next in line.
      */
@@ -41,7 +41,7 @@ struct argument<double>
     /**
      * @brief Try to convert a command line argument to a double value.
      *
-     * @param cmdarg The command line argument iterator.
+     * @param position The command line argument iterator.
      *
      * @return The double value of the command line argument.
      */
@@ -68,7 +68,7 @@ struct argument<long double>
     /**
      * @brief Try to parse a command line argument as a long double.
      *
-     * @param cmdarg The command line argument iterator.
+     * @param position The command line argument iterator.
      *
      * @return The long double value of the command line argument next in line.
      */
@@ -87,7 +87,7 @@ struct argument<long double>
     /**
      * @brief Try to convert a command line argument to a long double value.
      *
-     * @param cmdarg The command line argument iterator.
+     * @param position The command line argument iterator.
      *
      * @return The long double value of the command line argument.
      */

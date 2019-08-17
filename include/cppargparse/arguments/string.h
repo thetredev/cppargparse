@@ -24,7 +24,8 @@ struct argument<std::string>
      * @brief Try to parse a command line argument as a std::string.
      *
      * @param cmd The command line.
-     * @param cmdarg The command line argument iterator.
+     * @param position The command line argument iterator.
+     * @param cmdargs The command line arguments.
      *
      * @return The std::string value of the command line argument next in line.
      */
@@ -40,7 +41,7 @@ struct argument<std::string>
      * @brief Try to convert a command line argument to a std::string.
      *
      * @param cmd The command line.
-     * @param cmdarg The command line argument iterator.
+     * @param position The command line argument iterator.
      *
      * @return The std::string value of the command line argument.
      * @throws #cppargparse::errors::CommandLineOptionError if there is no value to parse.
@@ -61,7 +62,7 @@ struct argument<std::string>
     /**
      * @brief Generate an error message for a value that's not a std::string.
      *
-     * @param cmdarg The command line argument iterator.
+     * @param position The command line argument iterator.
      *
      * @return An error message for a value that's not a std::string.
      */

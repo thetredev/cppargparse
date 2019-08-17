@@ -13,6 +13,7 @@ var menudata={children:[
 {text:"e",url:"functions.html#index_e"},
 {text:"g",url:"functions.html#index_g"},
 {text:"i",url:"functions.html#index_i"},
+{text:"m",url:"functions.html#index_m"},
 {text:"p",url:"functions.html#index_p"},
 {text:"u",url:"functions.html#index_u"},
 {text:"~",url:"functions.html#index_0x7e"}]},

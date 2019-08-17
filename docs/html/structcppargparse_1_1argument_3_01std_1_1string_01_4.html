@@ -137,7 +137,7 @@ struct cppargparse::argument&lt; std::string &gt;</h3>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cmd</td><td>The command line. </td></tr>
-    <tr><td class="paramname">cmdarg</td><td>The command line argument iterator.</td></tr>
+    <tr><td class="paramname">position</td><td>The command line argument iterator.</td></tr>
   </table>
   </dd>
 </dl>
@@ -178,7 +178,7 @@ struct cppargparse::argument&lt; std::string &gt;</h3>
 <p>Generate an error message for a value that's not a std::string. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cmdarg</td><td>The command line argument iterator.</td></tr>
+    <tr><td class="paramname">position</td><td>The command line argument iterator.</td></tr>
   </table>
   </dd>
 </dl>
@@ -230,7 +230,8 @@ struct cppargparse::argument&lt; std::string &gt;</h3>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cmd</td><td>The command line. </td></tr>
-    <tr><td class="paramname">cmdarg</td><td>The command line argument iterator.</td></tr>
+    <tr><td class="paramname">position</td><td>The command line argument iterator. </td></tr>
+    <tr><td class="paramname">cmdargs</td><td>The command line arguments.</td></tr>
   </table>
   </dd>
 </dl>

@@ -21,11 +21,13 @@ template <typename T>
 struct argument<std::vector<T>>
 {
     /**
-     * @brief Try to parse and return the integer value for an argument. Throw a #parser::ParserException on failure.
+     * @brief Try to parse and return all typed values for the vector argument.
      *
-     * @param key_it The argument key iterator.
+     * @param cmd The command line.
+     * @param position The command line argument iterator.
+     * @param cmdargs The command line arguments.
      *
-     * @return The parsed integer value for an argument on success or throw a #parser::ParserException on failure.
+     * @return All typed values for the vector argument.
      */
     static const std::vector<T> parse(
             const types::CommandLine_t &cmd,

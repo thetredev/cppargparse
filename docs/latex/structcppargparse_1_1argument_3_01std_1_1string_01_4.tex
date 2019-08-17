@@ -41,7 +41,7 @@ Try to convert a command line argument to a std\+::string.
 \begin{DoxyParams}{Parameters}
 {\em cmd} & The command line. \\
 \hline
-{\em cmdarg} & The command line argument iterator.\\
+{\em position} & The command line argument iterator.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -64,7 +64,7 @@ Generate an error message for a value that\textquotesingle{}s not a std\+::strin
 
 
 \begin{DoxyParams}{Parameters}
-{\em cmdarg} & The command line argument iterator.\\
+{\em position} & The command line argument iterator.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -84,7 +84,9 @@ Try to parse a command line argument as a std\+::string.
 \begin{DoxyParams}{Parameters}
 {\em cmd} & The command line. \\
 \hline
-{\em cmdarg} & The command line argument iterator.\\
+{\em position} & The command line argument iterator. \\
+\hline
+{\em cmdargs} & The command line arguments.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

@@ -22,7 +22,7 @@ struct argument<int>
     /**
      * @brief Try to parse a command line argument as an int.
      *
-     * @param cmdarg The command line argument iterator.
+     * @param position The command line argument iterator.
      *
      * @return The int value of the command line argument next in line.
      */
@@ -41,7 +41,7 @@ struct argument<int>
     /**
      * @brief Try to convert a command line argument to an int value.
      *
-     * @param cmdarg The command line argument iterator.
+     * @param position The command line argument iterator.
      *
      * @return The int value of the command line argument.
      */

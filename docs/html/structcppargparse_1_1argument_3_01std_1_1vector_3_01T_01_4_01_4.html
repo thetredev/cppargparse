@@ -78,7 +78,7 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ada258269ddf190ae8376a6bb807de588"><td class="memItemLeft" align="right" valign="top">static const std::vector&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01std_1_1vector_3_01T_01_4_01_4.html#ada258269ddf190ae8376a6bb807de588">parse</a> (const types::CommandLine_t &amp;cmd, const types::CommandLinePosition_t &amp;position, const types::CommandLineArguments_t &amp;cmdargs)</td></tr>
-<tr class="memdesc:ada258269ddf190ae8376a6bb807de588"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to parse and return the integer value for an argument. Throw a #parser::ParserException on failure.  <a href="#ada258269ddf190ae8376a6bb807de588">More...</a><br /></td></tr>
+<tr class="memdesc:ada258269ddf190ae8376a6bb807de588"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to parse and return all typed values for the vector argument.  <a href="#ada258269ddf190ae8376a6bb807de588">More...</a><br /></td></tr>
 <tr class="separator:ada258269ddf190ae8376a6bb807de588"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57aaaece7f0d299010f47a9bbfbe5e70"><td class="memItemLeft" align="right" valign="top">static types::CommandLinePositions_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcppargparse_1_1argument_3_01std_1_1vector_3_01T_01_4_01_4.html#a57aaaece7f0d299010f47a9bbfbe5e70">get_option_positions</a> (const types::CommandLine_t &amp;cmd, const types::CommandLinePosition_t &amp;position, const types::CommandLineArguments_t &amp;cmdargs)</td></tr>
 <tr class="memdesc:a57aaaece7f0d299010f47a9bbfbe5e70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return command line positions of an argument vector option.  <a href="#a57aaaece7f0d299010f47a9bbfbe5e70">More...</a><br /></td></tr>
@@ -193,14 +193,16 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Try to parse and return the integer value for an argument. Throw a #parser::ParserException on failure. </p>
+<p>Try to parse and return all typed values for the vector argument. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">key_it</td><td>The argument key iterator.</td></tr>
+    <tr><td class="paramname">cmd</td><td>The command line. </td></tr>
+    <tr><td class="paramname">position</td><td>The command line argument iterator. </td></tr>
+    <tr><td class="paramname">cmdargs</td><td>The command line arguments.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The parsed integer value for an argument on success or throw a #parser::ParserException on failure. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>All typed values for the vector argument. </dd></dl>
 
 </div>
 </div>

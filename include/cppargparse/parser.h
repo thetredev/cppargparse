@@ -115,6 +115,8 @@ public:
 
     /**
      * @brief Add default help argument: -h, --help
+     *
+     * @return The generated command line argument.
      */
     const types::CommandLineArgument_t add_help()
     {
@@ -125,7 +127,7 @@ public:
     /**
      * @brief Return whether the command line contains an argument string.
      *
-     * @param id The argument ID.
+     * @param cmdarg The command line argument.
      *
      * @return Whether the command line contains an argument string.
      */
@@ -218,11 +220,15 @@ public:
 
 
 protected:
+    /// The command line
     types::CommandLine_t m_cmd;
+
+    /// The command line arguments
     types::CommandLineArguments_t m_cmdargs;
 
 
 private:
+    /// The application description
     const std::string m_application_description;
 };
 
@@ -376,8 +382,8 @@ public:
      * @param id The argument ID.
      * @param callback The callback to call with the argument's value when the argument has been passed to the command line.
      *
-     * @throws #errors::CommandLineArgumentError if the arg wasn't found in the command line.
-     * @throws #errors::CommandLineOptionError if no value has been found for the argument.
+     * @throws #cppargparse::errors::CommandLineArgumentError if the arg wasn't found in the command line.
+     * @throws #cppargparse::errors::CommandLineOptionError if no value has been found for the argument.
      */
     void add_arg_with_callback(const std::string &id,
                                const std::function<void(const ArgumentParser &, const T &)> &callback)
@@ -409,8 +415,8 @@ public:
      * @param id_alt The argument alternative ID.
      * @param callback The callback to call with the argument's value when the argument has been passed to the command line.
      *
-     * @throws #errors::CommandLineArgumentError if the arg wasn't found in the command line.
-     * @throws #errors::CommandLineOptionError if no value has been found for the argument.
+     * @throws #cppargparse::errors::CommandLineArgumentError if the arg wasn't found in the command line.
+     * @throws #cppargparse::errors::CommandLineOptionError if no value has been found for the argument.
      */
     void add_arg_with_callback(const std::string &id, const std::string &id_alt,
                                const std::function<void(const ArgumentParser &, const T &)> &callback)
@@ -444,8 +450,8 @@ public:
      * @param description The argument description.
      * @param callback The callback to call with the argument's value when the argument has been passed to the command line.
      *
-     * @throws #errors::CommandLineArgumentError if the arg wasn't found in the command line.
-     * @throws #errors::CommandLineOptionError if no value has been found for the argument.
+     * @throws #cppargparse::errors::CommandLineArgumentError if the arg wasn't found in the command line.
+     * @throws #cppargparse::errors::CommandLineOptionError if no value has been found for the argument.
      */
     void add_arg_with_callback(const std::string &id, const std::string &id_alt, const std::string &description,
                                        const std::function<void(const ArgumentParser &, const T &)> &callback)

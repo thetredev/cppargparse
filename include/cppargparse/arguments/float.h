@@ -21,7 +21,7 @@ struct argument<float>
     /**
      * @brief Try to parse a command line argument as a float.
      *
-     * @param cmdarg The command line argument iterator.
+     * @param position The command line argument iterator.
      *
      * @return The float value of the command line argument next in line.
      */
@@ -40,7 +40,7 @@ struct argument<float>
     /**
      * @brief Try to convert a command line argument to a float value..
      *
-     * @param cmdarg The command line argument iterator.
+     * @param position The command line argument iterator.
      *
      * @return The float value of the command line argument.
      */

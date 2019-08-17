@@ -11,8 +11,7 @@ The argument parser class.
 
 
 
-Inheritance diagram for cppargparse\+:\+:parser\+:\+:Argument\+Parser\+:
-\nopagebreak
+Inheritance diagram for cppargparse\+:\+:parser\+:\+:Argument\+Parser\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,8 +20,7 @@ Inheritance diagram for cppargparse\+:\+:parser\+:\+:Argument\+Parser\+:
 \end{figure}
 
 
-Collaboration diagram for cppargparse\+:\+:parser\+:\+:Argument\+Parser\+:
-\nopagebreak
+Collaboration diagram for cppargparse\+:\+:parser\+:\+:Argument\+Parser\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -34,9 +32,9 @@ Collaboration diagram for cppargparse\+:\+:parser\+:\+:Argument\+Parser\+:
 \item 
 \hyperlink{classcppargparse_1_1parser_1_1ArgumentParser_a704fa488168e08c7ae727445c5fa710a}{Argument\+Parser} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]}, const std\+::string \&application\+\_\+description)
 \begin{DoxyCompactList}\small\item\em c\textquotesingle{}tor \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename T $>$ }\\const T \hyperlink{classcppargparse_1_1parser_1_1ArgumentParser_a3e8d3ae0eece40b7e62ae6faae5107ed}{get\+\_\+option} (const std\+::string \&id)
-\begin{DoxyCompactList}\small\item\em Return an argument value. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename T $>$ }\\const T \hyperlink{classcppargparse_1_1parser_1_1ArgumentParser_a6e13da383b8fdac04a35767abe0f5c32}{get\+\_\+option} (const std\+::string \&id, const T \&default\+\_\+value)
+{\footnotesize template$<$typename T $>$ }\\const T \hyperlink{classcppargparse_1_1parser_1_1ArgumentParser_a244bd1a82c40dee15f89651ac2e63be3}{get\+\_\+option} (const \hyperlink{structcppargparse_1_1types_1_1CommandLineArgument__t}{types\+::\+Command\+Line\+Argument\+\_\+t} \&cmdarg)
+\begin{DoxyCompactList}\small\item\em Return the argument value of type T. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\const T \hyperlink{classcppargparse_1_1parser_1_1ArgumentParser_ae74d77501679cce38a72e6fa1534e64a}{get\+\_\+option} (const \hyperlink{structcppargparse_1_1types_1_1CommandLineArgument__t}{types\+::\+Command\+Line\+Argument\+\_\+t} \&cmdarg, const T \&default\+\_\+value)
 \begin{DoxyCompactList}\small\item\em Return an argument value. \end{DoxyCompactList}\item 
 void \hyperlink{classcppargparse_1_1parser_1_1ArgumentParser_aa9abf9b86b7310784d04085cff2a4d3c}{add\+\_\+flag\+\_\+with\+\_\+callback} (const std\+::string \&id, const std\+::function$<$ void(const \hyperlink{classcppargparse_1_1parser_1_1ArgumentParser}{Argument\+Parser} \&)$>$ \&callback)
 \begin{DoxyCompactList}\small\item\em Add a flag argument and call a callback when it has been passed to the command line. \end{DoxyCompactList}\item 
@@ -114,9 +112,9 @@ Add an argument and call a callback with its value when it has been passed to th
 \end{DoxyParams}
 
 \begin{DoxyExceptions}{Exceptions}
-{\em \#errors\+::\+Command\+Line\+Argument\+Error} & if the arg wasn\textquotesingle{}t found in the command line. \\
+{\em \hyperlink{classcppargparse_1_1errors_1_1CommandLineArgumentError}{cppargparse\+::errors\+::\+Command\+Line\+Argument\+Error}} & if the arg wasn\textquotesingle{}t found in the command line. \\
 \hline
-{\em \#errors\+::\+Command\+Line\+Option\+Error} & if no value has been found for the argument. \\
+{\em \hyperlink{classcppargparse_1_1errors_1_1CommandLineOptionError}{cppargparse\+::errors\+::\+Command\+Line\+Option\+Error}} & if no value has been found for the argument. \\
 \hline
 \end{DoxyExceptions}
 \mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParser_a303a12481a661f3d38c66718d6e593a7}\label{classcppargparse_1_1parser_1_1ArgumentParser_a303a12481a661f3d38c66718d6e593a7}} 
@@ -146,9 +144,9 @@ Add an argument and call a callback with its value when it has been passed to th
 \end{DoxyParams}
 
 \begin{DoxyExceptions}{Exceptions}
-{\em \#errors\+::\+Command\+Line\+Argument\+Error} & if the arg wasn\textquotesingle{}t found in the command line. \\
+{\em \hyperlink{classcppargparse_1_1errors_1_1CommandLineArgumentError}{cppargparse\+::errors\+::\+Command\+Line\+Argument\+Error}} & if the arg wasn\textquotesingle{}t found in the command line. \\
 \hline
-{\em \#errors\+::\+Command\+Line\+Option\+Error} & if no value has been found for the argument. \\
+{\em \hyperlink{classcppargparse_1_1errors_1_1CommandLineOptionError}{cppargparse\+::errors\+::\+Command\+Line\+Option\+Error}} & if no value has been found for the argument. \\
 \hline
 \end{DoxyExceptions}
 \mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParser_aace5e7d0b1dd1831bc06ae7d3c3f2725}\label{classcppargparse_1_1parser_1_1ArgumentParser_aace5e7d0b1dd1831bc06ae7d3c3f2725}} 
@@ -180,9 +178,9 @@ Add an argument and call a callback with its value when it has been passed to th
 \end{DoxyParams}
 
 \begin{DoxyExceptions}{Exceptions}
-{\em \#errors\+::\+Command\+Line\+Argument\+Error} & if the arg wasn\textquotesingle{}t found in the command line. \\
+{\em \hyperlink{classcppargparse_1_1errors_1_1CommandLineArgumentError}{cppargparse\+::errors\+::\+Command\+Line\+Argument\+Error}} & if the arg wasn\textquotesingle{}t found in the command line. \\
 \hline
-{\em \#errors\+::\+Command\+Line\+Option\+Error} & if no value has been found for the argument. \\
+{\em \hyperlink{classcppargparse_1_1errors_1_1CommandLineOptionError}{cppargparse\+::errors\+::\+Command\+Line\+Option\+Error}} & if no value has been found for the argument. \\
 \hline
 \end{DoxyExceptions}
 \mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParser_a63d7feb48b03e26cc64ccd22382685d4}\label{classcppargparse_1_1parser_1_1ArgumentParser_a63d7feb48b03e26cc64ccd22382685d4}} 
@@ -338,16 +336,16 @@ Add the default help argument (-\/h, --help) and call a callback when it has bee
 {\em callback} & The callback to call when the flag has been passed to the command line. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParser_a3e8d3ae0eece40b7e62ae6faae5107ed}\label{classcppargparse_1_1parser_1_1ArgumentParser_a3e8d3ae0eece40b7e62ae6faae5107ed}} 
+\mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParser_a244bd1a82c40dee15f89651ac2e63be3}\label{classcppargparse_1_1parser_1_1ArgumentParser_a244bd1a82c40dee15f89651ac2e63be3}} 
 \index{cppargparse\+::parser\+::\+Argument\+Parser@{cppargparse\+::parser\+::\+Argument\+Parser}!get\+\_\+option@{get\+\_\+option}}
 \index{get\+\_\+option@{get\+\_\+option}!cppargparse\+::parser\+::\+Argument\+Parser@{cppargparse\+::parser\+::\+Argument\+Parser}}
 \subsubsection{\texorpdfstring{get\+\_\+option()}{get\_option()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
-const T cppargparse\+::parser\+::\+Argument\+Parser\+::get\+\_\+option (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+const T cppargparse\+::parser\+::\+Argument\+Parser\+::get\+\_\+option (\begin{DoxyParamCaption}\item[{const \hyperlink{structcppargparse_1_1types_1_1CommandLineArgument__t}{types\+::\+Command\+Line\+Argument\+\_\+t} \&}]{cmdarg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Return an argument value. 
+Return the argument value of type T. 
 
 
 \begin{DoxyTemplParams}{Template Parameters}
@@ -356,7 +354,7 @@ Return an argument value.
 \end{DoxyTemplParams}
 
 \begin{DoxyParams}{Parameters}
-{\em id} & The argument ID. Can also be the argument\textquotesingle{}s alternative ID.\\
+{\em cmdarg} & The command line argument.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -367,12 +365,12 @@ The argument value of type T.
 {\em \hyperlink{classcppargparse_1_1errors_1_1CommandLineArgumentError}{cppargparse\+::errors\+::\+Command\+Line\+Argument\+Error}} & if the argument cannot be found. \\
 \hline
 \end{DoxyExceptions}
-\mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParser_a6e13da383b8fdac04a35767abe0f5c32}\label{classcppargparse_1_1parser_1_1ArgumentParser_a6e13da383b8fdac04a35767abe0f5c32}} 
+\mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParser_ae74d77501679cce38a72e6fa1534e64a}\label{classcppargparse_1_1parser_1_1ArgumentParser_ae74d77501679cce38a72e6fa1534e64a}} 
 \index{cppargparse\+::parser\+::\+Argument\+Parser@{cppargparse\+::parser\+::\+Argument\+Parser}!get\+\_\+option@{get\+\_\+option}}
 \index{get\+\_\+option@{get\+\_\+option}!cppargparse\+::parser\+::\+Argument\+Parser@{cppargparse\+::parser\+::\+Argument\+Parser}}
 \subsubsection{\texorpdfstring{get\+\_\+option()}{get\_option()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
-const T cppargparse\+::parser\+::\+Argument\+Parser\+::get\+\_\+option (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{id,  }\item[{const T \&}]{default\+\_\+value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+const T cppargparse\+::parser\+::\+Argument\+Parser\+::get\+\_\+option (\begin{DoxyParamCaption}\item[{const \hyperlink{structcppargparse_1_1types_1_1CommandLineArgument__t}{types\+::\+Command\+Line\+Argument\+\_\+t} \&}]{cmdarg,  }\item[{const T \&}]{default\+\_\+value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -385,7 +383,7 @@ Return an argument value.
 \end{DoxyTemplParams}
 
 \begin{DoxyParams}{Parameters}
-{\em id} & The argument string. Can also be the argument\textquotesingle{}s alternative ID. \\
+{\em cmdarg} & The command line argument. \\
 \hline
 {\em default\+\_\+value} & The default argument value of type T.\\
 \hline
