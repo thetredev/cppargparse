@@ -386,25 +386,6 @@ public:
 
     template <typename T>
     /**
-     * @brief Add an argument and call a callback with its (default) value.
-     *
-     * @tparam T The argument value type.
-     *
-     * @param id The argument ID.
-     * @param default_value The default value.
-     * @param callback The callback to call with the argument's (default) value.
-     */
-    void add_arg_with_callback(const std::string &id, const T &default_value,
-                               const std::function<void(const ArgumentParser &, const T &)> &callback)
-    {
-        add_arg(id);
-
-        callback(*this, get_option<T>(id, default_value));
-    }
-
-
-    template <typename T>
-    /**
      * @brief Add an argument and call a callback with its value when it has been passed to the command line.
      *
      * @tparam T The argument value type.
@@ -431,25 +412,6 @@ public:
         }
     }
 
-    template <typename T>
-    /**
-     * @brief Add an argument and call a callback with its (default) value.
-     *
-     * @tparam T The argument value type.
-     *
-     * @param id The argument ID.
-     * @param id_alt The argument alternative ID.
-     * @param default_value The default value.
-     * @param callback The callback to call with the argument's (default) value.
-     */
-    void add_arg_with_callback(const std::string &id, const std::string &id_alt, const T &default_value,
-                               const std::function<void(const ArgumentParser &, const T &)> &callback)
-    {
-        add_arg(id, id_alt);
-
-        callback(*this, get_option<T>(find_cmd_id(id, id_alt, false), default_value));
-    }
-
 
     template <typename T>
     /**
@@ -466,7 +428,7 @@ public:
      * @throws #errors::CommandLineOptionError if no value has been found for the argument.
      */
     void add_arg_with_callback(const std::string &id, const std::string &id_alt, const std::string &description,
-                               const std::function<void(const ArgumentParser &, const T &)> &callback)
+                                       const std::function<void(const ArgumentParser &, const T &)> &callback)
     {
         add_arg(id, id_alt, description);
 
@@ -480,6 +442,45 @@ public:
         }
     }
 
+
+    template <typename T>
+    /**
+     * @brief Add an argument and call a callback with its (default) value.
+     *
+     * @tparam T The argument value type.
+     *
+     * @param id The argument ID.
+     * @param default_value The default value.
+     * @param callback The callback to call with the argument's (default) value.
+     */
+    void add_arg_with_callback_default(const std::string &id, const T &default_value,
+                                       const std::function<void(const ArgumentParser &, const T &)> &callback)
+    {
+        add_arg(id);
+
+        callback(*this, get_option<T>(id, default_value));
+    }
+
+    template <typename T>
+    /**
+     * @brief Add an argument and call a callback with its (default) value.
+     *
+     * @tparam T The argument value type.
+     *
+     * @param id The argument ID.
+     * @param id_alt The argument alternative ID.
+     * @param default_value The default value.
+     * @param callback The callback to call with the argument's (default) value.
+     */
+    void add_arg_with_callback_default(const std::string &id, const std::string &id_alt, const T &default_value,
+                                       const std::function<void(const ArgumentParser &, const T &)> &callback)
+    {
+        add_arg(id, id_alt);
+
+        callback(*this, get_option<T>(find_cmd_id(id, id_alt, false), default_value));
+    }
+
+
     template <typename T>
     /**
      * @brief Add an argument and call a callback with its (default) value.
@@ -492,8 +493,8 @@ public:
      * @param default_value The default value.
      * @param callback The callback to call with the argument's (default) value.
      */
-    void add_arg_with_callback(const std::string &id, const std::string &id_alt, const std::string &description,
-                               const T &default_value, const std::function<void(const ArgumentParser &, const T &)> &callback)
+    void add_arg_with_callback_default(const std::string &id, const std::string &id_alt, const std::string &description,
+                                       const T &default_value, const std::function<void(const ArgumentParser &, const T &)> &callback)
     {
         add_arg(id, id_alt, description);
 
