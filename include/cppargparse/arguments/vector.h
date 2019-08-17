@@ -16,6 +16,8 @@ namespace cppargparse {
 template <typename T>
 /**
  * @brief The argument struct for the std::vector<T> type.
+ *
+ * @tparam T The argument vector type.
  */
 struct argument<std::vector<T>>
 {

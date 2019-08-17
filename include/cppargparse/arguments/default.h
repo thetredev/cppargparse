@@ -10,6 +10,8 @@ namespace cppargparse {
 template <typename T>
 /**
  * @brief The default argument struct. Provides stub methods returning stub values.
+ *
+ * @tparam T The argument type. Must be non-abstract and have a default constructor.
  */
 struct argument
 {

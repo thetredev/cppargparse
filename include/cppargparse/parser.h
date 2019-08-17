@@ -71,6 +71,8 @@ public:
     /**
      * @brief Stub method for returning an argument value.
      *
+     * @tparam T The argument type. Must be non-abstract and have a default constructor.
+     *
      * @return A new instance of T.
      */
     inline const T get_option(const std::string &)
@@ -82,6 +84,8 @@ public:
     template <typename T>
     /**
      * @brief Stub method for returning an argument value.
+     *
+     * @tparam T The argument type. Is ignored in this case.
      *
      * @param default_value The default value.
      *
@@ -130,6 +134,8 @@ public:
     /**
      * @brief Return an argument value.
      *
+     * @tparam T The argument type. argument::parse() and argument::convert() must be implemented for T.
+     *
      * @param arg The argument string.
      *
      * @return The argument value of type T.
@@ -153,6 +159,8 @@ public:
     template <typename T>
     /**
      * @brief Return an argument value.
+     *
+     * @tparam T The argument type. argument::parse() and argument::convert() must be implemented for T.
      *
      * @param arg The argument string.
      * @param default_value The default argument value of type T.
