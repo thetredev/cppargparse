@@ -44,6 +44,15 @@ struct argument<std::vector<T>>
     }
 
 
+    /**
+     * @brief Return command line positions of an argument vector option.
+     *
+     * @param cmd The command line.
+     * @param position The argument iterator position (start position).
+     * @param cmdargs The command line arguments.
+     *
+     * @return Command line positions of an argument vector option.
+     */
     static types::CommandLinePositions_t get_option_positions(
             const types::CommandLine_t &cmd,
             const types::CommandLinePosition_t &position,
