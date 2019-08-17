@@ -12,119 +12,23 @@ The source code documentation can be found here: https://backraw.github.io/cppar
 
 
 # The library interface
-Let me throw some sample code in there:
-```C++
-#include <string>
-#include <vector>
+Please have a look at the [examples](https://github.com/backraw/cppargparse/tree/master/samples).
 
-#include <cppargparse/cppargparse.h>
-
-
-// Struct for parsed command line data
-struct CmdValues
-{
-    bool t;
-
-    int x;
-    float z;
-    double d;
-    long double ld;
-
-    std::string str;
-
-    std::vector<int> ints;
-    std::vector<std::string> strings;
-};
-
-
-
-int main(int argc, char *argv[])
-{
-    // Parse the command line arguments
-    using namespace cppargparse;
-    auto arg_parser = parser::ArgumentParser(argc, argv);
-
-    // for example: "-t -x 50"
-
-    // Add arguments
-    arg_parser.add_arg("-t");
-    arg_parser.add_arg("-x");
-
-
-    // Create an instance for our parsed command line values
-    CmdValues cmdvalues;
-
-    // Check for the flag: -t
-    // True if the user pass -t, false if not
-    cmdvalues.t = arg_parser.get_flag("-t");
-
-
-    // Check for the option: -x
-    cmdvalues.x = arg_parser.get_option<int>("-x");
-
-    // This above statement will raise an errors::CommandLineArgumentError,
-    // if the user didn't pass -t as a command line argument.
-    // To get around this, you can either use a try/catch block...
-
-    try
-    {
-        cmdvalues.x = arg_parser.get_option<int>("-x");
-    }
-
-    // The user didn't pass -x
-    catch (const errors::CommandLineArgumentError &error)
-    {
-        // do something with the error
-        return -1;
-    }
-
-    // The value for -x couldn't be converted to type <int>
-    catch (const errors::CommandLineOptionError &error)
-    {
-        // do something with the error
-        return -1;
-    }
-
-    // ... or provide a default value for -x:
-    cmdvalues.x = arg_parser.get_option<int>("-x", 0);
-
-    // This will set cmdvalues.x to 0 if the user didn't pass -x <value>
-
-
-    // Floats, doubles and long doubles are the same
-    cmdvalues.z = arg_parser.get_option<float>("-z", 742.22f);
-    cmdvalues.d = arg_parser.get_option<double>("-d");
-    cmdvalues.ld = arg_parser.get_option<long double>("-ld");
-
-
-    // Strings:
-    cmdvalues.str = arg_parser.get_option<std::string>("--str", "--str NOT PASSED");
-
-
-    // Vectors:
-    cmdvalues.ints = arg_parser.get_option<std::vector<int>>("--ints", std::vector<int>());
-    cmdvalues.strings = arg_parser.get_option<std::vector<std::string>>("--strings", std::vector<std::string>());
-
-
-    return 0;
-}
-```
-
-For more examples see https://github.com/backraw/cppargparse/tree/master/samples.
+You can mix [traditional](https://github.com/backraw/cppargparse/tree/master/samples/traditional) and [callback](https://github.com/backraw/cppargparse/tree/master/samples/callback) arguments as you wish. The [ArgumentParser](https://github.com/backraw/cppargparse/blob/master/include/cppargparse/parser.h) class provides an interface for both and doesn't care which one you chose.
 
 
 # The core
 All the magic is done via the typed `cppargparse::argument` struct. Each such struct definition **must provide 3 static methods**:
-- `T parse(cmd, cmdarg, cmdargs)`
-- `T convert(cmd, cmdarg, cmdargs)`
-- `const char *error_string(cmdarg)`
+- `T parse(cmd, position, cmdargs)`
+- `T convert(cmd, position, cmdargs)`
+- `const char *error_string(position)`
 
 Parameter definition:
 - `cmd` represents the whole command line inside a `std::vector<std::string>`
-- `cmdarg` represents the argument iterator position inside `cmd`
+- `position` represents the argument iterator position inside `cmd`
 - `cmdargs` represents the command line argument map, e.g. `"arg1" => iterator position 0`
 
-The `cppargparse::parser::ArgumentParser` class provides the `get_option<T>(arg)` and `get_flag(arg)` methods for calling the actual type converter methods provided by the `cppargparse::argument<T>` structs.
+The `cppargparse::parser::ArgumentParser` class provides the `get_option<T>(arg)`, `get_option<T>(arg, default)` and `get_flag(arg)` methods for calling the actual type converter methods provided by the `cppargparse::argument<T>` structs.
 
 
 Assume the following command line arguments have been passed:
@@ -158,31 +62,31 @@ struct argument<int>
 {
     static int parse(
             const types::CommandLine_t &,
-            const types::CommandLineArgument_t &cmdarg,
-            const types::CommandLineArgumentsMap_t &)
+            const types::CommandLinePosition_t &position,
+            const types::CommandLineArguments_t &)
     {
         return numerical_argument::parse<int>(
-            cmdarg,
+            position,
             CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stoi),
-            "integer"
+            "int"
         );
     }
 
     static int convert(
             const types::CommandLine_t &,
-            const types::CommandLineArgument_t &cmdarg,
-            const types::CommandLineArgumentsMap_t &)
+            const types::CommandLinePosition_t &position,
+            const types::CommandLineArguments_t &)
     {
         return numerical_argument::convert<int>(
-            cmdarg,
+            position,
             CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stoi),
-            "integer"
+            "int"
         );
     }
 };
 ```
 
-All it does is call `cppargparse::numerical_argument::parse<int>()` (or `cppargparse::numerical_argument::convert<int>()`) on a command line argument iterator position `cmdarg` and tell the former to use `std::stoi` as the conversion function.
+All it does is call `cppargparse::numerical_argument::parse<int>()` (or `cppargparse::numerical_argument::convert<int>()`) on a command line argument iterator position `position` and tell the former to use `std::stoi` as the conversion function.
 
 `float`, `double`, and `long double` are implemented in the same way, using
 - `std::stof`,
@@ -196,36 +100,36 @@ The `cppargparse::numerical_argument` namespace provides the actual parser and c
 ```C++
 template <typename T>
 static T convert(
-        const types::CommandLineArgument_t &cmdarg,
+        const types::CommandLinePosition_t &position,
         const std::function<T(const std::string &, size_t *)> &numerical_converter,
         const std::string &type_string
     )
 {
     try
     {
-        return numerical_converter(*cmdarg, 0);
+        return numerical_converter(*position, 0);
     }
 
     catch (std::invalid_argument const &)
     {
-        throw errors::CommandLineOptionError(error_message(cmdarg, type_string));
+        throw errors::CommandLineOptionError(error_message(position, type_string));
     }
     catch (std::out_of_range const &)
     {
-        throw errors::CommandLineOptionError(error_message(cmdarg, type_string));
+        throw errors::CommandLineOptionError(error_message(position, type_string));
     }
 }
 
 template <typename T>
-static T parse(const types::CommandLineArgument_t &cmdarg,
+static T parse(const types::CommandLinePosition_t &position,
         const std::function<T(const std::string &, size_t *)> &numerical_converter,
         const std::string &type_string)
 {
-    return convert(std::next(cmdarg), numerical_converter, type_string);
+    return convert(std::next(position), numerical_converter, type_string);
 }
 ```
 
-`cppargparse::convert()` calls `numerical_converter` with a string as the argument. `numerical_converter` can (currently) be one of the following:
+`cppargparse::numerical_argument::convert()` calls `numerical_converter` with a string as the argument. `numerical_converter` can (currently) be one of the following:
 - `std::stoi`
 - `std::stof`
 - `std::stod`
@@ -233,7 +137,7 @@ static T parse(const types::CommandLineArgument_t &cmdarg,
 
 A conversion error is indicated by throwing `errors::CommandLineOptionError` with a custom error message.
 
-`cppargparse::parse()` calls `cppargparse::convert()` with the command line argument next in line.
+`cppargparse::numerical_argument::parse()` calls `cppargparse::numerical_argument::convert()` with the command line argument next in line.
 
 
 ## String types
@@ -241,15 +145,15 @@ Currently only `std::string` is implemented as a string type:
 ```C++
 static const std::string convert(
         const types::CommandLine_t &cmd,
-        const types::CommandLineArgument_t &cmdarg,
-        const types::CommandLineArgumentsMap_t &)
+        const types::CommandLinePosition_t &position,
+        const types::CommandLineArguments_t &)
 {
-    if (cmdarg == cmd.cend())
+    if (position == cmd.cend())
     {
-        throw errors::CommandLineOptionError(error_message(cmdarg));
+        throw errors::CommandLineOptionError(error_message(position));
     }
 
-    return *cmdarg;
+    return *position;
 }
 ```
 
@@ -261,39 +165,39 @@ Currently only `std::vector<T>` is implemented as a vector type:
 ```C++
 static const std::vector<T> parse(
         const types::CommandLine_t &cmd,
-        const types::CommandLineArgument_t &cmdarg,
-        const types::CommandLineArgumentsMap_t &cmdargs)
+        const types::CommandLinePosition_t &position,
+        const types::CommandLineArguments_t &cmdargs)
 {
-    auto options = get_option_values(cmd, cmdarg, cmdargs);
+    auto positions = get_option_positions(cmd, position, cmdargs);
     std::vector<T> values;
 
-    for (auto option : options)
+    for (auto position : positions)
     {
-        values.emplace_back(argument<T>::convert(cmd, option, cmdargs));
+        values.emplace_back(argument<T>::convert(cmd, position, cmdargs));
     }
 
     return values;
 }
 
 
-static types::CommandLineArguments_t get_option_values(
+static types::CommandLinePositions_t get_option_positions(
         const types::CommandLine_t &cmd,
-        const types::CommandLineArgument_t &cmdarg,
-        const types::CommandLineArgumentsMap_t &cmdargs)
+        const types::CommandLinePosition_t &position,
+        const types::CommandLineArguments_t &cmdargs)
 {
-    types::CommandLineArguments_t values;
+    types::CommandLinePositions_t positions;
 
-    for (auto cmdarg_value = std::next(cmdarg); cmdarg_value != cmd.end(); ++cmdarg_value)
+    for (auto current = std::next(position); current != cmd.end(); ++current)
     {
-        if (cmdargs.find(*cmdarg_value) != cmdargs.cend())
+        if (algorithm::find_arg(cmdargs, *current) != cmdargs.cend())
         {
             break;
         }
 
-        values.emplace_back(cmdarg_value);
+        positions.emplace_back(current);
     }
 
-    return values;
+    return positions;
 }
 ```
 
