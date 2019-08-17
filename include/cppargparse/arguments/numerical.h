@@ -78,6 +78,7 @@ static T convert(
 }
 
 
+template <typename T>
 /**
  * @brief Try to parse a command line argument as a numerical value.
  *
@@ -87,7 +88,6 @@ static T convert(
  *
  * @return The numerical value of the command line argument next in line.
  */
-template <typename T>
 static T parse(const types::CommandLinePosition_t &position,
         const std::function<T(const std::string &, size_t *)> &numerical_converter,
         const std::string &type_string)
