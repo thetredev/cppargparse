@@ -1,8 +1,6 @@
 #ifndef CPPARGPARSE_ARGUMENTS_VECTOR_H
 #define CPPARGPARSE_ARGUMENTS_VECTOR_H
 
-#include <algorithm>
-#include <sstream>
 #include <vector>
 
 #include <cppargparse/types.h>
