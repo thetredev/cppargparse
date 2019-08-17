@@ -33,24 +33,22 @@ int main(int argc, char *argv[])
     parser::ArgumentParser arg_parser(argc, argv, "cppargparse sample -- required options -- callback");
 
 
-    arg_parser.add_arg("-q", "--quick-format", "Quickly format a drive");
-    arg_parser.add_arg("-f", "--five", "Add 5 to the given input");
-    arg_parser.add_arg("-x", "--xml", "Parse an XML file");
-    arg_parser.add_arg("-s", "--sum", "Print the sum of an integer sequence");
+    const auto q = arg_parser.add_arg("-q", "--quick-format", "Quickly format a drive");
+    const auto f = arg_parser.add_arg("-f", "--five", "Add 5 to the given input");
+    const auto x = arg_parser.add_arg("-x", "--xml", "Parse an XML file");
+    const auto s = arg_parser.add_arg("-s", "--sum", "Print the sum of an integer sequence");
 
 
-    const bool quick_format = arg_parser.get_flag("-q") || arg_parser.get_flag("--quick-format");
+    const bool quick_format = arg_parser.get_flag(q);
     // use the flag later...
 
-    const int f_value = arg_parser.get_option<int>("-f");
+    const int f_value = arg_parser.get_option<int>(f);
     add_five(f_value);
 
-    const std::string xml_arg_passed = arg_parser.get_flag("-x") ? "-x" : "--xml";
-    const std::string xml = arg_parser.get_option<std::string>(xml_arg_passed);
+    const std::string xml = arg_parser.get_option<std::string>(x);
     parse_xml(xml);
 
-    const std::string ints_arg_passed = arg_parser.get_flag("-s") ? "-s" : "--sum";
-    const std::vector<int> ints = arg_parser.get_option<std::vector<int>>(ints_arg_passed);
+    const std::vector<int> ints = arg_parser.get_option<std::vector<int>>(s);
     print_sum(ints);
 
 

@@ -16,27 +16,16 @@ TEST(TestFlag, Flags)
 
 
     // Add arguments
-    arg_parser.add_arg("-t");
-    arg_parser.add_arg("-x");
+    const auto t = arg_parser.add_arg("-t");
+    const auto x = arg_parser.add_arg("-x");
 
 
     // Test flag: -t
-    const bool t = arg_parser.get_flag("-t");
-    EXPECT_TRUE(t);
+    const bool t_passed = arg_parser.get_flag(t);
+    EXPECT_TRUE(t_passed);
 
 
     // Test flag: -x
-    const bool x = arg_parser.get_flag("-x");
-    EXPECT_TRUE(x);
-
-
-    // Test flag: -i
-    // which has not been passed
-    const bool i = arg_parser.get_flag("-i");
-    EXPECT_FALSE(i);
-
-    // Test flag: -p
-    // which has not been passed
-    const bool p = arg_parser.get_flag("-p");
-    EXPECT_FALSE(p);
+    const bool x_passed = arg_parser.get_flag(x);
+    EXPECT_TRUE(x_passed);
 }

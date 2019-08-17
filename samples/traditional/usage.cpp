@@ -8,9 +8,9 @@ int main(int argc, char *argv[])
     using namespace cppargparse;
     parser::ArgumentParser arg_parser(argc, argv, "cppargparse sample -- usage -- traditional");
 
-    arg_parser.add_help();
+    const auto help = arg_parser.add_help();
 
-    if (arg_parser.get_flag("-h") || arg_parser.get_flag("--help"))
+    if (arg_parser.get_flag(help))
     {
         std::cout << arg_parser.usage();
     }

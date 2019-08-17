@@ -59,13 +59,18 @@ public:
      * @brief Add an argument to the command line arguments list.
      *
      * @param id The argument ID.
+     *
+     * @return The generated command line argument.
      */
-    void add_arg(const std::string &id)
+    const types::CommandLineArgument_t add_arg(const std::string &id)
     {
-        add_arg(types::CommandLineArgument_t {
-                    id, std::string(), std::string(),
-                    algorithm::find_arg_position(m_cmd, id, std::string())
-        });
+        const types::CommandLineArgument_t arg {
+            id, std::string(), std::string(),
+            algorithm::find_arg_position(m_cmd, id, std::string())
+        };
+
+        add_arg(arg);
+        return arg;
     }
 
     /**
@@ -73,13 +78,18 @@ public:
      *
      * @param id The argument ID.
      * @param id_alt The alternative argument ID.
+     *
+     * @return The generated command line argument.
      */
-    void add_arg(const std::string &id, const std::string &id_alt)
+    const types::CommandLineArgument_t add_arg(const std::string &id, const std::string &id_alt)
     {
-        add_arg(types::CommandLineArgument_t {
-                    id, id_alt, std::string(),
-                    algorithm::find_arg_position(m_cmd, id, id_alt)
-        });
+        const types::CommandLineArgument_t arg {
+            id, id_alt, std::string(),
+            algorithm::find_arg_position(m_cmd, id, id_alt)
+        };
+
+        add_arg(arg);
+        return arg;
     }
 
     /**
@@ -88,22 +98,27 @@ public:
      * @param id The argument ID.
      * @param id_alt The alternative argument ID.
      * @param description The argument description.
+     *
+     * @return The generated command line argument.
      */
-    void add_arg(const std::string &id, const std::string &id_alt, const std::string &description)
+    const types::CommandLineArgument_t add_arg(const std::string &id, const std::string &id_alt, const std::string &description)
     {
-        add_arg(types::CommandLineArgument_t {
-                    id, id_alt, description,
-                    algorithm::find_arg_position(m_cmd, id, id_alt)
-        });
+        const types::CommandLineArgument_t arg {
+            id, id_alt, description,
+            algorithm::find_arg_position(m_cmd, id, id_alt)
+        };
+
+        add_arg(arg);
+        return arg;
     }
 
 
     /**
      * @brief Add default help argument: -h, --help
      */
-    void add_help()
+    const types::CommandLineArgument_t add_help()
     {
-        add_arg("-h", "--help", "Display this information");
+        return add_arg("-h", "--help", "Display this information");
     }
 
 
@@ -114,9 +129,9 @@ public:
      *
      * @return Whether the command line contains an argument string.
      */
-    inline bool get_flag(const std::string &id)
+    inline bool get_flag(const types::CommandLineArgument_t &cmdarg)
     {
-        return algorithm::find_arg_position(m_cmd, id, id) != m_cmd.cend();
+        return algorithm::find_arg_position(m_cmd, cmdarg.id, cmdarg.id_alt) != m_cmd.cend();
     }
 
     template <typename T>
@@ -127,7 +142,7 @@ public:
      *
      * @return A new instance of T.
      */
-    inline const T get_option(const std::string &)
+    inline const T get_option(const types::CommandLineArgument_t &)
     {
         return T();
     }
@@ -142,7 +157,7 @@ public:
      *
      * @return The default value.
      */
-    inline const T get_option(const std::string &, const T &default_value)
+    inline const T get_option(const types::CommandLineArgument_t &, const T &default_value)
     {
         return default_value;
     }
@@ -235,33 +250,23 @@ public:
 
     template <typename T>
     /**
-     * @brief Return an argument value.
+     * @brief Return the argument value of type T.
      *
      * @tparam T The argument type. argument::parse() and argument::convert() must be implemented for T.
      *
-     * @param id The argument ID. Can also be the argument's alternative ID.
+     * @param cmdarg The command line argument.
      *
      * @return The argument value of type T.
      * @throws #cppargparse::errors::CommandLineArgumentError if the argument cannot be found.
      */
-    inline const T get_option(const std::string &id)
+    inline const T get_option(const types::CommandLineArgument_t &cmdarg)
     {
-        if (algorithm::find_arg(m_cmdargs, id) == m_cmdargs.cend())
+        if (cmdarg.position == m_cmd.cend())
         {
-            throw cmdarg_invalid_error(id);
+            throw cmdarg_not_found_error(cmdarg.id);
         }
 
-
-        auto it = algorithm::find_arg_position(m_cmd, id, id);
-
-        if (it == m_cmd.cend())
-        {
-            throw cmdarg_not_found_error(id);
-        }
-
-
-        // return the stored arg value
-        return argument<T>::parse(m_cmd, it, m_cmdargs);
+        return argument<T>::parse(m_cmd, cmdarg.position, m_cmdargs);
     }
 
 
@@ -271,17 +276,17 @@ public:
      *
      * @tparam T The argument type. argument::parse() and argument::convert() must be implemented for T.
      *
-     * @param id The argument string. Can also be the argument's alternative ID.
+     * @param cmdarg The command line argument.
      * @param default_value The default argument value of type T.
      *
      * @return The argument value of type T or the default value if the argument cannot be found.
      * @throws #cppargparse::errors::CommandLineArgumentError if the argument cannot be found
      */
-    inline const T get_option(const std::string &id, const T &default_value)
+    inline const T get_option(const types::CommandLineArgument_t &cmdarg, const T &default_value)
     {
         try
         {
-            return get_option<T>(id);
+            return get_option<T>(cmdarg);
         }
 
         catch (const errors::Error &)
@@ -300,9 +305,9 @@ public:
     void add_flag_with_callback(const std::string &id,
                                 const std::function<void(const ArgumentParser &)> &callback)
     {
-        add_arg(id);
+        auto cmdarg = add_arg(id);
 
-        if (get_flag(id))
+        if (get_flag(cmdarg))
         {
             callback(*this);
         }
@@ -318,9 +323,9 @@ public:
     void add_flag_with_callback(const std::string &id, const std::string &id_alt,
                                 const std::function<void(const ArgumentParser &)> &callback)
     {
-        add_arg(id, id_alt);
+        const auto cmdarg = add_arg(id, id_alt);
 
-        if (get_flag(id) || get_flag(id_alt))
+        if (get_flag(cmdarg))
         {
             callback(*this);
         }
@@ -337,9 +342,9 @@ public:
     void add_flag_with_callback(const std::string &id, const std::string &id_alt, const std::string &description,
                                 const std::function<void(const ArgumentParser &)> &callback)
     {
-        add_arg(id, id_alt, description);
+        const auto cmdarg = add_arg(id, id_alt, description);
 
-        if (get_flag(id) || get_flag(id_alt))
+        if (get_flag(cmdarg))
         {
             callback(*this);
         }
@@ -353,9 +358,9 @@ public:
      */
     void add_help_with_callback(const std::function<void(const ArgumentParser &)> &callback)
     {
-        add_help();
+        const auto cmdarg = add_help();
 
-        if (get_flag("-h") || get_flag("--help"))
+        if (get_flag(cmdarg))
         {
             callback(*this);
         }
@@ -377,11 +382,11 @@ public:
     void add_arg_with_callback(const std::string &id,
                                const std::function<void(const ArgumentParser &, const T &)> &callback)
     {
-        add_arg(id);
+        const auto cmdarg = add_arg(id);
 
         try
         {
-            callback(*this, get_option<T>(id));
+            callback(*this, get_option<T>(cmdarg));
         }
 
         catch (errors::CommandLineArgumentError &error)
@@ -410,11 +415,16 @@ public:
     void add_arg_with_callback(const std::string &id, const std::string &id_alt,
                                const std::function<void(const ArgumentParser &, const T &)> &callback)
     {
-        add_arg(id, id_alt);
+        const auto cmdarg = add_arg(id, id_alt);
 
         try
         {
-            callback(*this, get_option<T>(find_cmd_id(id, id_alt, true)));
+            callback(*this, get_option<T>(cmdarg));
+        }
+
+        catch (errors::CommandLineArgumentError &error)
+        {
+            throw errors::CommandLineArgumentError(error);
         }
         catch (errors::CommandLineOptionError &error)
         {
@@ -440,11 +450,16 @@ public:
     void add_arg_with_callback(const std::string &id, const std::string &id_alt, const std::string &description,
                                        const std::function<void(const ArgumentParser &, const T &)> &callback)
     {
-        add_arg(id, id_alt, description);
+        const auto cmdarg = add_arg(id, id_alt, description);
 
         try
         {
-            callback(*this, get_option<T>(find_cmd_id(id, id_alt, true)));
+            callback(*this, get_option<T>(cmdarg));
+        }
+
+        catch (errors::CommandLineArgumentError &error)
+        {
+            throw errors::CommandLineArgumentError(error);
         }
         catch (errors::CommandLineOptionError &error)
         {
@@ -466,9 +481,7 @@ public:
     void add_arg_with_callback_default(const std::string &id, const T &default_value,
                                        const std::function<void(const ArgumentParser &, const T &)> &callback)
     {
-        add_arg(id);
-
-        callback(*this, get_option<T>(id, default_value));
+        callback(*this, get_option<T>(add_arg(id), default_value));
     }
 
     template <typename T>
@@ -485,9 +498,7 @@ public:
     void add_arg_with_callback_default(const std::string &id, const std::string &id_alt, const T &default_value,
                                        const std::function<void(const ArgumentParser &, const T &)> &callback)
     {
-        add_arg(id, id_alt);
-
-        callback(*this, get_option<T>(find_cmd_id(id, id_alt, false), default_value));
+        callback(*this, get_option<T>(add_arg(id, id_alt), default_value));
     }
 
 
@@ -507,9 +518,7 @@ public:
                                        const std::string &description, const T &default_value,
                                        const std::function<void(const ArgumentParser &, const T &)> &callback)
     {
-        add_arg(id, id_alt, description);
-
-        callback(*this, get_option<T>(find_cmd_id(id, id_alt, false), default_value));
+        callback(*this, get_option<T>(add_arg(id, id_alt, description), default_value));
     }
 
 
@@ -520,37 +529,6 @@ private:
         message << "Cannot find argument: " << id;
 
         return errors::CommandLineArgumentError(message.str());
-    }
-
-    errors::CommandLineArgumentError cmdarg_invalid_error(const std::string &id)
-    {
-        std::ostringstream message;
-        message << "Invalid argument: " << id;
-
-        return errors::CommandLineArgumentError(message.str());
-    }
-
-
-    const std::string find_cmd_id(const std::string &id, const std::string &id_alt, const bool throw_error)
-    {
-        if (get_flag(id))
-        {
-            return id;
-        }
-
-        if (get_flag(id_alt))
-        {
-            return id_alt;
-        }
-
-        if (throw_error)
-        {
-            throw cmdarg_not_found_error(id);
-        }
-        else
-        {
-            return "____CPPARGPARSE_INVALID_ARGUMENT_ID";
-        }
     }
 };
 
