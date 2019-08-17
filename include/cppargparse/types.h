@@ -1,7 +1,6 @@
 #ifndef CPPARGPARSE_TYPES_H
 #define CPPARGPARSE_TYPES_H
 
-#include <map>
 #include <string>
 #include <vector>
 
@@ -18,30 +17,62 @@ typedef std::vector<std::string> CommandLine_t;
 
 
 /**
- * @brief The command line argument type.
- *
- * Example:
- *     cmd args: "-t 5 -o output.txt"
- *     argument iterator at position 0: "-t", 1: "5", 3: "-o", 4: "output.txt"
+ * @brief The command line iterator position type.
  */
-typedef CommandLine_t::const_iterator CommandLineArgument_t;
+typedef CommandLine_t::const_iterator CommandLinePosition_t;
+
+
+/**
+ * @brief The command line iterator positions type.
+ */
+typedef std::vector<CommandLinePosition_t> CommandLinePositions_t;
+
+
+/**
+ * @brief The command line argument struct.
+ */
+struct CommandLineArgument_t
+{
+    /**
+     * @brief The argument ID.
+     *
+     * Example: "-t"
+     */
+    const std::string id;
+
+    /**
+     * @brief The alternative argument ID.
+     *
+     * Example: "--timeout"
+     */
+    const std::string id_alt;
+
+    /**
+     * @brief The argument description.
+     *
+     * Example: "The timeout in seconds."
+     */
+    const std::string description;
+
+    /**
+     * @brief The argument command line argument iterator position.
+     *
+     * Example: cmd_position for ("-t", "--timeout") is the argument iterator position 0.
+     */
+    const CommandLinePosition_t position;
+};
 
 
 /**
  * @brief The command line arguments type.
- *
- * A std::vector of command line argument iterator positions.
  */
 typedef std::vector<CommandLineArgument_t> CommandLineArguments_t;
 
 
 /**
- * @brief The command line arguments map type.
- *
- * Key:     argument string
- * Value:   command line argument iterator position.
+ * @brief The command line argument iterator position type.
  */
-typedef std::map<std::string, CommandLineArgument_t> CommandLineArgumentsMap_t;
+typedef CommandLineArguments_t::const_iterator CommandLineArgumentPosition_t;
 
 
 } // namespace cppargparse::types

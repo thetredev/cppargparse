@@ -28,11 +28,11 @@ struct argument<int>
      */
     static int parse(
             const types::CommandLine_t &,
-            const types::CommandLineArgument_t &cmdarg,
-            const types::CommandLineArgumentsMap_t &)
+            const types::CommandLinePosition_t &position,
+            const types::CommandLineArguments_t &)
     {
         return numerical_argument::parse<int>(
-            cmdarg,
+            position,
             CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stoi),
             "int"
         );
@@ -47,11 +47,11 @@ struct argument<int>
      */
     static int convert(
             const types::CommandLine_t &,
-            const types::CommandLineArgument_t &cmdarg,
-            const types::CommandLineArgumentsMap_t &)
+            const types::CommandLinePosition_t &position,
+            const types::CommandLineArguments_t &)
     {
         return numerical_argument::convert<int>(
-            cmdarg,
+            position,
             CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stoi),
             "int"
         );

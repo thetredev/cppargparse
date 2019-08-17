@@ -30,10 +30,10 @@ struct argument<std::string>
      */
     static const std::string parse(
             const types::CommandLine_t &cmd,
-            const types::CommandLineArgument_t &cmdarg,
-            const types::CommandLineArgumentsMap_t &cmdargs)
+            const types::CommandLinePosition_t &position,
+            const types::CommandLineArguments_t &cmdargs)
     {
-        return convert(cmd, std::next(cmdarg), cmdargs);
+        return convert(cmd, std::next(position), cmdargs);
     }
 
     /**
@@ -47,15 +47,15 @@ struct argument<std::string>
      */
     static const std::string convert(
             const types::CommandLine_t &cmd,
-            const types::CommandLineArgument_t &cmdarg,
-            const types::CommandLineArgumentsMap_t &)
+            const types::CommandLinePosition_t &position,
+            const types::CommandLineArguments_t &)
     {
-        if (cmdarg == cmd.cend())
+        if (position == cmd.cend())
         {
-            throw errors::CommandLineOptionError(error_message(cmdarg));
+            throw errors::CommandLineOptionError(error_message(position));
         }
 
-        return *cmdarg;
+        return *position;
     }
 
     /**
@@ -65,10 +65,10 @@ struct argument<std::string>
      *
      * @return An error message for a value that's not a std::string.
      */
-    static const char *error_message(const types::CommandLineArgument_t &cmdarg)
+    static const char *error_message(const types::CommandLinePosition_t &position)
     {
         std::ostringstream message;
-        message << "Couldn't convert " << *cmdarg << "to type <std::string>.";
+        message << "Couldn't convert " << *position << "to type <std::string>.";
 
         return message.str().c_str();
     }

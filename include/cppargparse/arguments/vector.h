@@ -3,6 +3,7 @@
 
 #include <vector>
 
+#include <cppargparse/algorithm.h>
 #include <cppargparse/types.h>
 
 #include "default.h"
@@ -28,39 +29,39 @@ struct argument<std::vector<T>>
      */
     static const std::vector<T> parse(
             const types::CommandLine_t &cmd,
-            const types::CommandLineArgument_t &cmdarg,
-            const types::CommandLineArgumentsMap_t &cmdargs)
+            const types::CommandLinePosition_t &position,
+            const types::CommandLineArguments_t &cmdargs)
     {
-        auto options = get_option_values(cmd, cmdarg, cmdargs);
+        auto positions = get_option_positions(cmd, position, cmdargs);
         std::vector<T> values;
 
-        for (auto option : options)
+        for (auto position : positions)
         {
-            values.emplace_back(argument<T>::convert(cmd, option, cmdargs));
+            values.emplace_back(argument<T>::convert(cmd, position, cmdargs));
         }
 
         return values;
     }
 
 
-    static types::CommandLineArguments_t get_option_values(
+    static types::CommandLinePositions_t get_option_positions(
             const types::CommandLine_t &cmd,
-            const types::CommandLineArgument_t &cmdarg,
-            const types::CommandLineArgumentsMap_t &cmdargs)
+            const types::CommandLinePosition_t &position,
+            const types::CommandLineArguments_t &cmdargs)
     {
-        types::CommandLineArguments_t values;
+        types::CommandLinePositions_t positions;
 
-        for (auto cmdarg_value = std::next(cmdarg); cmdarg_value != cmd.end(); ++cmdarg_value)
+        for (auto current = std::next(position); current != cmd.end(); ++current)
         {
-            if (cmdargs.find(*cmdarg_value) != cmdargs.cend())
+            if (algorithm::find_arg(cmdargs, *current) != cmdargs.cend())
             {
                 break;
             }
 
-            values.emplace_back(cmdarg_value);
+            positions.emplace_back(current);
         }
 
-        return values;
+        return positions;
     }
 };
 

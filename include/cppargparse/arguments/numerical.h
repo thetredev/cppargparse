@@ -35,10 +35,10 @@ namespace cppargparse::numerical_argument {
  *
  * @return An error message for a value that's not a numerical value.
  */
-static const std::string error_message(const types::CommandLineArgument_t &cmdarg, const std::string &type_string)
+static const std::string error_message(const types::CommandLinePosition_t &position, const std::string &type_string)
 {
     std::ostringstream message;
-    message << "Couldn't convert '" << *cmdarg << "' to type <" << type_string << ">.";
+    message << "Couldn't convert '" << *position << "' to type <" << type_string << ">.";
     std::string x = message.str();
 
     return message.str();
@@ -57,23 +57,23 @@ static const std::string error_message(const types::CommandLineArgument_t &cmdar
  */
 template <typename T>
 static T convert(
-        const types::CommandLineArgument_t &cmdarg,
+        const types::CommandLinePosition_t &position,
         const std::function<T(const std::string &, size_t *)> &numerical_converter,
         const std::string &type_string
     )
 {
     try
     {
-        return numerical_converter(*cmdarg, 0);
+        return numerical_converter(*position, 0);
     }
 
     catch (std::invalid_argument const &)
     {
-        throw errors::CommandLineOptionError(error_message(cmdarg, type_string));
+        throw errors::CommandLineOptionError(error_message(position, type_string));
     }
     catch (std::out_of_range const &)
     {
-        throw errors::CommandLineOptionError(error_message(cmdarg, type_string));
+        throw errors::CommandLineOptionError(error_message(position, type_string));
     }
 }
 
@@ -88,11 +88,11 @@ static T convert(
  * @return The numerical value of the command line argument next in line.
  */
 template <typename T>
-static T parse(const types::CommandLineArgument_t &cmdarg,
+static T parse(const types::CommandLinePosition_t &position,
         const std::function<T(const std::string &, size_t *)> &numerical_converter,
         const std::string &type_string)
 {
-    return convert(std::next(cmdarg), numerical_converter, type_string);
+    return convert(std::next(position), numerical_converter, type_string);
 }
 
 

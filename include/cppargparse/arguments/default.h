@@ -22,8 +22,8 @@ struct argument
      */
     static const T parse(
             const types::CommandLine_t &,
-            const types::CommandLineArgument_t &,
-            const types::CommandLineArgumentsMap_t &)
+            const types::CommandLinePosition_t &,
+            const types::CommandLineArguments_t &)
     {
         return T();
     }
@@ -36,8 +36,8 @@ struct argument
      */
     static const T convert(
             const types::CommandLine_t &,
-            const types::CommandLineArgument_t &,
-            const types::CommandLineArgumentsMap_t &)
+            const types::CommandLinePosition_t &,
+            const types::CommandLineArguments_t &)
     {
         return T();
     }
@@ -48,7 +48,7 @@ struct argument
      *
      * @return An empty C-style string.
      */
-    static const char *error_message(const types::CommandLineArgument_t &)
+    static const char *error_message(const types::CommandLinePosition_t &)
     {
         return "";
     }

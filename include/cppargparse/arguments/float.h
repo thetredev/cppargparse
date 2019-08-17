@@ -27,11 +27,11 @@ struct argument<float>
      */
     static float parse(
             const types::CommandLine_t &,
-            const types::CommandLineArgument_t &cmdarg,
-            const types::CommandLineArgumentsMap_t &)
+            const types::CommandLinePosition_t &position,
+            const types::CommandLineArguments_t &)
     {
         return numerical_argument::parse<float>(
-            cmdarg,
+            position,
             CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stof),
             "float"
         );
@@ -46,11 +46,11 @@ struct argument<float>
      */
     static float convert(
             const types::CommandLine_t &,
-            const types::CommandLineArgument_t &cmdarg,
-            const types::CommandLineArgumentsMap_t &)
+            const types::CommandLinePosition_t &position,
+            const types::CommandLineArguments_t &)
     {
         return numerical_argument::convert<float>(
-            cmdarg,
+            position,
             CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stof),
             "float"
         );
