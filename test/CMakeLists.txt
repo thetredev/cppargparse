@@ -63,6 +63,13 @@ endfunction()
 #
 # Unit test targets
 #
+
+# Algorithm
 add_unit_test(test_algorithm
     ${CMAKE_CURRENT_SOURCE_DIR}/test_algorithm.cpp
+)
+
+# Parser
+add_unit_test(test_parser
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_parser.cpp
 )
