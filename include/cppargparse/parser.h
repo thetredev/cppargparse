@@ -269,7 +269,10 @@ public:
     {
         if (cmdarg.position == m_cmd.cend())
         {
-            throw cmdarg_not_found_error(cmdarg.id);
+            std::ostringstream message;
+            message << "Cannot find argument: " << cmdarg.id;
+
+            throw errors::CommandLineArgumentError(message.str());
         }
 
         return argument<T>::parse(m_cmd, cmdarg.position, m_cmdargs);
@@ -474,16 +477,6 @@ public:
                                        const std::function<void(const ArgumentParser &, const T &)> &callback)
     {
         callback(*this, get_option<T>(add_arg(id, id_alt, description), default_value));
-    }
-
-
-private:
-    errors::CommandLineArgumentError cmdarg_not_found_error(const std::string &id)
-    {
-        std::ostringstream message;
-        message << "Cannot find argument: " << id;
-
-        return errors::CommandLineArgumentError(message.str());
     }
 };
 
