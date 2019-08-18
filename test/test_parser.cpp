@@ -280,10 +280,12 @@ TEST(TestParser, AddHelpWithCallback2)
 
 
 
+// Callback for checking if -t is 4 (integer)
 void check_t_is_4(const cppargparse::parser::ArgumentParser &, int value)
 {
     ASSERT_EQ(4, value);
 }
+
 
 
 //
