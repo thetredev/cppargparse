@@ -1,7 +1,7 @@
 #ifndef CPPARGPARSE_ARGUMENTS_INT_H
 #define CPPARGPARSE_ARGUMENTS_INT_H
 
-#include <algorithm>
+#include <string>
 
 #include <cppargparse/types.h>
 
