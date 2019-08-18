@@ -98,13 +98,6 @@ def filter_lcov_trace_file(s_filename, d_file):
       print(l, end='', file=d_file)
 
 if __name__ == '__main__':
-  #for l in cond_lines_from_file(sys.argv[1]):
-  #  print(l)
-
-  filter_lcov_trace_file(sys.argv[1], sys.stdout)
-
-  #with open(sys.argv[1]) as f:
-  #  for l in skip_comments(f):
-  #    print(l)
-
+  with open(sys.argv[2], 'w') as f:
+      filter_lcov_trace_file(sys.argv[1], f)
 
