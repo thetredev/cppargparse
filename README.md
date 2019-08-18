@@ -2,13 +2,50 @@
 
 C++ ArgParse is an open source header-only C++ library. Due to the core's heavy usage of template magic, the library can expose a very easy-to-use interface, so you as an application developer only have to care about the good stuff. Think Python's [argparse](https://docs.python.org/3/library/argparse.html).
 
-[![Build Status](https://travis-ci.org/backraw/cppargparse.svg?branch=master)](https://travis-ci.org/backraw/cppargparse)
-
 *Support for Windows is currently untested.*
 
-If you want to skip the following example and core presentations, you can do so by going straight to [Build tests and install](#Build-tests-and-install).
+[![Build Status](https://travis-ci.org/backraw/cppargparse.svg?branch=master)](https://travis-ci.org/backraw/cppargparse)
 
-The source code documentation can be found here: https://backraw.github.io/cppargparse
+The source code documentation and code coverage results can be found here: https://backraw.github.io/cppargparse
+
+
+# Build tests
+Build requirements:
+- `gcc`, `clang`, or `msvc`
+- `cmake`
+
+Then you should be able to build the tests like this:
+```
+git clone https://github.com/backraw/cppargparse.git
+cd cppargparse
+
+mkdir build
+cd build
+
+cmake -DCMAKE_BUILD_TYPE=Profiling ..
+make tests
+```
+
+Of course, you can use every generator that CMake supports.
+
+
+# Code coverage
+Coverage requirements:
+- `gcov`
+- `lcov`
+- `genhtml`
+- `python3`
+
+Then run the following inside the build directory:
+```
+make coverage
+```
+
+This will automatically execute `make tests` beforehand.
+
+
+# Install
+To install the library, run `sudo make install` inside the build directory.
 
 
 # The library interface
@@ -206,39 +243,3 @@ It collects all values tied to the argument and converts each value string to `T
 
 ## Custom types
 ... todo ...
-
-
-# Build tests
-Build requirements:
-- `gcc`, `clang`, or `msvc`
-- `cmake`
-
-Then you should be able to build the tests like this:
-```
-git clone https://github.com/backraw/cppargparse.git
-cd cppargparse
-
-mkdir build
-cd build
-
-cmake -DCMAKE_BUILD_TYPE=Profiling ..
-make tests
-```
-
-Of course, you can use every generator that CMake supports.
-
-# Code coverage
-Coverage requirements:
-- `gcov`
-- `lcov`
-- `genhtml`
-
-Then run the following inside the build directory:
-```
-make coverage
-```
-
-This will automatically execute `make tests` beforehand.
-
-# Install
-To install the library, run `sudo make install` inside the build directory.
