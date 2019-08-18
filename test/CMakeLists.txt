@@ -30,7 +30,8 @@ if("${CMAKE_BUILD_TYPE}" MATCHES "^(profiling|Profiling|PROFILING)$")
     add_custom_command(TARGET coverage POST_BUILD
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 
-        COMMAND lcov --capture --config-file ${CMAKE_SOURCE_DIR}/lcovrc --directory . --include ${CMAKE_SOURCE_DIR}/include/*.h --output cppargparse.info
+        COMMAND lcov --capture --config-file ${CMAKE_SOURCE_DIR}/lcovrc --directory . --include ${CMAKE_SOURCE_DIR}/include/*.h --output cppargparse_base.info
+        COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/filterbr.py cppargparse_base.info cppargparse.info
         COMMAND genhtml --branch-coverage --output coverage cppargparse.info
     )
 
