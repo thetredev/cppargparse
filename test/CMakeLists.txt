@@ -73,3 +73,8 @@ add_unit_test(test_algorithm
 add_unit_test(test_parser
     ${CMAKE_CURRENT_SOURCE_DIR}/test_parser.cpp
 )
+
+# Arguments
+add_unit_test(test_arguments
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_arguments.cpp
+)
