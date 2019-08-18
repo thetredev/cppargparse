@@ -23,7 +23,7 @@ mkdir build
 cd build
 
 cmake -DCMAKE_BUILD_TYPE=Profiling ..
-make tests
+make run_tests
 ```
 
 Of course, you can use every generator that CMake supports.
@@ -36,12 +36,7 @@ Coverage requirements:
 - `genhtml`
 - `python3`
 
-Then run the following inside the build directory:
-```
-make coverage
-```
-
-This will automatically execute `make tests` beforehand.
+Run `make coverage` inside the build directory. This will automatically execute `make run_tests` beforehand.
 
 
 # Install
