@@ -381,28 +381,11 @@ public:
      *
      * @param id The argument ID.
      * @param callback The callback to call with the argument's value when the argument has been passed to the command line.
-     *
-     * @throws #cppargparse::errors::CommandLineArgumentError if the arg wasn't found in the command line.
-     * @throws #cppargparse::errors::CommandLineOptionError if no value has been found for the argument.
      */
     void add_arg_with_callback(const std::string &id,
                                const std::function<void(const ArgumentParser &, const T &)> &callback)
     {
-        const auto cmdarg = add_arg(id);
-
-        try
-        {
-            callback(*this, get_option<T>(cmdarg));
-        }
-
-        catch (errors::CommandLineArgumentError &error)
-        {
-            throw errors::CommandLineArgumentError(error);
-        }
-        catch (errors::CommandLineOptionError &error)
-        {
-            throw errors::CommandLineOptionError(error);
-        }
+        callback(*this, get_option<T>(add_arg(id)));
     }
 
     template <typename T>
@@ -414,28 +397,11 @@ public:
      * @param id The argument ID.
      * @param id_alt The argument alternative ID.
      * @param callback The callback to call with the argument's value when the argument has been passed to the command line.
-     *
-     * @throws #cppargparse::errors::CommandLineArgumentError if the arg wasn't found in the command line.
-     * @throws #cppargparse::errors::CommandLineOptionError if no value has been found for the argument.
      */
     void add_arg_with_callback(const std::string &id, const std::string &id_alt,
                                const std::function<void(const ArgumentParser &, const T &)> &callback)
     {
-        const auto cmdarg = add_arg(id, id_alt);
-
-        try
-        {
-            callback(*this, get_option<T>(cmdarg));
-        }
-
-        catch (errors::CommandLineArgumentError &error)
-        {
-            throw errors::CommandLineArgumentError(error);
-        }
-        catch (errors::CommandLineOptionError &error)
-        {
-            throw errors::CommandLineOptionError(error);
-        }
+        callback(*this, get_option<T>(add_arg(id, id_alt)));
     }
 
 
@@ -449,28 +415,11 @@ public:
      * @param id_alt The argument alternative ID.
      * @param description The argument description.
      * @param callback The callback to call with the argument's value when the argument has been passed to the command line.
-     *
-     * @throws #cppargparse::errors::CommandLineArgumentError if the arg wasn't found in the command line.
-     * @throws #cppargparse::errors::CommandLineOptionError if no value has been found for the argument.
      */
     void add_arg_with_callback(const std::string &id, const std::string &id_alt, const std::string &description,
                                        const std::function<void(const ArgumentParser &, const T &)> &callback)
     {
-        const auto cmdarg = add_arg(id, id_alt, description);
-
-        try
-        {
-            callback(*this, get_option<T>(cmdarg));
-        }
-
-        catch (errors::CommandLineArgumentError &error)
-        {
-            throw errors::CommandLineArgumentError(error);
-        }
-        catch (errors::CommandLineOptionError &error)
-        {
-            throw errors::CommandLineOptionError(error);
-        }
+        callback(*this, get_option<T>(add_arg(id, id_alt, description)));
     }
 
 
