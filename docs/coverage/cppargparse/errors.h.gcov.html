@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2019-08-18 20:40:52</td>
+            <td class="headerValue">2019-08-18 20:51:56</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">3</td>
@@ -90,10 +90,10 @@
 <a name="19"><span class="lineNum">      19 </span>                :            :      *</a>
 <a name="20"><span class="lineNum">      20 </span>                :            :      * @param message The error message.</a>
 <a name="21"><span class="lineNum">      21 </span>                :            :      */</a>
-<a name="22"><span class="lineNum">      22 </span>                :<span class="lineCov">        259 :     explicit Error(const std::string &amp;message)</span></a>
-<a name="23"><span class="lineNum">      23 </span>                :<span class="lineCov">        259 :         : std::runtime_error(std::string(&quot;Error: &quot;) + message)</span></a>
+<a name="22"><span class="lineNum">      22 </span>                :<span class="lineCov">         17 :     explicit Error(const std::string &amp;message)</span></a>
+<a name="23"><span class="lineNum">      23 </span>                :<span class="lineCov">         17 :         : std::runtime_error(std::string(&quot;Error: &quot;) + message)</span></a>
 <a name="24"><span class="lineNum">      24 </span>                :            :     {</a>
-<a name="25"><span class="lineNum">      25 </span>                :<span class="lineCov">        259 :     }</span></a>
+<a name="25"><span class="lineNum">      25 </span>                :<span class="lineCov">         17 :     }</span></a>
 <a name="26"><span class="lineNum">      26 </span>                :            : };</a>
 <a name="27"><span class="lineNum">      27 </span>                :            : </a>
 <a name="28"><span class="lineNum">      28 </span>                :            : </a>
@@ -108,10 +108,10 @@
 <a name="37"><span class="lineNum">      37 </span>                :            :      *</a>
 <a name="38"><span class="lineNum">      38 </span>                :            :      * @param message The error message.</a>
 <a name="39"><span class="lineNum">      39 </span>                :            :      */</a>
-<a name="40"><span class="lineNum">      40 </span>                :<span class="lineCov">        120 :     explicit CommandLineArgumentError(const std::string &amp;message)</span></a>
-<a name="41"><span class="lineNum">      41 </span>                :<span class="lineCov">        120 :         : Error(message)</span></a>
+<a name="40"><span class="lineNum">      40 </span>                :<span class="lineCov">         10 :     explicit CommandLineArgumentError(const std::string &amp;message)</span></a>
+<a name="41"><span class="lineNum">      41 </span>                :<span class="lineCov">         10 :         : Error(message)</span></a>
 <a name="42"><span class="lineNum">      42 </span>                :            :     {</a>
-<a name="43"><span class="lineNum">      43 </span>                :<span class="lineCov">        120 :     }</span></a>
+<a name="43"><span class="lineNum">      43 </span>                :<span class="lineCov">         10 :     }</span></a>
 <a name="44"><span class="lineNum">      44 </span>                :            : };</a>
 <a name="45"><span class="lineNum">      45 </span>                :            : </a>
 <a name="46"><span class="lineNum">      46 </span>                :            : </a>
@@ -126,10 +126,10 @@
 <a name="55"><span class="lineNum">      55 </span>                :            :      *</a>
 <a name="56"><span class="lineNum">      56 </span>                :            :      * @param message The error message.</a>
 <a name="57"><span class="lineNum">      57 </span>                :            :      */</a>
-<a name="58"><span class="lineNum">      58 </span>                :<span class="lineCov">        139 :     explicit CommandLineOptionError(const std::string &amp;message)</span></a>
-<a name="59"><span class="lineNum">      59 </span>                :<span class="lineCov">        139 :         : Error(message)</span></a>
+<a name="58"><span class="lineNum">      58 </span>                :<span class="lineCov">          7 :     explicit CommandLineOptionError(const std::string &amp;message)</span></a>
+<a name="59"><span class="lineNum">      59 </span>                :<span class="lineCov">          7 :         : Error(message)</span></a>
 <a name="60"><span class="lineNum">      60 </span>                :            :     {</a>
-<a name="61"><span class="lineNum">      61 </span>                :<span class="lineCov">        139 :     }</span></a>
+<a name="61"><span class="lineNum">      61 </span>                :<span class="lineCov">          7 :     }</span></a>
 <a name="62"><span class="lineNum">      62 </span>                :            : };</a>
 <a name="63"><span class="lineNum">      63 </span>                :            : </a>
 <a name="64"><span class="lineNum">      64 </span>                :            : </a>

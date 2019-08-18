@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2019-08-18 20:40:52</td>
+            <td class="headerValue">2019-08-18 20:51:56</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">2</td>
@@ -88,18 +88,18 @@
 <a name="17"><span class="lineNum">      17 </span>                :            :  *</a>
 <a name="18"><span class="lineNum">      18 </span>                :            :  * @return The command line arguments iterator position of the argument.</a>
 <a name="19"><span class="lineNum">      19 </span>                :            :  */</a>
-<a name="20"><span class="lineNum">      20 </span>                :<span class="lineCov">        221 : types::CommandLineArgumentPosition_t find_arg(const types::CommandLineArguments_t &amp;cmdargs, const std::string &amp;id)</span></a>
+<a name="20"><span class="lineNum">      20 </span>                :<span class="lineCov">         73 : types::CommandLineArgumentPosition_t find_arg(const types::CommandLineArguments_t &amp;cmdargs, const std::string &amp;id)</span></a>
 <a name="21"><span class="lineNum">      21 </span>                :            : {</a>
-<a name="22"><span class="lineNum">      22 </span>                :<span class="lineCov">        360 :     for (auto it = cmdargs.cbegin(); it != cmdargs.cend(); ++it)</span></a>
+<a name="22"><span class="lineNum">      22 </span>                :<span class="lineCov">        175 :     for (auto it = cmdargs.cbegin(); it != cmdargs.cend(); ++it)</span></a>
 <a name="23"><span class="lineNum">      23 </span>                :            :     {</a>
-<a name="24"><span class="lineNum">      24 </span>[<span class="branchCov" title="Branch 2 was taken 177 times"> + </span><span class="branchCov" title="Branch 3 was taken 43 times"> + </span>][<span class="branchCov" title="Branch 6 was taken 38 times"> + </span><span class="branchCov" title="Branch 7 was taken 139 times"> + </span>]:<span class="lineCov">        220 :         if (it-&gt;id == id || it-&gt;id_alt == id)</span></a>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 8 was taken 81 times"> + </span><span class="branchCov" title="Branch 9 was taken 139 times"> + </span>]
+<a name="24"><span class="lineNum">      24 </span>[<span class="branchCov" title="Branch 2 was taken 103 times"> + </span><span class="branchCov" title="Branch 3 was taken 6 times"> + </span>][<span class="branchCov" title="Branch 6 was taken 1 time"> + </span><span class="branchCov" title="Branch 7 was taken 102 times"> + </span>]:<span class="lineCov">        109 :         if (it-&gt;id == id || it-&gt;id_alt == id)</span></a>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 8 was taken 7 times"> + </span><span class="branchCov" title="Branch 9 was taken 102 times"> + </span>]
 <a name="25"><span class="lineNum">      25 </span>                :            :         {</a>
-<a name="26"><span class="lineNum">      26 </span>                :<span class="lineCov">         81 :             return it;</span></a>
+<a name="26"><span class="lineNum">      26 </span>                :<span class="lineCov">          7 :             return it;</span></a>
 <a name="27"><span class="lineNum">      27 </span>                :            :         }</a>
 <a name="28"><span class="lineNum">      28 </span>                :            :     }</a>
 <a name="29"><span class="lineNum">      29 </span>                :            : </a>
-<a name="30"><span class="lineNum">      30 </span>                :<span class="lineCov">        140 :     return cmdargs.cend();</span></a>
+<a name="30"><span class="lineNum">      30 </span>                :<span class="lineCov">         66 :     return cmdargs.cend();</span></a>
 <a name="31"><span class="lineNum">      31 </span>                :            : }</a>
 <a name="32"><span class="lineNum">      32 </span>                :            : </a>
 <a name="33"><span class="lineNum">      33 </span>                :            : </a>
@@ -112,16 +112,16 @@
 <a name="40"><span class="lineNum">      40 </span>                :            :  *</a>
 <a name="41"><span class="lineNum">      41 </span>                :            :  * @return The command line iterator position of the argument.</a>
 <a name="42"><span class="lineNum">      42 </span>                :            :  */</a>
-<a name="43"><span class="lineNum">      43 </span>                :<span class="lineCov">       1061 : types::CommandLinePosition_t find_arg_position(const types::CommandLine_t &amp;cmd, const std::string &amp;id, const std::string &amp;id_alt)</span></a>
+<a name="43"><span class="lineNum">      43 </span>                :<span class="lineCov">         70 : types::CommandLinePosition_t find_arg_position(const types::CommandLine_t &amp;cmd, const std::string &amp;id, const std::string &amp;id_alt)</span></a>
 <a name="44"><span class="lineNum">      44 </span>                :            : {</a>
-<a name="45"><span class="lineNum">      45 </span>                :<span class="lineCov">       1061 :     auto it = std::find(cmd.cbegin(), cmd.cend(), id);</span></a>
+<a name="45"><span class="lineNum">      45 </span>                :<span class="lineCov">         70 :     auto it = std::find(cmd.cbegin(), cmd.cend(), id);</span></a>
 <a name="46"><span class="lineNum">      46 </span>                :            : </a>
-<a name="47"><span class="lineNum">      47 </span>        [<span class="branchCov" title="Branch 2 was taken 507 times"> + </span><span class="branchCov" title="Branch 3 was taken 554 times"> + </span>]:<span class="lineCov">       1061 :     if (it == cmd.cend())</span></a>
+<a name="47"><span class="lineNum">      47 </span>        [<span class="branchCov" title="Branch 2 was taken 37 times"> + </span><span class="branchCov" title="Branch 3 was taken 33 times"> + </span>]:<span class="lineCov">         70 :     if (it == cmd.cend())</span></a>
 <a name="48"><span class="lineNum">      48 </span>                :            :     {</a>
-<a name="49"><span class="lineNum">      49 </span>                :<span class="lineCov">        507 :         it = std::find(cmd.cbegin(), cmd.cend(), id_alt);</span></a>
+<a name="49"><span class="lineNum">      49 </span>                :<span class="lineCov">         37 :         it = std::find(cmd.cbegin(), cmd.cend(), id_alt);</span></a>
 <a name="50"><span class="lineNum">      50 </span>                :            :     }</a>
 <a name="51"><span class="lineNum">      51 </span>                :            : </a>
-<a name="52"><span class="lineNum">      52 </span>                :<span class="lineCov">       1061 :     return it;</span></a>
+<a name="52"><span class="lineNum">      52 </span>                :<span class="lineCov">         70 :     return it;</span></a>
 <a name="53"><span class="lineNum">      53 </span>                :            : }</a>
 <a name="54"><span class="lineNum">      54 </span>                :            : </a>
 <a name="55"><span class="lineNum">      55 </span>                :            : </a>
