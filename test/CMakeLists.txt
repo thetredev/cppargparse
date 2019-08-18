@@ -1,14 +1,21 @@
 #
 # Testing target: tests
 #
-add_custom_target(tests)
 
-add_custom_command(TARGET tests POST_BUILD
+add_custom_target(run_tests)
+add_custom_command(TARGET run_tests POST_BUILD
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     COMMAND ctest --output-on-failure
 )
 
+
+add_custom_target(tests)
+add_dependencies(run_tests tests)
+
+
 set(TEST_BUILD_OPTIONS -Wall -Wno-long-long -pedantic)
+
+string(TOLOWER ${CMAKE_GENERATOR} BUILD_GENERATOR)
 
 
 #
@@ -22,11 +29,12 @@ if("${CMAKE_BUILD_TYPE}" MATCHES "^(profiling|Profiling|PROFILING)$")
 
     add_custom_command(TARGET coverage POST_BUILD
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-        COMMAND lcov --rc lcov_branch_coverage=1 --include ${CMAKE_SOURCE_DIR}/include/*.h -t "result" -o cppargparse.info -c -d .
-        COMMAND genhtml -o coverage cppargparse.info
+
+        COMMAND lcov --capture --config-file ${CMAKE_SOURCE_DIR}/lcovrc --directory . --include ${CMAKE_SOURCE_DIR}/include/*.h --output cppargparse.info
+        COMMAND genhtml --branch-coverage --output coverage cppargparse.info
     )
 
-    add_dependencies(coverage tests)
+    add_dependencies(coverage run_tests)
 endif()
 
 
