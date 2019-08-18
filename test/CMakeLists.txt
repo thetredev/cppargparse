@@ -62,3 +62,6 @@ endfunction()
 #
 # Unit test targets
 #
+add_unit_test(test_algorithm
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_algorithm.cpp
+)
