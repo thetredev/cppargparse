@@ -1,101 +1,70 @@
 #ifndef CPPARGPARSE_ARGUMENTS_NUMERICAL_H
 #define CPPARGPARSE_ARGUMENTS_NUMERICAL_H
 
-/**
-  @file cppargparse/arguments/numerical.h
-  @brief Static numerical conversion function helpers.
- */
-
-
-#include <algorithm>
 #include <functional>
 #include <sstream>
+#include <string>
 
 #include <cppargparse/errors.h>
 #include <cppargparse/types.h>
 
-#include "default.h"
 
-
-// https://stackoverflow.com/questions/46587694/passing-function-with-defaults-as-argument-ignoring-them/46588390
-#define CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_RETURNS(...) \
-  noexcept(noexcept(__VA_ARGS__)) \
-  -> decltype( __VA_ARGS__ ) \
-  { return __VA_ARGS__; }
-
-
-#define CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(...) \
-  [](auto&&...args) \
-  CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_RETURNS( __VA_ARGS__( decltype(args)(args)... ))
-
-
-
-namespace cppargparse::numerical_argument {
-
-
-/**
- * @brief Generate an error message for a value that's not a numerical value.
- *
- * @param cmdarg The command line argument iterator.
- * @param type_string The numerical type's string representation.
- *
- * @return An error message for a value that's not a numerical value.
- */
-static const std::string error_message(const types::CommandLinePosition_t &position, const std::string &type_string)
-{
-    std::ostringstream message;
-    message << "Couldn't convert '" << *position << "' to type <" << type_string << ">.";
-    std::string x = message.str();
-
-    return message.str();
-}
+namespace cppargparse {
 
 
 template <typename T>
-/**
- * @brief Try to convert a command line argument value to a numerical value.
- *
- * @param cmdarg The command line argument iterator.
- * @param numerical_converter The function used to convert the cmdarg into a numerical value.
- * @param type_string The numerical type's string representation.
- *
- * @return The numerical value of the command line argument.
- * @throws #cppargparse::errors::CommandLineOptionError if the conversion was unsuccessful.
- */
-static T convert(
-        const types::CommandLinePosition_t &position,
-        const std::function<T(const std::string &, size_t *)> &numerical_converter,
-        const std::string &type_string
-    )
+struct numerical_argument
 {
-    try
+    /**
+     * @brief Try to convert a command line argument value to a numerical value.
+     *
+     * @param cmd The command line.
+     * @param position The command line argument iterator.
+     * @param numerical_converter The function used to convert the cmdarg into a numerical value.
+     * @param type_string The numerical type's string representation.
+     *
+     * @return The numerical value of the command line argument.
+     * @throws #cppargparse::errors::CommandLineOptionError if the conversion was unsuccessful.
+     */
+    static T convert(
+            const types::CommandLine_t &cmd,
+            const types::CommandLinePosition_t &position,
+            const std::function<T(const std::string &)> &numerical_converter,
+            const std::string &type_string)
     {
-        return numerical_converter(*position, 0);
+        if (position == cmd.cend())
+        {
+            throw errors::CommandLineOptionError(error_message(std::prev(position), type_string));
+        }
+
+        try
+        {
+            return numerical_converter(*position);
+        }
+
+        catch (std::invalid_argument const &)
+        {
+            throw errors::CommandLineOptionError(error_message(position, type_string));
+        }
     }
 
-    catch (std::invalid_argument const &)
+    /**
+     * @brief Generate an error message for a value that's not a numerical value.
+     *
+     * @param position The command line argument iterator position.
+     * @param type_string The numerical type's string representation.
+     *
+     * @return An error message for a value that's not convertible to the specified numerical type.
+     */
+    static const std::string error_message(const types::CommandLinePosition_t &position, const std::string &type_string)
     {
-        throw errors::CommandLineOptionError(error_message(position, type_string));
+        std::ostringstream message;
+        message << "Couldn't convert '" << *position << "' to type <" << type_string << ">.";
+        std::string x = message.str();
+
+        return message.str();
     }
-}
-
-
-template <typename T>
-/**
- * @brief Try to parse a command line argument as a numerical value.
- *
- * @param cmdarg The command line argument iterator.
- * @param numerical_converter The function used to convert the cmdarg into a numerical value.
- * @param type_string The numerical type's string representation.
- *
- * @return The numerical value of the command line argument next in line.
- */
-static T parse(const types::CommandLinePosition_t &position,
-        const std::function<T(const std::string &, size_t *)> &numerical_converter,
-        const std::string &type_string)
-{
-    return convert(std::next(position), numerical_converter, type_string);
-}
+};
 
 
 } // namespace cppargparse::numerical_argument

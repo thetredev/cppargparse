@@ -1,6 +1,7 @@
 #ifndef CPPARGPARSE_ARGUMENTS_DOUBLE_H
 #define CPPARGPARSE_ARGUMENTS_DOUBLE_H
 
+#include <algorithm>
 #include <string>
 
 #include <cppargparse/types.h>
@@ -21,40 +22,45 @@ struct argument<double>
     /**
      * @brief Try to parse a command line argument as a double.
      *
+     * @param cmd The command line.
      * @param position The command line argument iterator.
      *
      * @return The double value of the command line argument next in line.
      */
     static double parse(
-            const types::CommandLine_t &,
+            const types::CommandLine_t &cmd,
             const types::CommandLinePosition_t &position,
             const types::CommandLineArguments_t &)
     {
-        return numerical_argument::parse<double>(
-            position,
-            CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stod),
-            "double"
-        );
+        return numerical_argument<double>::convert(cmd, std::next(position), &wrap, "double");
     }
-
 
     /**
      * @brief Try to convert a command line argument to a double value.
      *
+     * @param cmd The command line.
      * @param position The command line argument iterator.
      *
      * @return The double value of the command line argument.
      */
     static double convert(
-            const types::CommandLine_t &,
+            const types::CommandLine_t &cmd,
             const types::CommandLinePosition_t &position,
             const types::CommandLineArguments_t &)
     {
-        return numerical_argument::convert<double>(
-            position,
-            CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stod),
-            "double"
-        );
+        return numerical_argument<double>::convert(cmd, position, &wrap, "double");
+    }
+
+    /**
+     * @brief Wrap std::stod() for use without default parameters.
+     *
+     * @param s The string to convert to a double.
+     *
+     * @return The double value of the string passed.
+     */
+    static double wrap(const std::string &s)
+    {
+        return std::stod(s);
     }
 };
 
@@ -68,39 +74,45 @@ struct argument<long double>
     /**
      * @brief Try to parse a command line argument as a long double.
      *
+     * @param cmd The command line.
      * @param position The command line argument iterator.
      *
      * @return The long double value of the command line argument next in line.
      */
     static long double parse(
-            const types::CommandLine_t &,
+            const types::CommandLine_t &cmd,
             const types::CommandLinePosition_t &position,
             const types::CommandLineArguments_t &)
     {
-        return numerical_argument::parse<long double>(
-            position,
-            CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stold),
-            "long double"
-        );
+        return numerical_argument<long double>::convert(cmd, std::next(position), &wrap, "long double");
     }
 
     /**
      * @brief Try to convert a command line argument to a long double value.
      *
+     * @param cmd The command line.
      * @param position The command line argument iterator.
      *
      * @return The long double value of the command line argument.
      */
     static long double convert(
-            const types::CommandLine_t &,
+            const types::CommandLine_t &cmd,
             const types::CommandLinePosition_t &position,
             const types::CommandLineArguments_t &)
     {
-        return numerical_argument::convert<long double>(
-            position,
-            CPPARGPARSE_NUMERICAL_ARGUMENT_CONVERTER_OVERLOADS(std::stold),
-            "long double"
-        );
+        return numerical_argument<long double>::convert(cmd, position, &wrap, "long double");
+    }
+
+    /**
+     * @brief Wrap std::stold() for use without default parameters.
+     *
+     * @param s The string to convert to a long double.
+     *
+     * @return The long double value of the string passed.
+     */
+    static long double wrap(const std::string &s)
+    {
+        return std::stold(s);
     }
 };
 
