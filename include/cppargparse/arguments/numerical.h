@@ -42,7 +42,7 @@ struct numerical_argument
             return numerical_converter(*position);
         }
 
-        catch (std::invalid_argument const &)
+        catch (const std::invalid_argument &)
         {
             throw errors::CommandLineOptionError(error_message(position, type_string));
         }
