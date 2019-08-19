@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structcppargparse_1_1numerical__argument.html" title="cppargparse::numerical\l_argument\&lt; T \&gt;" alt="" coords="5,5,163,47"/>
+<area shape="rect" id="node1" href="$classcppargparse_1_1errors_1_1Error.html" title="Base error class. " alt="" coords="5,39,140,80"/>
+<area shape="rect" id="node2" href="$classcppargparse_1_1errors_1_1CommandLineArgumentError.html" title="Error class for command line argument errors. " alt="" coords="188,5,387,47"/>
+<area shape="rect" id="node3" href="$classcppargparse_1_1errors_1_1CommandLineOptionError.html" title="Error class for command line option errors. " alt="" coords="197,71,377,112"/>
 </map>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['usage',['usage',['../classcppargparse_1_1parser_1_1ArgumentParserBase.html#af99c2847a2cd19b1444dcb9ab2fb8103',1,'cppargparse::parser::ArgumentParserBase']]]
+  ['stou',['stou',['../structcppargparse_1_1argument_3_01unsigned_01int_01_4.html#af8279570a5ca5f628c34b8d881b8ee25',1,'cppargparse::argument&lt; unsigned int &gt;']]]
 ];
