@@ -127,7 +127,7 @@ struct argument<int>
 \end{DoxyCode}
 
 
-All it does is call {\ttfamily cppargparse\+::numerical\+\_\+argument\+::parse$<$int$>$()} (or {\ttfamily cppargparse\+::numerical\+\_\+argument\+::convert$<$int$>$()}) on a command line argument iterator position {\ttfamily position} and tell the former to use {\ttfamily std\+::stoi} as the conversion function.
+All it does is call {\ttfamily cppargparse\+::numerical\+\_\+argument\+::parse$<$int$>$()} (or {\ttfamily \hyperlink{structcppargparse_1_1numerical__argument_ab775dbbfc851bbd9052b70dfdf0dbb77}{cppargparse\+::numerical\+\_\+argument\+::convert}$<$int$>$()}) on a command line argument iterator position {\ttfamily position} and tell the former to use {\ttfamily std\+::stoi} as the conversion function.
 
 {\ttfamily float}, {\ttfamily double}, and {\ttfamily long double} are implemented in the same way, using
 \begin{DoxyItemize}
@@ -138,7 +138,7 @@ All it does is call {\ttfamily cppargparse\+::numerical\+\_\+argument\+::parse$<
 
 as conversion functions, respectively.
 
-The {\ttfamily cppargparse\+::numerical\+\_\+argument} namespace provides the actual parser and converter functions\+: 
+The {\ttfamily \hyperlink{structcppargparse_1_1numerical__argument}{cppargparse\+::numerical\+\_\+argument}} namespace provides the actual parser and converter functions\+: 
 \begin{DoxyCode}
 \{C++\}
 template <typename T>
@@ -173,7 +173,7 @@ static T parse(const types::CommandLinePosition\_t &position,
 \end{DoxyCode}
 
 
-{\ttfamily cppargparse\+::numerical\+\_\+argument\+::convert()} calls {\ttfamily numerical\+\_\+converter} with a string as the argument. {\ttfamily numerical\+\_\+converter} can (currently) be one of the following\+:
+{\ttfamily \hyperlink{structcppargparse_1_1numerical__argument_ab775dbbfc851bbd9052b70dfdf0dbb77}{cppargparse\+::numerical\+\_\+argument\+::convert()}} calls {\ttfamily numerical\+\_\+converter} with a string as the argument. {\ttfamily numerical\+\_\+converter} can (currently) be one of the following\+:
 \begin{DoxyItemize}
 \item {\ttfamily std\+::stoi}
 \item {\ttfamily std\+::stof}
@@ -183,7 +183,7 @@ static T parse(const types::CommandLinePosition\_t &position,
 
 A conversion error is indicated by throwing {\ttfamily errors\+::\+Command\+Line\+Option\+Error} with a custom error message.
 
-{\ttfamily cppargparse\+::numerical\+\_\+argument\+::parse()} calls {\ttfamily cppargparse\+::numerical\+\_\+argument\+::convert()} with the command line argument next in line.
+{\ttfamily cppargparse\+::numerical\+\_\+argument\+::parse()} calls {\ttfamily \hyperlink{structcppargparse_1_1numerical__argument_ab775dbbfc851bbd9052b70dfdf0dbb77}{cppargparse\+::numerical\+\_\+argument\+::convert()}} with the command line argument next in line.
 
 \subsection*{String types}
 

@@ -1,0 +1,68 @@
+\hypertarget{structcppargparse_1_1numerical__argument}{}\section{cppargparse\+:\+:numerical\+\_\+argument$<$ T $>$ Struct Template Reference}
+\label{structcppargparse_1_1numerical__argument}\index{cppargparse\+::numerical\+\_\+argument$<$ T $>$@{cppargparse\+::numerical\+\_\+argument$<$ T $>$}}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static T \hyperlink{structcppargparse_1_1numerical__argument_ab775dbbfc851bbd9052b70dfdf0dbb77}{convert} (const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&cmd, const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&position, const std\+::function$<$ T(const std\+::string \&)$>$ \&numerical\+\_\+converter, const std\+::string \&type\+\_\+string)
+\begin{DoxyCompactList}\small\item\em Try to convert a command line argument value to a numerical value. \end{DoxyCompactList}\item 
+static const std\+::string \hyperlink{structcppargparse_1_1numerical__argument_a05ead3c772c43a02b6608ef2b2382fb8}{error\+\_\+message} (const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&position, const std\+::string \&type\+\_\+string)
+\begin{DoxyCompactList}\small\item\em Generate an error message for a value that\textquotesingle{}s not a numerical value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{structcppargparse_1_1numerical__argument_ab775dbbfc851bbd9052b70dfdf0dbb77}\label{structcppargparse_1_1numerical__argument_ab775dbbfc851bbd9052b70dfdf0dbb77}} 
+\index{cppargparse\+::numerical\+\_\+argument@{cppargparse\+::numerical\+\_\+argument}!convert@{convert}}
+\index{convert@{convert}!cppargparse\+::numerical\+\_\+argument@{cppargparse\+::numerical\+\_\+argument}}
+\subsubsection{\texorpdfstring{convert()}{convert()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+static T \hyperlink{structcppargparse_1_1numerical__argument}{cppargparse\+::numerical\+\_\+argument}$<$ T $>$\+::convert (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&}]{cmd,  }\item[{const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&}]{position,  }\item[{const std\+::function$<$ T(const std\+::string \&)$>$ \&}]{numerical\+\_\+converter,  }\item[{const std\+::string \&}]{type\+\_\+string }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Try to convert a command line argument value to a numerical value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & The command line. \\
+\hline
+{\em position} & The command line argument iterator. \\
+\hline
+{\em numerical\+\_\+converter} & The function used to convert the cmdarg into a numerical value. \\
+\hline
+{\em type\+\_\+string} & The numerical type\textquotesingle{}s string representation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The numerical value of the command line argument. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{classcppargparse_1_1errors_1_1CommandLineOptionError}{cppargparse\+::errors\+::\+Command\+Line\+Option\+Error}} & if the conversion was unsuccessful. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{structcppargparse_1_1numerical__argument_a05ead3c772c43a02b6608ef2b2382fb8}\label{structcppargparse_1_1numerical__argument_a05ead3c772c43a02b6608ef2b2382fb8}} 
+\index{cppargparse\+::numerical\+\_\+argument@{cppargparse\+::numerical\+\_\+argument}!error\+\_\+message@{error\+\_\+message}}
+\index{error\+\_\+message@{error\+\_\+message}!cppargparse\+::numerical\+\_\+argument@{cppargparse\+::numerical\+\_\+argument}}
+\subsubsection{\texorpdfstring{error\+\_\+message()}{error\_message()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+static const std\+::string \hyperlink{structcppargparse_1_1numerical__argument}{cppargparse\+::numerical\+\_\+argument}$<$ T $>$\+::error\+\_\+message (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&}]{position,  }\item[{const std\+::string \&}]{type\+\_\+string }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Generate an error message for a value that\textquotesingle{}s not a numerical value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The command line argument iterator position. \\
+\hline
+{\em type\+\_\+string} & The numerical type\textquotesingle{}s string representation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An error message for a value that\textquotesingle{}s not convertible to the specified numerical type. 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/cppargparse/arguments/numerical.\+h\end{DoxyCompactItemize}

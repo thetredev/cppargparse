@@ -12,10 +12,12 @@ The argument struct for the double type.
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static double \hyperlink{structcppargparse_1_1argument_3_01double_01_4_aa587b4a64888fd195328d2491f893bc5}{parse} (const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&, const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&position, const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&)
+static double \hyperlink{structcppargparse_1_1argument_3_01double_01_4_a5c9b85ad2daa03840f04b5f3d598ab99}{parse} (const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&cmd, const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&position, const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&)
 \begin{DoxyCompactList}\small\item\em Try to parse a command line argument as a double. \end{DoxyCompactList}\item 
-static double \hyperlink{structcppargparse_1_1argument_3_01double_01_4_a19756d869b671553629d509f18549903}{convert} (const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&, const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&position, const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&)
-\begin{DoxyCompactList}\small\item\em Try to convert a command line argument to a double value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static double \hyperlink{structcppargparse_1_1argument_3_01double_01_4_a364bb87c111c11c91c1beafc6237dae4}{convert} (const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&cmd, const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&position, const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&)
+\begin{DoxyCompactList}\small\item\em Try to convert a command line argument to a double value. \end{DoxyCompactList}\item 
+static double \hyperlink{structcppargparse_1_1argument_3_01double_01_4_ad840410f86ea4c57b6dd4af0c18921b0}{wrap} (const std\+::string \&s)
+\begin{DoxyCompactList}\small\item\em Wrap std\+::stod() for use without default parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -25,11 +27,11 @@ struct cppargparse\+::argument$<$ double $>$}
 The argument struct for the double type. 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{structcppargparse_1_1argument_3_01double_01_4_a19756d869b671553629d509f18549903}\label{structcppargparse_1_1argument_3_01double_01_4_a19756d869b671553629d509f18549903}} 
+\mbox{\Hypertarget{structcppargparse_1_1argument_3_01double_01_4_a364bb87c111c11c91c1beafc6237dae4}\label{structcppargparse_1_1argument_3_01double_01_4_a364bb87c111c11c91c1beafc6237dae4}} 
 \index{cppargparse\+::argument$<$ double $>$@{cppargparse\+::argument$<$ double $>$}!convert@{convert}}
 \index{convert@{convert}!cppargparse\+::argument$<$ double $>$@{cppargparse\+::argument$<$ double $>$}}
 \subsubsection{\texorpdfstring{convert()}{convert()}}
-{\footnotesize\ttfamily static double \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ double $>$\+::convert (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&}]{,  }\item[{const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&}]{position,  }\item[{const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily static double \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ double $>$\+::convert (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&}]{cmd,  }\item[{const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&}]{position,  }\item[{const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -37,17 +39,19 @@ Try to convert a command line argument to a double value.
 
 
 \begin{DoxyParams}{Parameters}
+{\em cmd} & The command line. \\
+\hline
 {\em position} & The command line argument iterator.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The double value of the command line argument. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{structcppargparse_1_1argument_3_01double_01_4_aa587b4a64888fd195328d2491f893bc5}\label{structcppargparse_1_1argument_3_01double_01_4_aa587b4a64888fd195328d2491f893bc5}} 
+\mbox{\Hypertarget{structcppargparse_1_1argument_3_01double_01_4_a5c9b85ad2daa03840f04b5f3d598ab99}\label{structcppargparse_1_1argument_3_01double_01_4_a5c9b85ad2daa03840f04b5f3d598ab99}} 
 \index{cppargparse\+::argument$<$ double $>$@{cppargparse\+::argument$<$ double $>$}!parse@{parse}}
 \index{parse@{parse}!cppargparse\+::argument$<$ double $>$@{cppargparse\+::argument$<$ double $>$}}
 \subsubsection{\texorpdfstring{parse()}{parse()}}
-{\footnotesize\ttfamily static double \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ double $>$\+::parse (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&}]{,  }\item[{const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&}]{position,  }\item[{const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily static double \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ double $>$\+::parse (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&}]{cmd,  }\item[{const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&}]{position,  }\item[{const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -55,11 +59,31 @@ Try to parse a command line argument as a double.
 
 
 \begin{DoxyParams}{Parameters}
+{\em cmd} & The command line. \\
+\hline
 {\em position} & The command line argument iterator.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The double value of the command line argument next in line. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{structcppargparse_1_1argument_3_01double_01_4_ad840410f86ea4c57b6dd4af0c18921b0}\label{structcppargparse_1_1argument_3_01double_01_4_ad840410f86ea4c57b6dd4af0c18921b0}} 
+\index{cppargparse\+::argument$<$ double $>$@{cppargparse\+::argument$<$ double $>$}!wrap@{wrap}}
+\index{wrap@{wrap}!cppargparse\+::argument$<$ double $>$@{cppargparse\+::argument$<$ double $>$}}
+\subsubsection{\texorpdfstring{wrap()}{wrap()}}
+{\footnotesize\ttfamily static double \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ double $>$\+::wrap (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Wrap std\+::stod() for use without default parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The string to convert to a double.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The double value of the string passed. 
 \end{DoxyReturn}
 
 

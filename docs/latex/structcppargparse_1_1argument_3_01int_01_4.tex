@@ -12,10 +12,12 @@ The argument struct for the int type.
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static int \hyperlink{structcppargparse_1_1argument_3_01int_01_4_af6a2f748b086ad7122f7bb6affbe354e}{parse} (const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&, const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&position, const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&)
+static int \hyperlink{structcppargparse_1_1argument_3_01int_01_4_a4b6383c72b1700ecd4718adba1325b0f}{parse} (const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&cmd, const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&position, const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&)
 \begin{DoxyCompactList}\small\item\em Try to parse a command line argument as an int. \end{DoxyCompactList}\item 
-static int \hyperlink{structcppargparse_1_1argument_3_01int_01_4_a8c3b45ea01897660bf5d1e5f7c9d7c41}{convert} (const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&, const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&position, const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&)
-\begin{DoxyCompactList}\small\item\em Try to convert a command line argument to an int value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static int \hyperlink{structcppargparse_1_1argument_3_01int_01_4_ada0c76b27ff8ca62c811a528a4e310dc}{convert} (const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&cmd, const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&position, const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&)
+\begin{DoxyCompactList}\small\item\em Try to convert a command line argument to an int value. \end{DoxyCompactList}\item 
+static int \hyperlink{structcppargparse_1_1argument_3_01int_01_4_a9aaa6d09e1e87523f1304a47f007e9eb}{wrap} (const std\+::string \&s)
+\begin{DoxyCompactList}\small\item\em Wrap std\+::stoi() for use without default parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -25,11 +27,11 @@ struct cppargparse\+::argument$<$ int $>$}
 The argument struct for the int type. 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{structcppargparse_1_1argument_3_01int_01_4_a8c3b45ea01897660bf5d1e5f7c9d7c41}\label{structcppargparse_1_1argument_3_01int_01_4_a8c3b45ea01897660bf5d1e5f7c9d7c41}} 
+\mbox{\Hypertarget{structcppargparse_1_1argument_3_01int_01_4_ada0c76b27ff8ca62c811a528a4e310dc}\label{structcppargparse_1_1argument_3_01int_01_4_ada0c76b27ff8ca62c811a528a4e310dc}} 
 \index{cppargparse\+::argument$<$ int $>$@{cppargparse\+::argument$<$ int $>$}!convert@{convert}}
 \index{convert@{convert}!cppargparse\+::argument$<$ int $>$@{cppargparse\+::argument$<$ int $>$}}
 \subsubsection{\texorpdfstring{convert()}{convert()}}
-{\footnotesize\ttfamily static int \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ int $>$\+::convert (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&}]{,  }\item[{const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&}]{position,  }\item[{const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily static int \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ int $>$\+::convert (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&}]{cmd,  }\item[{const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&}]{position,  }\item[{const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -37,17 +39,19 @@ Try to convert a command line argument to an int value.
 
 
 \begin{DoxyParams}{Parameters}
+{\em cmd} & The command line. \\
+\hline
 {\em position} & The command line argument iterator.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The int value of the command line argument. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{structcppargparse_1_1argument_3_01int_01_4_af6a2f748b086ad7122f7bb6affbe354e}\label{structcppargparse_1_1argument_3_01int_01_4_af6a2f748b086ad7122f7bb6affbe354e}} 
+\mbox{\Hypertarget{structcppargparse_1_1argument_3_01int_01_4_a4b6383c72b1700ecd4718adba1325b0f}\label{structcppargparse_1_1argument_3_01int_01_4_a4b6383c72b1700ecd4718adba1325b0f}} 
 \index{cppargparse\+::argument$<$ int $>$@{cppargparse\+::argument$<$ int $>$}!parse@{parse}}
 \index{parse@{parse}!cppargparse\+::argument$<$ int $>$@{cppargparse\+::argument$<$ int $>$}}
 \subsubsection{\texorpdfstring{parse()}{parse()}}
-{\footnotesize\ttfamily static int \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ int $>$\+::parse (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&}]{,  }\item[{const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&}]{position,  }\item[{const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily static int \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ int $>$\+::parse (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&}]{cmd,  }\item[{const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&}]{position,  }\item[{const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -55,11 +59,31 @@ Try to parse a command line argument as an int.
 
 
 \begin{DoxyParams}{Parameters}
+{\em cmd} & The command line. \\
+\hline
 {\em position} & The command line argument iterator.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The int value of the command line argument next in line. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{structcppargparse_1_1argument_3_01int_01_4_a9aaa6d09e1e87523f1304a47f007e9eb}\label{structcppargparse_1_1argument_3_01int_01_4_a9aaa6d09e1e87523f1304a47f007e9eb}} 
+\index{cppargparse\+::argument$<$ int $>$@{cppargparse\+::argument$<$ int $>$}!wrap@{wrap}}
+\index{wrap@{wrap}!cppargparse\+::argument$<$ int $>$@{cppargparse\+::argument$<$ int $>$}}
+\subsubsection{\texorpdfstring{wrap()}{wrap()}}
+{\footnotesize\ttfamily static int \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ int $>$\+::wrap (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Wrap std\+::stoi() for use without default parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The string to convert to an int.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The int value of the string passed. 
 \end{DoxyReturn}
 
 

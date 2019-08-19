@@ -12,10 +12,12 @@ The argument struct for the float type.
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static float \hyperlink{structcppargparse_1_1argument_3_01float_01_4_a6c02321d1fcc25ffa950948ab642e64f}{parse} (const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&, const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&position, const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&)
+static float \hyperlink{structcppargparse_1_1argument_3_01float_01_4_a5185bf8e191d78341b17be5a4ca6c2f4}{parse} (const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&cmd, const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&position, const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&)
 \begin{DoxyCompactList}\small\item\em Try to parse a command line argument as a float. \end{DoxyCompactList}\item 
-static float \hyperlink{structcppargparse_1_1argument_3_01float_01_4_a3dd5dba91fc35f277138619066d7db24}{convert} (const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&, const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&position, const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&)
-\begin{DoxyCompactList}\small\item\em Try to convert a command line argument to a float value.. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static float \hyperlink{structcppargparse_1_1argument_3_01float_01_4_a1597e4ca43d6ea6fe91a99a796d5e5a7}{convert} (const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&cmd, const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&position, const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&)
+\begin{DoxyCompactList}\small\item\em Try to convert a command line argument to a float value.. \end{DoxyCompactList}\item 
+static float \hyperlink{structcppargparse_1_1argument_3_01float_01_4_a54f71cdddd612e605b8b997455a4f212}{wrap} (const std\+::string \&s)
+\begin{DoxyCompactList}\small\item\em Wrap std\+::stof() for use without default parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -25,11 +27,11 @@ struct cppargparse\+::argument$<$ float $>$}
 The argument struct for the float type. 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{structcppargparse_1_1argument_3_01float_01_4_a3dd5dba91fc35f277138619066d7db24}\label{structcppargparse_1_1argument_3_01float_01_4_a3dd5dba91fc35f277138619066d7db24}} 
+\mbox{\Hypertarget{structcppargparse_1_1argument_3_01float_01_4_a1597e4ca43d6ea6fe91a99a796d5e5a7}\label{structcppargparse_1_1argument_3_01float_01_4_a1597e4ca43d6ea6fe91a99a796d5e5a7}} 
 \index{cppargparse\+::argument$<$ float $>$@{cppargparse\+::argument$<$ float $>$}!convert@{convert}}
 \index{convert@{convert}!cppargparse\+::argument$<$ float $>$@{cppargparse\+::argument$<$ float $>$}}
 \subsubsection{\texorpdfstring{convert()}{convert()}}
-{\footnotesize\ttfamily static float \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ float $>$\+::convert (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&}]{,  }\item[{const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&}]{position,  }\item[{const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily static float \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ float $>$\+::convert (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&}]{cmd,  }\item[{const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&}]{position,  }\item[{const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -37,17 +39,19 @@ Try to convert a command line argument to a float value..
 
 
 \begin{DoxyParams}{Parameters}
+{\em cmd} & The command line. \\
+\hline
 {\em position} & The command line argument iterator.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The float value of the command line argument. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{structcppargparse_1_1argument_3_01float_01_4_a6c02321d1fcc25ffa950948ab642e64f}\label{structcppargparse_1_1argument_3_01float_01_4_a6c02321d1fcc25ffa950948ab642e64f}} 
+\mbox{\Hypertarget{structcppargparse_1_1argument_3_01float_01_4_a5185bf8e191d78341b17be5a4ca6c2f4}\label{structcppargparse_1_1argument_3_01float_01_4_a5185bf8e191d78341b17be5a4ca6c2f4}} 
 \index{cppargparse\+::argument$<$ float $>$@{cppargparse\+::argument$<$ float $>$}!parse@{parse}}
 \index{parse@{parse}!cppargparse\+::argument$<$ float $>$@{cppargparse\+::argument$<$ float $>$}}
 \subsubsection{\texorpdfstring{parse()}{parse()}}
-{\footnotesize\ttfamily static float \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ float $>$\+::parse (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&}]{,  }\item[{const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&}]{position,  }\item[{const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily static float \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ float $>$\+::parse (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&}]{cmd,  }\item[{const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&}]{position,  }\item[{const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -55,11 +59,31 @@ Try to parse a command line argument as a float.
 
 
 \begin{DoxyParams}{Parameters}
+{\em cmd} & The command line. \\
+\hline
 {\em position} & The command line argument iterator.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The float value of the command line argument next in line. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{structcppargparse_1_1argument_3_01float_01_4_a54f71cdddd612e605b8b997455a4f212}\label{structcppargparse_1_1argument_3_01float_01_4_a54f71cdddd612e605b8b997455a4f212}} 
+\index{cppargparse\+::argument$<$ float $>$@{cppargparse\+::argument$<$ float $>$}!wrap@{wrap}}
+\index{wrap@{wrap}!cppargparse\+::argument$<$ float $>$@{cppargparse\+::argument$<$ float $>$}}
+\subsubsection{\texorpdfstring{wrap()}{wrap()}}
+{\footnotesize\ttfamily static float \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ float $>$\+::wrap (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Wrap std\+::stof() for use without default parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The string to convert to a float.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The float value of the string passed. 
 \end{DoxyReturn}
 
 

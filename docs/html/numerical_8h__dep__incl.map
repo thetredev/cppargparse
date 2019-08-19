@@ -1,8 +1,0 @@
-<map id="include/cppargparse/arguments/numerical.h" name="include/cppargparse/arguments/numerical.h">
-<area shape="rect" id="node2" href="$double_8h_source.html" title="include/cppargparse\l/arguments/double.h" alt="" coords="5,95,145,136"/>
-<area shape="rect" id="node6" href="$float_8h_source.html" title="include/cppargparse\l/arguments/float.h" alt="" coords="170,95,309,136"/>
-<area shape="rect" id="node7" href="$int_8h_source.html" title="include/cppargparse\l/arguments/int.h" alt="" coords="333,95,471,136"/>
-<area shape="rect" id="node3" href="$arguments_8h.html" title="Shorthand for including all builtin type converters. " alt="" coords="170,184,309,225"/>
-<area shape="rect" id="node4" href="$cppargparse_8h.html" title="Shorthand for including the whole library at once. " alt="" coords="170,363,309,404"/>
-<area shape="rect" id="node5" href="$parser_8h_source.html" title="include/cppargparse\l/parser.h" alt="" coords="223,273,362,315"/>
-</map>
