@@ -64,6 +64,7 @@ struct argument<float>
     }
 };
 
+
 } // namespace cppargparse
 
 #endif // CPPARGPARSE_ARGUMENTS_FLOAT_H
