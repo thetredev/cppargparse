@@ -1,6 +1,12 @@
 #ifndef CPPARGPARSE_ARGUMENTS_H
 #define CPPARGPARSE_ARGUMENTS_H
 
+/**
+  @file cppargparse/arguments.h
+  @brief Shorthand for including all builtin type converters.
+ */
+
+
 #include <cppargparse/arguments/default.h>
 #include <cppargparse/arguments/double.h>
 #include <cppargparse/arguments/float.h>

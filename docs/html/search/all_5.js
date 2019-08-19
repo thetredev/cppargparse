@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['id',['id',['../structcppargparse_1_1types_1_1CommandLineArgument__t.html#afbbbb28758ea93a22d7bc9520acb9205',1,'cppargparse::types::CommandLineArgument_t']]],
-  ['id_5falt',['id_alt',['../structcppargparse_1_1types_1_1CommandLineArgument__t.html#a7fd5fda4e06af1ad54daa0951ca8ff02',1,'cppargparse::types::CommandLineArgument_t']]]
+  ['get_5fflag',['get_flag',['../classcppargparse_1_1parser_1_1ArgumentParserBase.html#aa95fba161ea60c65972e76025419b8d9',1,'cppargparse::parser::ArgumentParserBase']]],
+  ['get_5foption',['get_option',['../classcppargparse_1_1parser_1_1ArgumentParserBase.html#ae26532c710a553810a784d2243572e34',1,'cppargparse::parser::ArgumentParserBase::get_option(const types::CommandLineArgument_t &amp;)'],['../classcppargparse_1_1parser_1_1ArgumentParserBase.html#ae5f8dfec70ef927bc315e39046dcf63e',1,'cppargparse::parser::ArgumentParserBase::get_option(const types::CommandLineArgument_t &amp;, const T &amp;default_value)'],['../classcppargparse_1_1parser_1_1ArgumentParser.html#a244bd1a82c40dee15f89651ac2e63be3',1,'cppargparse::parser::ArgumentParser::get_option(const types::CommandLineArgument_t &amp;cmdarg)'],['../classcppargparse_1_1parser_1_1ArgumentParser.html#ae74d77501679cce38a72e6fa1534e64a',1,'cppargparse::parser::ArgumentParser::get_option(const types::CommandLineArgument_t &amp;cmdarg, const T &amp;default_value)']]],
+  ['get_5foption_5fpositions',['get_option_positions',['../structcppargparse_1_1argument_3_01std_1_1vector_3_01T_01_4_01_4.html#a57aaaece7f0d299010f47a9bbfbe5e70',1,'cppargparse::argument&lt; std::vector&lt; T &gt; &gt;']]]
 ];

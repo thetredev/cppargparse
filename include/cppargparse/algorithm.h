@@ -1,6 +1,12 @@
 #ifndef CPPARGPARSE_ALGORITHM_H
 #define CPPARGPARSE_ALGORITHM_H
 
+/**
+  @file cppargparse/algorithm.h
+  @brief Static command line related algorithm functions.
+ */
+
+
 #include <algorithm>
 
 #include "types.h"

@@ -1,6 +1,12 @@
 #ifndef CPPARGPARSE_TYPES_H
 #define CPPARGPARSE_TYPES_H
 
+/**
+  @file cppargparse/types.h
+  @brief Global type definitions of command line related types.
+ */
+
+
 #include <string>
 #include <vector>
 

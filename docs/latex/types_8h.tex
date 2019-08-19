@@ -1,0 +1,64 @@
+\hypertarget{types_8h}{}\section{include/cppargparse/types.h File Reference}
+\label{types_8h}\index{include/cppargparse/types.\+h@{include/cppargparse/types.\+h}}
+
+
+Global type definitions of command line related types.  
+
+
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for types.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=185pt]{types_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{types_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structcppargparse_1_1types_1_1CommandLineArgument__t}{cppargparse\+::types\+::\+Command\+Line\+Argument\+\_\+t}
+\begin{DoxyCompactList}\small\item\em The command line argument struct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::vector$<$ std\+::string $>$ \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{cppargparse\+::types\+::\+Command\+Line\+\_\+t}
+\begin{DoxyCompactList}\small\item\em The command line type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{types_8h_a43b4f43f8940de1bf09ced6f1b668053}\label{types_8h_a43b4f43f8940de1bf09ced6f1b668053}} 
+typedef Command\+Line\+\_\+t\+::const\+\_\+iterator \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{cppargparse\+::types\+::\+Command\+Line\+Position\+\_\+t}
+\begin{DoxyCompactList}\small\item\em The command line iterator position type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{types_8h_a96efcf8a8929cc8e503e27b180627140}\label{types_8h_a96efcf8a8929cc8e503e27b180627140}} 
+typedef std\+::vector$<$ Command\+Line\+Position\+\_\+t $>$ \hyperlink{types_8h_a96efcf8a8929cc8e503e27b180627140}{cppargparse\+::types\+::\+Command\+Line\+Positions\+\_\+t}
+\begin{DoxyCompactList}\small\item\em The command line iterator positions type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{types_8h_a003c660afe2ee9c6cc39aea966e8926d}\label{types_8h_a003c660afe2ee9c6cc39aea966e8926d}} 
+typedef std\+::vector$<$ Command\+Line\+Argument\+\_\+t $>$ \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{cppargparse\+::types\+::\+Command\+Line\+Arguments\+\_\+t}
+\begin{DoxyCompactList}\small\item\em The command line arguments type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{types_8h_abbf49636a18c014e5bad6ae4a82bb8bc}\label{types_8h_abbf49636a18c014e5bad6ae4a82bb8bc}} 
+typedef Command\+Line\+Arguments\+\_\+t\+::const\+\_\+iterator \hyperlink{types_8h_abbf49636a18c014e5bad6ae4a82bb8bc}{cppargparse\+::types\+::\+Command\+Line\+Argument\+Position\+\_\+t}
+\begin{DoxyCompactList}\small\item\em The command line argument iterator position type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Global type definitions of command line related types. 
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{types_8h_file_a80adf2418b7ce9fe616698efa7533ecf}\label{types_8h_file_a80adf2418b7ce9fe616698efa7533ecf}} 
+\index{types.\+h@{types.\+h}!Command\+Line\+\_\+t@{Command\+Line\+\_\+t}}
+\index{Command\+Line\+\_\+t@{Command\+Line\+\_\+t}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{Command\+Line\+\_\+t}{CommandLine\_t}}
+{\footnotesize\ttfamily typedef std\+::vector$<$std\+::string$>$ \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{cppargparse\+::types\+::\+Command\+Line\+\_\+t}}
+
+
+
+The command line type. 
+
+Example\+: \char`\"{}-\/t 5 -\/o output.\+txt\char`\"{} 

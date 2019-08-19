@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['get_5fflag',['get_flag',['../classcppargparse_1_1parser_1_1ArgumentParserBase.html#aa95fba161ea60c65972e76025419b8d9',1,'cppargparse::parser::ArgumentParserBase']]],
-  ['get_5foption',['get_option',['../classcppargparse_1_1parser_1_1ArgumentParserBase.html#ae26532c710a553810a784d2243572e34',1,'cppargparse::parser::ArgumentParserBase::get_option(const types::CommandLineArgument_t &amp;)'],['../classcppargparse_1_1parser_1_1ArgumentParserBase.html#ae5f8dfec70ef927bc315e39046dcf63e',1,'cppargparse::parser::ArgumentParserBase::get_option(const types::CommandLineArgument_t &amp;, const T &amp;default_value)'],['../classcppargparse_1_1parser_1_1ArgumentParser.html#a244bd1a82c40dee15f89651ac2e63be3',1,'cppargparse::parser::ArgumentParser::get_option(const types::CommandLineArgument_t &amp;cmdarg)'],['../classcppargparse_1_1parser_1_1ArgumentParser.html#ae74d77501679cce38a72e6fa1534e64a',1,'cppargparse::parser::ArgumentParser::get_option(const types::CommandLineArgument_t &amp;cmdarg, const T &amp;default_value)']]],
-  ['get_5foption_5fpositions',['get_option_positions',['../structcppargparse_1_1argument_3_01std_1_1vector_3_01T_01_4_01_4.html#a57aaaece7f0d299010f47a9bbfbe5e70',1,'cppargparse::argument&lt; std::vector&lt; T &gt; &gt;']]]
+  ['find_5farg',['find_arg',['../algorithm_8h.html#aacd4544d12e2d7aad474f25398abab6a',1,'cppargparse::algorithm']]],
+  ['find_5farg_5fposition',['find_arg_position',['../algorithm_8h.html#ade27151f3d496105c5924c81cdac3ca8',1,'cppargparse::algorithm']]]
 ];

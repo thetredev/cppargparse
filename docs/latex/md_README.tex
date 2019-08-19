@@ -1,12 +1,49 @@
 C++ Arg\+Parse is an open source header-\/only C++ library. Due to the core\textquotesingle{}s heavy usage of template magic, the library can expose a very easy-\/to-\/use interface, so you as an application developer only have to care about the good stuff. Think Python\textquotesingle{}s \href{https://docs.python.org/3/library/argparse.html}{\tt argparse}.
 
-\href{https://travis-ci.org/backraw/cppargparse}{\tt }
-
 {\itshape Support for Windows is currently untested.}
 
-If you want to skip the following example and core presentations, you can do so by going straight to \href{#Build-tests-and-install}{\tt Build tests and install}.
+\href{https://travis-ci.org/backraw/cppargparse}{\tt }
 
-The source code documentation can be found here\+: \href{https://backraw.github.io/cppargparse}{\tt https\+://backraw.\+github.\+io/cppargparse}
+The source code documentation and code coverage results can be found here\+: \href{https://backraw.github.io/cppargparse}{\tt https\+://backraw.\+github.\+io/cppargparse}
+
+\section*{Build tests}
+
+Build requirements\+:
+\begin{DoxyItemize}
+\item {\ttfamily gcc}, {\ttfamily clang}, or {\ttfamily msvc}
+\item {\ttfamily cmake}
+\end{DoxyItemize}
+
+Then you should be able to build the tests like this\+: 
+\begin{DoxyCode}
+git clone https://github.com/backraw/cppargparse.git
+cd cppargparse
+
+mkdir build
+cd build
+
+cmake -DCMAKE\_BUILD\_TYPE=Profiling ..
+make run\_tests
+\end{DoxyCode}
+
+
+Of course, you can use every generator that C\+Make supports.
+
+\section*{Code coverage}
+
+Coverage requirements\+:
+\begin{DoxyItemize}
+\item {\ttfamily gcov}
+\item {\ttfamily lcov}
+\item {\ttfamily genhtml}
+\item {\ttfamily python3}
+\end{DoxyItemize}
+
+Run {\ttfamily make coverage} inside the build directory. This will automatically execute {\ttfamily make run\+\_\+tests} beforehand.
+
+\section*{Install}
+
+To install the library, run {\ttfamily sudo make install} inside the build directory.
 
 \section*{The library interface}
 
@@ -218,29 +255,4 @@ It collects all values tied to the argument and converts each value string to {\
 
 \subsection*{Custom types}
 
-... todo ...
-
-\section*{Build tests and install}
-
-Build requirements\+:
-\begin{DoxyItemize}
-\item {\ttfamily gcc}, {\ttfamily clang}, or {\ttfamily msvc}
-\item {\ttfamily cmake}
-\end{DoxyItemize}
-
-Then you should be able to build the tests like this\+: 
-\begin{DoxyCode}
-git clone https://github.com/backraw/cppargparse.git
-cd cppargparse
-
-mkdir build
-cd build
-
-cmake -DCMAKE\_BUILD\_TYPE=Profiling ..
-make tests
-\end{DoxyCode}
-
-
-Of course, you can use every generator that C\+Make supports.
-
-To install the library, run {\ttfamily sudo make install} inside the build directory. 
+... todo ... 

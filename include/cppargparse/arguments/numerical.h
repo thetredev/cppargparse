@@ -1,6 +1,12 @@
 #ifndef CPPARGPARSE_ARGUMENTS_NUMERICAL_H
 #define CPPARGPARSE_ARGUMENTS_NUMERICAL_H
 
+/**
+  @file cppargparse/arguments/numerical.h
+  @brief Static numerical conversion function helpers.
+ */
+
+
 #include <algorithm>
 #include <functional>
 #include <sstream>

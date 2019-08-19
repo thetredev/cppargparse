@@ -33,7 +33,6 @@ const \hyperlink{structcppargparse_1_1types_1_1CommandLineArgument__t}{types\+::
 \begin{DoxyCompactList}\small\item\em Add an argument to the command line arguments list. \end{DoxyCompactList}\item 
 const \hyperlink{structcppargparse_1_1types_1_1CommandLineArgument__t}{types\+::\+Command\+Line\+Argument\+\_\+t} \hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_ad1bb9bf2be4793b3442679fa2090bc2d}{add\+\_\+arg} (const std\+::string \&id, const std\+::string \&id\+\_\+alt, const std\+::string \&description)
 \begin{DoxyCompactList}\small\item\em Add an argument to the command line arguments list. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParserBase_aaa2d68da1d224500fa290040de72ff01}\label{classcppargparse_1_1parser_1_1ArgumentParserBase_aaa2d68da1d224500fa290040de72ff01}} 
 const \hyperlink{structcppargparse_1_1types_1_1CommandLineArgument__t}{types\+::\+Command\+Line\+Argument\+\_\+t} \hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_aaa2d68da1d224500fa290040de72ff01}{add\+\_\+help} ()
 \begin{DoxyCompactList}\small\item\em Add default help argument\+: -\/h, --help. \end{DoxyCompactList}\item 
 bool \hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_aa95fba161ea60c65972e76025419b8d9}{get\+\_\+flag} (const \hyperlink{structcppargparse_1_1types_1_1CommandLineArgument__t}{types\+::\+Command\+Line\+Argument\+\_\+t} \&cmdarg)
@@ -48,10 +47,10 @@ const std\+::string \hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParserBase_ab61aac285e831ef24598191816bed84d}\label{classcppargparse_1_1parser_1_1ArgumentParserBase_ab61aac285e831ef24598191816bed84d}} 
-types\+::\+Command\+Line\+\_\+t \hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_ab61aac285e831ef24598191816bed84d}{m\+\_\+cmd}
+\hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_ab61aac285e831ef24598191816bed84d}{m\+\_\+cmd}
 \begin{DoxyCompactList}\small\item\em The command line. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParserBase_ac6fd162f8dfee569bb281ae5ef576d38}\label{classcppargparse_1_1parser_1_1ArgumentParserBase_ac6fd162f8dfee569bb281ae5ef576d38}} 
-types\+::\+Command\+Line\+Arguments\+\_\+t \hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_ac6fd162f8dfee569bb281ae5ef576d38}{m\+\_\+cmdargs}
+\hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \hyperlink{classcppargparse_1_1parser_1_1ArgumentParserBase_ac6fd162f8dfee569bb281ae5ef576d38}{m\+\_\+cmdargs}
 \begin{DoxyCompactList}\small\item\em The command line arguments. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -163,6 +162,19 @@ Add an argument to the command line arguments list.
 {\em description} & The argument description.\\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The generated command line argument. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcppargparse_1_1parser_1_1ArgumentParserBase_aaa2d68da1d224500fa290040de72ff01}\label{classcppargparse_1_1parser_1_1ArgumentParserBase_aaa2d68da1d224500fa290040de72ff01}} 
+\index{cppargparse\+::parser\+::\+Argument\+Parser\+Base@{cppargparse\+::parser\+::\+Argument\+Parser\+Base}!add\+\_\+help@{add\+\_\+help}}
+\index{add\+\_\+help@{add\+\_\+help}!cppargparse\+::parser\+::\+Argument\+Parser\+Base@{cppargparse\+::parser\+::\+Argument\+Parser\+Base}}
+\subsubsection{\texorpdfstring{add\+\_\+help()}{add\_help()}}
+{\footnotesize\ttfamily const \hyperlink{structcppargparse_1_1types_1_1CommandLineArgument__t}{types\+::\+Command\+Line\+Argument\+\_\+t} cppargparse\+::parser\+::\+Argument\+Parser\+Base\+::add\+\_\+help (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add default help argument\+: -\/h, --help. 
+
 \begin{DoxyReturn}{Returns}
 The generated command line argument. 
 \end{DoxyReturn}

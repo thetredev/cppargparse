@@ -63,10 +63,25 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>C++ ArgParse is an open source header-only C++ library. Due to the core's heavy usage of template magic, the library can expose a very easy-to-use interface, so you as an application developer only have to care about the good stuff. Think Python's <a href="https://docs.python.org/3/library/argparse.html">argparse</a>.</p>
-<p><a href="https://travis-ci.org/backraw/cppargparse"></a></p>
 <p><em>Support for Windows is currently untested.</em></p>
-<p>If you want to skip the following example and core presentations, you can do so by going straight to <a href="#Build-tests-and-install">Build tests and install</a>.</p>
-<p>The source code documentation can be found here: <a href="https://backraw.github.io/cppargparse">https://backraw.github.io/cppargparse</a></p>
+<p><a href="https://travis-ci.org/backraw/cppargparse"></a></p>
+<p>The source code documentation and code coverage results can be found here: <a href="https://backraw.github.io/cppargparse">https://backraw.github.io/cppargparse</a></p>
+<h1>Build tests</h1>
+<p>Build requirements:</p><ul>
+<li><code>gcc</code>, <code>clang</code>, or <code>msvc</code></li>
+<li><code>cmake</code></li>
+</ul>
+<p>Then you should be able to build the tests like this: </p><div class="fragment"><div class="line">git clone https://github.com/backraw/cppargparse.git</div><div class="line">cd cppargparse</div><div class="line"></div><div class="line">mkdir build</div><div class="line">cd build</div><div class="line"></div><div class="line">cmake -DCMAKE_BUILD_TYPE=Profiling ..</div><div class="line">make run_tests</div></div><!-- fragment --><p>Of course, you can use every generator that CMake supports.</p>
+<h1>Code coverage</h1>
+<p>Coverage requirements:</p><ul>
+<li><code>gcov</code></li>
+<li><code>lcov</code></li>
+<li><code>genhtml</code></li>
+<li><code>python3</code></li>
+</ul>
+<p>Run <code>make coverage</code> inside the build directory. This will automatically execute <code>make run_tests</code> beforehand.</p>
+<h1>Install</h1>
+<p>To install the library, run <code>sudo make install</code> inside the build directory.</p>
 <h1>The library interface</h1>
 <p>Please have a look at the <a href="https://github.com/backraw/cppargparse/tree/master/samples">examples</a>.</p>
 <p>You can mix <a href="https://github.com/backraw/cppargparse/tree/master/samples/traditional">traditional</a> and <a href="https://github.com/backraw/cppargparse/tree/master/samples/callback">callback</a> arguments as you wish. The <a href="https://github.com/backraw/cppargparse/blob/master/include/cppargparse/parser.h">ArgumentParser</a> class provides an interface for both and doesn't care which one you chose.</p>
@@ -103,14 +118,7 @@ $(function() {
 <h2>Vector types</h2>
 <p>Currently only <code>std::vector&lt;T&gt;</code> is implemented as a vector type: </p><div class="fragment"><div class="line">{C++}</div><div class="line">static const std::vector&lt;T&gt; parse(</div><div class="line">        const types::CommandLine_t &amp;cmd,</div><div class="line">        const types::CommandLinePosition_t &amp;position,</div><div class="line">        const types::CommandLineArguments_t &amp;cmdargs)</div><div class="line">{</div><div class="line">    auto positions = get_option_positions(cmd, position, cmdargs);</div><div class="line">    std::vector&lt;T&gt; values;</div><div class="line"></div><div class="line">    for (auto position : positions)</div><div class="line">    {</div><div class="line">        values.emplace_back(argument&lt;T&gt;::convert(cmd, position, cmdargs));</div><div class="line">    }</div><div class="line"></div><div class="line">    return values;</div><div class="line">}</div><div class="line"></div><div class="line"></div><div class="line">static types::CommandLinePositions_t get_option_positions(</div><div class="line">        const types::CommandLine_t &amp;cmd,</div><div class="line">        const types::CommandLinePosition_t &amp;position,</div><div class="line">        const types::CommandLineArguments_t &amp;cmdargs)</div><div class="line">{</div><div class="line">    types::CommandLinePositions_t positions;</div><div class="line"></div><div class="line">    for (auto current = std::next(position); current != cmd.end(); ++current)</div><div class="line">    {</div><div class="line">        if (algorithm::find_arg(cmdargs, *current) != cmdargs.cend())</div><div class="line">        {</div><div class="line">            break;</div><div class="line">        }</div><div class="line"></div><div class="line">        positions.emplace_back(current);</div><div class="line">    }</div><div class="line"></div><div class="line">    return positions;</div><div class="line">}</div></div><!-- fragment --><p>It collects all values tied to the argument and converts each value string to <code>T</code>.</p>
 <h2>Custom types</h2>
-<p>... todo ...</p>
-<h1>Build tests and install</h1>
-<p>Build requirements:</p><ul>
-<li><code>gcc</code>, <code>clang</code>, or <code>msvc</code></li>
-<li><code>cmake</code></li>
-</ul>
-<p>Then you should be able to build the tests like this: </p><div class="fragment"><div class="line">git clone https://github.com/backraw/cppargparse.git</div><div class="line">cd cppargparse</div><div class="line"></div><div class="line">mkdir build</div><div class="line">cd build</div><div class="line"></div><div class="line">cmake -DCMAKE_BUILD_TYPE=Profiling ..</div><div class="line">make tests</div></div><!-- fragment --><p>Of course, you can use every generator that CMake supports.</p>
-<p>To install the library, run <code>sudo make install</code> inside the build directory. </p>
+<p>... todo ... </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
