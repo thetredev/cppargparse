@@ -45,6 +45,7 @@ static const std::string error_message(const types::CommandLinePosition_t &posit
 }
 
 
+template <typename T>
 /**
  * @brief Try to convert a command line argument value to a numerical value.
  *
@@ -55,7 +56,6 @@ static const std::string error_message(const types::CommandLinePosition_t &posit
  * @return The numerical value of the command line argument.
  * @throws #cppargparse::errors::CommandLineOptionError if the conversion was unsuccessful.
  */
-template <typename T>
 static T convert(
         const types::CommandLinePosition_t &position,
         const std::function<T(const std::string &, size_t *)> &numerical_converter,
