@@ -46,6 +46,10 @@ struct numerical_argument
         {
             throw errors::CommandLineOptionError(error_message(position, type_string));
         }
+        catch (const std::out_of_range &)
+        {
+            throw errors::CommandLineOptionError(error_message(position, type_string));
+        }
     }
 
     /**

@@ -68,6 +68,83 @@ TEST(TestArguments, VectorOfIntsReachEnd)
 
 
 //
+// unsigned int
+//
+TEST(TestArguments, UnsignedInt)
+{
+    using namespace cppargparse;
+    auto arg_parser = test::parse_cmdargs("-t 3", "TestArguments");
+
+    const auto t = arg_parser.add_arg("-t");
+    ASSERT_EQ(3, arg_parser.get_option<unsigned int>(t));
+
+    const auto x = arg_parser.add_arg("-x");
+    ASSERT_EQ(5, arg_parser.get_option<unsigned int>(x, 5));
+}
+
+//
+// unsigned int out of range
+//
+TEST(TestArguments, UnsignedIntOutOfRange)
+{
+    using namespace cppargparse;
+    auto arg_parser = test::parse_cmdargs("-t 42949672953333", "TestArguments");
+
+    const auto t = arg_parser.add_arg("-t");
+    ASSERT_THROW(arg_parser.get_option<unsigned int>(t), errors::CommandLineOptionError);
+
+    const auto x = arg_parser.add_arg("-x");
+    ASSERT_EQ(5, arg_parser.get_option<unsigned int>(x, 5));
+}
+
+//
+// vector of unsigned ints
+//
+TEST(TestArguments, VectorOfUnsignedInts)
+{
+    using namespace cppargparse;
+    auto arg_parser = test::parse_cmdargs("--seq 3 2 34 6 2 100 2151112", "TestArguments");
+
+    const auto seq = arg_parser.add_arg("-s", "--seq");
+    const std::vector<unsigned int> seq_values = arg_parser.get_option<std::vector<unsigned int>>(seq);
+
+    const std::vector<unsigned int> seq_expected {
+        3, 2, 34, 6, 2, 100, 2151112
+    };
+
+
+    for (size_t i = 0; i < seq_expected.size(); ++i)
+    {
+        ASSERT_EQ(seq_expected.at(i), seq_values.at(i));
+    }
+}
+
+//
+// vector of unsigned ints reach end
+//
+TEST(TestArguments, VectorOfUnsignedIntsReachEnd)
+{
+    using namespace cppargparse;
+    auto arg_parser = test::parse_cmdargs("--seq 3 2 34 6 2 100 2151112 -t 3", "TestArguments");
+
+    const auto seq = arg_parser.add_arg("-s", "--seq");
+    arg_parser.add_arg("-t");
+
+    const std::vector<unsigned int> seq_values = arg_parser.get_option<std::vector<unsigned int>>(seq);
+
+    const std::vector<unsigned int> seq_expected {
+        3, 2, 34, 6, 2, 100, 2151112
+    };
+
+
+    for (size_t i = 0; i < seq_expected.size(); ++i)
+    {
+        ASSERT_EQ(seq_expected.at(i), seq_values.at(i));
+    }
+}
+
+
+//
 // long
 //
 TEST(TestArguments, Long)
