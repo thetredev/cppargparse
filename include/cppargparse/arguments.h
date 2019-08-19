@@ -11,6 +11,7 @@
 #include <cppargparse/arguments/double.h>
 #include <cppargparse/arguments/float.h>
 #include <cppargparse/arguments/int.h>
+#include <cppargparse/arguments/long.h>
 #include <cppargparse/arguments/string.h>
 #include <cppargparse/arguments/vector.h>
 
