@@ -1,0 +1,92 @@
+\hypertarget{structcppargparse_1_1argument_3_01unsigned_01long_01long_01_4}{}\section{cppargparse\+:\+:argument$<$ unsigned long long $>$ Struct Template Reference}
+\label{structcppargparse_1_1argument_3_01unsigned_01long_01long_01_4}\index{cppargparse\+::argument$<$ unsigned long long $>$@{cppargparse\+::argument$<$ unsigned long long $>$}}
+
+
+The argument struct for the unsigned long long type.  
+
+
+
+
+{\ttfamily \#include $<$long.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned long long \hyperlink{structcppargparse_1_1argument_3_01unsigned_01long_01long_01_4_afd2f459eea01e012b9bc0d5592fa0936}{parse} (const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&cmd, const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&position, const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&)
+\begin{DoxyCompactList}\small\item\em Try to parse a command line argument as an unsigned long long. \end{DoxyCompactList}\item 
+static unsigned long long \hyperlink{structcppargparse_1_1argument_3_01unsigned_01long_01long_01_4_ac17e3c6079e302a59b23485ed64b2c37}{convert} (const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&cmd, const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&position, const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&)
+\begin{DoxyCompactList}\small\item\em Try to convert a command line argument to an unsigned long long value. \end{DoxyCompactList}\item 
+static unsigned long long \hyperlink{structcppargparse_1_1argument_3_01unsigned_01long_01long_01_4_a90e072df50bf4185486fe9c45d3e3ef0}{wrap} (const std\+::string \&s)
+\begin{DoxyCompactList}\small\item\em Wrap std\+::stoull() for use without default parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$$>$\newline
+struct cppargparse\+::argument$<$ unsigned long long $>$}
+
+The argument struct for the unsigned long long type. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{structcppargparse_1_1argument_3_01unsigned_01long_01long_01_4_ac17e3c6079e302a59b23485ed64b2c37}\label{structcppargparse_1_1argument_3_01unsigned_01long_01long_01_4_ac17e3c6079e302a59b23485ed64b2c37}} 
+\index{cppargparse\+::argument$<$ unsigned long long $>$@{cppargparse\+::argument$<$ unsigned long long $>$}!convert@{convert}}
+\index{convert@{convert}!cppargparse\+::argument$<$ unsigned long long $>$@{cppargparse\+::argument$<$ unsigned long long $>$}}
+\subsubsection{\texorpdfstring{convert()}{convert()}}
+{\footnotesize\ttfamily static unsigned long long \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ unsigned long long $>$\+::convert (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&}]{cmd,  }\item[{const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&}]{position,  }\item[{const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Try to convert a command line argument to an unsigned long long value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & The command line. \\
+\hline
+{\em position} & The command line argument iterator.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The unsigned long long value of the command line argument. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{structcppargparse_1_1argument_3_01unsigned_01long_01long_01_4_afd2f459eea01e012b9bc0d5592fa0936}\label{structcppargparse_1_1argument_3_01unsigned_01long_01long_01_4_afd2f459eea01e012b9bc0d5592fa0936}} 
+\index{cppargparse\+::argument$<$ unsigned long long $>$@{cppargparse\+::argument$<$ unsigned long long $>$}!parse@{parse}}
+\index{parse@{parse}!cppargparse\+::argument$<$ unsigned long long $>$@{cppargparse\+::argument$<$ unsigned long long $>$}}
+\subsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily static unsigned long long \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ unsigned long long $>$\+::parse (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a80adf2418b7ce9fe616698efa7533ecf}{types\+::\+Command\+Line\+\_\+t} \&}]{cmd,  }\item[{const \hyperlink{types_8h_a43b4f43f8940de1bf09ced6f1b668053}{types\+::\+Command\+Line\+Position\+\_\+t} \&}]{position,  }\item[{const \hyperlink{types_8h_a003c660afe2ee9c6cc39aea966e8926d}{types\+::\+Command\+Line\+Arguments\+\_\+t} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Try to parse a command line argument as an unsigned long long. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & The command line. \\
+\hline
+{\em position} & The command line argument iterator.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The unsigned long long value of the command line argument next in line. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{structcppargparse_1_1argument_3_01unsigned_01long_01long_01_4_a90e072df50bf4185486fe9c45d3e3ef0}\label{structcppargparse_1_1argument_3_01unsigned_01long_01long_01_4_a90e072df50bf4185486fe9c45d3e3ef0}} 
+\index{cppargparse\+::argument$<$ unsigned long long $>$@{cppargparse\+::argument$<$ unsigned long long $>$}!wrap@{wrap}}
+\index{wrap@{wrap}!cppargparse\+::argument$<$ unsigned long long $>$@{cppargparse\+::argument$<$ unsigned long long $>$}}
+\subsubsection{\texorpdfstring{wrap()}{wrap()}}
+{\footnotesize\ttfamily static unsigned long long \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$ unsigned long long $>$\+::wrap (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Wrap std\+::stoull() for use without default parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The string to convert to a long.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The long value of the string passed. 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/cppargparse/arguments/long.\+h\end{DoxyCompactItemize}
