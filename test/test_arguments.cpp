@@ -1,3 +1,7 @@
+#include <limits>
+#include <sstream>
+#include <vector>
+
 #include <gtest/gtest.h>
 
 #include <cppargparse/cppargparse.h>
@@ -5,65 +9,150 @@
 #include "test_common.h"
 
 
+
+// -------------------------
+// - Helper functions
+// -------------------------
+
+template <typename T>
+void value_test(const T &value, const T &default_value)
+{
+    using namespace cppargparse;
+
+    // Generate a command line argument string with "-t <value>"
+    std::ostringstream cmd;
+    cmd << "-t " << value;
+
+
+    // Expect the same number as <value> when parsing the command line string for "-t"
+    auto arg_parser = test::parse_cmdargs(cmd.str(), "TestArguments");
+
+    const auto t = arg_parser.add_arg("-t");
+    ASSERT_EQ(value, arg_parser.get_option<T>(t));
+
+
+    // Check default value behavior
+    const auto x = arg_parser.add_arg("-x");
+    ASSERT_EQ(default_value, arg_parser.get_option<T>(x, default_value));
+}
+
+
+template <typename T>
+void max_test(const T &max)
+{
+    using namespace cppargparse;
+
+    // Generate a command line argument string with <max>
+    std::ostringstream cmd;
+    cmd << "-t " << max;
+
+    // Expect the same number as <max> when parsing the command line string for "-t"
+    auto arg_parser = test::parse_cmdargs(cmd.str(), "TestArguments");
+
+    const auto t = arg_parser.add_arg("-t");
+    ASSERT_EQ(max, arg_parser.get_option<T>(t));
+}
+
+
+template <typename T>
+void out_of_range_test(const T &max)
+{
+    using namespace cppargparse;
+
+    // Generate a command line argument string with a number that's higher than <max>
+    std::ostringstream cmd;
+    cmd << "-t " << max << '0';
+
+
+    // Expect an error when parsing the command line string for "-t" with the out-of-range number
+    auto arg_parser = test::parse_cmdargs(cmd.str(), "TestArguments");
+
+    const auto t = arg_parser.add_arg("-t");
+    ASSERT_THROW(arg_parser.get_option<T>(t), errors::CommandLineOptionError);
+}
+
+
+template <typename T>
+void vector_test(const std::vector<T> &seq_expected, bool reach_end)
+{
+    using namespace cppargparse;
+
+
+    // Generate a command line argument string with the expected sequence
+    std::ostringstream cmd;
+    cmd << "--seq";
+
+    for (const auto &seq_value : seq_expected)
+    {
+        cmd << ' ' << seq_value;
+    }
+
+
+    // If we should reach the end, add another argument to the end
+    if (reach_end)
+    {
+        cmd << " -t 3";
+    }
+
+
+    // Parse the command line string
+    auto arg_parser = test::parse_cmdargs(cmd.str(), "TestArguments");
+
+    const auto seq = arg_parser.add_arg("-s", "--seq");
+
+
+    // If we should reach the end, parsing the command line like that should throw an error...
+    if (reach_end)
+    {
+        ASSERT_THROW(arg_parser.get_option<std::vector<T>>(seq), errors::CommandLineOptionError);
+
+        // ... so, add the next argument to the parser
+        arg_parser.add_arg("-t");
+    }
+
+
+    // Check for the equality of expected and parsed values
+    const std::vector<T> seq_parsed = arg_parser.get_option<std::vector<T>>(seq);
+
+    for (size_t i = 0; i < seq_expected.size(); ++i)
+    {
+        ASSERT_EQ(seq_expected.at(i), seq_parsed.at(i));
+    }
+}
+
+
+
+// -------------------------
+// - Unit tests
+// -------------------------
+
+
 //
 // int
 //
 TEST(TestArguments, Int)
 {
-    using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("-t 3", "TestArguments");
-
-    const auto t = arg_parser.add_arg("-t");
-    ASSERT_EQ(3, arg_parser.get_option<int>(t));
-
-    const auto x = arg_parser.add_arg("-x");
-    ASSERT_EQ(5, arg_parser.get_option<int>(x, 5));
+    value_test<int>(3, 5);
 }
 
-//
-// vector of ints
-//
-TEST(TestArguments, VectorOfInts)
+TEST(TestArguments, IntMax)
 {
-    using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--seq 3 2 34 6 2 100 2151112", "TestArguments");
-
-    const auto seq = arg_parser.add_arg("-s", "--seq");
-    const std::vector<int> seq_values = arg_parser.get_option<std::vector<int>>(seq);
-
-    const std::vector<int> seq_expected {
-        3, 2, 34, 6, 2, 100, 2151112
-    };
-
-
-    for (size_t i = 0; i < seq_expected.size(); ++i)
-    {
-        ASSERT_EQ(seq_expected.at(i), seq_values.at(i));
-    }
+    max_test(std::numeric_limits<int>::max());
 }
 
-//
-// vector of ints reach end
-//
-TEST(TestArguments, VectorOfIntsReachEnd)
+TEST(TestArguments, IntOutOfRange)
 {
-    using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--seq 3 2 34 6 2 100 2151112 -t 3", "TestArguments");
+    out_of_range_test(std::numeric_limits<int>::max());
+}
 
-    const auto seq = arg_parser.add_arg("-s", "--seq");
-    arg_parser.add_arg("-t");
+TEST(TestArguments, IntsVector)
+{
+    vector_test<int>(std::vector<int> {3, 2, 34, 6, 2, 100, 2151112}, false);
+}
 
-    const std::vector<int> seq_values = arg_parser.get_option<std::vector<int>>(seq);
-
-    const std::vector<int> seq_expected {
-        3, 2, 34, 6, 2, 100, 2151112
-    };
-
-
-    for (size_t i = 0; i < seq_expected.size(); ++i)
-    {
-        ASSERT_EQ(seq_expected.at(i), seq_values.at(i));
-    }
+TEST(TestArguments, IntsVectorReachEnd)
+{
+    vector_test<int>(std::vector<int> {3, 2, 34, 6, 2, 100, 2151112}, true);
 }
 
 
@@ -72,75 +161,27 @@ TEST(TestArguments, VectorOfIntsReachEnd)
 //
 TEST(TestArguments, UnsignedInt)
 {
-    using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("-t 3", "TestArguments");
-
-    const auto t = arg_parser.add_arg("-t");
-    ASSERT_EQ(3, arg_parser.get_option<unsigned int>(t));
-
-    const auto x = arg_parser.add_arg("-x");
-    ASSERT_EQ(5, arg_parser.get_option<unsigned int>(x, 5));
+    value_test<unsigned int>(3u, 5u);
 }
 
-//
-// unsigned int out of range
-//
+TEST(TestArguments, UnsignedIntMax)
+{
+    max_test(std::numeric_limits<unsigned int>::max());
+}
+
 TEST(TestArguments, UnsignedIntOutOfRange)
 {
-    using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("-t 42949672953333", "TestArguments");
-
-    const auto t = arg_parser.add_arg("-t");
-    ASSERT_THROW(arg_parser.get_option<unsigned int>(t), errors::CommandLineOptionError);
-
-    const auto x = arg_parser.add_arg("-x");
-    ASSERT_EQ(5, arg_parser.get_option<unsigned int>(x, 5));
+    out_of_range_test(std::numeric_limits<unsigned int>::max());
 }
 
-//
-// vector of unsigned ints
-//
-TEST(TestArguments, VectorOfUnsignedInts)
+TEST(TestArguments, UnsignedIntsVector)
 {
-    using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--seq 3 2 34 6 2 100 2151112", "TestArguments");
-
-    const auto seq = arg_parser.add_arg("-s", "--seq");
-    const std::vector<unsigned int> seq_values = arg_parser.get_option<std::vector<unsigned int>>(seq);
-
-    const std::vector<unsigned int> seq_expected {
-        3, 2, 34, 6, 2, 100, 2151112
-    };
-
-
-    for (size_t i = 0; i < seq_expected.size(); ++i)
-    {
-        ASSERT_EQ(seq_expected.at(i), seq_values.at(i));
-    }
+    vector_test<unsigned int>(std::vector<unsigned int> {3u, 2u, 34u, 6u, 2u, 100u, 2151112u}, false);
 }
 
-//
-// vector of unsigned ints reach end
-//
-TEST(TestArguments, VectorOfUnsignedIntsReachEnd)
+TEST(TestArguments, UnsignedIntsVectorReachEnd)
 {
-    using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--seq 3 2 34 6 2 100 2151112 -t 3", "TestArguments");
-
-    const auto seq = arg_parser.add_arg("-s", "--seq");
-    arg_parser.add_arg("-t");
-
-    const std::vector<unsigned int> seq_values = arg_parser.get_option<std::vector<unsigned int>>(seq);
-
-    const std::vector<unsigned int> seq_expected {
-        3, 2, 34, 6, 2, 100, 2151112
-    };
-
-
-    for (size_t i = 0; i < seq_expected.size(); ++i)
-    {
-        ASSERT_EQ(seq_expected.at(i), seq_values.at(i));
-    }
+    vector_test<unsigned int>(std::vector<unsigned int> {3u, 2u, 34u, 6u, 2u, 100u, 2151112u}, true);
 }
 
 
@@ -149,122 +190,27 @@ TEST(TestArguments, VectorOfUnsignedIntsReachEnd)
 //
 TEST(TestArguments, Long)
 {
-    using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("-t 3", "TestArguments");
-
-    const auto t = arg_parser.add_arg("-t");
-    ASSERT_EQ(3, arg_parser.get_option<long>(t));
-
-    const auto x = arg_parser.add_arg("-x");
-    ASSERT_EQ(5, arg_parser.get_option<long>(x, 5));
+    value_test<long>(3l, 5l);
 }
 
-//
-// vector of longs
-//
-TEST(TestArguments, VectorOfLongs)
+TEST(TestArguments, LongMax)
 {
-    using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--seq 3 2 34 6 2 100 2151112", "TestArguments");
-
-    const auto seq = arg_parser.add_arg("-s", "--seq");
-    const std::vector<long> seq_values = arg_parser.get_option<std::vector<long>>(seq);
-
-    const std::vector<long> seq_expected {
-        3, 2, 34, 6, 2, 100, 2151112
-    };
-
-
-    for (size_t i = 0; i < seq_expected.size(); ++i)
-    {
-        ASSERT_EQ(seq_expected.at(i), seq_values.at(i));
-    }
+    max_test(std::numeric_limits<long>::max());
 }
 
-//
-// vector of longs reach end
-//
-TEST(TestArguments, VectorOfLongsReachEnd)
+TEST(TestArguments, LongOutOfRange)
 {
-    using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--seq 3 2 34 6 2 100 2151112 -t 3", "TestArguments");
-
-    const auto seq = arg_parser.add_arg("-s", "--seq");
-    arg_parser.add_arg("-t");
-
-    const std::vector<long> seq_values = arg_parser.get_option<std::vector<long>>(seq);
-
-    const std::vector<long> seq_expected {
-        3, 2, 34, 6, 2, 100, 2151112
-    };
-
-
-    for (size_t i = 0; i < seq_expected.size(); ++i)
-    {
-        ASSERT_EQ(seq_expected.at(i), seq_values.at(i));
-    }
+    out_of_range_test(std::numeric_limits<long>::max());
 }
 
-
-//
-// long long
-//
-TEST(TestArguments, LongLong)
+TEST(TestArguments, LongsVector)
 {
-    using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("-t 3", "TestArguments");
-
-    const auto t = arg_parser.add_arg("-t");
-    ASSERT_EQ(3, arg_parser.get_option<long long>(t));
-
-    const auto x = arg_parser.add_arg("-x");
-    ASSERT_EQ(5, arg_parser.get_option<long long>(x, 5));
+    vector_test<long>(std::vector<long> {3l, 2l, 34l, 6l, 2l, 100l, 2151112l}, false);
 }
 
-//
-// vector of long longs
-//
-TEST(TestArguments, VectorOfLongLongs)
+TEST(TestArguments, LongsVectorReachEnd)
 {
-    using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--seq 3 2 34 6 2 100 2151112", "TestArguments");
-
-    const auto seq = arg_parser.add_arg("-s", "--seq");
-    const std::vector<long long> seq_values = arg_parser.get_option<std::vector<long long>>(seq);
-
-    const std::vector<long long> seq_expected {
-        3, 2, 34, 6, 2, 100, 2151112
-    };
-
-
-    for (size_t i = 0; i < seq_expected.size(); ++i)
-    {
-        ASSERT_EQ(seq_expected.at(i), seq_values.at(i));
-    }
-}
-
-//
-// vector of long longs reach end
-//
-TEST(TestArguments, VectorOfLongLongsReachEnd)
-{
-    using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--seq 3 2 34 6 2 100 2151112 -t 3", "TestArguments");
-
-    const auto seq = arg_parser.add_arg("-s", "--seq");
-    arg_parser.add_arg("-t");
-
-    const std::vector<long long> seq_values = arg_parser.get_option<std::vector<long long>>(seq);
-
-    const std::vector<long long> seq_expected {
-        3, 2, 34, 6, 2, 100, 2151112
-    };
-
-
-    for (size_t i = 0; i < seq_expected.size(); ++i)
-    {
-        ASSERT_EQ(seq_expected.at(i), seq_values.at(i));
-    }
+    vector_test<long>(std::vector<long> {3l, 2l, 34l, 6l, 2l, 100l, 2151112l}, true);
 }
 
 
@@ -273,60 +219,60 @@ TEST(TestArguments, VectorOfLongLongsReachEnd)
 //
 TEST(TestArguments, UnsignedLong)
 {
-    using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("-t 3", "TestArguments");
-
-    const auto t = arg_parser.add_arg("-t");
-    ASSERT_EQ(3, arg_parser.get_option<unsigned long>(t));
-
-    const auto x = arg_parser.add_arg("-x");
-    ASSERT_EQ(5, arg_parser.get_option<unsigned long>(x, 5));
+    value_test<unsigned long>(3ul, 5ul);
 }
 
-//
-// vector of unsigned longs
-//
-TEST(TestArguments, VectorOfUnsignedLongs)
+TEST(TestArguments, UnsignedLongMax)
 {
-    using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--seq 3 2 34 6 2 100 2151112", "TestArguments");
-
-    const auto seq = arg_parser.add_arg("-s", "--seq");
-    const std::vector<unsigned long> seq_values = arg_parser.get_option<std::vector<unsigned long>>(seq);
-
-    const std::vector<unsigned long> seq_expected {
-        3, 2, 34, 6, 2, 100, 2151112
-    };
-
-
-    for (size_t i = 0; i < seq_expected.size(); ++i)
-    {
-        ASSERT_EQ(seq_expected.at(i), seq_values.at(i));
-    }
+    max_test(std::numeric_limits<unsigned long>::max());
 }
 
-//
-// vector of unsigned longs reach end
-//
-TEST(TestArguments, VectorOfUnsignedLongsReachEnd)
+TEST(TestArguments, UnsignedLongOutOfRange)
 {
-    using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--seq 3 2 34 6 2 100 2151112 -t 3", "TestArguments");
+    out_of_range_test(std::numeric_limits<unsigned long>::max());
+}
 
-    const auto seq = arg_parser.add_arg("-s", "--seq");
-    arg_parser.add_arg("-t");
+TEST(TestArguments, UnsignedLongsVector)
+{
+    vector_test<unsigned long>(
+                std::vector<unsigned long> {3ul, 2ul, 34ul, 6ul, 2ul, 100ul, 2151112ul}, false);
+}
 
-    const std::vector<unsigned long> seq_values = arg_parser.get_option<std::vector<unsigned long>>(seq);
+TEST(TestArguments, UnsignedLongsVectorReachEnd)
+{
+    vector_test<unsigned long>(
+                std::vector<unsigned long> {3ul, 2ul, 34ul, 6ul, 2l, 100ul, 2151112ul}, true);
+}
 
-    const std::vector<unsigned long> seq_expected {
-        3, 2, 34, 6, 2, 100, 2151112
-    };
 
+//
+// long long
+//
+TEST(TestArguments, LongLong)
+{
+    value_test<long long>(3l, 5l);
+}
 
-    for (size_t i = 0; i < seq_expected.size(); ++i)
-    {
-        ASSERT_EQ(seq_expected.at(i), seq_values.at(i));
-    }
+TEST(TestArguments, LongLongMax)
+{
+    max_test(std::numeric_limits<long long>::max());
+}
+
+TEST(TestArguments, LongLongOutOfRange)
+{
+    out_of_range_test(std::numeric_limits<long long>::max());
+}
+
+TEST(TestArguments, LongLongsVector)
+{
+    vector_test<long long>(
+                std::vector<long long> {3ll, 2ll, 34ll, 6ll, 2ll, 100ll, 2151112ll}, false);
+}
+
+TEST(TestArguments, LongLongsVectorReachEnd)
+{
+    vector_test<long long>(
+                std::vector<long long> {3ll, 2ll, 34ll, 6ll, 2ll, 100ll, 2151112ll}, true);
 }
 
 
@@ -335,60 +281,29 @@ TEST(TestArguments, VectorOfUnsignedLongsReachEnd)
 //
 TEST(TestArguments, UnsignedLongLong)
 {
-    using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("-t 3", "TestArguments");
-
-    const auto t = arg_parser.add_arg("-t");
-    ASSERT_EQ(3, arg_parser.get_option<unsigned long long>(t));
-
-    const auto x = arg_parser.add_arg("-x");
-    ASSERT_EQ(5, arg_parser.get_option<unsigned long long>(x, 5));
+    value_test<unsigned long long>(3l, 5l);
 }
 
-//
-// vector of unsigned long longs
-//
-TEST(TestArguments, VectorOfUnsignedLongLongs)
+TEST(TestArguments, UnsignedLongLongMax)
 {
-    using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--seq 3 2 34 6 2 100 2151112", "TestArguments");
-
-    const auto seq = arg_parser.add_arg("-s", "--seq");
-    const std::vector<unsigned long long> seq_values = arg_parser.get_option<std::vector<unsigned long long>>(seq);
-
-    const std::vector<unsigned long long> seq_expected {
-        3, 2, 34, 6, 2, 100, 2151112
-    };
-
-
-    for (size_t i = 0; i < seq_expected.size(); ++i)
-    {
-        ASSERT_EQ(seq_expected.at(i), seq_values.at(i));
-    }
+    max_test(std::numeric_limits<unsigned long long>::max());
 }
 
-//
-// vector of unsigned long longs reach end
-//
-TEST(TestArguments, VectorOfUnsignedLongLongsReachEnd)
+TEST(TestArguments, UnsignedLongLongOutOfRange)
 {
-    using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--seq 3 2 34 6 2 100 2151112 -t 3", "TestArguments");
+    out_of_range_test(std::numeric_limits<unsigned long long>::max());
+}
 
-    const auto seq = arg_parser.add_arg("-s", "--seq");
-    arg_parser.add_arg("-t");
+TEST(TestArguments, UnsignedLongLongsVector)
+{
+    vector_test<unsigned long long>(
+                std::vector<unsigned long long> {3ull, 2ull, 34ull, 6ull, 2ull, 100ull, 2151112ull}, false);
+}
 
-    const std::vector<unsigned long long> seq_values = arg_parser.get_option<std::vector<unsigned long long>>(seq);
-
-    const std::vector<unsigned long long> seq_expected {
-        3, 2, 34, 6, 2, 100, 2151112
-    };
-
-
-    for (size_t i = 0; i < seq_expected.size(); ++i)
-    {
-        ASSERT_EQ(seq_expected.at(i), seq_values.at(i));
-    }
+TEST(TestArguments, UnsignedLongLongsVectorReachEnd)
+{
+    vector_test<unsigned long long>(
+                std::vector<unsigned long long> {3ull, 2ull, 34ull, 6ull, 2ull, 100ull, 2151112ull}, true);
 }
 
 
