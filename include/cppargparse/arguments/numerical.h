@@ -13,6 +13,9 @@ namespace cppargparse {
 
 
 template <typename T>
+/**
+ * @brief The conversion struct for numerical types.
+ */
 struct numerical_argument
 {
     /**
