@@ -25,7 +25,7 @@ void value_test(const T &value, const T &default_value)
 
 
     // Expect the same number as <value> when parsing the command line string for "-t"
-    auto arg_parser = test::parse_cmdargs(cmd.str(), "TestArguments");
+    auto arg_parser = test::make_arg_parser(test::parse_cmdargs(cmd.str()), "TestArguments");
 
     const auto t = arg_parser.add_arg("-t");
     ASSERT_EQ(value, arg_parser.get_option<T>(t));
@@ -47,7 +47,7 @@ void max_test(const T &max)
     cmd << "-t " << max;
 
     // Expect the same number as <max> when parsing the command line string for "-t"
-    auto arg_parser = test::parse_cmdargs(cmd.str(), "TestArguments");
+    auto arg_parser = test::make_arg_parser(test::parse_cmdargs(cmd.str()), "TestArguments");
 
     const auto t = arg_parser.add_arg("-t");
     ASSERT_EQ(max, arg_parser.get_option<T>(t));
@@ -65,7 +65,7 @@ void out_of_range_test(const T &max)
 
 
     // Expect an error when parsing the command line string for "-t" with the out-of-range number
-    auto arg_parser = test::parse_cmdargs(cmd.str(), "TestArguments");
+    auto arg_parser = test::make_arg_parser(test::parse_cmdargs(cmd.str()), "TestArguments");
 
     const auto t = arg_parser.add_arg("-t");
     ASSERT_THROW(arg_parser.get_option<T>(t), errors::CommandLineOptionError);
@@ -96,7 +96,7 @@ void vector_test(const std::vector<T> &seq_expected, bool reach_end)
 
 
     // Parse the command line string
-    auto arg_parser = test::parse_cmdargs(cmd.str(), "TestArguments");
+    auto arg_parser = test::make_arg_parser(test::parse_cmdargs(cmd.str()), "TestArguments");
 
     const auto seq = arg_parser.add_arg("-s", "--seq");
 
@@ -313,7 +313,7 @@ TEST(TestArguments, UnsignedLongLongsVectorReachEnd)
 TEST(TestArguments, Float)
 {
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("-t 3", "TestArguments");
+    auto arg_parser = test::make_arg_parser(test::parse_cmdargs("-t 3"), "TestArguments");
 
     const auto t = arg_parser.add_arg("-t");
     ASSERT_FLOAT_EQ(3.0f, arg_parser.get_option<float>(t));
@@ -328,7 +328,7 @@ TEST(TestArguments, Float)
 TEST(TestArguments, VectorOfFloats)
 {
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--seq 3.2 2 34 6 2 100 2151112", "TestArguments");
+    auto arg_parser = test::make_arg_parser(test::parse_cmdargs("--seq 3.2 2 34 6 2 100 2151112"), "TestArguments");
 
     const auto seq = arg_parser.add_arg("-s", "--seq");
     const std::vector<float> seq_values = arg_parser.get_option<std::vector<float>>(seq);
@@ -350,7 +350,7 @@ TEST(TestArguments, VectorOfFloats)
 TEST(TestArguments, VectorOfFloatsReachEnd)
 {
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--seq 3.2 2 34 6 2 100 2151112 -t 3", "TestArguments");
+    auto arg_parser = test::make_arg_parser(test::parse_cmdargs("--seq 3.2 2 34 6 2 100 2151112"), "TestArguments");
 
     const auto seq = arg_parser.add_arg("-s", "--seq");
     arg_parser.add_arg("-t");
@@ -375,7 +375,7 @@ TEST(TestArguments, VectorOfFloatsReachEnd)
 TEST(TestArguments, Double)
 {
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("-t 3.63126121", "TestArguments");
+    auto arg_parser = test::make_arg_parser(test::parse_cmdargs("-t 3.63126121"), "TestArguments");
 
     const auto t = arg_parser.add_arg("-t");
     ASSERT_DOUBLE_EQ(3.63126121, arg_parser.get_option<double>(t));
@@ -390,7 +390,7 @@ TEST(TestArguments, Double)
 TEST(TestArguments, VectorOfDoubles)
 {
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--seq 3.2 2 34 6 2 100 2151112.11111", "TestArguments");
+    auto arg_parser = test::make_arg_parser(test::parse_cmdargs("--seq 3.2 2 34 6 2 100 2151112.11111"), "TestArguments");
 
     const auto seq = arg_parser.add_arg("-s", "--seq");
     const std::vector<double> seq_values = arg_parser.get_option<std::vector<double>>(seq);
@@ -412,7 +412,7 @@ TEST(TestArguments, VectorOfDoubles)
 TEST(TestArguments, VectorOfDoublesReachEnd)
 {
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--seq 3.2 2 34 6 2 100 2151112.11111 -t 3", "TestArguments");
+    auto arg_parser = test::make_arg_parser(test::parse_cmdargs("--seq 3.2 2 34 6 2 100 2151112.11111"), "TestArguments");
 
     const auto seq = arg_parser.add_arg("-s", "--seq");
     arg_parser.add_arg("-t");
@@ -437,7 +437,7 @@ TEST(TestArguments, VectorOfDoublesReachEnd)
 TEST(TestArguments, LongDouble)
 {
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("-t 3.63126121", "TestArguments");
+    auto arg_parser = test::make_arg_parser(test::parse_cmdargs("-t 3.63126121"), "TestArguments");
 
     const auto t = arg_parser.add_arg("-t");
     ASSERT_DOUBLE_EQ(3.63126121, arg_parser.get_option<long double>(t));
@@ -452,7 +452,7 @@ TEST(TestArguments, LongDouble)
 TEST(TestArguments, VectorOfLongDoubles)
 {
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--seq 3.2 2 34 6 2 100 2151112.11111", "TestArguments");
+    auto arg_parser = test::make_arg_parser(test::parse_cmdargs("--seq 3.2 2 34 6 2 100 2151112.11111"), "TestArguments");
 
     const auto seq = arg_parser.add_arg("-s", "--seq");
     const std::vector<long double> seq_values = arg_parser.get_option<std::vector<long double>>(seq);
@@ -474,7 +474,7 @@ TEST(TestArguments, VectorOfLongDoubles)
 TEST(TestArguments, VectorOfLongDoublesReachEnd)
 {
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--seq 3.2 2 34 6 2 100 2151112.11111 -t 3", "TestArguments");
+    auto arg_parser = test::make_arg_parser(test::parse_cmdargs("--seq 3.2 2 34 6 2 100 2151112.11111"), "TestArguments");
 
     const auto seq = arg_parser.add_arg("-s", "--seq");
     arg_parser.add_arg("-t");
@@ -499,7 +499,7 @@ TEST(TestArguments, VectorOfLongDoublesReachEnd)
 TEST(TestArguments, String)
 {
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--text THIS IS SAMPLE TEXT", "TestArguments");
+    auto arg_parser = test::make_arg_parser(test::parse_cmdargs("--text THIS IS SAMPLE TEXT"), "TestArguments");
 
     const auto t = arg_parser.add_arg("-t", "--text");
     ASSERT_EQ("THIS", arg_parser.get_option<std::string>(t));
@@ -514,7 +514,7 @@ TEST(TestArguments, String)
 TEST(TestArguments, StringReachEnd)
 {
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--text THIS IS SAMPLE TEXT -c", "TestArguments");
+    auto arg_parser = test::make_arg_parser(test::parse_cmdargs("--text THIS IS SAMPLE TEXT -c"), "TestArguments");
 
     const auto t = arg_parser.add_arg("-t", "--text");
     ASSERT_EQ("THIS", arg_parser.get_option<std::string>(t));
@@ -530,7 +530,7 @@ TEST(TestArguments, StringReachEnd)
 TEST(TestArguments, VectorOfStrings)
 {
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--text THIS IS SAMPLE TEXT", "TestArguments");
+    auto arg_parser = test::make_arg_parser(test::parse_cmdargs("--text THIS IS SAMPLE TEXT"), "TestArguments");
 
     const auto t = arg_parser.add_arg("-t", "--text");
     const std::vector<std::string> text_values = arg_parser.get_option<std::vector<std::string>>(t);
@@ -551,7 +551,7 @@ TEST(TestArguments, VectorOfStrings)
 TEST(TestArguments, VectorOfStringsReachEnd)
 {
     using namespace cppargparse;
-    auto arg_parser = test::parse_cmdargs("--text THIS IS SAMPLE TEXT -x 0", "TestArguments");
+    auto arg_parser = test::make_arg_parser(test::parse_cmdargs("--text THIS IS SAMPLE TEXT -x 0"), "TestArguments");
 
     const auto t = arg_parser.add_arg("-t", "--text");
     arg_parser.add_arg("-x");
