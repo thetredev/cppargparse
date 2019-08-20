@@ -55,7 +55,7 @@ function(add_unit_test test_name source_files)
     target_compile_options(${test_name} PRIVATE ${TEST_BUILD_OPTIONS})
 
     if("${CMAKE_BUILD_TYPE}" MATCHES "^(profiling|Profiling|PROFILING)$")
-        target_link_options(${test_name} PRIVATE -lgcov --coverage)
+        target_link_libraries(${test_name} -lgcov --coverage)
     endif()
 endfunction()
 
