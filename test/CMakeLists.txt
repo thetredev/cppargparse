@@ -16,10 +16,16 @@ add_dependencies(run_tests tests)
 set(TEST_BUILD_OPTIONS -Wall -Wno-long-long -pedantic)
 
 
+set(IS_PROFILING FALSE)
+if("${CMAKE_BUILD_TYPE}" MATCHES "^(profiling|Profiling|PROFILING)$")
+    set(IS_PROFILING TRUE)
+endif()
+
+
 #
 # Profiling target: coverage
 #
-if("${CMAKE_BUILD_TYPE}" MATCHES "^(profiling|Profiling|PROFILING)$")
+if(${IS_PROFILING})
 
     set(TEST_BUILD_OPTIONS ${TEST_BUILD_OPTIONS} --coverage)
 
@@ -52,7 +58,7 @@ function(add_unit_test test_name source_files)
 
     target_compile_options(${test_name} PRIVATE ${TEST_BUILD_OPTIONS})
 
-    if("${CMAKE_BUILD_TYPE}" MATCHES "^(profiling|Profiling|PROFILING)$")
+    if(${IS_PROFILING})
         target_link_libraries(${test_name} -lgcov --coverage)
     endif()
 endfunction()
