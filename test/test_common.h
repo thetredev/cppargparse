@@ -1,6 +1,7 @@
 #ifndef CPPARGPARSE_TEST_UTILS_H
 #define CPPARGPARSE_TEST_UTILS_H
 
+#include <cstring>
 #include <iterator>
 #include <string>
 #include <vector>
@@ -23,12 +24,12 @@ std::vector<std::string> get_cmdargs(const std::string &command_line)
 }
 
 
-void get_char_cmdargs(std::vector<std::string> command_line_tokens, std::vector<const char *> &char_tokens)
+char *get_cmd_chars(const std::string &token)
 {
-    for (const auto &token : command_line_tokens)
-    {
-        char_tokens.emplace_back(token.c_str());
-    }
+   char *chars = new char[token.size() + 1];
+   std::strcpy(chars, token.c_str());
+
+   return chars;
 }
 
 
@@ -36,11 +37,11 @@ cppargparse::parser::ArgumentParser parse_cmdargs(const std::string &command_lin
 {
     std::vector<std::string> command_line_tokens = get_cmdargs(command_line);
 
-    std::vector<const char *> char_tokens;
-    test::get_char_cmdargs(command_line_tokens, char_tokens);
+    std::vector<char *> char_tokens;
+    std::transform(command_line_tokens.begin(), command_line_tokens.end(), std::back_inserter(char_tokens), get_cmd_chars);
 
     return cppargparse::parser::ArgumentParser(
-                static_cast<int>(char_tokens.size()), const_cast<char **>(char_tokens.data()), application_description
+                static_cast<int>(char_tokens.size()), char_tokens.data(), application_description
     );
 }
 
