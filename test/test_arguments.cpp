@@ -54,7 +54,7 @@ void value_test(const T &value, const T &default_value)
 
     // Generate a command line argument string with "-t <value>"
     std::ostringstream cmd;
-    cmd << "-t " << value;
+    cmd << "-t " << std::fixed << std::setprecision(15) << value;
 
 
     // Expect the same number as <value> when parsing the command line string for "-t"
@@ -117,7 +117,7 @@ void vector_test(const std::vector<T> &seq_expected, const bool reach_end, const
 
     for (const auto &seq_value : seq_expected)
     {
-        cmd << ' ' << seq_value;
+        cmd << ' ' << std::fixed << std::setprecision(15) << seq_value;
     }
 
 
