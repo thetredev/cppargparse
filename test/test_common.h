@@ -1,5 +1,5 @@
-#ifndef CPPARGPARSE_TEST_UTILS_H
-#define CPPARGPARSE_TEST_UTILS_H
+#ifndef CPPARGPARSE_TEST_COMMON_H
+#define CPPARGPARSE_TEST_COMMON_H
 
 #include <cstring>
 #include <iterator>
@@ -63,4 +63,4 @@ cppargparse::parser::ArgumentParser make_arg_parser(
 
 } // namespace cppargparse::test
 
-#endif // CPPARGPARSE_TEST_UTILS_H
+#endif // CPPARGPARSE_TEST_COMMON_H
