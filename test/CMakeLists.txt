@@ -15,8 +15,6 @@ add_dependencies(run_tests tests)
 
 set(TEST_BUILD_OPTIONS -Wall -Wno-long-long -pedantic)
 
-string(TOLOWER ${CMAKE_GENERATOR} BUILD_GENERATOR)
-
 
 #
 # Profiling target: coverage
