@@ -10,7 +10,8 @@
 #include "types.h"
 
 
-namespace cppargparse::parser {
+namespace cppargparse {
+namespace parser {
 
 
 /**
@@ -481,6 +482,7 @@ public:
 };
 
 
-} // namespace cppargparse::parser
+} // namespace parser
+} // namespace cppargparse
 
 #endif // CPPARGPARSE_PARSER_H

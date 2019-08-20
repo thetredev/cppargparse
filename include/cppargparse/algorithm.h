@@ -12,7 +12,8 @@
 #include "types.h"
 
 
-namespace cppargparse::algorithm {
+namespace cppargparse {
+namespace algorithm {
 
 
 /**
@@ -59,6 +60,7 @@ types::CommandLinePosition_t find_arg_position(const types::CommandLine_t &cmd, 
 }
 
 
-} // namespace cppargparse::algorithm
+} // namespace algorithm
+} // namespace cppargparse
 
 #endif // CPPARGPARSE_ALGORITHM_H

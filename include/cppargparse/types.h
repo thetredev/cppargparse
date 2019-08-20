@@ -11,7 +11,8 @@
 #include <vector>
 
 
-namespace cppargparse::types {
+namespace cppargparse {
+namespace types {
 
 
 /**
@@ -81,6 +82,7 @@ typedef std::vector<CommandLineArgument_t> CommandLineArguments_t;
 typedef CommandLineArguments_t::const_iterator CommandLineArgumentPosition_t;
 
 
-} // namespace cppargparse::types
+} // namespace types
+} // namespace cppargparse
 
 #endif // CPPARGPARSE_TYPES_H

@@ -74,6 +74,6 @@ struct numerical_argument
 };
 
 
-} // namespace cppargparse::numerical_argument
+} // namespace cppargparse
 
 #endif // CPPARGPARSE_ARGUMENTS_NUMERICAL_H

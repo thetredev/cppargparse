@@ -9,7 +9,8 @@
 #include <cppargparse/cppargparse.h>
 
 
-namespace cppargparse::test {
+namespace cppargparse {
+namespace test {
 
 
 std::vector<std::string> get_cmdargs(const std::string &command_line)
@@ -61,6 +62,7 @@ cppargparse::parser::ArgumentParser make_arg_parser(
 }
 
 
-} // namespace cppargparse::test
+} // namespace test
+} // namespace cppargparse
 
 #endif // CPPARGPARSE_TEST_COMMON_H

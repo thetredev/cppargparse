@@ -4,8 +4,8 @@
 #include <stdexcept>
 
 
-
-namespace cppargparse::errors {
+namespace cppargparse {
+namespace errors {
 
 
 /**
@@ -62,6 +62,7 @@ public:
 };
 
 
-} // namespace cppargparse::errors
+} // namespace errors
+} // namespace cppargparse
 
 #endif // CPPARGPARSE_ERRORS_H
