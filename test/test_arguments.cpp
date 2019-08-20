@@ -348,6 +348,7 @@ TEST(TestArguments, Float)
     value_test<float>(3.0f, 5.0f);
 }
 
+/*
 TEST(TestArguments, FloatMax)
 {
     max_test<float>(false);
@@ -357,6 +358,7 @@ TEST(TestArguments, FloatOutOfRange)
 {
     max_test<float>(true);
 }
+*/
 
 TEST(TestArguments, FloatsVector)
 {
@@ -377,6 +379,7 @@ TEST(TestArguments, Double)
     value_test<double>(3.63126121, 5.0);
 }
 
+/*
 TEST(TestArguments, DoubleMax)
 {
     max_test<double>(false);
@@ -386,6 +389,7 @@ TEST(TestArguments, DoubleOutOfRange)
 {
     max_test<double>(true);
 }
+*/
 
 TEST(TestArguments, DoublesVector)
 {
@@ -406,6 +410,7 @@ TEST(TestArguments, LongDouble)
     value_test<long double>(3.63126121, 5.0);
 }
 
+/*
 TEST(TestArguments, LongDoubleMax)
 {
     max_test<long double>(false);
@@ -415,6 +420,7 @@ TEST(TestArguments, LongDoubleOutOfRange)
 {
     max_test<long double>(true);
 }
+*/
 
 TEST(TestArguments, LongDoublesVector)
 {
