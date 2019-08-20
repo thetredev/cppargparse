@@ -19,7 +19,7 @@ add_dependencies(run_tests tests)
 #
 # Testing targets: build options
 #
-set(TEST_BUILD_OPTIONS -Wall -Wno-long-long -pedantic)
+set(TEST_BUILD_OPTIONS -Wall -pedantic)
 
 
 #
