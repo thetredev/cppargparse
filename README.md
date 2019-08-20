@@ -2,8 +2,6 @@
 
 C++ ArgParse is an open source header-only C++ library. Due to the core's heavy usage of template magic, the library can expose a very easy-to-use interface, so you as an application developer only have to care about the good stuff. Think Python's [argparse](https://docs.python.org/3/library/argparse.html).
 
-*Support for Windows is currently untested.*
-
 [![Build Status](https://travis-ci.org/backraw/cppargparse.svg?branch=master)](https://travis-ci.org/backraw/cppargparse)
 
 The source code documentation and code coverage results can be found here: https://backraw.github.io/cppargparse
@@ -14,7 +12,7 @@ Build requirements:
 - `gcc`, `clang`, or `msvc`
 - `cmake`
 
-Then you should be able to build the tests like this:
+## Linux
 ```
 git clone https://github.com/backraw/cppargparse.git
 cd cppargparse
@@ -26,7 +24,17 @@ cmake -DCMAKE_BUILD_TYPE=Profiling ..
 make run_tests
 ```
 
-Of course, you can use every generator that CMake supports.
+Of course, you can use every generator that CMake supports like Ninja, etc.
+
+## Windows
+- Create the `build` directory inside the project directory
+- Run `cmake -G"Visual Studio 14 Win64" -DCMAKE_BUILD_TYPE=Debug ..`
+- Open `cppargparse.sln`
+- Build `RUN_TESTS`
+
+*Requires at least Visual Studio 2015. This is because of GTest, which cannot be compiled using Visual Studio 2013 (AFAIK).*
+
+Or simply use MinGW and do it the Linux way on Windows.
 
 
 # Code coverage
