@@ -48,6 +48,14 @@ Coverage requirements:
 Run `make coverage` inside the build directory. This will automatically execute `make run_tests` beforehand.
 
 
+# Source code documentation
+Requirements:
+- `doxygen`
+- `graphviz` (the `dot` command)
+
+Running `doxygen Doxyfile` inside the project directory will update `docs/html`.
+
+
 # Install
 To install the library, run `sudo make install` inside the build directory.
 
