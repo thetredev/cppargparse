@@ -1,6 +1,7 @@
 #ifndef CPPARGPARSE_PARSER_BASE_H
 #define CPPARGPARSE_PARSER_BASE_H
 
+#include <algorithm>
 #include <sstream>
 
 #include <cppargparse/algorithm.h>
@@ -27,6 +28,7 @@ public:
     explicit ArgumentParserBase(int argc, char *argv[], const std::string &application_description)
         : m_cmd(types::CommandLine_t(argv, argv + argc))
         , m_cmdargs()
+        , m_posargs()
         , m_application_description(application_description)
     {
     }
@@ -42,6 +44,45 @@ public:
         m_cmdargs.clear();
     }
 
+    /**
+     * @brief Add a positional argument which is neither a flag nor an option.
+     *
+     * The argument position is the command line iterator position
+     * next the last command line argument's position (flag/option).
+     *
+     * If no flag/option argument has been stored yet, the position
+     * will be the first command line iterator position.
+     *
+     * @param description The positional argument description.
+     *
+     * @return The generated command line argument.
+     */
+    const types::CommandLineArgument_t add_posarg(const std::string &description)
+    {
+        const types::CommandLineArgument_t arg {
+            std::string(), std::string(), description,
+            (m_cmdargs.size() > 0) ? std::next(std::prev(m_cmdargs.cend())->position) : m_cmd.cbegin()
+        };
+
+        m_posargs.emplace_back(arg);
+        return arg;
+    }
+
+    /**
+     * @brief Add a positional argument which is neither a flag nor an option.
+     *
+     * The argument position is the command line iterator position
+     * next the last command line argument's position (flag/option).
+     *
+     * If no flag/option argument has been stored yet, the position
+     * will be the first command line iterator position.
+     *
+     * @return The generated command line argument.
+     */
+    const types::CommandLineArgument_t add_posarg()
+    {
+        return add_posarg(std::string());
+    }
 
     /**
      * @brief Add an argument to the command line arguments list.
@@ -119,6 +160,20 @@ public:
     const types::CommandLineArgument_t add_help()
     {
         return add_arg("-h", "--help", "Display this information");
+    }
+
+
+    template <typename T>
+    /**
+     * @brief Stub method for returning a positional argument value.
+     *
+     * @tparam The argument type. Must be non-abstract and have a default constructor.
+     *
+     * @return A new instance of T.
+     */
+    inline T get_positional(const types::CommandLineArgument_t &)
+    {
+        return T();
     }
 
 
@@ -223,6 +278,9 @@ protected:
 
     /// The command line arguments
     types::CommandLineArguments_t m_cmdargs;
+
+    /// The positional command line arguments
+    types::CommandLineArguments_t m_posargs;
 
 
 private:

@@ -1,7 +1,9 @@
 #ifndef CPPARGPARSE_PARSER_PARSER_H
 #define CPPARGPARSE_PARSER_PARSER_H
 
+#include <algorithm>
 #include <functional>
+#include <iterator>
 #include <sstream>
 
 #include <cppargparse/arguments.h>
@@ -38,6 +40,34 @@ public:
 
     template <typename T>
     /**
+     * @brief Return the positional argument value of type T.
+     *
+     * @tparam T The argument type. argument::convert() must be implemented for T.
+     *
+     * @param posarg The positional command line argument.
+     *
+     * @return The argument value of type T.
+     * @throws #cppargparse::errors::CommandLineArgumentError if the argument cannot be found.
+     */
+    inline const T get_positional(const types::CommandLineArgument_t &posarg)
+    {
+        if (posarg.position == m_cmd.cend())
+        {
+            const auto posarg_it = std::find(m_posargs.cbegin(), m_posargs.cend(), posarg);
+            const size_t posarg_index = std::distance(m_posargs.cbegin(), posarg_it);
+
+            std::ostringstream message;
+            message << "Cannot find positional argument #" << posarg_index + 1;
+
+            throw errors::CommandLineArgumentError(message.str());
+        }
+
+        return argument<T>::convert(m_cmd, posarg.position, m_cmdargs);
+    }
+
+
+    template <typename T>
+    /**
      * @brief Return the argument value of type T.
      *
      * @tparam T The argument type. argument::parse() and argument::convert() must be implemented for T.
@@ -59,7 +89,6 @@ public:
 
         return argument<T>::parse(m_cmd, cmdarg.position, m_cmdargs);
     }
-
 
     template <typename T>
     /**
