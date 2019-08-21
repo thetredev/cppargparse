@@ -1,6 +1,6 @@
-C++ Arg\+Parse is an open source header-\/only C++ library. Due to the core\textquotesingle{}s heavy usage of template magic, the library can expose a very easy-\/to-\/use interface, so you as an application developer only have to care about the good stuff. Think Python\textquotesingle{}s \href{https://docs.python.org/3/library/argparse.html}{\tt argparse}.
+C++ Arg\+Parse is an open source header-\/only C++11 library for parsing the command line ({\ttfamily argc}, {\ttfamily argv}) in a typed manner.
 
-{\itshape Support for Windows is currently untested.}
+Due to the core\textquotesingle{}s heavy usage of template magic, the library can expose a very easy-\/to-\/use interface, so you as an application developer only have to care about the good stuff. Think Python\textquotesingle{}s \href{https://docs.python.org/3/library/argparse.html}{\tt argparse}.
 
 \href{https://travis-ci.org/backraw/cppargparse}{\tt }
 
@@ -14,7 +14,7 @@ Build requirements\+:
 \item {\ttfamily cmake}
 \end{DoxyItemize}
 
-Then you should be able to build the tests like this\+: 
+\#\# Linux 
 \begin{DoxyCode}
 git clone https://github.com/backraw/cppargparse.git
 cd cppargparse
@@ -27,7 +27,21 @@ make run\_tests
 \end{DoxyCode}
 
 
-Of course, you can use every generator that C\+Make supports.
+Of course, you can use every generator that C\+Make supports like Ninja, etc.
+
+\subsection*{Windows}
+
+
+\begin{DoxyItemize}
+\item Create the {\ttfamily build} directory inside the project directory
+\item Run {\ttfamily cmake -\/G\char`\"{}\+Visual Studio 14 Win64\char`\"{} -\/\+D\+C\+M\+A\+K\+E\+\_\+\+B\+U\+I\+L\+D\+\_\+\+T\+Y\+PE=Debug ..}
+\item Open {\ttfamily cppargparse.\+sln}
+\item Build {\ttfamily R\+U\+N\+\_\+\+T\+E\+S\+TS}
+\end{DoxyItemize}
+
+{\itshape Requires at least Visual Studio 2015. This is because of G\+Test, which cannot be compiled using Visual Studio 2013 (A\+F\+A\+IK).}
+
+Or simply use Min\+GW and do it the Linux way on Windows.
 
 \section*{Code coverage}
 
@@ -49,7 +63,7 @@ To install the library, run {\ttfamily sudo make install} inside the build direc
 
 Please have a look at the \href{https://github.com/backraw/cppargparse/tree/master/samples}{\tt examples}.
 
-You can mix \href{https://github.com/backraw/cppargparse/tree/master/samples/traditional}{\tt traditional} and \href{https://github.com/backraw/cppargparse/tree/master/samples/callback}{\tt callback} arguments as you wish. The \href{https://github.com/backraw/cppargparse/blob/master/include/cppargparse/parser.h}{\tt Argument\+Parser} class provides an interface for both and doesn\textquotesingle{}t care which one you chose.
+You can mix \href{https://github.com/backraw/cppargparse/tree/master/samples/traditional}{\tt traditional} and \href{https://github.com/backraw/cppargparse/tree/master/samples/callback}{\tt callback} arguments as you wish. The \href{https://github.com/backraw/cppargparse/blob/master/include/cppargparse/parser.h#L242}{\tt Argument\+Parser} class provides an interface for both and doesn\textquotesingle{}t care which one you chose.
 
 \section*{The core}
 
@@ -64,10 +78,10 @@ Parameter definition\+:
 \begin{DoxyItemize}
 \item {\ttfamily cmd} represents the whole command line inside a {\ttfamily std\+::vector$<$std\+::string$>$}
 \item {\ttfamily position} represents the argument iterator position inside {\ttfamily cmd}
-\item {\ttfamily cmdargs} represents the command line argument map, e.\+g. {\ttfamily \char`\"{}arg1\char`\"{} =$>$ iterator position 0}
+\item {\ttfamily cmdargs} represents the \href{https://github.com/backraw/cppargparse/blob/master/include/cppargparse/types.h#L41}{\tt command line argument struct object}
 \end{DoxyItemize}
 
-The {\ttfamily \hyperlink{classcppargparse_1_1parser_1_1ArgumentParser}{cppargparse\+::parser\+::\+Argument\+Parser}} class provides the {\ttfamily get\+\_\+option$<$T$>$(arg)}, {\ttfamily get\+\_\+option$<$T$>$(arg, default)} and {\ttfamily get\+\_\+flag(arg)} methods for calling the actual type converter methods provided by the {\ttfamily \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$T$>$} structs.
+The \href{https://github.com/backraw/cppargparse/blob/master/include/cppargparse/parser.h#L242}{\tt Argument\+Parser} class provides the {\ttfamily get\+\_\+option$<$T$>$(cmdarg)}, {\ttfamily get\+\_\+option$<$T$>$(cmdarg, default)} and {\ttfamily get\+\_\+flag(cmdarg)} methods for calling the actual type converter methods provided by the {\ttfamily \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$T$>$} structs.
 
 Assume the following command line arguments have been passed\+: {\ttfamily -\/t 3 -\/n \char`\"{}\+My Name\char`\"{} -\/-\/enable} 
 \begin{DoxyCode}
@@ -100,104 +114,102 @@ Let\textquotesingle{}s look at the {\ttfamily int} type, for example\+:
 template <>
 struct argument<int>
 \{
-    static int parse(
-            const types::CommandLine\_t &,
-            const types::CommandLinePosition\_t &position,
-            const types::CommandLineArguments\_t &)
+    static int parse(cmd, position, cmdargs)
     \{
-        return numerical\_argument::parse<int>(
-            position,
-            CPPARGPARSE\_NUMERICAL\_ARGUMENT\_CONVERTER\_OVERLOADS(std::stoi),
-            "int"
-        );
+        return numerical\_argument<int>::convert(cmd, std::next(position), &wrap, "int");
     \}
 
-    static int convert(
-            const types::CommandLine\_t &,
-            const types::CommandLinePosition\_t &position,
-            const types::CommandLineArguments\_t &)
+    static int convert(cmd, position, cmdargs)
     \{
-        return numerical\_argument::convert<int>(
-            position,
-            CPPARGPARSE\_NUMERICAL\_ARGUMENT\_CONVERTER\_OVERLOADS(std::stoi),
-            "int"
-        );
+        return numerical\_argument<int>::convert(cmd, position, &wrap, "int");
+    \}
+
+    static int wrap(const std::string &s)
+    \{
+        return std::stoi(s);
     \}
 \};
 \end{DoxyCode}
 
 
-All it does is call {\ttfamily cppargparse\+::numerical\+\_\+argument\+::parse$<$int$>$()} (or {\ttfamily \hyperlink{structcppargparse_1_1numerical__argument_ab775dbbfc851bbd9052b70dfdf0dbb77}{cppargparse\+::numerical\+\_\+argument\+::convert}$<$int$>$()}) on a command line argument iterator position {\ttfamily position} and tell the former to use {\ttfamily std\+::stoi} as the conversion function.
-
-{\ttfamily float}, {\ttfamily double}, and {\ttfamily long double} are implemented in the same way, using
+All it does is the following\+:
 \begin{DoxyItemize}
-\item {\ttfamily std\+::stof},
-\item {\ttfamily std\+::stod} and
-\item {\ttfamily std\+::stold}
+\item Call {\ttfamily cppargparse\+::numerical\+\_\+argument\+::parse$<$int$>$()} (or {\ttfamily convert$<$int$>$()}) on a command line argument iterator position {\ttfamily position}
+\item Tell it to use {\ttfamily \hyperlink{structcppargparse_1_1argument}{cppargparse\+::argument}$<$int$>$\+::wrap()} as the conversion function
 \end{DoxyItemize}
 
-as conversion functions, respectively.
+{\ttfamily wrap()} is needed, because {\ttfamily std\+::stoi()} (in the case of {\ttfamily int}) cannot be passed as a parameter, since it contains default parameters. {\ttfamily wrap()} just gets rid of them and makes the function \char`\"{}passable\char`\"{}.
 
-The {\ttfamily \hyperlink{structcppargparse_1_1numerical__argument}{cppargparse\+::numerical\+\_\+argument}} namespace provides the actual parser and converter functions\+: 
+The {\ttfamily \hyperlink{structcppargparse_1_1numerical__argument}{cppargparse\+::numerical\+\_\+argument}} struct wraps the actual convert-\/or-\/error mechanism\+: 
 \begin{DoxyCode}
 \{C++\}
 template <typename T>
-static T convert(
-        const types::CommandLinePosition\_t &position,
-        const std::function<T(const std::string &, size\_t *)> &numerical\_converter,
-        const std::string &type\_string
-    )
+struct numerical\_argument
 \{
-    try
+    static T convert(cmd, position, numerical\_converter, type\_string)
     \{
-        return numerical\_converter(*position, 0);
+        if (position == cmd.cend())
+        \{
+            throw errors::CommandLineOptionError(...)
+        \}
+
+        try
+        \{
+            return numerical\_converter(*position);
+        \}
+
+        catch (const std::invalid\_argument &)
+        \{
+            throw errors::CommandLineOptionError(...)
+        \}
+        catch (const std::out\_of\_range &)
+        \{
+            throw errors::CommandLineOptionError(...)
+        \}
     \}
 
-    catch (std::invalid\_argument const &)
+    static const std::string error\_message(position, type\_string)
     \{
-        throw errors::CommandLineOptionError(error\_message(position, type\_string));
+        ...
     \}
-    catch (std::out\_of\_range const &)
-    \{
-        throw errors::CommandLineOptionError(error\_message(position, type\_string));
-    \}
-\}
-
-template <typename T>
-static T parse(const types::CommandLinePosition\_t &position,
-        const std::function<T(const std::string &, size\_t *)> &numerical\_converter,
-        const std::string &type\_string)
-\{
-    return convert(std::next(position), numerical\_converter, type\_string);
 \}
 \end{DoxyCode}
 
 
 {\ttfamily \hyperlink{structcppargparse_1_1numerical__argument_ab775dbbfc851bbd9052b70dfdf0dbb77}{cppargparse\+::numerical\+\_\+argument\+::convert()}} calls {\ttfamily numerical\+\_\+converter} with a string as the argument. {\ttfamily numerical\+\_\+converter} can (currently) be one of the following\+:
-\begin{DoxyItemize}
-\item {\ttfamily std\+::stoi}
-\item {\ttfamily std\+::stof}
-\item {\ttfamily std\+::stod}
-\item {\ttfamily std\+::stold}
-\end{DoxyItemize}
 
-A conversion error is indicated by throwing {\ttfamily errors\+::\+Command\+Line\+Option\+Error} with a custom error message.
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ $\ast$$\ast$\+Data type$\ast$$\ast$}&\textbf{ $\ast$$\ast$\+Wrapped converter function$\ast$$\ast$}&\textbf{ C++ Arg\+Parse implementation  }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ $\ast$$\ast$\+Data type$\ast$$\ast$}&\textbf{ $\ast$$\ast$\+Wrapped converter function$\ast$$\ast$}&\textbf{ C++ Arg\+Parse implementation  }\\\cline{1-3}
+\endhead
+{\ttfamily int}&{\ttfamily std\+::stoi}&\href{https://github.com/backraw/cppargparse/tree/master/include/cppargparse/arguments/int.h}{\tt int.\+h} \\\cline{1-3}
+{\ttfamily unsigned int}&{\ttfamily stou} (custom implementation)&\href{https://github.com/backraw/cppargparse/tree/master/include/cppargparse/arguments/int.h}{\tt int.\+h} \\\cline{1-3}
+{\ttfamily long}&{\ttfamily std\+::stol}&\href{https://github.com/backraw/cppargparse/tree/master/include/cppargparse/arguments/long.h}{\tt long.\+h} \\\cline{1-3}
+{\ttfamily long long}&{\ttfamily std\+::stoll}&\href{https://github.com/backraw/cppargparse/tree/master/include/cppargparse/arguments/long.h}{\tt long.\+h} \\\cline{1-3}
+{\ttfamily unsigned long}&{\ttfamily std\+::stoul}&\href{https://github.com/backraw/cppargparse/tree/master/include/cppargparse/arguments/long.h}{\tt long.\+h} \\\cline{1-3}
+{\ttfamily unsigned long long}&{\ttfamily std\+::stoull}&\href{https://github.com/backraw/cppargparse/tree/master/include/cppargparse/arguments/long.h}{\tt long.\+h} \\\cline{1-3}
+{\ttfamily float}&{\ttfamily std\+::stof}&\href{https://github.com/backraw/cppargparse/tree/master/include/cppargparse/arguments/float.h}{\tt float.\+h} \\\cline{1-3}
+{\ttfamily double}&{\ttfamily std\+::stod}&\href{https://github.com/backraw/cppargparse/tree/master/include/cppargparse/arguments/long.h}{\tt double.\+h} \\\cline{1-3}
+{\ttfamily long double}&{\ttfamily std\+::stold}&\href{https://github.com/backraw/cppargparse/tree/master/include/cppargparse/arguments/double.h}{\tt double.\+h} \\\cline{1-3}
+\end{longtabu}
 
-{\ttfamily cppargparse\+::numerical\+\_\+argument\+::parse()} calls {\ttfamily \hyperlink{structcppargparse_1_1numerical__argument_ab775dbbfc851bbd9052b70dfdf0dbb77}{cppargparse\+::numerical\+\_\+argument\+::convert()}} with the command line argument next in line.
 
 \subsection*{String types}
 
 Currently only {\ttfamily std\+::string} is implemented as a string type\+: 
 \begin{DoxyCode}
 \{C++\}
-static const std::string convert(
-        const types::CommandLine\_t &cmd,
-        const types::CommandLinePosition\_t &position,
-        const types::CommandLineArguments\_t &)
+static const std::string convert(cmd, position, cmdargs)
 \{
     if (position == cmd.cend())
     \{
-        throw errors::CommandLineOptionError(error\_message(position));
+        throw errors::CommandLineOptionError(...);
     \}
 
     return *position;
@@ -205,48 +217,47 @@ static const std::string convert(
 \end{DoxyCode}
 
 
-It just checks whether the end of the command line argumnents list has been reached. If so, thrown an error, if not, return its string value.
+It just checks whether the end of the command line argumnents list has been reached. If so, thrown an error, if not, return the string value for {\ttfamily position}.
 
 \subsection*{Vector types}
 
 Currently only {\ttfamily std\+::vector$<$T$>$} is implemented as a vector type\+: 
 \begin{DoxyCode}
 \{C++\}
-static const std::vector<T> parse(
-        const types::CommandLine\_t &cmd,
-        const types::CommandLinePosition\_t &position,
-        const types::CommandLineArguments\_t &cmdargs)
+template <typename T>
+struct argument<std::vector<T>>
 \{
-    auto positions = get\_option\_positions(cmd, position, cmdargs);
-    std::vector<T> values;
-
-    for (auto position : positions)
+    static const std::vector<T> parse(cmd, position, cmdargs)
     \{
-        values.emplace\_back(argument<T>::convert(cmd, position, cmdargs));
-    \}
+        auto positions = get\_option\_positions(cmd, position, cmdargs);
+        std::vector<T> values;
 
-    return values;
-\}
-
-
-static types::CommandLinePositions\_t get\_option\_positions(
-        const types::CommandLine\_t &cmd,
-        const types::CommandLinePosition\_t &position,
-        const types::CommandLineArguments\_t &cmdargs)
-\{
-    types::CommandLinePositions\_t positions;
-
-    for (auto current = std::next(position); current != cmd.end(); ++current)
-    \{
-        if (algorithm::find\_arg(cmdargs, *current) != cmdargs.cend())
+        for (auto position : positions)
         \{
-            break;
+            // Use the underlying argument::convert() method and store the returned value
+            values.emplace\_back(argument<T>::convert(cmd, position, cmdargs));
         \}
 
-        positions.emplace\_back(current);
+        return values;
     \}
 
-    return positions;
+
+    static types::CommandLinePositions\_t get\_option\_positions(cmd, position, cmdargs)
+    \{
+        types::CommandLinePositions\_t positions;
+
+        for (auto current = std::next(position); current != cmd.end(); ++current)
+        \{
+            if (algorithm::find\_arg(cmdargs, *current) != cmdargs.cend())
+            \{
+                break;
+            \}
+
+            positions.emplace\_back(current);
+        \}
+
+        return positions;
+    \}
 \}
 \end{DoxyCode}
 
