@@ -438,23 +438,13 @@ TEST(TestArguments, LongDoublesVectorReachEnd)
 //
 TEST(TestArguments, String)
 {
-    using namespace cppargparse;
-    auto arg_parser = test::make_arg_parser(test::parse_cmdargs("--text THIS IS SAMPLE TEXT"), "TestArguments");
-
-    const auto t = arg_parser.add_arg("-t", "--text");
-    ASSERT_EQ("THIS", arg_parser.get_option<std::string>(t));
-
-    const auto x = arg_parser.add_arg("-x");
-    ASSERT_EQ("DEFAULT", arg_parser.get_option<std::string>(x, "DEFAULT"));
+    value_test<std::string>("/usr/include/cppargparse", "DEFAULT");
 }
 
 TEST(TestArguments, StringReachEnd)
 {
     using namespace cppargparse;
     auto arg_parser = test::make_arg_parser(test::parse_cmdargs("--text THIS IS SAMPLE TEXT -c"), "TestArguments");
-
-    const auto t = arg_parser.add_arg("-t", "--text");
-    ASSERT_EQ("THIS", arg_parser.get_option<std::string>(t));
 
     const auto c = arg_parser.add_arg("-c");
     ASSERT_THROW(arg_parser.get_option<std::string>(c), errors::CommandLineOptionError);
