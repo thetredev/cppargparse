@@ -79,7 +79,7 @@ void max_test(const bool out_of_range)
 
     // Generate a command line argument string with <max>
     std::ostringstream cmd;
-    cmd << "-t " << max;
+    cmd << "-t " << std::fixed << std::setprecision(30) << max;
 
     // If we're testing for out of range, add a 0 to <cmd>
     if (out_of_range)
@@ -348,12 +348,12 @@ TEST(TestArguments, Float)
     value_test<float>(3.0f, 5.0f);
 }
 
-/*
 TEST(TestArguments, FloatMax)
 {
     max_test<float>(false);
 }
 
+/*
 TEST(TestArguments, FloatOutOfRange)
 {
     max_test<float>(true);
@@ -379,12 +379,12 @@ TEST(TestArguments, Double)
     value_test<double>(3.63126121, 5.0);
 }
 
-/*
 TEST(TestArguments, DoubleMax)
 {
     max_test<double>(false);
 }
 
+/*
 TEST(TestArguments, DoubleOutOfRange)
 {
     max_test<double>(true);
@@ -410,12 +410,12 @@ TEST(TestArguments, LongDouble)
     value_test<long double>(3.63126121, 5.0);
 }
 
-/*
 TEST(TestArguments, LongDoubleMax)
 {
     max_test<long double>(false);
 }
 
+/*
 TEST(TestArguments, LongDoubleOutOfRange)
 {
     max_test<long double>(true);
