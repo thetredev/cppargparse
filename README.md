@@ -4,8 +4,6 @@ C++ ArgParse is an open source header-only C++11 library for parsing the command
 
 Due to the core's heavy usage of template magic, the library can expose a very easy-to-use interface, so you as an application developer only have to care about the good stuff. Think Python's [argparse](https://docs.python.org/3/library/argparse.html).
 
-[![Build Status](https://travis-ci.org/backraw/cppargparse.svg?branch=master)](https://travis-ci.org/backraw/cppargparse)
-
 The source code documentation and code coverage results can be found here: https://backraw.github.io/cppargparse
 
 # Build tests

@@ -1,0 +1,15 @@
+stages:
+  - test
+
+
+build:debian:
+  stage: test
+  image: gitlab.bvtheteam.eu:4567/treichl/cppargparse:2
+  tags:
+    - linux
+    - debian
+  script:
+    - mkdir build
+    - cd build
+    - cmake -G"Ninja" -DCMAKE_BUILD_TYPE=Debug ..
+    - ninja run_tests
