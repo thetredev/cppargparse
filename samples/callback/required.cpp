@@ -38,14 +38,29 @@ int main(int argc, char *argv[])
     parser::ArgumentParser arg_parser(argc, argv, "cppargparse sample -- required options -- callback");
 
 
-    arg_parser.add_flag_with_callback("-q", "--quick-format", "Quickly format a drive", &do_quick_format);
+    arg_parser.add_flag_with_callback(
+        "-q", "--quick-format",
+        "Quickly format a drive",
+        &do_quick_format
+    );
 
+    arg_parser.add_arg_with_callback<int>(
+        "-f", "--five",
+        "Add 5 to the given input",
+        &add_five
+    );
 
-    arg_parser.add_arg_with_callback<int>("-f", "--five", "Add 5 to the given input", &add_five);
+    arg_parser.add_arg_with_callback<std::string>(
+        "-x", "--xml",
+        "Parse an XML file",
+        &parse_xml
+    );
 
-    arg_parser.add_arg_with_callback<std::string>("-x", "--xml", "Parse an XML file", &parse_xml);
-
-    arg_parser.add_arg_with_callback<std::vector<int>>("-s", "--sum", "Print the sum of an integer sequence", &print_sum);
+    arg_parser.add_arg_with_callback<std::vector<int>>(
+        "-s", "--sum",
+        "Print the sum of an integer sequence",
+        &print_sum
+    );
 
 
     return 0;
