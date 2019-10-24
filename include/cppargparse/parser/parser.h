@@ -54,7 +54,7 @@ public:
         if (positional.position == m_cmd.cend())
         {
             const auto positional_it = std::find(m_positionals.cbegin(), m_positionals.cend(), positional);
-            const size_t positional_index = std::distance(m_positionals.cbegin(), positional_it);
+            const int positional_index = std::distance(m_positionals.cbegin(), positional_it);
 
             std::ostringstream message;
             message << "Cannot find positional argument #" << positional_index + 1;
