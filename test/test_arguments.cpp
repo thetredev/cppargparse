@@ -165,6 +165,44 @@ void vector_test(const std::vector<T> &seq_expected, const bool reach_end, const
 
 
 //
+// char
+//
+TEST(TestArguments, Char)
+{
+    value_test<char>('a', 'b');
+}
+
+TEST(TestArguments, CharsVector)
+{
+    vector_test<char>(std::vector<char> {'3', '2', '3', '6', '2', 'C'}, false);
+}
+
+TEST(TestArguments, CharsVectorReachEnd)
+{
+    vector_test<char>(std::vector<char> {'3', '2', '3', '6', '2', 'C'}, true);
+}
+
+
+//
+// unsigned char
+//
+TEST(TestArguments, UnsignedChar)
+{
+    value_test<unsigned char>('a', 'b');
+}
+
+TEST(TestArguments, UnsignedCharsVector)
+{
+    vector_test<unsigned char>(std::vector<unsigned char> {'3', '2', '3', '6', '2', 'C'}, false);
+}
+
+TEST(TestArguments, UnsignedCharsVectorReachEnd)
+{
+    vector_test<unsigned char>(std::vector<unsigned char> {'3', '2', '3', '6', '2', 'C'}, true);
+}
+
+
+//
 // int
 //
 TEST(TestArguments, Int)
