@@ -28,7 +28,7 @@ public:
     explicit ArgumentParserBase(int argc, char *argv[], const std::string &application_description)
         : m_cmd(types::CommandLine_t(argv, argv + argc))
         , m_cmdargs()
-        , m_posargs()
+        , m_positionals()
         , m_application_description(application_description)
     {
     }
@@ -57,14 +57,14 @@ public:
      *
      * @return The generated command line argument.
      */
-    const types::CommandLineArgument_t add_posarg(const std::string &description)
+    const types::CommandLineArgument_t add_positional(const std::string &description)
     {
         const types::CommandLineArgument_t arg {
             std::string(), std::string(), description,
             (m_cmdargs.size() > 0) ? std::next(std::prev(m_cmdargs.cend())->position) : m_cmd.cbegin()
         };
 
-        m_posargs.emplace_back(arg);
+        m_positionals.emplace_back(arg);
         return arg;
     }
 
@@ -79,9 +79,9 @@ public:
      *
      * @return The generated command line argument.
      */
-    const types::CommandLineArgument_t add_posarg()
+    const types::CommandLineArgument_t add_positional()
     {
-        return add_posarg(std::string());
+        return add_positional(std::string());
     }
 
     /**
@@ -93,6 +93,7 @@ public:
     {
         m_cmdargs.emplace_back(cmdarg);
     }
+
 
     /**
      * @brief Add an argument to the command line arguments list.
@@ -112,6 +113,7 @@ public:
         return arg;
     }
 
+
     /**
      * @brief Add an argument to the command line arguments list.
      *
@@ -130,6 +132,7 @@ public:
         add_arg(arg);
         return arg;
     }
+
 
     /**
      * @brief Add an argument to the command line arguments list.
@@ -189,6 +192,7 @@ public:
         return algorithm::find_arg_position(m_cmd, cmdarg.id, cmdarg.id_alt) != m_cmd.cend();
     }
 
+
     template <typename T>
     /**
      * @brief Stub method for returning an argument value.
@@ -201,6 +205,7 @@ public:
     {
         return T();
     }
+
 
     template <typename T>
     /**
@@ -280,7 +285,7 @@ protected:
     types::CommandLineArguments_t m_cmdargs;
 
     /// The positional command line arguments
-    types::CommandLineArguments_t m_posargs;
+    types::CommandLineArguments_t m_positionals;
 
 
 private:

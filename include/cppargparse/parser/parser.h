@@ -44,25 +44,25 @@ public:
      *
      * @tparam T The argument type. argument::convert() must be implemented for T.
      *
-     * @param posarg The positional command line argument.
+     * @param positional The positional command line argument.
      *
      * @return The argument value of type T.
      * @throws #cppargparse::errors::CommandLineArgumentError if the argument cannot be found.
      */
-    inline const T get_positional(const types::CommandLineArgument_t &posarg)
+    inline const T get_positional(const types::CommandLineArgument_t &positional)
     {
-        if (posarg.position == m_cmd.cend())
+        if (positional.position == m_cmd.cend())
         {
-            const auto posarg_it = std::find(m_posargs.cbegin(), m_posargs.cend(), posarg);
-            const size_t posarg_index = std::distance(m_posargs.cbegin(), posarg_it);
+            const auto positional_it = std::find(m_positionals.cbegin(), m_positionals.cend(), positional);
+            const size_t positional_index = std::distance(m_positionals.cbegin(), positional_it);
 
             std::ostringstream message;
-            message << "Cannot find positional argument #" << posarg_index + 1;
+            message << "Cannot find positional argument #" << positional_index + 1;
 
             throw errors::CommandLineArgumentError(message.str());
         }
 
-        return argument<T>::convert(m_cmd, posarg.position, m_cmdargs);
+        return argument<T>::convert(m_cmd, positional.position, m_cmdargs);
     }
 
 
