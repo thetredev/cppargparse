@@ -36,7 +36,7 @@ struct argument<float>
     }
 
     /**
-     * @brief Try to convert a command line argument to a float value..
+     * @brief Try to convert a command line argument to a float value.
      *
      * @param cmd The command line.
      * @param position The command line argument iterator.
