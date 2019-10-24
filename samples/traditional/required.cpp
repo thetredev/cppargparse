@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 
 
     const bool quick_format = arg_parser.get_flag(q);
-    // use the flag later...
+    std::cout << "quick format: " << quick_format << '\n';
 
     const int f_value = arg_parser.get_option<int>(f);
     add_five(f_value);
