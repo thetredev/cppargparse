@@ -6,6 +6,8 @@ project(cppargparse C CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wno-keyword-macro")
+
 
 #
 # Include directories
