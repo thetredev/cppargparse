@@ -59,11 +59,11 @@ public:
      *
      * @return The generated command line argument.
      */
-    const cmd::CommandLineArgument_t add_positional(const std::string &description)
+    const cmd::CommandLineArgument add_positional(const std::string &description)
     {
-        const cmd::CommandLineArgument_t arg {
+        cmd::CommandLineArgument arg {
             std::string(), std::string(), description,
-            (m_cmdargs.size() > 0) ? std::next(std::prev(m_cmdargs.cend())->position) : m_cmd.cbegin()
+            (m_cmdargs.size() > 0) ? std::next(std::prev(m_cmdargs.cend())->position()) : m_cmd.cbegin()
         };
 
         m_positionals.emplace_back(arg);
@@ -82,7 +82,7 @@ public:
      *
      * @return The generated command line argument.
      */
-    const cmd::CommandLineArgument_t add_positional()
+    const cmd::CommandLineArgument add_positional()
     {
         return add_positional(std::string());
     }
@@ -93,7 +93,7 @@ public:
      *
      * @param cmdarg The command line argument struct object.
      */
-    void add_arg(const cmd::CommandLineArgument_t &cmdarg)
+    void add_arg(const cmd::CommandLineArgument &cmdarg)
     {
         m_cmdargs.emplace_back(cmdarg);
     }
@@ -106,11 +106,10 @@ public:
      *
      * @return The generated command line argument.
      */
-    const cmd::CommandLineArgument_t add_arg(const std::string &id)
+    const cmd::CommandLineArgument add_arg(const std::string &id)
     {
-        const cmd::CommandLineArgument_t arg {
-            id, std::string(), std::string(),
-            algorithm::find_arg_position(m_cmd, id, std::string())
+        const cmd::CommandLineArgument arg {
+            id, algorithm::find_arg_position(m_cmd, id, std::string())
         };
 
         add_arg(arg);
@@ -126,9 +125,9 @@ public:
      *
      * @return The generated command line argument.
      */
-    const cmd::CommandLineArgument_t add_arg(const std::string &id, const std::string &id_alt)
+    const cmd::CommandLineArgument add_arg(const std::string &id, const std::string &id_alt)
     {
-        const cmd::CommandLineArgument_t arg {
+        const cmd::CommandLineArgument arg {
             id, id_alt, std::string(),
             algorithm::find_arg_position(m_cmd, id, id_alt)
         };
@@ -147,9 +146,9 @@ public:
      *
      * @return The generated command line argument.
      */
-    const cmd::CommandLineArgument_t add_arg(const std::string &id, const std::string &id_alt, const std::string &description)
+    const cmd::CommandLineArgument add_arg(const std::string &id, const std::string &id_alt, const std::string &description)
     {
-        const cmd::CommandLineArgument_t arg {
+        const cmd::CommandLineArgument arg {
             id, id_alt, description,
             algorithm::find_arg_position(m_cmd, id, id_alt)
         };
@@ -164,7 +163,7 @@ public:
      *
      * @return The generated command line argument.
      */
-    const cmd::CommandLineArgument_t add_help()
+    const cmd::CommandLineArgument add_help()
     {
         return add_arg("-h", "--help", "Display this information");
     }
@@ -178,7 +177,7 @@ public:
      *
      * @return A new instance of T.
      */
-    inline T get_positional(const cmd::CommandLineArgument_t &)
+    inline T get_positional(const cmd::CommandLineArgument &)
     {
         return T();
     }
@@ -191,9 +190,9 @@ public:
      *
      * @return Whether the command line contains an argument string.
      */
-    inline bool get_flag(const cmd::CommandLineArgument_t &cmdarg)
+    inline bool get_flag(const cmd::CommandLineArgument &cmdarg)
     {
-        return algorithm::find_arg_position(m_cmd, cmdarg.id, cmdarg.id_alt) != m_cmd.cend();
+        return algorithm::find_arg_position(m_cmd, cmdarg.id(), cmdarg.id_alt()) != m_cmd.cend();
     }
 
 
@@ -205,7 +204,7 @@ public:
      *
      * @return A new instance of T.
      */
-    inline const T get_option(const cmd::CommandLineArgument_t &)
+    inline const T get_option(const cmd::CommandLineArgument &)
     {
         return T();
     }
@@ -221,7 +220,7 @@ public:
      *
      * @return The default value.
      */
-    inline const T get_option(const cmd::CommandLineArgument_t &, const T &default_value)
+    inline const T get_option(const cmd::CommandLineArgument &, const T &default_value)
     {
         return default_value;
     }
@@ -239,7 +238,7 @@ public:
 
         for (const auto &cmdarg : m_cmdargs)
         {
-            const size_t id_length = cmdarg.id.size() + cmdarg.id_alt.size();
+            const size_t id_length = cmdarg.id().size() + cmdarg.id_alt().size();
 
             if (id_length > max_id_length)
             {
@@ -257,11 +256,11 @@ public:
 
         for (const auto &cmdarg : m_cmdargs)
         {
-            usage_string << ' ' << ' ' << cmdarg.id;
+            usage_string << ' ' << ' ' << cmdarg.id();
 
-            if (!cmdarg.id_alt.empty())
+            if (!cmdarg.id_alt().empty())
             {
-                usage_string << '|' << cmdarg.id_alt;
+                usage_string << '|' << cmdarg.id_alt();
             }
 
             for (size_t i = 0; i < max_id_length; ++i)
@@ -269,9 +268,9 @@ public:
                 usage_string << ' ';
             }
 
-            if (!cmdarg.description.empty())
+            if (!cmdarg.description().empty())
             {
-                usage_string << cmdarg.description;
+                usage_string << cmdarg.description();
             }
 
             usage_string << '\n';

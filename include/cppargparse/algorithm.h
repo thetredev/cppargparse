@@ -28,7 +28,7 @@ cmd::CommandLineArgumentPosition_t find_arg(const cmd::CommandLineArguments_t &c
 {
     for (auto it = cmdargs.cbegin(); it != cmdargs.cend(); ++it)
     {
-        if (it->id == id || it->id_alt == id)
+        if (it->id() == id || it->id_alt() == id)
         {
             return it;
         }

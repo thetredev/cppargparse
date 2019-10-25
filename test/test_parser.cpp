@@ -28,7 +28,7 @@ TEST(TestParser, AddArg1)
     using namespace cppargparse;
     auto arg_parser = test::make_arg_parser(test::parse_cmdargs("-t 3"), "TestParser");
 
-    const cmd::CommandLineArgument_t arg {
+    const cmd::CommandLineArgument arg {
         "-t", "--time", std::string(), arg_parser.m_cmd.cbegin()
     };
 
@@ -37,10 +37,10 @@ TEST(TestParser, AddArg1)
     ASSERT_EQ(size_t(2), arg_parser.m_cmd.size());
     ASSERT_EQ(size_t(1), arg_parser.m_cmdargs.size());
 
-    ASSERT_EQ("-t", arg.id);
-    ASSERT_EQ("--time", arg.id_alt);
-    ASSERT_EQ(std::string(), arg.description);
-    ASSERT_EQ(arg_parser.m_cmd.cbegin(), arg.position);
+    ASSERT_EQ("-t", arg.id());
+    ASSERT_EQ("--time", arg.id_alt());
+    ASSERT_EQ(std::string(), arg.description());
+    ASSERT_EQ(arg_parser.m_cmd.cbegin(), arg.position());
 }
 
 
@@ -57,10 +57,10 @@ TEST(TestParser, AddArg2)
     ASSERT_EQ(size_t(2), arg_parser.m_cmd.size());
     ASSERT_EQ(size_t(1), arg_parser.m_cmdargs.size());
 
-    ASSERT_EQ("-t", arg.id);
-    ASSERT_EQ(std::string(), arg.id_alt);
-    ASSERT_EQ(std::string(), arg.description);
-    ASSERT_EQ(arg_parser.m_cmd.cbegin(), arg.position);
+    ASSERT_EQ("-t", arg.id());
+    ASSERT_EQ(std::string(), arg.id_alt());
+    ASSERT_EQ(std::string(), arg.description());
+    ASSERT_EQ(arg_parser.m_cmd.cbegin(), arg.position());
 }
 
 
@@ -77,10 +77,10 @@ TEST(TestParser, AddArg3)
     ASSERT_EQ(size_t(2), arg_parser.m_cmd.size());
     ASSERT_EQ(size_t(1), arg_parser.m_cmdargs.size());
 
-    ASSERT_EQ("-t", arg.id);
-    ASSERT_EQ("--time", arg.id_alt);
-    ASSERT_EQ(std::string(), arg.description);
-    ASSERT_EQ(arg_parser.m_cmd.cbegin(), arg.position);
+    ASSERT_EQ("-t", arg.id());
+    ASSERT_EQ("--time", arg.id_alt());
+    ASSERT_EQ(std::string(), arg.description());
+    ASSERT_EQ(arg_parser.m_cmd.cbegin(), arg.position());
 }
 
 
@@ -97,10 +97,10 @@ TEST(TestParser, AddArg4)
     ASSERT_EQ(size_t(2), arg_parser.m_cmd.size());
     ASSERT_EQ(size_t(1), arg_parser.m_cmdargs.size());
 
-    ASSERT_EQ("-t", arg.id);
-    ASSERT_EQ("--time", arg.id_alt);
-    ASSERT_EQ("The time to wait for X to happen.", arg.description);
-    ASSERT_EQ(arg_parser.m_cmd.cbegin(), arg.position);
+    ASSERT_EQ("-t", arg.id());
+    ASSERT_EQ("--time", arg.id_alt());
+    ASSERT_EQ("The time to wait for X to happen.", arg.description());
+    ASSERT_EQ(arg_parser.m_cmd.cbegin(), arg.position());
 }
 
 
@@ -117,10 +117,10 @@ TEST(TestParser, AddHelp)
     ASSERT_EQ(size_t(2), arg_parser.m_cmd.size());
     ASSERT_EQ(size_t(1), arg_parser.m_cmdargs.size());
 
-    ASSERT_EQ("-h", help.id);
-    ASSERT_EQ("--help", help.id_alt);
-    ASSERT_EQ("Display this information", help.description);
-    ASSERT_EQ(arg_parser.m_cmd.cend(), help.position);
+    ASSERT_EQ("-h", help.id());
+    ASSERT_EQ("--help", help.id_alt());
+    ASSERT_EQ("Display this information", help.description());
+    ASSERT_EQ(arg_parser.m_cmd.cend(), help.position());
 }
 
 

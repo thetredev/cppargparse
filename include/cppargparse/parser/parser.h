@@ -49,9 +49,9 @@ public:
      * @return The argument value of type T.
      * @throws #cppargparse::errors::CommandLineArgumentError if the argument cannot be found.
      */
-    inline const T get_positional(const cmd::CommandLineArgument_t &positional)
+    inline const T get_positional(const cmd::CommandLineArgument &positional)
     {
-        if (positional.position == m_cmd.cend())
+        if (positional.position() == m_cmd.cend())
         {
             const auto positional_it = std::find(m_positionals.cbegin(), m_positionals.cend(), positional);
             const int positional_index = std::distance(m_positionals.cbegin(), positional_it);
@@ -62,7 +62,7 @@ public:
             throw errors::CommandLineArgumentError(message.str());
         }
 
-        return argument<T>::convert(m_cmd, positional.position, m_cmdargs);
+        return argument<T>::convert(m_cmd, positional.position(), m_cmdargs);
     }
 
 
@@ -77,17 +77,17 @@ public:
      * @return The argument value of type T.
      * @throws #cppargparse::errors::CommandLineArgumentError if the argument cannot be found.
      */
-    inline const T get_option(const cmd::CommandLineArgument_t &cmdarg)
+    inline const T get_option(const cmd::CommandLineArgument &cmdarg)
     {
-        if (cmdarg.position == m_cmd.cend())
+        if (cmdarg.position() == m_cmd.cend())
         {
             std::ostringstream message;
-            message << "Cannot find argument: " << cmdarg.id;
+            message << "Cannot find argument: " << cmdarg.id();
 
             throw errors::CommandLineArgumentError(message.str());
         }
 
-        return argument<T>::parse(m_cmd, cmdarg.position, m_cmdargs);
+        return argument<T>::parse(m_cmd, cmdarg.position(), m_cmdargs);
     }
 
 
@@ -103,7 +103,7 @@ public:
      * @return The argument value of type T or the default value if the argument cannot be found.
      * @throws #cppargparse::errors::CommandLineArgumentError if the argument cannot be found
      */
-    inline const T get_option(const cmd::CommandLineArgument_t &cmdarg, const T &default_value)
+    inline const T get_option(const cmd::CommandLineArgument &cmdarg, const T &default_value)
     {
         try
         {
