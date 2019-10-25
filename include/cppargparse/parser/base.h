@@ -5,7 +5,7 @@
 #include <sstream>
 
 #include <cppargparse/algorithm.h>
-#include <cppargparse/types.h>
+#include <cppargparse/cmd.h>
 
 
 namespace cppargparse {
@@ -26,7 +26,7 @@ public:
      * @param application_description The application description.
      */
     explicit ArgumentParserBase(int argc, char *argv[], const std::string &application_description)
-        : m_cmd(types::CommandLine_t(argv, argv + argc))
+        : m_cmd(cmd::CommandLine_t(argv, argv + argc))
         , m_cmdargs()
         , m_positionals()
         , m_application_description(application_description)
@@ -57,9 +57,9 @@ public:
      *
      * @return The generated command line argument.
      */
-    const types::CommandLineArgument_t add_positional(const std::string &description)
+    const cmd::CommandLineArgument_t add_positional(const std::string &description)
     {
-        const types::CommandLineArgument_t arg {
+        const cmd::CommandLineArgument_t arg {
             std::string(), std::string(), description,
             (m_cmdargs.size() > 0) ? std::next(std::prev(m_cmdargs.cend())->position) : m_cmd.cbegin()
         };
@@ -79,7 +79,7 @@ public:
      *
      * @return The generated command line argument.
      */
-    const types::CommandLineArgument_t add_positional()
+    const cmd::CommandLineArgument_t add_positional()
     {
         return add_positional(std::string());
     }
@@ -89,7 +89,7 @@ public:
      *
      * @param cmdarg The command line argument struct object.
      */
-    void add_arg(const types::CommandLineArgument_t &cmdarg)
+    void add_arg(const cmd::CommandLineArgument_t &cmdarg)
     {
         m_cmdargs.emplace_back(cmdarg);
     }
@@ -102,9 +102,9 @@ public:
      *
      * @return The generated command line argument.
      */
-    const types::CommandLineArgument_t add_arg(const std::string &id)
+    const cmd::CommandLineArgument_t add_arg(const std::string &id)
     {
-        const types::CommandLineArgument_t arg {
+        const cmd::CommandLineArgument_t arg {
             id, std::string(), std::string(),
             algorithm::find_arg_position(m_cmd, id, std::string())
         };
@@ -122,9 +122,9 @@ public:
      *
      * @return The generated command line argument.
      */
-    const types::CommandLineArgument_t add_arg(const std::string &id, const std::string &id_alt)
+    const cmd::CommandLineArgument_t add_arg(const std::string &id, const std::string &id_alt)
     {
-        const types::CommandLineArgument_t arg {
+        const cmd::CommandLineArgument_t arg {
             id, id_alt, std::string(),
             algorithm::find_arg_position(m_cmd, id, id_alt)
         };
@@ -143,9 +143,9 @@ public:
      *
      * @return The generated command line argument.
      */
-    const types::CommandLineArgument_t add_arg(const std::string &id, const std::string &id_alt, const std::string &description)
+    const cmd::CommandLineArgument_t add_arg(const std::string &id, const std::string &id_alt, const std::string &description)
     {
-        const types::CommandLineArgument_t arg {
+        const cmd::CommandLineArgument_t arg {
             id, id_alt, description,
             algorithm::find_arg_position(m_cmd, id, id_alt)
         };
@@ -160,7 +160,7 @@ public:
      *
      * @return The generated command line argument.
      */
-    const types::CommandLineArgument_t add_help()
+    const cmd::CommandLineArgument_t add_help()
     {
         return add_arg("-h", "--help", "Display this information");
     }
@@ -174,7 +174,7 @@ public:
      *
      * @return A new instance of T.
      */
-    inline T get_positional(const types::CommandLineArgument_t &)
+    inline T get_positional(const cmd::CommandLineArgument_t &)
     {
         return T();
     }
@@ -187,7 +187,7 @@ public:
      *
      * @return Whether the command line contains an argument string.
      */
-    inline bool get_flag(const types::CommandLineArgument_t &cmdarg)
+    inline bool get_flag(const cmd::CommandLineArgument_t &cmdarg)
     {
         return algorithm::find_arg_position(m_cmd, cmdarg.id, cmdarg.id_alt) != m_cmd.cend();
     }
@@ -201,7 +201,7 @@ public:
      *
      * @return A new instance of T.
      */
-    inline const T get_option(const types::CommandLineArgument_t &)
+    inline const T get_option(const cmd::CommandLineArgument_t &)
     {
         return T();
     }
@@ -217,7 +217,7 @@ public:
      *
      * @return The default value.
      */
-    inline const T get_option(const types::CommandLineArgument_t &, const T &default_value)
+    inline const T get_option(const cmd::CommandLineArgument_t &, const T &default_value)
     {
         return default_value;
     }
@@ -279,13 +279,13 @@ public:
 
 protected:
     /// The command line
-    types::CommandLine_t m_cmd;
+    cmd::CommandLine_t m_cmd;
 
     /// The command line arguments
-    types::CommandLineArguments_t m_cmdargs;
+    cmd::CommandLineArguments_t m_cmdargs;
 
     /// The positional command line arguments
-    types::CommandLineArguments_t m_positionals;
+    cmd::CommandLineArguments_t m_positionals;
 
 
 private:

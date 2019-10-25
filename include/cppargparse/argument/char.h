@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <string>
 
-#include <cppargparse/types.h>
+#include <cppargparse/cmd.h>
 
 #include "argument.h"
 #include "numerical.h"
@@ -28,9 +28,9 @@ struct argument<char>
      * @return The char value of the command line argument next in line.
      */
     static char parse(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &cmdargs)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &cmdargs)
     {
         return convert(cmd, std::next(position), cmdargs);
     }
@@ -44,9 +44,9 @@ struct argument<char>
      * @return The char value of the command line argument.
      */
     static char convert(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &)
     {
         if (position == cmd.cend())
         {
@@ -75,7 +75,7 @@ struct argument<char>
      *
      * @return An error message for a value that's not a char.
      */
-    static const char *error_message(const types::CommandLinePosition_t &position, const char *data_type)
+    static const char *error_message(const cmd::CommandLinePosition_t &position, const char *data_type)
     {
         std::ostringstream message;
         message << "Couldn't convert " << *position << "to type <" << data_type << ">";
@@ -100,9 +100,9 @@ struct argument<unsigned char>
      * @return The unsigned char value of the command line argument next in line.
      */
     static unsigned char parse(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &cmdargs)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &cmdargs)
     {
         return convert(cmd, std::next(position), cmdargs);
     }
@@ -116,9 +116,9 @@ struct argument<unsigned char>
      * @return The unsigned char value of the command line argument.
      */
     static unsigned char convert(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &)
     {
         if (position == cmd.cend())
         {
@@ -147,7 +147,7 @@ struct argument<unsigned char>
      *
      * @return An error message for a value that's not a char.
      */
-    static const char *error_message(const types::CommandLinePosition_t &position, const char *data_type)
+    static const char *error_message(const cmd::CommandLinePosition_t &position, const char *data_type)
     {
         std::ostringstream message;
         message << "Couldn't convert " << *position << "to type <" << data_type << ">";

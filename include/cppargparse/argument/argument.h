@@ -1,7 +1,7 @@
 #ifndef CPPARGPARSE_ARGUMENT_ARGUMENT_H
 #define CPPARGPARSE_ARGUMENT_ARGUMENT_H
 
-#include <cppargparse/types.h>
+#include <cppargparse/cmd.h>
 
 
 namespace cppargparse {
@@ -21,9 +21,9 @@ struct argument
      * @return A new instance of the template type.
      */
     static const T parse(
-            const types::CommandLine_t &,
-            const types::CommandLinePosition_t &,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &,
+            const cmd::CommandLinePosition_t &,
+            const cmd::CommandLineArguments_t &)
     {
         return T();
     }
@@ -35,9 +35,9 @@ struct argument
      * @return A new instance of the template type.
      */
     static const T convert(
-            const types::CommandLine_t &,
-            const types::CommandLinePosition_t &,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &,
+            const cmd::CommandLinePosition_t &,
+            const cmd::CommandLineArguments_t &)
     {
         return T();
     }
@@ -48,7 +48,7 @@ struct argument
      *
      * @return An empty C-style string.
      */
-    static const char *error_message(const types::CommandLinePosition_t &)
+    static const char *error_message(const cmd::CommandLinePosition_t &)
     {
         return "";
     }

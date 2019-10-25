@@ -28,7 +28,7 @@ TEST(TestParser, AddArg1)
     using namespace cppargparse;
     auto arg_parser = test::make_arg_parser(test::parse_cmdargs("-t 3"), "TestParser");
 
-    const types::CommandLineArgument_t arg {
+    const cmd::CommandLineArgument_t arg {
         "-t", "--time", std::string(), arg_parser.m_cmd.cbegin()
     };
 

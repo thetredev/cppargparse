@@ -5,7 +5,7 @@
 #include <limits>
 #include <string>
 
-#include <cppargparse/types.h>
+#include <cppargparse/cmd.h>
 
 #include "argument.h"
 #include "numerical.h"
@@ -29,9 +29,9 @@ struct argument<int>
      * @return The int value of the command line argument next in line.
      */
     static int parse(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &)
     {
         return numerical_argument<int>::convert(cmd, std::next(position), &wrap, "int");
     }
@@ -45,9 +45,9 @@ struct argument<int>
      * @return The int value of the command line argument.
      */
     static int convert(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &)
     {
         return numerical_argument<int>::convert(cmd, position, &wrap, "int");
     }
@@ -81,9 +81,9 @@ struct argument<unsigned int>
      * @return The unsigned int value of the command line argument next in line.
      */
     static unsigned int parse(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &)
     {
         return numerical_argument<unsigned int>::convert(cmd, std::next(position), &stou, "unsigned int");
     }
@@ -97,9 +97,9 @@ struct argument<unsigned int>
      * @return The unsigned int value of the command line argument.
      */
     static unsigned int convert(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &)
     {
         return numerical_argument<unsigned int>::convert(cmd, position, &stou, "unsigned int");
     }

@@ -4,7 +4,7 @@
 #include <vector>
 
 #include <cppargparse/algorithm.h>
-#include <cppargparse/types.h>
+#include <cppargparse/cmd.h>
 
 #include "argument.h"
 
@@ -30,9 +30,9 @@ struct argument<std::vector<T>>
      * @return All typed values for the vector argument.
      */
     static const std::vector<T> parse(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &cmdargs)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &cmdargs)
     {
         auto positions = get_option_positions(cmd, position, cmdargs);
         std::vector<T> values;
@@ -55,12 +55,12 @@ struct argument<std::vector<T>>
      *
      * @return Command line positions of an argument vector option.
      */
-    static types::CommandLinePositions_t get_option_positions(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &cmdargs)
+    static cmd::CommandLinePositions_t get_option_positions(
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &cmdargs)
     {
-        types::CommandLinePositions_t positions;
+        cmd::CommandLinePositions_t positions;
 
         for (auto current = std::next(position); current != cmd.end(); ++current)
         {

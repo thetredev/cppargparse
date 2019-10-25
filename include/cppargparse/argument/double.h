@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <string>
 
-#include <cppargparse/types.h>
+#include <cppargparse/cmd.h>
 
 #include "argument.h"
 #include "numerical.h"
@@ -28,9 +28,9 @@ struct argument<double>
      * @return The double value of the command line argument next in line.
      */
     static double parse(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &)
     {
         return numerical_argument<double>::convert(cmd, std::next(position), &wrap, "double");
     }
@@ -44,9 +44,9 @@ struct argument<double>
      * @return The double value of the command line argument.
      */
     static double convert(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &)
     {
         return numerical_argument<double>::convert(cmd, position, &wrap, "double");
     }
@@ -80,9 +80,9 @@ struct argument<long double>
      * @return The long double value of the command line argument next in line.
      */
     static long double parse(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &)
     {
         return numerical_argument<long double>::convert(cmd, std::next(position), &wrap, "long double");
     }
@@ -96,9 +96,9 @@ struct argument<long double>
      * @return The long double value of the command line argument.
      */
     static long double convert(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &)
     {
         return numerical_argument<long double>::convert(cmd, position, &wrap, "long double");
     }

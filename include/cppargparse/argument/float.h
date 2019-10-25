@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <string>
 
-#include <cppargparse/types.h>
+#include <cppargparse/cmd.h>
 
 #include "argument.h"
 #include "numerical.h"
@@ -28,9 +28,9 @@ struct argument<float>
      * @return The float value of the command line argument next in line.
      */
     static float parse(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &)
     {
         return numerical_argument<float>::convert(cmd, std::next(position), &wrap, "float");
     }
@@ -44,9 +44,9 @@ struct argument<float>
      * @return The float value of the command line argument.
      */
     static float convert(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &)
     {
         return numerical_argument<float>::convert(cmd, position, &wrap, "float");
     }

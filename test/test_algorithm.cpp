@@ -14,7 +14,7 @@ TEST(TestAlgorithm, FindArgByInvalidID)
 {
     using namespace cppargparse;
 
-    const types::CommandLineArguments_t cmdargs;
+    const cmd::CommandLineArguments_t cmdargs;
 
     const auto position = algorithm::find_arg(cmdargs, "-t");
     ASSERT_EQ(cmdargs.cend(), position);
@@ -28,11 +28,11 @@ TEST(TestAlgorithm, FindArgByValidID)
 {
     using namespace cppargparse;
 
-    const types::CommandLine_t cmd {
+    const cmd::CommandLine_t cmd {
         "-t", "3"
     };
 
-    const types::CommandLineArguments_t cmdargs {
+    const cmd::CommandLineArguments_t cmdargs {
         {
             "-t", std::string(), std::string(), cmd.cbegin()
         }
@@ -51,12 +51,12 @@ TEST(TestAlgorithm, FindArgByValidAlternativeID)
 {
     using namespace cppargparse;
 
-    const types::CommandLine_t cmd {
+    const cmd::CommandLine_t cmd {
         "--time", "3"
     };
 
 
-    const types::CommandLineArguments_t cmdargs {
+    const cmd::CommandLineArguments_t cmdargs {
         {
             "-t", "--time", std::string(), cmd.cbegin()
         }
@@ -75,12 +75,12 @@ TEST(TestAlgorithm, FindArgByInvalidIDs)
 {
     using namespace cppargparse;
 
-    const types::CommandLine_t cmd {
+    const cmd::CommandLine_t cmd {
         "--time", "3"
     };
 
 
-    const types::CommandLineArguments_t cmdargs {
+    const cmd::CommandLineArguments_t cmdargs {
         {
             "-f", "--frozen", std::string(), cmd.cend()
         }
@@ -99,7 +99,7 @@ TEST(TestAlgorithm, FindArgPositionWithEmptyCMD)
 {
     using namespace cppargparse;
 
-    const types::CommandLine_t cmd;
+    const cmd::CommandLine_t cmd;
 
 
     const auto cmd_position = algorithm::find_arg_position(cmd, "-t", "--time");
@@ -114,7 +114,7 @@ TEST(TestAlgorithm, FindArgPositionByValidID)
 {
     using namespace cppargparse;
 
-    const types::CommandLine_t cmd {
+    const cmd::CommandLine_t cmd {
         "-t", "3"
     };
 
@@ -131,7 +131,7 @@ TEST(TestAlgorithm, FindArgPositionByInvalidID)
 {
     using namespace cppargparse;
 
-    const types::CommandLine_t cmd {
+    const cmd::CommandLine_t cmd {
         "-t", "3", "-f", "5"
     };
 

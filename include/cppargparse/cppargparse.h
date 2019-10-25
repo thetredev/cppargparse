@@ -7,7 +7,7 @@
  */
 
 
-#include <cppargparse/types.h>
+#include <cppargparse/cmd.h>
 #include <cppargparse/arguments.h>
 #include <cppargparse/parser/parser.h>
 #include <cppargparse/errors.h>

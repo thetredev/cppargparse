@@ -1,8 +1,8 @@
-#ifndef CPPARGPARSE_TYPES_H
-#define CPPARGPARSE_TYPES_H
+#ifndef CPPARGPARSE_CMD_H
+#define CPPARGPARSE_CMD_H
 
 /**
-  @file cppargparse/types.h
+  @file cppargparse/cmd.h
   @brief Global type definitions of command line related types.
  */
 
@@ -12,7 +12,7 @@
 
 
 namespace cppargparse {
-namespace types {
+namespace cmd {
 
 
 /**
@@ -82,7 +82,7 @@ typedef std::vector<CommandLineArgument_t> CommandLineArguments_t;
 typedef CommandLineArguments_t::const_iterator CommandLineArgumentPosition_t;
 
 
-} // namespace types
+} // namespace cmd
 } // namespace cppargparse
 
-#endif // CPPARGPARSE_TYPES_H
+#endif // CPPARGPARSE_CMD_H

@@ -5,8 +5,8 @@
 #include <sstream>
 #include <string>
 
+#include <cppargparse/cmd.h>
 #include <cppargparse/errors.h>
-#include <cppargparse/types.h>
 
 
 namespace cppargparse {
@@ -30,8 +30,8 @@ struct numerical_argument
      * @throws #cppargparse::errors::CommandLineOptionError if the conversion was unsuccessful.
      */
     static T convert(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
             const std::function<T(const std::string &)> &numerical_converter,
             const std::string &type_string)
     {
@@ -63,7 +63,7 @@ struct numerical_argument
      *
      * @return An error message for a value that's not convertible to the specified numerical type.
      */
-    static const std::string error_message(const types::CommandLinePosition_t &position, const std::string &type_string)
+    static const std::string error_message(const cmd::CommandLinePosition_t &position, const std::string &type_string)
     {
         std::ostringstream message;
         message << "Couldn't convert '" << *position << "' to type <" << type_string << ">.";

@@ -9,7 +9,7 @@
 
 #include <algorithm>
 
-#include "types.h"
+#include "cmd.h"
 
 
 namespace cppargparse {
@@ -24,7 +24,7 @@ namespace algorithm {
  *
  * @return The command line arguments iterator position of the argument.
  */
-types::CommandLineArgumentPosition_t find_arg(const types::CommandLineArguments_t &cmdargs, const std::string &id)
+cmd::CommandLineArgumentPosition_t find_arg(const cmd::CommandLineArguments_t &cmdargs, const std::string &id)
 {
     for (auto it = cmdargs.cbegin(); it != cmdargs.cend(); ++it)
     {
@@ -47,7 +47,7 @@ types::CommandLineArgumentPosition_t find_arg(const types::CommandLineArguments_
  *
  * @return The command line iterator position of the argument.
  */
-types::CommandLinePosition_t find_arg_position(const types::CommandLine_t &cmd, const std::string &id, const std::string &id_alt)
+cmd::CommandLinePosition_t find_arg_position(const cmd::CommandLine_t &cmd, const std::string &id, const std::string &id_alt)
 {
     auto it = std::find(cmd.cbegin(), cmd.cend(), id);
 

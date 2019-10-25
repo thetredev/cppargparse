@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <string>
 
-#include <cppargparse/types.h>
+#include <cppargparse/cmd.h>
 
 #include "argument.h"
 #include "numerical.h"
@@ -28,9 +28,9 @@ struct argument<long>
      * @return The long value of the command line argument next in line.
      */
     static long parse(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &)
     {
         return numerical_argument<long>::convert(cmd, std::next(position), &wrap, "long");
     }
@@ -44,9 +44,9 @@ struct argument<long>
      * @return The long value of the command line argument.
      */
     static long convert(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &)
     {
         return numerical_argument<long>::convert(cmd, position, &wrap, "long");
     }
@@ -80,9 +80,9 @@ struct argument<long long>
      * @return The long long value of the command line argument next in line.
      */
     static long long parse(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &)
     {
         return numerical_argument<long long>::convert(cmd, std::next(position), &wrap, "long long");
     }
@@ -96,9 +96,9 @@ struct argument<long long>
      * @return The long double long of the command line argument.
      */
     static long double convert(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &)
     {
         return numerical_argument<long long>::convert(cmd, position, &wrap, "long long");
     }
@@ -132,9 +132,9 @@ struct argument<unsigned long>
      * @return The unsigned long value of the command line argument next in line.
      */
     static unsigned long parse(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &)
     {
         return numerical_argument<unsigned long>::convert(cmd, std::next(position), &wrap, "unsigned long");
     }
@@ -148,9 +148,9 @@ struct argument<unsigned long>
      * @return The unsigned long value of the command line argument.
      */
     static unsigned long convert(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &)
     {
         return numerical_argument<unsigned long>::convert(cmd, position, &wrap, "unsigned long");
     }
@@ -184,9 +184,9 @@ struct argument<unsigned long long>
      * @return The unsigned long long value of the command line argument next in line.
      */
     static unsigned long long parse(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &)
     {
         return numerical_argument<unsigned long long>::convert(cmd, std::next(position), &wrap, "unsigned long long");
     }
@@ -200,9 +200,9 @@ struct argument<unsigned long long>
      * @return The unsigned long long value of the command line argument.
      */
     static unsigned long long convert(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &)
     {
         return numerical_argument<unsigned long long>::convert(cmd, position, &wrap, "unsigned long long");
     }

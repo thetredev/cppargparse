@@ -7,8 +7,8 @@
 #include <sstream>
 
 #include <cppargparse/arguments.h>
+#include <cppargparse/cmd.h>
 #include <cppargparse/errors.h>
-#include <cppargparse/types.h>
 
 #include "base.h"
 
@@ -49,7 +49,7 @@ public:
      * @return The argument value of type T.
      * @throws #cppargparse::errors::CommandLineArgumentError if the argument cannot be found.
      */
-    inline const T get_positional(const types::CommandLineArgument_t &positional)
+    inline const T get_positional(const cmd::CommandLineArgument_t &positional)
     {
         if (positional.position == m_cmd.cend())
         {
@@ -77,7 +77,7 @@ public:
      * @return The argument value of type T.
      * @throws #cppargparse::errors::CommandLineArgumentError if the argument cannot be found.
      */
-    inline const T get_option(const types::CommandLineArgument_t &cmdarg)
+    inline const T get_option(const cmd::CommandLineArgument_t &cmdarg)
     {
         if (cmdarg.position == m_cmd.cend())
         {
@@ -102,7 +102,7 @@ public:
      * @return The argument value of type T or the default value if the argument cannot be found.
      * @throws #cppargparse::errors::CommandLineArgumentError if the argument cannot be found
      */
-    inline const T get_option(const types::CommandLineArgument_t &cmdarg, const T &default_value)
+    inline const T get_option(const cmd::CommandLineArgument_t &cmdarg, const T &default_value)
     {
         try
         {

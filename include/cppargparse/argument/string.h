@@ -5,8 +5,8 @@
 #include <sstream>
 #include <string>
 
+#include <cppargparse/cmd.h>
 #include <cppargparse/errors.h>
-#include <cppargparse/types.h>
 
 #include "argument.h"
 
@@ -30,9 +30,9 @@ struct argument<std::string>
      * @return The std::string value of the command line argument next in line.
      */
     static const std::string parse(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &cmdargs)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &cmdargs)
     {
         return convert(cmd, std::next(position), cmdargs);
     }
@@ -47,9 +47,9 @@ struct argument<std::string>
      * @throws #cppargparse::errors::CommandLineOptionError if there is no value to parse.
      */
     static const std::string convert(
-            const types::CommandLine_t &cmd,
-            const types::CommandLinePosition_t &position,
-            const types::CommandLineArguments_t &)
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position,
+            const cmd::CommandLineArguments_t &)
     {
         if (position == cmd.cend())
         {
@@ -66,7 +66,7 @@ struct argument<std::string>
      *
      * @return An error message for a value that's not a std::string.
      */
-    static const char *error_message(const types::CommandLinePosition_t &position)
+    static const char *error_message(const cmd::CommandLinePosition_t &position)
     {
         std::ostringstream message;
         message << "Couldn't convert " << *position << "to type <std::string>.";
