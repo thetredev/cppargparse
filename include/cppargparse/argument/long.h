@@ -191,6 +191,7 @@ struct argument<unsigned long long>
         return numerical_argument<unsigned long long>::convert(cmd, std::next(position), &wrap, "unsigned long long");
     }
 
+
     /**
      * @brief Try to convert a command line argument to an unsigned long long value.
      *
@@ -206,6 +207,7 @@ struct argument<unsigned long long>
     {
         return numerical_argument<unsigned long long>::convert(cmd, position, &wrap, "unsigned long long");
     }
+
 
     /**
      * @brief Wrap std::stoull() for use without default parameters.

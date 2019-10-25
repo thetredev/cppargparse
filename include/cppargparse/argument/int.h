@@ -36,6 +36,7 @@ struct argument<int>
         return numerical_argument<int>::convert(cmd, std::next(position), &wrap, "int");
     }
 
+
     /**
      * @brief Try to convert a command line argument to an int value.
      *
@@ -51,6 +52,7 @@ struct argument<int>
     {
         return numerical_argument<int>::convert(cmd, position, &wrap, "int");
     }
+
 
     /**
      * @brief Wrap std::stoi() for use without default parameters.
@@ -88,6 +90,7 @@ struct argument<unsigned int>
         return numerical_argument<unsigned int>::convert(cmd, std::next(position), &stou, "unsigned int");
     }
 
+
     /**
      * @brief Try to convert a command line argument to anunsigned int value.
      *
@@ -103,6 +106,7 @@ struct argument<unsigned int>
     {
         return numerical_argument<unsigned int>::convert(cmd, position, &stou, "unsigned int");
     }
+
 
     /**
      * @brief Convert a string to an unsigned long and return its unsigned int value.

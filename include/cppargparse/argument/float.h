@@ -35,6 +35,7 @@ struct argument<float>
         return numerical_argument<float>::convert(cmd, std::next(position), &wrap, "float");
     }
 
+
     /**
      * @brief Try to convert a command line argument to a float value.
      *
@@ -50,6 +51,7 @@ struct argument<float>
     {
         return numerical_argument<float>::convert(cmd, position, &wrap, "float");
     }
+
 
     /**
      * @brief Wrap std::stof() for use without default parameters.

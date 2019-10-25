@@ -87,6 +87,7 @@ struct argument<long double>
         return numerical_argument<long double>::convert(cmd, std::next(position), &wrap, "long double");
     }
 
+
     /**
      * @brief Try to convert a command line argument to a long double value.
      *
@@ -102,6 +103,7 @@ struct argument<long double>
     {
         return numerical_argument<long double>::convert(cmd, position, &wrap, "long double");
     }
+
 
     /**
      * @brief Wrap std::stold() for use without default parameters.

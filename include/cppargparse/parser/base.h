@@ -33,6 +33,7 @@ public:
     {
     }
 
+
     /**
      * @brief d'tor
      *
@@ -43,6 +44,7 @@ public:
         m_cmd.clear();
         m_cmdargs.clear();
     }
+
 
     /**
      * @brief Add a positional argument which is neither a flag nor an option.
@@ -68,6 +70,7 @@ public:
         return arg;
     }
 
+
     /**
      * @brief Add a positional argument which is neither a flag nor an option.
      *
@@ -83,6 +86,7 @@ public:
     {
         return add_positional(std::string());
     }
+
 
     /**
      * @brief Add an argument to the command line arguments list.

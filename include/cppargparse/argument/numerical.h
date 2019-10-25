@@ -55,6 +55,7 @@ struct numerical_argument
         }
     }
 
+
     /**
      * @brief Generate an error message for a value that's not a numerical value.
      *

@@ -90,6 +90,7 @@ public:
         return argument<T>::parse(m_cmd, cmdarg.position, m_cmdargs);
     }
 
+
     template <typename T>
     /**
      * @brief Return an argument value.
@@ -133,6 +134,7 @@ public:
         }
     }
 
+
     /**
      * @brief Add a flag argument and call a callback when it has been passed to the command line.
      *
@@ -150,6 +152,7 @@ public:
             callback(*this);
         }
     }
+
 
     /**
      * @brief Add a flag argument and call a callback when it has been passed to the command line.
@@ -202,6 +205,7 @@ public:
         callback(*this, get_option<T>(add_arg(id)));
     }
 
+
     template <typename T>
     /**
      * @brief Add an argument and call a callback with its value when it has been passed to the command line.
@@ -252,6 +256,7 @@ public:
     {
         callback(*this, get_option<T>(add_arg(id), default_value));
     }
+
 
     template <typename T>
     /**

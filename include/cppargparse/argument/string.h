@@ -37,6 +37,7 @@ struct argument<std::string>
         return convert(cmd, std::next(position), cmdargs);
     }
 
+
     /**
      * @brief Try to convert a command line argument to a std::string.
      *
@@ -58,6 +59,7 @@ struct argument<std::string>
 
         return *position;
     }
+
 
     /**
      * @brief Generate an error message for a value that's not a std::string.

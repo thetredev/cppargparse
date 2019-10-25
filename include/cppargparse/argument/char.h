@@ -35,6 +35,7 @@ struct argument<char>
         return convert(cmd, std::next(position), cmdargs);
     }
 
+
     /**
      * @brief Try to convert a command line argument to a char value.
      *
@@ -67,6 +68,7 @@ struct argument<char>
             throw errors::CommandLineOptionError(error_message(position, "char"));
         }
     }
+
 
     /**
      * @brief Generate an error message for a value that's not a char.
@@ -102,16 +104,17 @@ struct argument<unsigned char>
     static unsigned char parse(
             const cmd::CommandLine_t &cmd,
             const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &cmdargs)
+            const cmd::CommandLineArguments_t &)
     {
-        return convert(cmd, std::next(position), cmdargs);
+        return __convert(cmd, std::next(position));
     }
+
 
     /**
      * @brief Try to convert a command line argument to an unsigned char value.
      *
      * @param cmd The command line.
-     * @param position The command line argument iterator.
+     * @param position position The command line argument iterator.
      *
      * @return The unsigned char value of the command line argument.
      */
@@ -119,6 +122,22 @@ struct argument<unsigned char>
             const cmd::CommandLine_t &cmd,
             const cmd::CommandLinePosition_t &position,
             const cmd::CommandLineArguments_t &)
+    {
+        return __convert(cmd, position);
+    }
+
+
+    /**
+     * @brief Internal: Try to convert a command line argument to an unsigned char value.
+     *
+     * @param cmd The command line.
+     * @param position The command line argument iterator.
+     *
+     * @return The unsigned char value of the command line argument.
+     */
+    static unsigned char __convert(
+            const cmd::CommandLine_t &cmd,
+            const cmd::CommandLinePosition_t &position)
     {
         if (position == cmd.cend())
         {
@@ -139,6 +158,7 @@ struct argument<unsigned char>
             throw errors::CommandLineOptionError(error_message(position, "unsigned char"));
         }
     }
+
 
     /**
      * @brief Generate an error message for a value that's not a char.
