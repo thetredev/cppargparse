@@ -9,7 +9,7 @@
 
 #include <cppargparse/cmd.h>
 #include <cppargparse/arguments.h>
-#include <cppargparse/parser/parser.h>
+#include <cppargparse/parser.h>
 #include <cppargparse/errors.h>
 
 #endif // CPPARGPARSE_H

@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#define protected public
+#define private public
 #include <cppargparse/cppargparse.h>
 #undef protected
 
