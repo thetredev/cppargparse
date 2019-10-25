@@ -25,11 +25,11 @@ public:
      * @param argv The command line argument array.
      * @param application_description The application description.
      */
-    explicit ArgumentParserBase(int argc, char *argv[], const std::string &application_description)
+    explicit ArgumentParserBase(int argc, char *argv[], const std::string &description)
         : m_cmd(cmd::CommandLine_t(argv, argv + argc))
         , m_cmdargs()
         , m_positionals()
-        , m_application_description(application_description)
+        , m_description(description)
     {
     }
 
@@ -252,7 +252,7 @@ public:
 
         // Generate the usage string
         std::ostringstream usage_string;
-        usage_string << "Usage: " << m_application_description << '\n' << '\n';
+        usage_string << "Usage: " << m_description << '\n' << '\n';
 
         for (const auto &cmdarg : m_cmdargs)
         {
@@ -293,7 +293,7 @@ protected:
 
 private:
     /// The application description
-    const std::string m_application_description;
+    const std::string m_description;
 };
 
 

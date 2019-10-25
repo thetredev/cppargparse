@@ -32,8 +32,8 @@ public:
      * @param argv The command line argument array.
      * @param application_description The application description.
      */
-    explicit ArgumentParser(int argc, char *argv[], const std::string &application_description)
-        : ArgumentParserBase(argc, argv, application_description)
+    explicit ArgumentParser(int argc, char *argv[], const std::string &description)
+        : ArgumentParserBase(argc, argv, description)
     {
     }
 
