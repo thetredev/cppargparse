@@ -1,5 +1,5 @@
-#ifndef CPPARGPARSE_ARGUMENTS_INT_H
-#define CPPARGPARSE_ARGUMENTS_INT_H
+#ifndef CPPARGPARSE_ARGUMENT_INT_H
+#define CPPARGPARSE_ARGUMENT_INT_H
 
 #include <algorithm>
 #include <limits>
@@ -7,7 +7,7 @@
 
 #include <cppargparse/types.h>
 
-#include "default.h"
+#include "argument.h"
 #include "numerical.h"
 
 
@@ -128,4 +128,4 @@ struct argument<unsigned int>
 
 } // namespace cppargparse
 
-#endif // CPPARGPARSE_ARGUMENTS_INT_H
+#endif // CPPARGPARSE_ARGUMENT_INT_H

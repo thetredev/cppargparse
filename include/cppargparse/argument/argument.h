@@ -1,5 +1,5 @@
-#ifndef CPPARGPARSE_ARGUMENTS_DEFAULT_H
-#define CPPARGPARSE_ARGUMENTS_DEFAULT_H
+#ifndef CPPARGPARSE_ARGUMENT_ARGUMENT_H
+#define CPPARGPARSE_ARGUMENT_ARGUMENT_H
 
 #include <cppargparse/types.h>
 
@@ -57,4 +57,4 @@ struct argument
 
 } // namespace cppargparse
 
-#endif // CPPARGPARSE_ARGUMENTS_DEFAULT_H
+#endif // CPPARGPARSE_ARGUMENT_ARGUMENT_H

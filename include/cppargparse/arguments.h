@@ -7,13 +7,13 @@
  */
 
 
-#include <cppargparse/arguments/default.h>
-#include <cppargparse/arguments/char.h>
-#include <cppargparse/arguments/double.h>
-#include <cppargparse/arguments/float.h>
-#include <cppargparse/arguments/int.h>
-#include <cppargparse/arguments/long.h>
-#include <cppargparse/arguments/string.h>
-#include <cppargparse/arguments/vector.h>
+#include <cppargparse/argument/argument.h>
+#include <cppargparse/argument/char.h>
+#include <cppargparse/argument/double.h>
+#include <cppargparse/argument/float.h>
+#include <cppargparse/argument/int.h>
+#include <cppargparse/argument/long.h>
+#include <cppargparse/argument/string.h>
+#include <cppargparse/argument/vector.h>
 
 #endif // CPPARGPARSE_ARGUMENTS_H

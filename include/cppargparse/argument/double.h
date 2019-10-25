@@ -1,12 +1,12 @@
-#ifndef CPPARGPARSE_ARGUMENTS_DOUBLE_H
-#define CPPARGPARSE_ARGUMENTS_DOUBLE_H
+#ifndef CPPARGPARSE_ARGUMENT_DOUBLE_H
+#define CPPARGPARSE_ARGUMENT_DOUBLE_H
 
 #include <algorithm>
 #include <string>
 
 #include <cppargparse/types.h>
 
-#include "default.h"
+#include "argument.h"
 #include "numerical.h"
 
 
@@ -119,4 +119,4 @@ struct argument<long double>
 
 } // namespace cppargparse
 
-#endif // CPPARGPARSE_ARGUMENTS_DOUBLE_H
+#endif // CPPARGPARSE_ARGUMENT_DOUBLE_H

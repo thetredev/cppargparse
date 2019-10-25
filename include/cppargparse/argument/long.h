@@ -1,12 +1,12 @@
-#ifndef CPPARGPARSE_ARGUMENTS_LONG_H
-#define CPPARGPARSE_ARGUMENTS_LONG_H
+#ifndef CPPARGPARSE_ARGUMENT_LONG_H
+#define CPPARGPARSE_ARGUMENT_LONG_H
 
 #include <algorithm>
 #include <string>
 
 #include <cppargparse/types.h>
 
-#include "default.h"
+#include "argument.h"
 #include "numerical.h"
 
 
@@ -223,4 +223,4 @@ struct argument<unsigned long long>
 
 } // namespace cppargparse
 
-#endif // CPPARGPARSE_ARGUMENTS_LONG_H
+#endif // CPPARGPARSE_ARGUMENT_LONG_H

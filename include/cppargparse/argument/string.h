@@ -1,5 +1,5 @@
-#ifndef CPPARGPARSE_ARGUMENTS_STRING_H
-#define CPPARGPARSE_ARGUMENTS_STRING_H
+#ifndef CPPARGPARSE_ARGUMENT_STRING_H
+#define CPPARGPARSE_ARGUMENT_STRING_H
 
 #include <algorithm>
 #include <sstream>
@@ -8,7 +8,7 @@
 #include <cppargparse/errors.h>
 #include <cppargparse/types.h>
 
-#include "default.h"
+#include "argument.h"
 
 
 namespace cppargparse {
@@ -78,4 +78,4 @@ struct argument<std::string>
 
 } // namespace cppargparse
 
-#endif // CPPARGPARSE_ARGUMENTS_STRING_H
+#endif // CPPARGPARSE_ARGUMENT_STRING_H

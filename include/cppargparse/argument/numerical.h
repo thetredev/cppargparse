@@ -1,5 +1,5 @@
-#ifndef CPPARGPARSE_ARGUMENTS_NUMERICAL_H
-#define CPPARGPARSE_ARGUMENTS_NUMERICAL_H
+#ifndef CPPARGPARSE_ARGUMENT_NUMERICAL_H
+#define CPPARGPARSE_ARGUMENT_NUMERICAL_H
 
 #include <functional>
 #include <sstream>
@@ -76,4 +76,4 @@ struct numerical_argument
 
 } // namespace cppargparse
 
-#endif // CPPARGPARSE_ARGUMENTS_NUMERICAL_H
+#endif // CPPARGPARSE_ARGUMENT_NUMERICAL_H
