@@ -145,3 +145,39 @@ TEST(TestAlgorithm, FindArgPositionByInvalidID)
 
     ASSERT_EQ(cmd.cend(), cmd_position);
 }
+
+
+//
+// get_option_positions(<cmd: -t 3 6 20 -f 5>)
+//
+TEST(TestAlgorithm, GetOptionPositions)
+{
+    using namespace cppargparse;
+
+    const cmd::CommandLine_t cmd {
+        "-t", "3", "6", "20", "-f", "5"
+    };
+
+    const cmd::CommandLineArguments_t cmdargs {
+        cmd::CommandLineArgument {
+            "-t", cmd.cbegin()
+        },
+
+        cmd::CommandLineArgument {
+            "-f", cmd.cend() - 1
+        }
+    };
+
+
+    const cmd::CommandLinePositions_t positions = algorithm::get_option_positions(cmd, cmd.cbegin(), cmdargs);
+
+    ASSERT_EQ(3, positions.size());
+
+    const cmd::CommandLinePositions_t expected = {
+        cmd.cbegin() + 1,
+        cmd.cbegin() + 2,
+        cmd.cbegin() + 3
+    };
+
+    ASSERT_EQ(expected, positions);
+}

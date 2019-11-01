@@ -34,7 +34,7 @@ struct argument<std::vector<T>>
             const cmd::CommandLinePosition_t &position,
             const cmd::CommandLineArguments_t &cmdargs)
     {
-        auto positions = get_option_positions(cmd, position, cmdargs);
+        auto positions = algorithm::get_option_positions(cmd, position, cmdargs);
         std::vector<T> values;
 
         for (auto position : positions)
@@ -43,36 +43,6 @@ struct argument<std::vector<T>>
         }
 
         return values;
-    }
-
-
-    /**
-     * @brief Return command line positions of an argument vector option.
-     *
-     * @param cmd The command line.
-     * @param position The argument iterator position (start position).
-     * @param cmdargs The command line arguments.
-     *
-     * @return Command line positions of an argument vector option.
-     */
-    static cmd::CommandLinePositions_t get_option_positions(
-            const cmd::CommandLine_t &cmd,
-            const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &cmdargs)
-    {
-        cmd::CommandLinePositions_t positions;
-
-        for (auto current = std::next(position); current != cmd.end(); ++current)
-        {
-            if (algorithm::find_arg(cmdargs, *current) != cmdargs.cend())
-            {
-                break;
-            }
-
-            positions.emplace_back(current);
-        }
-
-        return positions;
     }
 };
 
