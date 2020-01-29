@@ -95,7 +95,7 @@ struct argument<long long>
      *
      * @return The long double long of the command line argument.
      */
-    static long double convert(
+    static long long convert(
             const cmd::CommandLine_t &cmd,
             const cmd::CommandLinePosition_t &position,
             const cmd::CommandLineArguments_t &)
