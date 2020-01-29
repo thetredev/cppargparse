@@ -2,12 +2,13 @@
 #define CPPARGPARSE_ARGUMENTS_CHAR_H
 
 #include <algorithm>
+#include <sstream>
 #include <string>
 
 #include <cppargparse/cmd.h>
+#include <cppargparse/errors.h>
 
 #include "argument.h"
-#include "numerical.h"
 
 
 namespace cppargparse {
