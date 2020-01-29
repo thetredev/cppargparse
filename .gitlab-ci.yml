@@ -4,10 +4,9 @@ stages:
 
 build:debian:
   stage: test
-  image: gitlab.bvtheteam.eu:4567/treichl/cppargparse:3
+  image: registry.gitlab.com/treichl/cppargparse:latest
   tags:
-    - linux
-    - debian
+    - gitlab-org
   script:
     - mkdir build
     - cd build
