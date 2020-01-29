@@ -1,5 +1,5 @@
-#ifndef CPPARGPARSE_ARGUMENT_ARGUMENT_H
-#define CPPARGPARSE_ARGUMENT_ARGUMENT_H
+#ifndef CPPARGPARSE_ARGUMENTS_ARGUMENT_H
+#define CPPARGPARSE_ARGUMENTS_ARGUMENT_H
 
 #include <cppargparse/cmd.h>
 
@@ -57,4 +57,4 @@ struct argument
 
 } // namespace cppargparse
 
-#endif // CPPARGPARSE_ARGUMENT_ARGUMENT_H
+#endif // CPPARGPARSE_ARGUMENTS_ARGUMENT_H

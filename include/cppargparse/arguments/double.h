@@ -1,5 +1,5 @@
-#ifndef CPPARGPARSE_ARGUMENT_DOUBLE_H
-#define CPPARGPARSE_ARGUMENT_DOUBLE_H
+#ifndef CPPARGPARSE_ARGUMENTS_DOUBLE_H
+#define CPPARGPARSE_ARGUMENTS_DOUBLE_H
 
 #include <algorithm>
 #include <string>
@@ -121,4 +121,4 @@ struct argument<long double>
 
 } // namespace cppargparse
 
-#endif // CPPARGPARSE_ARGUMENT_DOUBLE_H
+#endif // CPPARGPARSE_ARGUMENTS_DOUBLE_H

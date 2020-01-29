@@ -1,5 +1,5 @@
-#ifndef CPPARGPARSE_ARGUMENT_VECTOR_H
-#define CPPARGPARSE_ARGUMENT_VECTOR_H
+#ifndef CPPARGPARSE_ARGUMENTS_VECTOR_H
+#define CPPARGPARSE_ARGUMENTS_VECTOR_H
 
 #include <vector>
 
@@ -49,4 +49,4 @@ struct argument<std::vector<T>>
 
 } // namespace cppargparse
 
-#endif // CPPARGPARSE_ARGUMENT_VECTOR_H
+#endif // CPPARGPARSE_ARGUMENTS_VECTOR_H

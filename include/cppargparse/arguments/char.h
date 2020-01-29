@@ -1,5 +1,5 @@
-#ifndef CPPARGPARSE_ARGUMENT_CHAR_H
-#define CPPARGPARSE_ARGUMENT_CHAR_H
+#ifndef CPPARGPARSE_ARGUMENTS_CHAR_H
+#define CPPARGPARSE_ARGUMENTS_CHAR_H
 
 #include <algorithm>
 #include <string>
@@ -179,4 +179,4 @@ struct argument<unsigned char>
 
 } // namespace cppargparse
 
-#endif // CPPARGPARSE_ARGUMENT_CHAR_H
+#endif // CPPARGPARSE_ARGUMENTS_CHAR_H

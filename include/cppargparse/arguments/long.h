@@ -1,5 +1,5 @@
-#ifndef CPPARGPARSE_ARGUMENT_LONG_H
-#define CPPARGPARSE_ARGUMENT_LONG_H
+#ifndef CPPARGPARSE_ARGUMENTS_LONG_H
+#define CPPARGPARSE_ARGUMENTS_LONG_H
 
 #include <algorithm>
 #include <string>
@@ -225,4 +225,4 @@ struct argument<unsigned long long>
 
 } // namespace cppargparse
 
-#endif // CPPARGPARSE_ARGUMENT_LONG_H
+#endif // CPPARGPARSE_ARGUMENTS_LONG_H

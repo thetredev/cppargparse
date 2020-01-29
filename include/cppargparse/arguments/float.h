@@ -1,5 +1,5 @@
-#ifndef CPPARGPARSE_ARGUMENT_FLOAT_H
-#define CPPARGPARSE_ARGUMENT_FLOAT_H
+#ifndef CPPARGPARSE_ARGUMENTS_FLOAT_H
+#define CPPARGPARSE_ARGUMENTS_FLOAT_H
 
 #include <algorithm>
 #include <string>
@@ -69,4 +69,4 @@ struct argument<float>
 
 } // namespace cppargparse
 
-#endif // CPPARGPARSE_ARGUMENT_FLOAT_H
+#endif // CPPARGPARSE_ARGUMENTS_FLOAT_H
