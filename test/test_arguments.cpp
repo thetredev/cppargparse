@@ -32,7 +32,7 @@ void assert_eq_wrap<double>(const double &v1, const double &v2)
 template <>
 void assert_eq_wrap<long double>(const long double &v1, const long double &v2)
 {
-    ASSERT_DOUBLE_EQ(v1, v2);
+    assert_eq_wrap<double>(static_cast<double>(v1), static_cast<double>(v2));
 }
 
 
@@ -445,7 +445,7 @@ TEST(TestArguments, DoublesVectorReachEnd)
 //
 TEST(TestArguments, LongDouble)
 {
-    value_test<long double>(3.63126121, 5.0);
+    value_test<long double>(3.63126121l, 5.0l);
 }
 
 TEST(TestArguments, LongDoubleMax)
@@ -462,12 +462,12 @@ TEST(TestArguments, LongDoubleOutOfRange)
 
 TEST(TestArguments, LongDoublesVector)
 {
-    vector_test<long double>(std::vector<long double> {3.2, 2.0, 34.0, 6.0, 2.0, 100.0, 2151.1112}, false);
+    vector_test<long double>(std::vector<long double> {3.2l, 2.0l, 34.0l, 6.0l, 2.0l, 100.0l, 2151.1112l}, false);
 }
 
 TEST(TestArguments, LongDoublesVectorReachEnd)
 {
-    vector_test<long double>(std::vector<long double> {3.2, 2.0, 34.0, 6.0, 2.0, 100.0, 2151.1112}, true);
+    vector_test<long double>(std::vector<long double> {3.2l, 2.0l, 34.0l, 6.0l, 2.0l, 100.0l, 2151.1112l}, true);
 }
 
 
