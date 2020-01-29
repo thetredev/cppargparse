@@ -104,9 +104,9 @@ struct argument<unsigned char>
     static unsigned char parse(
             const cmd::CommandLine_t &cmd,
             const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &)
+            const cmd::CommandLineArguments_t &cmdargs)
     {
-        return __convert(cmd, std::next(position));
+        return convert(cmd, std::next(position), cmdargs);
     }
 
 
@@ -123,22 +123,6 @@ struct argument<unsigned char>
             const cmd::CommandLinePosition_t &position,
             const cmd::CommandLineArguments_t &)
     {
-        return __convert(cmd, position);
-    }
-
-
-    /**
-     * @brief Internal: Try to convert a command line argument to an unsigned char value.
-     *
-     * @param cmd The command line.
-     * @param position The command line argument iterator.
-     *
-     * @return The unsigned char value of the command line argument.
-     */
-    static unsigned char __convert(
-            const cmd::CommandLine_t &cmd,
-            const cmd::CommandLinePosition_t &position)
-    {
         if (position == cmd.cend())
         {
             throw errors::CommandLineOptionError(error_message(std::prev(position), "unsigned char"));
@@ -146,7 +130,8 @@ struct argument<unsigned char>
 
         try
         {
-            return (*position)[0];
+            const std::string value {*position};
+            return static_cast<unsigned char>(value.at(0));
         }
 
         catch (const std::invalid_argument &)
