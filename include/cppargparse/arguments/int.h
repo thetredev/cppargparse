@@ -118,7 +118,7 @@ struct argument<unsigned int>
      */
     static unsigned int stou(const std::string &s)
     {
-        unsigned long result = std::stoul(s);
+        unsigned long long result = std::stoull(s);
 
         if (result > std::numeric_limits<unsigned int>::max())
         {
