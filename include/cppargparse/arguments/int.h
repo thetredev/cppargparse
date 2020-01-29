@@ -31,9 +31,9 @@ struct argument<int>
     static int parse(
             const cmd::CommandLine_t &cmd,
             const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &)
+            const cmd::CommandLineArguments_t &cmdargs)
     {
-        return numerical_argument<int>::convert(cmd, std::next(position), &wrap, "int");
+        return convert(cmd, std::next(position), cmdargs);
     }
 
 
@@ -85,9 +85,9 @@ struct argument<unsigned int>
     static unsigned int parse(
             const cmd::CommandLine_t &cmd,
             const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &)
+            const cmd::CommandLineArguments_t &cmdargs)
     {
-        return numerical_argument<unsigned int>::convert(cmd, std::next(position), &stou, "unsigned int");
+        return convert(cmd, std::next(position), cmdargs);
     }
 
 

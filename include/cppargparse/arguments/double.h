@@ -30,9 +30,9 @@ struct argument<double>
     static double parse(
             const cmd::CommandLine_t &cmd,
             const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &)
+            const cmd::CommandLineArguments_t &cmdargs)
     {
-        return numerical_argument<double>::convert(cmd, std::next(position), &wrap, "double");
+        return convert(cmd, std::next(position), cmdargs);
     }
 
     /**
@@ -82,9 +82,9 @@ struct argument<long double>
     static long double parse(
             const cmd::CommandLine_t &cmd,
             const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &)
+            const cmd::CommandLineArguments_t &cmdargs)
     {
-        return numerical_argument<long double>::convert(cmd, std::next(position), &wrap, "long double");
+        return convert(cmd, std::next(position), cmdargs);
     }
 
 

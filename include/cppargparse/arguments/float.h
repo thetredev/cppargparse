@@ -30,9 +30,9 @@ struct argument<float>
     static float parse(
             const cmd::CommandLine_t &cmd,
             const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &)
+            const cmd::CommandLineArguments_t &cmdargs)
     {
-        return numerical_argument<float>::convert(cmd, std::next(position), &wrap, "float");
+        return convert(cmd, std::next(position), cmdargs);
     }
 
 

@@ -30,9 +30,9 @@ struct argument<long>
     static long parse(
             const cmd::CommandLine_t &cmd,
             const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &)
+            const cmd::CommandLineArguments_t &cmdargs)
     {
-        return numerical_argument<long>::convert(cmd, std::next(position), &wrap, "long");
+        return convert(cmd, std::next(position), cmdargs);
     }
 
     /**
@@ -82,9 +82,9 @@ struct argument<long long>
     static long long parse(
             const cmd::CommandLine_t &cmd,
             const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &)
+            const cmd::CommandLineArguments_t &cmdargs)
     {
-        return numerical_argument<long long>::convert(cmd, std::next(position), &wrap, "long long");
+        return convert(cmd, std::next(position), cmdargs);
     }
 
     /**
@@ -134,9 +134,9 @@ struct argument<unsigned long>
     static unsigned long parse(
             const cmd::CommandLine_t &cmd,
             const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &)
+            const cmd::CommandLineArguments_t &cmdargs)
     {
-        return numerical_argument<unsigned long>::convert(cmd, std::next(position), &wrap, "unsigned long");
+        return convert(cmd, std::next(position), cmdargs);
     }
 
     /**
@@ -186,9 +186,9 @@ struct argument<unsigned long long>
     static unsigned long long parse(
             const cmd::CommandLine_t &cmd,
             const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &)
+            const cmd::CommandLineArguments_t &cmdargs)
     {
-        return numerical_argument<unsigned long long>::convert(cmd, std::next(position), &wrap, "unsigned long long");
+        return convert(cmd, std::next(position), cmdargs);
     }
 
 
