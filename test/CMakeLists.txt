@@ -1,19 +1,12 @@
 #
-# Testing target: run_tests
+# Testing target: tests
 #
 
-add_custom_target(run_tests)
-add_custom_command(TARGET run_tests POST_BUILD
+add_custom_target(tests)
+add_custom_command(TARGET tests POST_BUILD
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     COMMAND ctest --output-on-failure
 )
-
-
-#
-# Testing target: tests
-#
-add_custom_target(tests)
-add_dependencies(run_tests tests)
 
 
 #
@@ -51,8 +44,8 @@ if(${IS_PROFILING})
         COMMAND genhtml --branch-coverage --output coverage cppargparse.info
     )
 
-    # Make "coverage" depend on "run_tests"
-    add_dependencies(coverage run_tests)
+    # Make "coverage" depend on "tests"
+    add_dependencies(coverage tests)
 endif()
 
 
