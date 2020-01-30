@@ -12,3 +12,9 @@ build:debian:
     - cd build
     - cmake -G"Ninja" -DCMAKE_BUILD_TYPE=Debug ..
     - ninja run_tests
+  artifacts:
+    name: "cppargparse_${CI_COMMIT_BRANCH}${CI_COMMIT_TAG}_${CI_COMMIT_SHORT_SHA}"
+    paths:
+      - include/
+      - docs/
+    expire_in: 1000 yrs
