@@ -167,15 +167,15 @@ struct numerical_argument
 
 |**Data type**|**Wrapped converter function**|C++ ArgParse implementation|
 |---|---|---|
-|`int`|`std::stoi`|[int.h](https://github.com/backraw/cppargparse/tree/master/include/cppargparse/arguments/int.h)
-|`unsigned int`|`stou` (custom implementation)|[int.h](https://github.com/backraw/cppargparse/tree/master/include/cppargparse/arguments/int.h)
-|`long`|`std::stol`|[long.h](https://github.com/backraw/cppargparse/tree/master/include/cppargparse/arguments/long.h)
-|`long long`|`std::stoll`|[long.h](https://github.com/backraw/cppargparse/tree/master/include/cppargparse/arguments/long.h)
-|`unsigned long`|`std::stoul`|[long.h](https://github.com/backraw/cppargparse/tree/master/include/cppargparse/arguments/long.h)
-|`unsigned long long`|`std::stoull`|[long.h](https://github.com/backraw/cppargparse/tree/master/include/cppargparse/arguments/long.h)
-|`float`|`std::stof`|[float.h](https://github.com/backraw/cppargparse/tree/master/include/cppargparse/arguments/float.h)
-|`double`|`std::stod`|[double.h](https://github.com/backraw/cppargparse/tree/master/include/cppargparse/arguments/long.h)
-|`long double`|`std::stold`|[double.h](https://github.com/backraw/cppargparse/tree/master/include/cppargparse/arguments/double.h)
+|`int`|`std::stoi`|[int.h](https://gitlab.com/treichl/cppargparse/blob/master/include/cppargparse/arguments/int.h)
+|`unsigned int`|`stou` (custom implementation)|[int.h](https://gitlab.com/treichl/cppargparse/blob/master/include/cppargparse/arguments//int.h)
+|`long`|`std::stol`|[long.h](https://gitlab.com/treichl/cppargparse/blob/master/include/cppargparse/arguments/long.h)
+|`long long`|`std::stoll`|[long.h](https://gitlab.com/treichl/cppargparse/blob/master/include/cppargparse/arguments/long.h)
+|`unsigned long`|`std::stoul`|[long.h](https://gitlab.com/treichl/cppargparse/blob/master/include/cppargparse/arguments/long.h)
+|`unsigned long long`|`std::stoull`|[long.h](https://gitlab.com/treichl/cppargparse/blob/master/include/cppargparse/arguments/arguments/long.h)
+|`float`|`std::stof`|[float.h](https://gitlab.com/treichl/cppargparse/blob/master/include/cppargparse/arguments/float.h)
+|`double`|`std::stod`|[double.h](https://gitlab.com/treichl/cppargparse/blob/master/include/cppargparse/arguments/long.h)
+|`long double`|`std::stold`|[double.h](https://gitlab.com/treichl/cppargparse/blob/master/include/cppargparse/arguments/double.h)
 
 
 ## String types
