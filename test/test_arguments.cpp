@@ -179,7 +179,7 @@ TEST(TestArguments, CharsVector)
 
 TEST(TestArguments, CharsVectorReachEnd)
 {
-    vector_test<char>(std::vector<char> {'3', '2', '3', '6', '2', 'C'}, true);
+    vector_test<char>(std::vector<char> {'3', '2', '3', '6', '2', 'C'}, true, false);
 }
 
 
@@ -198,7 +198,7 @@ TEST(TestArguments, UnsignedCharsVector)
 
 TEST(TestArguments, UnsignedCharsVectorReachEnd)
 {
-    vector_test<unsigned char>(std::vector<unsigned char> {'3', '2', '3', '6', '2', 'C'}, true);
+    vector_test<unsigned char>(std::vector<unsigned char> {'3', '2', '3', '6', '2', 'C'}, true, false);
 }
 
 
