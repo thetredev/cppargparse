@@ -224,8 +224,8 @@ TEST(TestParser, AddFlagWithCallback1)
     using namespace cppargparse;
     auto arg_parser = test::make_arg_parser(test::parse_cmdargs("-h"), "TestParser");
 
-    arg_parser.add_flag_with_callback("-h", &usage_callback);
-    arg_parser.add_flag_with_callback("--help", &usage_callback);
+    arg_parser.with_flag("-h", &usage_callback);
+    arg_parser.with_flag("--help", &usage_callback);
 }
 
 
@@ -237,8 +237,8 @@ TEST(TestParser, AddFlagWithCallback2)
     using namespace cppargparse;
     auto arg_parser = test::make_arg_parser(test::parse_cmdargs("-h"), "TestParser");
 
-    arg_parser.add_flag_with_callback("-h", "--help", &usage_callback);
-    arg_parser.add_flag_with_callback("-t", "--test", &usage_callback);
+    arg_parser.with_flag("-h", "--help", &usage_callback);
+    arg_parser.with_flag("-t", "--test", &usage_callback);
 }
 
 
@@ -250,8 +250,8 @@ TEST(TestParser, AddFlagWithCallback3)
     using namespace cppargparse;
     auto arg_parser = test::make_arg_parser(test::parse_cmdargs("-h"), "TestParser");
 
-    arg_parser.add_flag_with_callback("-h", "--help", "Help information", &usage_callback);
-    arg_parser.add_flag_with_callback("-t", "--test", "Invalid flag", &usage_callback);
+    arg_parser.with_flag("-h", "--help", "Help information", &usage_callback);
+    arg_parser.with_flag("-t", "--test", "Invalid flag", &usage_callback);
 }
 
 
@@ -263,7 +263,7 @@ TEST(TestParser, AddHelpWithCallback1)
     using namespace cppargparse;
     auto arg_parser = test::make_arg_parser(test::parse_cmdargs("-h"), "TestParser");
 
-    arg_parser.add_help_with_callback(&usage_callback);
+    arg_parser.with_help(&usage_callback);
 }
 
 
@@ -275,7 +275,7 @@ TEST(TestParser, AddHelpWithCallback2)
     using namespace cppargparse;
     auto arg_parser = test::make_arg_parser(test::parse_cmdargs("-t"), "TestParser");
 
-    arg_parser.add_help_with_callback(&usage_callback);
+    arg_parser.with_help(&usage_callback);
 }
 
 
@@ -296,10 +296,10 @@ TEST(TestParser, AddArgWithCallback1)
     using namespace cppargparse;
     auto arg_parser = test::make_arg_parser(test::parse_cmdargs("-t 4 -x"), "TestParser");
 
-    arg_parser.add_arg_with_callback<int>("-t", &check_t_is_4);
+    arg_parser.with<int>("-t", &check_t_is_4);
 
-    ASSERT_THROW(arg_parser.add_arg_with_callback<int>("-p", &check_t_is_4), errors::CommandLineArgumentError);
-    ASSERT_THROW(arg_parser.add_arg_with_callback<int>("-x", &check_t_is_4), errors::CommandLineOptionError);
+    ASSERT_THROW(arg_parser.with<int>("-p", &check_t_is_4), errors::CommandLineArgumentError);
+    ASSERT_THROW(arg_parser.with<int>("-x", &check_t_is_4), errors::CommandLineOptionError);
 }
 
 
@@ -311,10 +311,10 @@ TEST(TestParser, AddArgWithCallback2)
     using namespace cppargparse;
     auto arg_parser = test::make_arg_parser(test::parse_cmdargs("-t 4 -x"), "TestParser");
 
-    arg_parser.add_arg_with_callback<int>("-t", "--time", &check_t_is_4);
+    arg_parser.with<int>("-t", "--time", &check_t_is_4);
 
-    ASSERT_THROW(arg_parser.add_arg_with_callback<int>("-p", "--productnum", &check_t_is_4), errors::CommandLineArgumentError);
-    ASSERT_THROW(arg_parser.add_arg_with_callback<int>("-x", "--existence", &check_t_is_4), errors::CommandLineOptionError);
+    ASSERT_THROW(arg_parser.with<int>("-p", "--productnum", &check_t_is_4), errors::CommandLineArgumentError);
+    ASSERT_THROW(arg_parser.with<int>("-x", "--existence", &check_t_is_4), errors::CommandLineOptionError);
 }
 
 
@@ -326,10 +326,10 @@ TEST(TestParser, AddArgWithCallback3)
     using namespace cppargparse;
     auto arg_parser = test::make_arg_parser(test::parse_cmdargs("-t 4 -x"), "TestParser");
 
-    arg_parser.add_arg_with_callback<int>("-t", "--time", "The time it takes for...", &check_t_is_4);
+    arg_parser.with<int>("-t", "--time", "The time it takes for...", &check_t_is_4);
 
-    ASSERT_THROW(arg_parser.add_arg_with_callback<int>("-p", "--productnum", "Some product number", &check_t_is_4), errors::CommandLineArgumentError);
-    ASSERT_THROW(arg_parser.add_arg_with_callback<int>("-x", "--existence", "Some philosophical description", &check_t_is_4), errors::CommandLineOptionError);
+    ASSERT_THROW(arg_parser.with<int>("-p", "--productnum", "Some product number", &check_t_is_4), errors::CommandLineArgumentError);
+    ASSERT_THROW(arg_parser.with<int>("-x", "--existence", "Some philosophical description", &check_t_is_4), errors::CommandLineOptionError);
 }
 
 
@@ -341,7 +341,7 @@ TEST(TestParser, AddArgWithCallbackDefault1)
     using namespace cppargparse;
     auto arg_parser = test::make_arg_parser(test::parse_cmdargs("-t -x"), "TestParser");
 
-    arg_parser.add_arg_with_callback_default<int>("-t", 4, &check_t_is_4);
+    arg_parser.with_default<int>("-t", 4, &check_t_is_4);
 }
 
 
@@ -353,7 +353,7 @@ TEST(TestParser, AddArgWithCallbackDefault2)
     using namespace cppargparse;
     auto arg_parser = test::make_arg_parser(test::parse_cmdargs("-t -x"), "TestParser");
 
-    arg_parser.add_arg_with_callback_default<int>("-t", "--time", 4, &check_t_is_4);
+    arg_parser.with_default<int>("-t", "--time", 4, &check_t_is_4);
 }
 
 
@@ -365,5 +365,5 @@ TEST(TestParser, AddArgWithCallbackDefault3)
     using namespace cppargparse;
     auto arg_parser = test::make_arg_parser(test::parse_cmdargs("-t -x"), "TestParser");
 
-    arg_parser.add_arg_with_callback_default<int>("-t", "--time", "The time it takes for...", 4, &check_t_is_4);
+    arg_parser.with_default<int>("-t", "--time", "The time it takes for...", 4, &check_t_is_4);
 }

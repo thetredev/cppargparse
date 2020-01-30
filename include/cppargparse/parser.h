@@ -93,6 +93,34 @@ public:
     }
 
 
+    template <typename T>
+    /**
+     * @brief Return the positional argument value of type T.
+     *
+     * @tparam T The argument type. argument::convert() must be implemented for T.
+     *
+     * @param positional The positional command line argument.
+     *
+     * @return The argument value of type T.
+     * @throws #cppargparse::errors::CommandLineArgumentError if the argument cannot be found.
+     */
+    const T get_positional(const cmd::CommandLineArgument &positional)
+    {
+        if (positional.position() == m_cmd.cend())
+        {
+            const auto positional_it = std::find(m_positionals.cbegin(), m_positionals.cend(), positional);
+            const auto positional_index = std::distance(m_positionals.cbegin(), positional_it);
+
+            std::ostringstream message;
+            message << "Cannot find positional argument #" << positional_index + 1;
+
+            throw errors::CommandLineArgumentError(message.str());
+        }
+
+        return argument<T>::convert(m_cmd, positional.position(), m_cmdargs);
+    }
+
+
     /**
      * @brief Add an argument to the command line arguments list.
      *
@@ -163,58 +191,6 @@ public:
     }
 
 
-    /**
-     * @brief Add default help argument: -h, --help
-     *
-     * @return The generated command line argument.
-     */
-    const cmd::CommandLineArgument add_help()
-    {
-        return add_arg("-h", "--help", "Display this information");
-    }
-
-
-    /**
-     * @brief Return whether the command line contains an argument string.
-     *
-     * @param cmdarg The command line argument.
-     *
-     * @return Whether the command line contains an argument string.
-     */
-    inline bool get_flag(const cmd::CommandLineArgument &cmdarg)
-    {
-        return algorithm::find_arg_position(m_cmd, cmdarg.id(), cmdarg.id_alt()) != m_cmd.cend();
-    }
-
-
-    template <typename T>
-    /**
-     * @brief Return the positional argument value of type T.
-     *
-     * @tparam T The argument type. argument::convert() must be implemented for T.
-     *
-     * @param positional The positional command line argument.
-     *
-     * @return The argument value of type T.
-     * @throws #cppargparse::errors::CommandLineArgumentError if the argument cannot be found.
-     */
-    inline const T get_positional(const cmd::CommandLineArgument &positional)
-    {
-        if (positional.position() == m_cmd.cend())
-        {
-            const auto positional_it = std::find(m_positionals.cbegin(), m_positionals.cend(), positional);
-            const auto positional_index = std::distance(m_positionals.cbegin(), positional_it);
-
-            std::ostringstream message;
-            message << "Cannot find positional argument #" << positional_index + 1;
-
-            throw errors::CommandLineArgumentError(message.str());
-        }
-
-        return argument<T>::convert(m_cmd, positional.position(), m_cmdargs);
-    }
-
-
     template <typename T>
     /**
      * @brief Return the argument value of type T.
@@ -226,7 +202,7 @@ public:
      * @return The argument value of type T.
      * @throws #cppargparse::errors::CommandLineArgumentError if the argument cannot be found.
      */
-    inline const T get_option(const cmd::CommandLineArgument &cmdarg)
+    const T get_option(const cmd::CommandLineArgument &cmdarg)
     {
         if (cmdarg.position() == m_cmd.cend())
         {
@@ -252,7 +228,7 @@ public:
      * @return The argument value of type T or the default value if the argument cannot be found.
      * @throws #cppargparse::errors::CommandLineArgumentError if the argument cannot be found
      */
-    inline const T get_option(const cmd::CommandLineArgument &cmdarg, const T &default_value)
+    const T get_option(const cmd::CommandLineArgument &cmdarg, const T &default_value)
     {
         try
         {
@@ -267,15 +243,28 @@ public:
 
 
     /**
-     * @brief Add a flag argument and call a callback when it has been passed to the command line.
+     * @brief Return whether the command line contains an argument string.
+     *
+     * @param cmdarg The command line argument.
+     *
+     * @return Whether the command line contains an argument string.
+     */
+    bool get_flag(const cmd::CommandLineArgument &cmdarg)
+    {
+        return algorithm::find_arg_position(m_cmd, cmdarg.id(), cmdarg.id_alt()) != m_cmd.cend();
+    }
+
+
+    /**
+     * @brief Add a flag argument aall a callback when a flag has been passed to the command line.
      *
      * @param id The argument ID.
      * @param callback The callback to call when the flag has been passed to the command line.
      */
-    void add_flag_with_callback(const std::string &id,
-                                const std::function<void(const ArgumentParser &)> &callback)
+    void with_flag(const std::string &id,
+                   const std::function<void(const ArgumentParser &)> &callback)
     {
-        auto cmdarg = add_arg(id);
+        const auto cmdarg = add_arg(id);
 
         if (get_flag(cmdarg))
         {
@@ -291,8 +280,8 @@ public:
      * @param id_alt The argument alternative ID.
      * @param callback The callback to call when the flag has been passed to the command line.
      */
-    void add_flag_with_callback(const std::string &id, const std::string &id_alt,
-                                const std::function<void(const ArgumentParser &)> &callback)
+    void with_flag(const std::string &id, const std::string &id_alt,
+              const std::function<void(const ArgumentParser &)> &callback)
     {
         const auto cmdarg = add_arg(id, id_alt);
 
@@ -311,26 +300,10 @@ public:
      * @param description The argument description.
      * @param callback The callback to call when the flag has been passed to the command line.
      */
-    void add_flag_with_callback(const std::string &id, const std::string &id_alt, const std::string &description,
-                                const std::function<void(const ArgumentParser &)> &callback)
+    void with_flag(const std::string &id, const std::string &id_alt, const std::string &description,
+                   const std::function<void(const ArgumentParser &)> &callback)
     {
         const auto cmdarg = add_arg(id, id_alt, description);
-
-        if (get_flag(cmdarg))
-        {
-            callback(*this);
-        }
-    }
-
-
-    /**
-     * @brief Add the default help argument (-h, --help) and call a callback when it has been passed to the command line.
-     *
-     * @param callback The callback to call when the flag has been passed to the command line.
-     */
-    void add_help_with_callback(const std::function<void(const ArgumentParser &)> &callback)
-    {
-        const auto cmdarg = add_help();
 
         if (get_flag(cmdarg))
         {
@@ -348,8 +321,8 @@ public:
      * @param id The argument ID.
      * @param callback The callback to call with the argument's value when the argument has been passed to the command line.
      */
-    void add_arg_with_callback(const std::string &id,
-                               const std::function<void(const ArgumentParser &, const T &)> &callback)
+    void with(const std::string &id,
+              const std::function<void(const ArgumentParser &, const T &)> &callback)
     {
         callback(*this, get_option<T>(add_arg(id)));
     }
@@ -365,8 +338,8 @@ public:
      * @param id_alt The argument alternative ID.
      * @param callback The callback to call with the argument's value when the argument has been passed to the command line.
      */
-    void add_arg_with_callback(const std::string &id, const std::string &id_alt,
-                               const std::function<void(const ArgumentParser &, const T &)> &callback)
+    void with(const std::string &id, const std::string &id_alt,
+              const std::function<void(const ArgumentParser &, const T &)> &callback)
     {
         callback(*this, get_option<T>(add_arg(id, id_alt)));
     }
@@ -383,8 +356,8 @@ public:
      * @param description The argument description.
      * @param callback The callback to call with the argument's value when the argument has been passed to the command line.
      */
-    void add_arg_with_callback(const std::string &id, const std::string &id_alt, const std::string &description,
-                                       const std::function<void(const ArgumentParser &, const T &)> &callback)
+    void with(const std::string &id, const std::string &id_alt, const std::string &description,
+              const std::function<void(const ArgumentParser &, const T &)> &callback)
     {
         callback(*this, get_option<T>(add_arg(id, id_alt, description)));
     }
@@ -400,8 +373,8 @@ public:
      * @param default_value The default value.
      * @param callback The callback to call with the argument's (default) value.
      */
-    void add_arg_with_callback_default(const std::string &id, const T &default_value,
-                                       const std::function<void(const ArgumentParser &, const T &)> &callback)
+    void with_default(const std::string &id, const T &default_value,
+                      const std::function<void(const ArgumentParser &, const T &)> &callback)
     {
         callback(*this, get_option<T>(add_arg(id), default_value));
     }
@@ -418,8 +391,8 @@ public:
      * @param default_value The default value.
      * @param callback The callback to call with the argument's (default) value.
      */
-    void add_arg_with_callback_default(const std::string &id, const std::string &id_alt, const T &default_value,
-                                       const std::function<void(const ArgumentParser &, const T &)> &callback)
+    void with_default(const std::string &id, const std::string &id_alt, const T &default_value,
+                      const std::function<void(const ArgumentParser &, const T &)> &callback)
     {
         callback(*this, get_option<T>(add_arg(id, id_alt), default_value));
     }
@@ -437,11 +410,38 @@ public:
      * @param default_value The default value.
      * @param callback The callback to call with the argument's (default) value.
      */
-    void add_arg_with_callback_default(const std::string &id, const std::string &id_alt,
-                                       const std::string &description, const T &default_value,
-                                       const std::function<void(const ArgumentParser &, const T &)> &callback)
+    void with_default(const std::string &id, const std::string &id_alt,
+                      const std::string &description, const T &default_value,
+                      const std::function<void(const ArgumentParser &, const T &)> &callback)
     {
         callback(*this, get_option<T>(add_arg(id, id_alt, description), default_value));
+    }
+
+
+    /**
+     * @brief Add default help argument: -h, --help
+     *
+     * @return The generated command line argument.
+     */
+    const cmd::CommandLineArgument add_help()
+    {
+        return add_arg("-h", "--help", "Display this information");
+    }
+
+
+    /**
+     * @brief Add the default help argument (-h, --help) and call a callback when it has been passed to the command line.
+     *
+     * @param callback The callback to call when the flag has been passed to the command line.
+     */
+    void with_help(const std::function<void(const ArgumentParser &)> &callback)
+    {
+        const auto cmdarg = add_help();
+
+        if (get_flag(cmdarg))
+        {
+            callback(*this);
+        }
     }
 
 
