@@ -1,5 +1,6 @@
 #include <functional>
 #include <limits>
+#include <list>
 #include <sstream>
 #include <vector>
 
@@ -158,6 +159,65 @@ void vector_test(const std::vector<T> &seq_expected, const bool reach_end, const
 }
 
 
+template <typename T>
+void list_test(const std::vector<T> &seq_expected, const bool reach_end, const bool reach_end_should_throw = true)
+{
+    using namespace cppargparse;
+
+
+    // Generate a command line argument string with the expected sequence
+    std::ostringstream cmd;
+    cmd << "--seq";
+
+    for (const auto &seq_value : seq_expected)
+    {
+        cmd << ' ' << std::fixed << std::setprecision(15) << seq_value;
+    }
+
+
+    // If we should reach the end, add another argument to the end
+    if (reach_end)
+    {
+        cmd << " -t 3";
+    }
+
+
+    // Parse the command line string
+    auto arg_parser = test::make_arg_parser(test::parse_cmdargs(cmd.str()), "TestArguments");
+
+    const auto seq = arg_parser.add_arg("-s", "--seq");
+
+
+    // If we should reach the end, parsing the command line like that...
+    if (reach_end)
+    {
+        if (reach_end_should_throw)
+        {
+            // ... should throw an error
+            ASSERT_THROW(arg_parser.get_option<std::list<T>>(seq), errors::CommandLineOptionError);
+        }
+
+        // ... so, add the next argument to the parser
+        arg_parser.add_arg("-t");
+    }
+
+
+    // Check for the equality of expected and parsed values
+    const std::list<T> seq_parsed = arg_parser.get_option<std::list<T>>(seq);
+
+    auto it_expected = seq_expected.cbegin();
+    auto it_parsed = seq_parsed.cbegin();
+
+    while (it_expected != seq_expected.cend())
+    {
+        assert_eq_wrap<T>(*it_expected, *it_parsed);
+
+        ++it_expected;
+        ++it_parsed;
+    }
+}
+
+
 
 // -------------------------
 // - Unit tests
@@ -172,14 +232,24 @@ TEST(TestArguments, Char)
     value_test<char>('a', 'b');
 }
 
-TEST(TestArguments, CharsVector)
+TEST(TestArguments, CharVector)
 {
     vector_test<char>({3, 2, 3, 6, 2, 'C'}, false);
 }
 
-TEST(TestArguments, CharsVectorReachEnd)
+TEST(TestArguments, CharVectorReachEnd)
 {
     vector_test<char>({3, 2, 3, 6, 2, 'C'}, true, false);
+}
+
+TEST(TestArguments, CharList)
+{
+    list_test<char>({3, 2, 3, 6, 2, 'C'}, false);
+}
+
+TEST(TestArguments, CharListReachEnd)
+{
+    list_test<char>({3, 2, 3, 6, 2, 'C'}, true, false);
 }
 
 
@@ -196,14 +266,24 @@ TEST(TestArguments, UnsignedCharMax)
     max_test<unsigned char>(false);
 }
 
-TEST(TestArguments, UnsignedCharsVector)
+TEST(TestArguments, UnsignedCharVector)
 {
     vector_test<unsigned char>({3, 2, 3, 6, 2, 'C'}, false);
 }
 
-TEST(TestArguments, UnsignedCharsVectorReachEnd)
+TEST(TestArguments, UnsignedCharVectorReachEnd)
 {
     vector_test<unsigned char>({3, 2, 3, 6, 2, 'C'}, true, false);
+}
+
+TEST(TestArguments, UnsignedCharList)
+{
+    list_test<unsigned char>({3, 2, 3, 6, 2, 'C'}, false);
+}
+
+TEST(TestArguments, UnsignedCharListReachEnd)
+{
+    list_test<unsigned char>({3, 2, 3, 6, 2, 'C'}, true, false);
 }
 
 
@@ -230,6 +310,16 @@ TEST(TestArguments, Int8VectorReachEnd)
     vector_test<int8_t>({3, 2, 3, 6, 2, 'C'}, true, false);
 }
 
+TEST(TestArguments, Int8List)
+{
+    list_test<int8_t>({3, 2, 3, 6, 2, 'C'}, false);
+}
+
+TEST(TestArguments, Int8ListReachEnd)
+{
+    list_test<int8_t>({3, 2, 3, 6, 2, 'C'}, true, false);
+}
+
 
 //
 // uint8_t
@@ -252,6 +342,16 @@ TEST(TestArguments, UInt8Vector)
 TEST(TestArguments, UInt8VectorReachEnd)
 {
     vector_test<uint8_t>({3, 2, 3, 6, 2, 'C'}, true, false);
+}
+
+TEST(TestArguments, UInt8List)
+{
+    list_test<uint8_t>({3, 2, 3, 6, 2, 'C'}, false);
+}
+
+TEST(TestArguments, UInt8ListReachEnd)
+{
+    list_test<uint8_t>({3, 2, 3, 6, 2, 'C'}, true, false);
 }
 
 
@@ -278,6 +378,16 @@ TEST(TestArguments, Int16VectorReachEnd)
     vector_test<int16_t>({3, 2, 3, 6, 2, -3}, true, false);
 }
 
+TEST(TestArguments, Int16List)
+{
+    list_test<int16_t>({3, 2, 3, 6, 2, -3}, false);
+}
+
+TEST(TestArguments, Int16ListReachEnd)
+{
+    list_test<int16_t>({3, 2, 3, 6, 2, -3}, true, false);
+}
+
 
 //
 // uint16_t
@@ -295,6 +405,16 @@ TEST(TestArguments, UInt16Vector)
 TEST(TestArguments, UInt16VectorReachEnd)
 {
     vector_test<uint16_t>({3, 2, 3, 6, 2, 66}, true, false);
+}
+
+TEST(TestArguments, UInt16List)
+{
+    list_test<uint16_t>({3, 2, 3, 6, 2, 66}, false);
+}
+
+TEST(TestArguments, UInt16ListReachEnd)
+{
+    list_test<uint16_t>({3, 2, 3, 6, 2, 66}, true, false);
 }
 
 
@@ -326,6 +446,16 @@ TEST(TestArguments, Int32tVectorReachEnd)
     vector_test<int32_t>({3, 2, 3, 6, 2, 0}, true, false);
 }
 
+TEST(TestArguments, Int32List)
+{
+    list_test<int32_t>({3, 2, 3, 6, 2, 0}, false);
+}
+
+TEST(TestArguments, Int32ListReachEnd)
+{
+    list_test<int32_t>({3, 2, 3, 6, 2, 0}, true, false);
+}
+
 
 //
 // uint32_t
@@ -353,6 +483,16 @@ TEST(TestArguments, UInt32tVector)
 TEST(TestArguments, UInt32tVectorReachEnd)
 {
     vector_test<uint32_t>({3, 2, 3, 6, 2, 1111111}, true, false);
+}
+
+TEST(TestArguments, UInt32List)
+{
+    list_test<uint32_t>({3, 2, 3, 6, 2, 1111111}, false);
+}
+
+TEST(TestArguments, UInt32ListReachEnd)
+{
+    list_test<uint32_t>({3, 2, 3, 6, 2, 1111111}, true, false);
 }
 
 
@@ -384,6 +524,16 @@ TEST(TestArguments, Int64tVectorReachEnd)
     vector_test<int64_t>({3, 2, 3, 6, 2, 151651613}, true, false);
 }
 
+TEST(TestArguments, Int64List)
+{
+    list_test<int64_t>({3, 2, 3, 6, 2, 151651613}, false);
+}
+
+TEST(TestArguments, Int64ListReachEnd)
+{
+    list_test<int64_t>({3, 2, 3, 6, 2, 151651613}, true, false);
+}
+
 
 //
 // uint64_t
@@ -401,6 +551,16 @@ TEST(TestArguments, UInt64tVector)
 TEST(TestArguments, UInt64tVectorReachEnd)
 {
     vector_test<uint64_t>({3, 2, 3, 6, 2, 151651613u}, true, false);
+}
+
+TEST(TestArguments, UInt64List)
+{
+    list_test<uint64_t>({3, 2, 3, 6, 2, 151651613u}, false);
+}
+
+TEST(TestArguments, UInt64ListReachEnd)
+{
+    list_test<uint64_t>({3, 2, 3, 6, 2, 151651613u}, true, false);
 }
 
 
@@ -434,6 +594,16 @@ TEST(TestArguments, IntsVectorReachEnd)
     vector_test<int>({3, 2, 34, 6, 2, 100, 2151112}, true);
 }
 
+TEST(TestArguments, IntList)
+{
+    list_test<int>({3, 2, 3, 6, 2, 2151112}, false);
+}
+
+TEST(TestArguments, IntListReachEnd)
+{
+    list_test<int>({3, 2, 3, 6, 2, 2151112}, true);
+}
+
 
 //
 // unsigned int
@@ -453,14 +623,24 @@ TEST(TestArguments, UnsignedIntOutOfRange)
     max_test<unsigned int>(true);
 }
 
-TEST(TestArguments, UnsignedIntsVector)
+TEST(TestArguments, UnsignedIntVector)
 {
     vector_test<unsigned int>({3u, 2u, 34u, 6u, 2u, 100u, 2151112u}, false);
 }
 
-TEST(TestArguments, UnsignedIntsVectorReachEnd)
+TEST(TestArguments, UnsignedIntVectorReachEnd)
 {
     vector_test<unsigned int>({3u, 2u, 34u, 6u, 2u, 100u, 2151112u}, true);
+}
+
+TEST(TestArguments, UnsignedIntList)
+{
+    list_test<unsigned int>({3u, 2u, 34u, 6u, 2u, 100u, 2151112u}, false);
+}
+
+TEST(TestArguments, UnsignedIntListReachEnd)
+{
+    list_test<unsigned int>({3u, 2u, 34u, 6u, 2u, 100u, 2151112u}, true, false);
 }
 
 
@@ -482,14 +662,24 @@ TEST(TestArguments, LongOutOfRange)
     max_test<long>(true);
 }
 
-TEST(TestArguments, LongsVector)
+TEST(TestArguments, LongVector)
 {
     vector_test<long>({3l, 2l, 34l, 6l, 2l, 100l, 2151112l}, false);
 }
 
-TEST(TestArguments, LongsVectorReachEnd)
+TEST(TestArguments, LongVectorReachEnd)
 {
     vector_test<long>({3l, 2l, 34l, 6l, 2l, 100l, 2151112l}, true);
+}
+
+TEST(TestArguments, LongList)
+{
+    list_test<long>({3l, 2l, 34l, 6l, 2l, 100l, 2151112l}, false);
+}
+
+TEST(TestArguments, LongListReachEnd)
+{
+    list_test<long>({3l, 2l, 34l, 6l, 2l, 100l, 2151112l}, true, false);
 }
 
 
@@ -511,14 +701,24 @@ TEST(TestArguments, UnsignedLongOutOfRange)
     max_test<unsigned long>(true);
 }
 
-TEST(TestArguments, UnsignedLongsVector)
+TEST(TestArguments, UnsignedLongVector)
 {
     vector_test<unsigned long>({3ul, 2ul, 34ul, 6ul, 2ul, 100ul, 2151112ul}, false);
 }
 
-TEST(TestArguments, UnsignedLongsVectorReachEnd)
+TEST(TestArguments, UnsignedLongVectorReachEnd)
 {
     vector_test<unsigned long>({3ul, 2ul, 34ul, 6ul, 2l, 100ul, 2151112ul}, true);
+}
+
+TEST(TestArguments, UnsignedLongList)
+{
+    list_test<unsigned long>({3ul, 2ul, 34ul, 6ul, 2l, 100ul, 2151112ul}, false);
+}
+
+TEST(TestArguments, UnsignedLongListReachEnd)
+{
+    list_test<unsigned long>({3ul, 2ul, 34ul, 6ul, 2l, 100ul, 2151112ul}, true, false);
 }
 
 
@@ -540,14 +740,24 @@ TEST(TestArguments, LongLongOutOfRange)
     max_test<long long>(true);
 }
 
-TEST(TestArguments, LongLongsVector)
+TEST(TestArguments, LongLongVector)
 {
     vector_test<long long>({3ll, 2ll, 34ll, 6ll, 2ll, 100ll, 2151112ll}, false);
 }
 
-TEST(TestArguments, LongLongsVectorReachEnd)
+TEST(TestArguments, LongLongVectorReachEnd)
 {
     vector_test<long long>({3ll, 2ll, 34ll, 6ll, 2ll, 100ll, 2151112ll}, true);
+}
+
+TEST(TestArguments, LongLongList)
+{
+    list_test<long long>({3ll, 2ll, 34ll, 6ll, 2ll, 100ll, 2151112ll}, false);
+}
+
+TEST(TestArguments, LongLongListReachEnd)
+{
+    list_test<long long>({3ll, 2ll, 34ll, 6ll, 2ll, 100ll, 2151112ll}, true, false);
 }
 
 
@@ -569,14 +779,24 @@ TEST(TestArguments, UnsignedLongLongOutOfRange)
     max_test<unsigned long long>(true);
 }
 
-TEST(TestArguments, UnsignedLongLongsVector)
+TEST(TestArguments, UnsignedLongLongVector)
 {
     vector_test<unsigned long long>({3ull, 2ull, 34ull, 6ull, 2ull, 100ull, 2151112ull}, false);
 }
 
-TEST(TestArguments, UnsignedLongLongsVectorReachEnd)
+TEST(TestArguments, UnsignedLongLongVectorReachEnd)
 {
     vector_test<unsigned long long>({3ull, 2ull, 34ull, 6ull, 2ull, 100ull, 2151112ull}, true);
+}
+
+TEST(TestArguments, UnsignedLongLongList)
+{
+    list_test<unsigned long long>({3ll, 2ll, 34ll, 6ll, 2ll, 100ll, 2151112ll}, false);
+}
+
+TEST(TestArguments, UnsignedLongLongListReachEnd)
+{
+    list_test<unsigned long long>({3ll, 2ll, 34ll, 6ll, 2ll, 100ll, 2151112ll}, true, false);
 }
 
 
@@ -593,21 +813,24 @@ TEST(TestArguments, FloatMax)
     max_test<float>(false);
 }
 
-/*
-TEST(TestArguments, FloatOutOfRange)
-{
-    max_test<float>(true);
-}
-*/
-
-TEST(TestArguments, FloatsVector)
+TEST(TestArguments, FloatVector)
 {
     vector_test<float>({3.2f, 2.0f, 34.0f, 6.0f, 2.0f, 100.0f, 2151.1112f}, false);
 }
 
-TEST(TestArguments, FloatsVectorReachEnd)
+TEST(TestArguments, FloatVectorReachEnd)
 {
     vector_test<float>({3.2f, 2.0f, 34.0f, 6.0f, 2.0f, 100.0f, 2151.1112f}, true);
+}
+
+TEST(TestArguments, FloatList)
+{
+    list_test<float>({3.2f, 2.0f, 34.0f, 6.0f, 2.0f, 100.0f, 2151.1112f}, false);
+}
+
+TEST(TestArguments, FloatListReachEnd)
+{
+    list_test<float>({3.2f, 2.0f, 34.0f, 6.0f, 2.0f, 100.0f, 2151.1112f}, true, false);
 }
 
 
@@ -624,21 +847,24 @@ TEST(TestArguments, DoubleMax)
     max_test<double>(false);
 }
 
-/*
-TEST(TestArguments, DoubleOutOfRange)
-{
-    max_test<double>(true);
-}
-*/
-
-TEST(TestArguments, DoublesVector)
+TEST(TestArguments, DoubleVector)
 {
     vector_test<double>({3.2, 2.0, 34.0, 6.0, 2.0, 100.0, 2151.1112}, false);
 }
 
-TEST(TestArguments, DoublesVectorReachEnd)
+TEST(TestArguments, DoubleVectorReachEnd)
 {
     vector_test<double>({3.2, 2.0, 34.0, 6.0, 2.0, 100.0, 2151.1112}, true);
+}
+
+TEST(TestArguments, DoubleList)
+{
+    list_test<float>({3.2, 2.0, 34.0, 6.0, 2.0, 100.0, 2151.1112}, false);
+}
+
+TEST(TestArguments, DoubleListReachEnd)
+{
+    list_test<float>({3.2, 2.0, 34.0, 6.0, 2.0, 100.0, 2151.1112}, true, false);
 }
 
 
@@ -655,22 +881,26 @@ TEST(TestArguments, LongDoubleMax)
     max_test<long double>(false);
 }
 
-/*
-TEST(TestArguments, LongDoubleOutOfRange)
-{
-    max_test<long double>(true);
-}
-*/
-
-TEST(TestArguments, LongDoublesVector)
+TEST(TestArguments, LongDoubleVector)
 {
     vector_test<long double>({3.2l, 2.0l, 34.0l, 6.0l, 2.0l, 100.0l, 2151.1112l}, false);
 }
 
-TEST(TestArguments, LongDoublesVectorReachEnd)
+TEST(TestArguments, LongDoubleVectorReachEnd)
 {
     vector_test<long double>({3.2l, 2.0l, 34.0l, 6.0l, 2.0l, 100.0l, 2151.1112l}, true);
 }
+
+TEST(TestArguments, LongDoubleList)
+{
+    list_test<long double>({3.2l, 2.0l, 34.0l, 6.0l, 2.0l, 100.0l, 2151.1112l}, false);
+}
+
+TEST(TestArguments, LongDoubleListReachEnd)
+{
+    list_test<long double>({3.2l, 2.0l, 34.0l, 6.0l, 2.0l, 100.0l, 2151.1112l}, true, false);
+}
+
 
 
 //
@@ -690,12 +920,22 @@ TEST(TestArguments, StringReachEnd)
     ASSERT_THROW(arg_parser.get_option<std::string>(c), errors::CommandLineOptionError);
 }
 
-TEST(TestArguments, StringsVector)
+TEST(TestArguments, StringVector)
 {
     vector_test<std::string>({"THIS", "IS", "SAMPLE", "TEXT"}, false);
 }
 
-TEST(TestArguments, StringsVectorReachEnd)
+TEST(TestArguments, StringVectorReachEnd)
 {
     vector_test<std::string>({"THIS", "IS", "SAMPLE", "TEXT"}, true, false);
+}
+
+TEST(TestArguments, StringList)
+{
+    list_test<std::string>({"THIS", "IS", "SAMPLE", "TEXT"}, false);
+}
+
+TEST(TestArguments, StringListReachEnd)
+{
+    list_test<std::string>({"THIS", "IS", "SAMPLE", "TEXT"}, true, false);
 }
