@@ -174,12 +174,12 @@ TEST(TestArguments, Char)
 
 TEST(TestArguments, CharsVector)
 {
-    vector_test<char>(std::vector<char> {'3', '2', '3', '6', '2', 'C'}, false);
+    vector_test<char>({'3', '2', '3', '6', '2', 'C'}, false);
 }
 
 TEST(TestArguments, CharsVectorReachEnd)
 {
-    vector_test<char>(std::vector<char> {'3', '2', '3', '6', '2', 'C'}, true, false);
+    vector_test<char>({'3', '2', '3', '6', '2', 'C'}, true, false);
 }
 
 
@@ -193,12 +193,12 @@ TEST(TestArguments, UnsignedChar)
 
 TEST(TestArguments, UnsignedCharsVector)
 {
-    vector_test<unsigned char>(std::vector<unsigned char> {'3', '2', '3', '6', '2', 'C'}, false);
+    vector_test<unsigned char>({'3', '2', '3', '6', '2', 'C'}, false);
 }
 
 TEST(TestArguments, UnsignedCharsVectorReachEnd)
 {
-    vector_test<unsigned char>(std::vector<unsigned char> {'3', '2', '3', '6', '2', 'C'}, true, false);
+    vector_test<unsigned char>({'3', '2', '3', '6', '2', 'C'}, true, false);
 }
 
 
@@ -224,12 +224,12 @@ TEST(TestArguments, IntOutOfRange)
 
 TEST(TestArguments, IntsVector)
 {
-    vector_test<int>(std::vector<int> {3, 2, 34, 6, 2, 100, 2151112}, false);
+    vector_test<int>({3, 2, 34, 6, 2, 100, 2151112}, false);
 }
 
 TEST(TestArguments, IntsVectorReachEnd)
 {
-    vector_test<int>(std::vector<int> {3, 2, 34, 6, 2, 100, 2151112}, true);
+    vector_test<int>({3, 2, 34, 6, 2, 100, 2151112}, true);
 }
 
 
@@ -253,12 +253,12 @@ TEST(TestArguments, UnsignedIntOutOfRange)
 
 TEST(TestArguments, UnsignedIntsVector)
 {
-    vector_test<unsigned int>(std::vector<unsigned int> {3u, 2u, 34u, 6u, 2u, 100u, 2151112u}, false);
+    vector_test<unsigned int>({3u, 2u, 34u, 6u, 2u, 100u, 2151112u}, false);
 }
 
 TEST(TestArguments, UnsignedIntsVectorReachEnd)
 {
-    vector_test<unsigned int>(std::vector<unsigned int> {3u, 2u, 34u, 6u, 2u, 100u, 2151112u}, true);
+    vector_test<unsigned int>({3u, 2u, 34u, 6u, 2u, 100u, 2151112u}, true);
 }
 
 
@@ -282,12 +282,12 @@ TEST(TestArguments, LongOutOfRange)
 
 TEST(TestArguments, LongsVector)
 {
-    vector_test<long>(std::vector<long> {3l, 2l, 34l, 6l, 2l, 100l, 2151112l}, false);
+    vector_test<long>({3l, 2l, 34l, 6l, 2l, 100l, 2151112l}, false);
 }
 
 TEST(TestArguments, LongsVectorReachEnd)
 {
-    vector_test<long>(std::vector<long> {3l, 2l, 34l, 6l, 2l, 100l, 2151112l}, true);
+    vector_test<long>({3l, 2l, 34l, 6l, 2l, 100l, 2151112l}, true);
 }
 
 
@@ -311,12 +311,12 @@ TEST(TestArguments, UnsignedLongOutOfRange)
 
 TEST(TestArguments, UnsignedLongsVector)
 {
-    vector_test<unsigned long>(std::vector<unsigned long> {3ul, 2ul, 34ul, 6ul, 2ul, 100ul, 2151112ul}, false);
+    vector_test<unsigned long>({3ul, 2ul, 34ul, 6ul, 2ul, 100ul, 2151112ul}, false);
 }
 
 TEST(TestArguments, UnsignedLongsVectorReachEnd)
 {
-    vector_test<unsigned long>(std::vector<unsigned long> {3ul, 2ul, 34ul, 6ul, 2l, 100ul, 2151112ul}, true);
+    vector_test<unsigned long>({3ul, 2ul, 34ul, 6ul, 2l, 100ul, 2151112ul}, true);
 }
 
 
@@ -340,12 +340,12 @@ TEST(TestArguments, LongLongOutOfRange)
 
 TEST(TestArguments, LongLongsVector)
 {
-    vector_test<long long>(std::vector<long long> {3ll, 2ll, 34ll, 6ll, 2ll, 100ll, 2151112ll}, false);
+    vector_test<long long>({3ll, 2ll, 34ll, 6ll, 2ll, 100ll, 2151112ll}, false);
 }
 
 TEST(TestArguments, LongLongsVectorReachEnd)
 {
-    vector_test<long long>(std::vector<long long> {3ll, 2ll, 34ll, 6ll, 2ll, 100ll, 2151112ll}, true);
+    vector_test<long long>({3ll, 2ll, 34ll, 6ll, 2ll, 100ll, 2151112ll}, true);
 }
 
 
@@ -369,12 +369,12 @@ TEST(TestArguments, UnsignedLongLongOutOfRange)
 
 TEST(TestArguments, UnsignedLongLongsVector)
 {
-    vector_test<unsigned long long>(std::vector<unsigned long long> {3ull, 2ull, 34ull, 6ull, 2ull, 100ull, 2151112ull}, false);
+    vector_test<unsigned long long>({3ull, 2ull, 34ull, 6ull, 2ull, 100ull, 2151112ull}, false);
 }
 
 TEST(TestArguments, UnsignedLongLongsVectorReachEnd)
 {
-    vector_test<unsigned long long>(std::vector<unsigned long long> {3ull, 2ull, 34ull, 6ull, 2ull, 100ull, 2151112ull}, true);
+    vector_test<unsigned long long>({3ull, 2ull, 34ull, 6ull, 2ull, 100ull, 2151112ull}, true);
 }
 
 
@@ -400,12 +400,12 @@ TEST(TestArguments, FloatOutOfRange)
 
 TEST(TestArguments, FloatsVector)
 {
-    vector_test<float>(std::vector<float> {3.2f, 2.0f, 34.0f, 6.0f, 2.0f, 100.0f, 2151.1112f}, false);
+    vector_test<float>({3.2f, 2.0f, 34.0f, 6.0f, 2.0f, 100.0f, 2151.1112f}, false);
 }
 
 TEST(TestArguments, FloatsVectorReachEnd)
 {
-    vector_test<float>(std::vector<float> {3.2f, 2.0f, 34.0f, 6.0f, 2.0f, 100.0f, 2151.1112f}, true);
+    vector_test<float>({3.2f, 2.0f, 34.0f, 6.0f, 2.0f, 100.0f, 2151.1112f}, true);
 }
 
 
@@ -431,12 +431,12 @@ TEST(TestArguments, DoubleOutOfRange)
 
 TEST(TestArguments, DoublesVector)
 {
-    vector_test<double>(std::vector<double> {3.2, 2.0, 34.0, 6.0, 2.0, 100.0, 2151.1112}, false);
+    vector_test<double>({3.2, 2.0, 34.0, 6.0, 2.0, 100.0, 2151.1112}, false);
 }
 
 TEST(TestArguments, DoublesVectorReachEnd)
 {
-    vector_test<double>(std::vector<double> {3.2, 2.0, 34.0, 6.0, 2.0, 100.0, 2151.1112}, true);
+    vector_test<double>({3.2, 2.0, 34.0, 6.0, 2.0, 100.0, 2151.1112}, true);
 }
 
 
@@ -462,12 +462,12 @@ TEST(TestArguments, LongDoubleOutOfRange)
 
 TEST(TestArguments, LongDoublesVector)
 {
-    vector_test<long double>(std::vector<long double> {3.2l, 2.0l, 34.0l, 6.0l, 2.0l, 100.0l, 2151.1112l}, false);
+    vector_test<long double>({3.2l, 2.0l, 34.0l, 6.0l, 2.0l, 100.0l, 2151.1112l}, false);
 }
 
 TEST(TestArguments, LongDoublesVectorReachEnd)
 {
-    vector_test<long double>(std::vector<long double> {3.2l, 2.0l, 34.0l, 6.0l, 2.0l, 100.0l, 2151.1112l}, true);
+    vector_test<long double>({3.2l, 2.0l, 34.0l, 6.0l, 2.0l, 100.0l, 2151.1112l}, true);
 }
 
 
@@ -490,10 +490,10 @@ TEST(TestArguments, StringReachEnd)
 
 TEST(TestArguments, StringsVector)
 {
-    vector_test<std::string>(std::vector<std::string> {"THIS", "IS", "SAMPLE", "TEXT"}, false);
+    vector_test<std::string>({"THIS", "IS", "SAMPLE", "TEXT"}, false);
 }
 
 TEST(TestArguments, StringsVectorReachEnd)
 {
-    vector_test<std::string>(std::vector<std::string> {"THIS", "IS", "SAMPLE", "TEXT"}, true, false);
+    vector_test<std::string>({"THIS", "IS", "SAMPLE", "TEXT"}, true, false);
 }
