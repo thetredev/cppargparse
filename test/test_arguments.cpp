@@ -174,12 +174,12 @@ TEST(TestArguments, Char)
 
 TEST(TestArguments, CharsVector)
 {
-    vector_test<char>({'3', '2', '3', '6', '2', 'C'}, false);
+    vector_test<char>({3, 2, 3, 6, 2, 'C'}, false);
 }
 
 TEST(TestArguments, CharsVectorReachEnd)
 {
-    vector_test<char>({'3', '2', '3', '6', '2', 'C'}, true, false);
+    vector_test<char>({3, 2, 3, 6, 2, 'C'}, true, false);
 }
 
 
@@ -191,14 +191,216 @@ TEST(TestArguments, UnsignedChar)
     value_test<unsigned char>('a', 'b');
 }
 
+TEST(TestArguments, UnsignedCharMax)
+{
+    max_test<unsigned char>(false);
+}
+
 TEST(TestArguments, UnsignedCharsVector)
 {
-    vector_test<unsigned char>({'3', '2', '3', '6', '2', 'C'}, false);
+    vector_test<unsigned char>({3, 2, 3, 6, 2, 'C'}, false);
 }
 
 TEST(TestArguments, UnsignedCharsVectorReachEnd)
 {
-    vector_test<unsigned char>({'3', '2', '3', '6', '2', 'C'}, true, false);
+    vector_test<unsigned char>({3, 2, 3, 6, 2, 'C'}, true, false);
+}
+
+
+//
+// int8_t
+//
+TEST(TestArguments, Int8)
+{
+    value_test<int8_t>(5, 'a');
+}
+
+TEST(TestArguments, Int8Max)
+{
+    max_test<int8_t>(false);
+}
+
+TEST(TestArguments, Int8Vector)
+{
+    vector_test<int8_t>({3, 2, 3, 6, 2, 'C'}, false);
+}
+
+TEST(TestArguments, Int8VectorReachEnd)
+{
+    vector_test<int8_t>({3, 2, 3, 6, 2, 'C'}, true, false);
+}
+
+
+//
+// uint8_t
+//
+TEST(TestArguments, UInt8)
+{
+    value_test<uint8_t>(8u, 'a');
+}
+
+TEST(TestArguments, UInt8Max)
+{
+    max_test<uint8_t>(false);
+}
+
+TEST(TestArguments, UInt8Vector)
+{
+    vector_test<uint8_t>({3, 2, 3, 6, 2, 'C'}, false);
+}
+
+TEST(TestArguments, UInt8VectorReachEnd)
+{
+    vector_test<uint8_t>({3, 2, 3, 6, 2, 'C'}, true, false);
+}
+
+
+//
+// int16_t
+//
+TEST(TestArguments, Int16)
+{
+    value_test<int16_t>(3667, 11);
+}
+
+TEST(TestArguments, Int16Max)
+{
+    max_test<int16_t>(false);
+}
+
+TEST(TestArguments, Int16Vector)
+{
+    vector_test<int16_t>({3, 2, 3, 6, 2, -3}, false);
+}
+
+TEST(TestArguments, Int16VectorReachEnd)
+{
+    vector_test<int16_t>({3, 2, 3, 6, 2, -3}, true, false);
+}
+
+
+//
+// uint16_t
+//
+TEST(TestArguments, UInt16)
+{
+    value_test<uint16_t>(3667u, 22u);
+}
+
+TEST(TestArguments, UInt16Vector)
+{
+    vector_test<uint16_t>({3, 2, 3, 6, 2, 66}, false);
+}
+
+TEST(TestArguments, UInt16VectorReachEnd)
+{
+    vector_test<uint16_t>({3, 2, 3, 6, 2, 66}, true, false);
+}
+
+
+//
+// int32_t
+//
+TEST(TestArguments, Int32t)
+{
+    value_test<int32_t>(36673316, -1);
+}
+
+TEST(TestArguments, Int32Max)
+{
+    max_test<int32_t>(false);
+}
+
+TEST(TestArguments, Int32MaxOutOfRange)
+{
+    max_test<int32_t>(true);
+}
+
+TEST(TestArguments, Int32tVector)
+{
+    vector_test<int32_t>({3, 2, 3, 6, 2, 0}, false);
+}
+
+TEST(TestArguments, Int32tVectorReachEnd)
+{
+    vector_test<int32_t>({3, 2, 3, 6, 2, 0}, true, false);
+}
+
+
+//
+// uint32_t
+//
+TEST(TestArguments, UInt32t)
+{
+    value_test<uint32_t>(36673316u, 634u);
+}
+
+TEST(TestArguments, UInt64Max)
+{
+    max_test<uint64_t>(false);
+}
+
+TEST(TestArguments, UInt64MaxOutOfRange)
+{
+    max_test<uint64_t>(true);
+}
+
+TEST(TestArguments, UInt32tVector)
+{
+    vector_test<uint32_t>({3, 2, 3, 6, 2, 111111}, false);
+}
+
+TEST(TestArguments, UInt32tVectorReachEnd)
+{
+    vector_test<uint32_t>({3, 2, 3, 6, 2, 1111111}, true, false);
+}
+
+
+//
+// int64_t
+//
+TEST(TestArguments, Int64t)
+{
+    value_test<int64_t>(151651613, -1516);
+}
+
+TEST(TestArguments, Int64Max)
+{
+    max_test<int64_t>(false);
+}
+
+TEST(TestArguments, Int64MaxOutOfRange)
+{
+    max_test<int64_t>(true);
+}
+
+TEST(TestArguments, Int64tVector)
+{
+    vector_test<int64_t>({3, 2, 3, 6, 2, 151651613}, false);
+}
+
+TEST(TestArguments, Int64tVectorReachEnd)
+{
+    vector_test<int64_t>({3, 2, 3, 6, 2, 151651613}, true, false);
+}
+
+
+//
+// uint64_t
+//
+TEST(TestArguments, UInt64t)
+{
+    value_test<uint64_t>(151651613u, 1516u);
+}
+
+TEST(TestArguments, UInt64tVector)
+{
+    vector_test<uint64_t>({3, 2, 3, 6, 2, 151651613u}, false);
+}
+
+TEST(TestArguments, UInt64tVectorReachEnd)
+{
+    vector_test<uint64_t>({3, 2, 3, 6, 2, 151651613u}, true, false);
 }
 
 

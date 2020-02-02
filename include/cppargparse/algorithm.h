@@ -49,14 +49,20 @@ cmd::CommandLineArgumentPosition_t find_arg(const cmd::CommandLineArguments_t &c
  */
 cmd::CommandLinePosition_t find_arg_position(const cmd::CommandLine_t &cmd, const std::string &id, const std::string &id_alt)
 {
-    auto it = std::find(cmd.cbegin(), cmd.cend(), id);
-
-    if (it == cmd.cend())
+    for (auto it = cmd.cbegin(); it != cmd.cend(); ++it)
     {
-        it = std::find(cmd.cbegin(), cmd.cend(), id_alt);
+        if (it->at(0) == '\0')
+        {
+            return cmd.cend();
+        }
+
+        if (*it == id || *it == id_alt)
+        {
+            return it;
+        }
     }
 
-    return it;
+    return cmd.cend();
 }
 
 

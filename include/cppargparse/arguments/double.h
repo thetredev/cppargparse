@@ -13,110 +13,34 @@
 namespace cppargparse {
 
 
-template <>
 /**
- * @brief The argument struct for the double type.
+ * @brief Wrap std::stod() for use without default parameters.
+ *
+ * @param s The string to convert to the typed double value.
+ *
+ * @return The double value of the string passed.
  */
-struct argument<double>
+static double wrap_stod(const std::string &s)
 {
-    /**
-     * @brief Try to parse a command line argument as a double.
-     *
-     * @param cmd The command line.
-     * @param position The command line argument iterator.
-     *
-     * @return The double value of the command line argument next in line.
-     */
-    static double parse(
-            const cmd::CommandLine_t &cmd,
-            const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &cmdargs)
-    {
-        return convert(cmd, std::next(position), cmdargs);
-    }
+    return std::stod(s);
+}
 
-    /**
-     * @brief Try to convert a command line argument to a double value.
-     *
-     * @param cmd The command line.
-     * @param position The command line argument iterator.
-     *
-     * @return The double value of the command line argument.
-     */
-    static double convert(
-            const cmd::CommandLine_t &cmd,
-            const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &)
-    {
-        return numerical_argument<double>::convert(cmd, position, &wrap, "double");
-    }
-
-    /**
-     * @brief Wrap std::stod() for use without default parameters.
-     *
-     * @param s The string to convert to a double.
-     *
-     * @return The double value of the string passed.
-     */
-    static double wrap(const std::string &s)
-    {
-        return std::stod(s);
-    }
-};
+CPPARGPARSE_NUMERICAL_ARGUMENT(double, wrap_stod);
 
 
-template <>
 /**
- * @brief The type_trait struct for the long double type.
+ * @brief Wrap std::stold() for use without default parameters.
+ *
+ * @param s The string to convert to the typed long double value.
+ *
+ * @return The long double value of the string passed.
  */
-struct argument<long double>
+static long double wrap_stold(const std::string &s)
 {
-    /**
-     * @brief Try to parse a command line argument as a long double.
-     *
-     * @param cmd The command line.
-     * @param position The command line argument iterator.
-     *
-     * @return The long double value of the command line argument next in line.
-     */
-    static long double parse(
-            const cmd::CommandLine_t &cmd,
-            const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &cmdargs)
-    {
-        return convert(cmd, std::next(position), cmdargs);
-    }
+    return std::stold(s);
+}
 
-
-    /**
-     * @brief Try to convert a command line argument to a long double value.
-     *
-     * @param cmd The command line.
-     * @param position The command line argument iterator.
-     *
-     * @return The long double value of the command line argument.
-     */
-    static long double convert(
-            const cmd::CommandLine_t &cmd,
-            const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &)
-    {
-        return numerical_argument<long double>::convert(cmd, position, &wrap, "long double");
-    }
-
-
-    /**
-     * @brief Wrap std::stold() for use without default parameters.
-     *
-     * @param s The string to convert to a long double.
-     *
-     * @return The long double value of the string passed.
-     */
-    static long double wrap(const std::string &s)
-    {
-        return std::stold(s);
-    }
-};
+CPPARGPARSE_NUMERICAL_ARGUMENT(long double, wrap_stold);
 
 
 } // namespace cppargparse

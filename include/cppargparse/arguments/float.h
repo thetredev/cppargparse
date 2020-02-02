@@ -13,58 +13,19 @@
 namespace cppargparse {
 
 
-template <>
 /**
- * @brief The argument struct for the float type.
+ * @brief Wrap std::stof() for use without default parameters.
+ *
+ * @param s The string to convert to the typed float value.
+ *
+ * @return The float value of the string passed.
  */
-struct argument<float>
+static float wrap_stof(const std::string &s)
 {
-    /**
-     * @brief Try to parse a command line argument as a float.
-     *
-     * @param cmd The command line.
-     * @param position The command line argument iterator.
-     *
-     * @return The float value of the command line argument next in line.
-     */
-    static float parse(
-            const cmd::CommandLine_t &cmd,
-            const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &cmdargs)
-    {
-        return convert(cmd, std::next(position), cmdargs);
-    }
+    return std::stof(s);
+}
 
-
-    /**
-     * @brief Try to convert a command line argument to a float value.
-     *
-     * @param cmd The command line.
-     * @param position The command line argument iterator.
-     *
-     * @return The float value of the command line argument.
-     */
-    static float convert(
-            const cmd::CommandLine_t &cmd,
-            const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &)
-    {
-        return numerical_argument<float>::convert(cmd, position, &wrap, "float");
-    }
-
-
-    /**
-     * @brief Wrap std::stof() for use without default parameters.
-     *
-     * @param s The string to convert to a float.
-     *
-     * @return The float value of the string passed.
-     */
-    static float wrap(const std::string &s)
-    {
-        return std::stof(s);
-    }
-};
+CPPARGPARSE_NUMERICAL_ARGUMENT(float, wrap_stof);
 
 
 } // namespace cppargparse

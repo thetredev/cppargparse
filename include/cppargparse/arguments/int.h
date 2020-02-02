@@ -2,6 +2,7 @@
 #define CPPARGPARSE_ARGUMENTS_INT_H
 
 #include <algorithm>
+#include <cstdint>
 #include <limits>
 #include <string>
 
@@ -14,120 +15,125 @@
 namespace cppargparse {
 
 
-template <>
+template <typename T>
 /**
- * @brief The argument struct for the int type.
+ * @brief Custom std::stou() implementation for use without default parameters.
+ *
+ * @tparam T The unsigned integer type to cast the result to.
+ * @param s The string to convert to the typed T value.
+ *
+ * @return The T value of the string passed.
  */
-struct argument<int>
+static T wrap_stou(const std::string &s)
 {
-    /**
-     * @brief Try to parse a command line argument as an int.
-     *
-     * @param cmd The command line.
-     * @param position The command line argument iterator.
-     *
-     * @return The int value of the command line argument next in line.
-     */
-    static int parse(
-            const cmd::CommandLine_t &cmd,
-            const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &cmdargs)
+    unsigned long long result = std::stoull(s);
+
+    if (result > std::numeric_limits<unsigned int>::max())
     {
-        return convert(cmd, std::next(position), cmdargs);
+        throw std::out_of_range("stou");
     }
 
-
-    /**
-     * @brief Try to convert a command line argument to an int value.
-     *
-     * @param cmd The command line.
-     * @param position The command line argument iterator.
-     *
-     * @return The int value of the command line argument.
-     */
-    static int convert(
-            const cmd::CommandLine_t &cmd,
-            const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &)
-    {
-        return numerical_argument<int>::convert(cmd, position, &wrap, "int");
-    }
+    return static_cast<T>(result);
+}
 
 
-    /**
-     * @brief Wrap std::stoi() for use without default parameters.
-     *
-     * @param s The string to convert to an int.
-     *
-     * @return The int value of the string passed.
-     */
-    static int wrap(const std::string &s)
-    {
-        return std::stoi(s);
-    }
-};
-
-
-template <>
+template <typename T>
 /**
- * @brief The argument struct for the unsigned int type.
+ * @brief std::stoi() wrapper for use without default parameters.
+ *
+ * @tparam T The signed integer type to cast the result to.
+ * @param s The string to convert to the typed T value.
+ *
+ * @return The T value of the string passed.
  */
-struct argument<unsigned int>
+static T wrap_stoi(const std::string &s)
 {
-    /**
-     * @brief Try to parse a command line argument as an unsigned int.
-     *
-     * @param cmd The command line.
-     * @param position The command line argument iterator.
-     *
-     * @return The unsigned int value of the command line argument next in line.
-     */
-    static unsigned int parse(
-            const cmd::CommandLine_t &cmd,
-            const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &cmdargs)
+    return static_cast<T>(std::stoi(s));
+}
+
+
+template <typename T>
+/**
+ * @brief std::stoul() wrapper for use without default parameters.
+ *
+ * @tparam T The unsigned integer type to cast the result to.
+ * @param s The string to convert to the typed T value.
+ *
+ * @return The T value of the string passed.
+ */
+static T wrap_stoul(const std::string &s)
+{
+    return static_cast<T>(std::stoul(s));
+}
+
+
+template <typename T>
+/**
+ * @brief std::stol() wrapper for use without default parameters.
+ *
+ * @tparam T The signed integer type to cast the result to.
+ * @param s The string to convert to the typed T value.
+ *
+ * @return The T value of the string passed.
+ */
+static T wrap_stol(const std::string &s)
+{
+    return static_cast<T>(std::stol(s));
+}
+
+
+template <typename T>
+/**
+ * @brief Char wrapper for use without default parameters.
+ *
+ * @tparam T The char type to cast the result to.
+ * @param s The string to convert to the typed T value.
+ *
+ * @return The T value of the string passed.
+ */
+static T wrap_char(const std::string &s)
+{
+    if (s.size() == 0)
     {
-        return convert(cmd, std::next(position), cmdargs);
+        throw std::out_of_range("char");
     }
 
-
-    /**
-     * @brief Try to convert a command line argument to anunsigned int value.
-     *
-     * @param cmd The command line.
-     * @param position The command line argument iterator.
-     *
-     * @return The unsigned int value of the command line argument.
-     */
-    static unsigned int convert(
-            const cmd::CommandLine_t &cmd,
-            const cmd::CommandLinePosition_t &position,
-            const cmd::CommandLineArguments_t &)
+    if (s.at(0) == '-')
     {
-        return numerical_argument<unsigned int>::convert(cmd, position, &stou, "unsigned int");
-    }
-
-
-    /**
-     * @brief Convert a string to an unsigned long and return its unsigned int value.
-     *
-     * @param s The string to convert to an unsigned int.
-     *
-     * @return The unsigned int value of the string passed.
-     * @throw std::out_of_range if the converted string value is outside of the range of the unsigned int type.
-     */
-    static unsigned int stou(const std::string &s)
-    {
-        unsigned long long result = std::stoull(s);
-
-        if (result > std::numeric_limits<unsigned int>::max())
+        if (s.size() < 2)
         {
-            throw std::out_of_range("stou");
+            throw std::out_of_range("char");
         }
 
-        return static_cast<unsigned int>(result);
+        return static_cast<T>(s.at(1));
     }
-};
+
+    return static_cast<T>(s.at(0));
+}
+
+
+#define CPPARGPARSE_INT_ARGUMENT(type, wrapper) \
+template <> \
+struct argument<type> \
+{ \
+    CPPARGPARSE_PARSE_ARGUMENT(type) \
+\
+    CPPARGPARSE_NUMERICAL_CONVERT(type, wrapper<type>) \
+}
+
+
+/* <cstdint> type implementations. */
+
+CPPARGPARSE_INT_ARGUMENT(uint8_t, wrap_char);
+CPPARGPARSE_INT_ARGUMENT(int8_t, wrap_char);
+CPPARGPARSE_INT_ARGUMENT(char, wrap_char);
+
+CPPARGPARSE_INT_ARGUMENT(uint16_t, wrap_stou);
+CPPARGPARSE_INT_ARGUMENT(int16_t, wrap_stoi);
+CPPARGPARSE_INT_ARGUMENT(uint32_t, wrap_stou);
+CPPARGPARSE_INT_ARGUMENT(int32_t, wrap_stoi);
+CPPARGPARSE_INT_ARGUMENT(uint64_t, wrap_stoul);
+CPPARGPARSE_INT_ARGUMENT(int64_t, wrap_stol);
 
 
 } // namespace cppargparse

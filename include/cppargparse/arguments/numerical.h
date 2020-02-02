@@ -8,6 +8,9 @@
 #include <cppargparse/cmd.h>
 #include <cppargparse/errors.h>
 
+#include "argument.h"
+#include "string.h"
+
 
 namespace cppargparse {
 
@@ -32,47 +35,49 @@ struct numerical_argument
     static T convert(
             const cmd::CommandLine_t &cmd,
             const cmd::CommandLinePosition_t &position,
-            const std::function<T(const std::string &)> &numerical_converter,
-            const std::string &type_string)
+            const cmd::CommandLineArguments_t &cmdargs,
+            const std::function<T(const std::string &)> &numerical_converter)
     {
-        if (position == cmd.cend())
-        {
-            throw errors::CommandLineOptionError(error_message(std::prev(position), type_string));
-        }
-
         try
         {
-            return numerical_converter(*position);
+            const std::string string_value = argument<std::string>::convert(cmd, position, cmdargs);
+            return numerical_converter(string_value);
         }
 
+        catch (const errors::CommandLineOptionError &error)
+        {
+            throw error;
+        }
         catch (const std::invalid_argument &)
         {
-            throw errors::CommandLineOptionError(error_message(position, type_string));
+            throw errors::CommandLineOptionError(common::error_message<T>(std::prev(position)));
         }
         catch (const std::out_of_range &)
         {
-            throw errors::CommandLineOptionError(error_message(position, type_string));
+            throw errors::CommandLineOptionError(common::error_message<T>(std::prev(position)));
         }
     }
-
-
-    /**
-     * @brief Generate an error message for a value that's not a numerical value.
-     *
-     * @param position The command line argument iterator position.
-     * @param type_string The numerical type's string representation.
-     *
-     * @return An error message for a value that's not convertible to the specified numerical type.
-     */
-    static const std::string error_message(const cmd::CommandLinePosition_t &position, const std::string &type_string)
-    {
-        std::ostringstream message;
-        message << "Couldn't convert '" << *position << "' to type <" << type_string << ">.";
-        std::string x = message.str();
-
-        return message.str();
-    }
 };
+
+
+#define CPPARGPARSE_NUMERICAL_CONVERT(type, wrapper) \
+    static type convert( \
+        const cmd::CommandLine_t &cmd, \
+        const cmd::CommandLinePosition_t &position, \
+        const cmd::CommandLineArguments_t &cmdargs) \
+    { \
+        return numerical_argument<type>::convert(cmd, position, cmdargs, &wrapper); \
+    }
+
+
+#define CPPARGPARSE_NUMERICAL_ARGUMENT(type, wrapper) \
+template <> \
+struct argument<type> \
+{ \
+    CPPARGPARSE_PARSE_ARGUMENT(type) \
+\
+    CPPARGPARSE_NUMERICAL_CONVERT(type, wrapper) \
+}
 
 
 } // namespace cppargparse

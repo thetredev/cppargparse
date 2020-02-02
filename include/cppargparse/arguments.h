@@ -8,7 +8,6 @@
 
 
 #include <cppargparse/arguments/argument.h>
-#include <cppargparse/arguments/char.h>
 #include <cppargparse/arguments/double.h>
 #include <cppargparse/arguments/float.h>
 #include <cppargparse/arguments/int.h>
