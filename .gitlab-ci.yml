@@ -40,6 +40,7 @@ test:
     # build doxygen documentation
     - cd ..
     - doxygen
+  coverage: /^\s*lines:\s*\d+.\d+\%/
   artifacts:
     name: ${CPPARGPARSE_ARTIFACT_NAME}
     paths:
