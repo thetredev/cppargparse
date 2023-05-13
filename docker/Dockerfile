@@ -7,8 +7,9 @@ RUN apt-get -y update \
         git \
         cmake \
         ninja-build \
-        lcov \
         doxygen \
         python3 \
+        python3-pip \
     && apt-get clean \
-    && rm -rf /var/cache/apt/lists/*
+    && rm -rf /var/cache/apt/lists/* \
+    && pip3 install gcovr==6.0

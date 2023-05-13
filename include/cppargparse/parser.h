@@ -147,7 +147,7 @@ public:
 
         add_arg(arg);
         return arg;
-    } // LCOV_EXCL_LINE
+    }
 
 
     /**
@@ -167,7 +167,7 @@ public:
 
         add_arg(arg);
         return arg;
-    } // LCOV_EXCL_LINE
+    }
 
 
     /**
@@ -188,7 +188,7 @@ public:
 
         add_arg(arg);
         return arg;
-    } // LCOV_EXCL_LINE
+    }
 
 
     template <typename T>

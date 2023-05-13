@@ -88,7 +88,7 @@ cmd::CommandLinePositions_t get_option_positions(
     }
 
     return positions;
-} // LCOV_EXCL_LINE
+}
 
 
 } // namespace algorithm

@@ -38,15 +38,25 @@ test:
     - cmake -G"Ninja" -DCMAKE_BUILD_TYPE=Profiling ..
     # run coverage target
     - ninja coverage
+    # go back to source dir
+    - cd ${CI_PROJECT_DIR}
+    # gcovr: cobertura
+    - mkdir -p docs/coverage
+    - gcovr --filter include --branches --exclude-unreachable-branches --print-summary --cobertura-pretty -o docs/coverage/cobertura.xml
+    # gcovr: html
+    - gcovr --filter include --branches --exclude-unreachable-branches --html-details docs/coverage/index.html
     # build doxygen documentation
-    - cd ..
     - doxygen
-  coverage: /^\s*lines:\s*\d+.\d+\%/
+  coverage: /^\s*branches:\s*\d+.\d+\%/
   artifacts:
     name: ${CPPARGPARSE_ARTIFACT_NAME}
     paths:
       - include/
       - docs/
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: docs/coverage/cobertura.xml
     expire_in: 1000 yrs
 
 
