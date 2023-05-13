@@ -2,7 +2,7 @@ stages:
   - test
 
 
-build:debian:
+test:
   stage: test
   image: registry.gitlab.com/treichl/cppargparse:latest
   tags:
