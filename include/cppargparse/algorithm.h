@@ -51,11 +51,6 @@ cmd::CommandLinePosition_t find_arg_position(const cmd::CommandLine_t &cmd, cons
 {
     for (auto it = cmd.cbegin(); it != cmd.cend(); ++it)
     {
-        if (it->at(0) == '\0')
-        {
-            return cmd.cend();
-        }
-
         if (*it == id || *it == id_alt)
         {
             return it;
@@ -93,7 +88,7 @@ cmd::CommandLinePositions_t get_option_positions(
     }
 
     return positions;
-}
+} // LCOV_EXCL_LINE
 
 
 } // namespace algorithm
