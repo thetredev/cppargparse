@@ -28,6 +28,7 @@ template <typename T>
 /**
  * @brief Stub error message.
  *
+ * @param position The command line position.
  * @return An empty C-style string.
  */
 static const char *error_message(const cmd::CommandLinePosition_t &position)
