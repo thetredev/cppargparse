@@ -17,3 +17,6 @@ docs/latex
 # Docker
 docker/
 !docker/Dockerfile
+
+# GitLab
+public/

@@ -6,6 +6,7 @@ variables:
 stages:
   - docker
   - test
+  - deploy
 
 
 docker:
@@ -47,3 +48,17 @@ test:
       - include/
       - docs/
     expire_in: 1000 yrs
+
+
+pages:
+  stage: deploy
+  image: ${CI_REGISTRY_IMAGE}
+  tags:
+    - gitlab-org
+  dependencies:
+    - test
+  script:
+    - mv docs public
+  artifacts:
+    paths:
+      - public
