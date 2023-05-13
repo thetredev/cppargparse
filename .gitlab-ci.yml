@@ -8,10 +8,16 @@ build:debian:
   tags:
     - gitlab-org
   script:
+    # configure build directory
     - mkdir build
     - cd build
-    - cmake -G"Ninja" -DCMAKE_BUILD_TYPE=Debug ..
-    - ninja tests
+    # configure coverage target
+    - cmake -G"Ninja" -DCMAKE_BUILD_TYPE=Profiling ..
+    # run coverage target
+    - ninja coverage
+    # build doxygen documentation
+    - cd ..
+    - doxygen
   artifacts:
     name: "cppargparse_${CI_COMMIT_BRANCH}${CI_COMMIT_TAG}_${CI_COMMIT_SHORT_SHA}"
     paths:

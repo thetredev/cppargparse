@@ -41,7 +41,7 @@ if(${IS_PROFILING})
 
         COMMAND lcov --capture --config-file ${CMAKE_SOURCE_DIR}/lcovrc --directory . --include ${CMAKE_SOURCE_DIR}/include/*.h --output cppargparse_base.info
         COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/filterbr.py cppargparse_base.info cppargparse.info
-        COMMAND genhtml --branch-coverage --output coverage cppargparse.info
+        COMMAND genhtml --branch-coverage --output ${CMAKE_SOURCE_DIR}/docs/coverage cppargparse.info
     )
 
     # Make "coverage" depend on "tests"
