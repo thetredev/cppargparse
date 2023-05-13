@@ -2,6 +2,7 @@ FROM debian:11.7-slim
 
 RUN apt-get -y update \
     && apt-get install -y --no-install-recommends \
+        ca-certificates \
         build-essential \
         git \
         cmake \
