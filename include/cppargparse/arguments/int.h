@@ -93,21 +93,6 @@ template <typename T>
  */
 static T wrap_char(const std::string &s)
 {
-    if (s.size() == 0)
-    {
-        throw std::out_of_range("char");
-    }
-
-    if (s.at(0) == '-')
-    {
-        if (s.size() < 2)
-        {
-            throw std::out_of_range("char");
-        }
-
-        return static_cast<T>(s.at(1));
-    }
-
     return static_cast<T>(s.at(0));
 }
 
