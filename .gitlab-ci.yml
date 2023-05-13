@@ -1,3 +1,7 @@
+variables:
+  CPPARGPARSE_ARTIFACT_NAME: "${CI_PROJECT_NAME}-${CI_COMMIT_SHORT_SHA}"
+
+
 stages:
   - test
 
@@ -19,7 +23,7 @@ test:
     - cd ..
     - doxygen
   artifacts:
-    name: "cppargparse_${CI_COMMIT_BRANCH}${CI_COMMIT_TAG}_${CI_COMMIT_SHORT_SHA}"
+    name: ${CPPARGPARSE_ARTIFACT_NAME}
     paths:
       - include/
       - docs/
