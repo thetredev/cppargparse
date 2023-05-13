@@ -9,6 +9,10 @@ cmake-build-release/
 # Qt Creator
 CMakeLists.txt.user
 
+# Docs
+docs/html
+docs/latex
+
 # Docker
 docker/
 !docker/Dockerfile
