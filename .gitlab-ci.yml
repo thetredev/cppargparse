@@ -42,9 +42,9 @@ test:
     - cd ${CI_PROJECT_DIR}
     # gcovr: cobertura
     - mkdir -p docs/coverage
-    - gcovr --filter include --branches --exclude-unreachable-branches --print-summary --cobertura-pretty -o docs/coverage/cobertura.xml
+    - gcovr --print-summary --cobertura-pretty -o docs/coverage/cobertura.xml
     # gcovr: html
-    - gcovr --filter include --branches --exclude-unreachable-branches --html-details docs/coverage/index.html
+    - gcovr --html-details docs/coverage/index.html
     # build doxygen documentation
     - doxygen
   coverage: /^\s*branches:\s*\d+.\d+\%/
