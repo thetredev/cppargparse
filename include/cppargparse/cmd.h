@@ -41,6 +41,9 @@ typedef std::vector<CommandLinePosition_t> CommandLinePositions_t;
 class CommandLineArgument
 {
 public:
+    CommandLineArgument() = delete;
+    CommandLineArgument& operator= (const CommandLineArgument& command_line_argument);
+
     /**
      * @brief c'tor
      *

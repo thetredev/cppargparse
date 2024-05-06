@@ -7,7 +7,7 @@ project(cppargparse C CXX)
 set(ignoreMe ${QT_QMAKE_EXECUTABLE})
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wno-keyword-macro")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 
 
 #
