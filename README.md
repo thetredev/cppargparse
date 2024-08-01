@@ -1,3 +1,9 @@
+# Deprecation notice
+
+This project is deprecated/archived. It won't be worked on anymore. I have moved on to other ventures instead (Rust, Go, C3).
+
+It was just a research project anyway, so please do not use it in production. Of course, you're free to fork it if you want.
+
 # C++ ArgParse: command line parsing made simple
 
 C++ ArgParse is an open source header-only C++11 library for parsing the command line (`argc`, `argv`) in a typed manner.
